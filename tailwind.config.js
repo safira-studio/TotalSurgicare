@@ -60,13 +60,40 @@ const config = {
           5: "hsl(var(--chart-5))",
         },
         clinic: {
-          primary: "#00A9B7", //  teal - Primary accent
-          secondary: "#F4A300", //bright-orange - CTA
-          secondaryDark: "#E49501", // dark orange - CTA Hover
-          accent: "#1B2A41", // navy - Headlines, strong contrast
-          dark: "#007D8C", // dark teal - Secondary elements
-          background: "#F8F9FA", //soft white - Background
+          primary: "#00A9B7",
+          secondary: "#F4A300",
+          secondaryDark: "#E49501",
+          accent: "#1B2A41",
+          dark: "#007D8C",
+          background: "#F8F9FA",
         },
+      },
+      keyframes: {
+        marquee: {
+          from: { transform: "translateX(0)" },
+          to: { transform: "translateX(calc(-100% - var(--gap)))" },
+        },
+        "accordion-down": {
+          from: {
+            height: "0",
+          },
+          to: {
+            height: "var(--radix-accordion-content-height)",
+          },
+        },
+        "accordion-up": {
+          from: {
+            height: "var(--radix-accordion-content-height)",
+          },
+          to: {
+            height: "0",
+          },
+        },
+      },
+      animation: {
+        marquee: "marquee var(--duration) linear infinite",
+        "accordion-down": "accordion-down 0.2s ease-out",
+        "accordion-up": "accordion-up 0.2s ease-out",
       },
     },
   },
