@@ -14,7 +14,8 @@ import {
 } from "lucide-react";
 import SectionTitle from "@/components/conditions/SectionTitle";
 import TreatmentCard from "@/components/conditions/TreatmentCard";
-import { pilesCondition } from "@/components/data/piles";
+import { siteConfig } from "@/config/site";
+import allData from "@/components/data/index";
 
 const IconMap = {
   pill: Pill,
@@ -28,7 +29,23 @@ const IconMap = {
 type Props = {
   params: Promise<{ slug: string }>;
 };
-
+export async function generateStaticParams() {
+  const slugs = siteConfig.navItems.flatMap((section) =>
+    section.items
+      .map((item) =>
+        item
+          .toLowerCase()
+          .replace(/\s+/g, "-")
+          .replace(/[^a-z0-9-]/g, "")
+      )
+      .concat(
+        section.items.length === 0
+          ? [section.title.toLowerCase().replace(/\s+/g, "-")]
+          : []
+      )
+  );
+  return slugs.map((slug) => ({ slug }));
+}
 export default async function ConditionsPage({ params }: Props) {
   const { slug } = await params;
 
@@ -41,16 +58,16 @@ export default async function ConditionsPage({ params }: Props) {
   return (
     <div>
       {/* Hero Section */}
-      <Hero {...pilesCondition.overview} />
+      <Hero {...data.overview} />
       {/* What is the condition section */}
-      <InfoSection {...pilesCondition.aboutCondition} />
+      <InfoSection {...data.aboutCondition} />
       {/* food triggers */}
       <div className="mb-16">
         <h2 className="text-3xl font-onest text-gray-800 mb-6">
           Trigger Foods to Avoid in a Diet
         </h2>
         <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-          {pilesCondition.foodTriggers?.map((food, index) => (
+          {data.foodTriggers?.map((food, index) => (
             <div key={index} className={`${food.bgColor} p-4 rounded-lg`}>
               <h3 className="font-semibold text-gray-800 mb-2">{food.name}</h3>
               <p className="text-sm text-gray-600">{food.description}</p>
@@ -65,7 +82,7 @@ export default async function ConditionsPage({ params }: Props) {
             Symptoms of Piles
           </h2>
           <div className="grid md:grid-cols-3 gap-6">
-            {pilesCondition.symptoms?.map((symptom, index) => {
+            {data.symptoms?.map((symptom, index) => {
               const IconComponent =
                 IconMap[symptom.icon as keyof typeof IconMap];
 
@@ -95,7 +112,7 @@ export default async function ConditionsPage({ params }: Props) {
           Common Causes of Piles
         </h2>
         <div className="grid md:grid-cols-3 gap-6">
-          {pilesCondition.causes.map((cause, index) => {
+          {data.causes.map((cause, index) => {
             const IconComponent = IconMap[cause.icon as keyof typeof IconMap];
 
             return (
@@ -124,7 +141,7 @@ export default async function ConditionsPage({ params }: Props) {
             Risk Factors for Piles
           </h2>
           <div className="grid md:grid-cols-3 gap-6">
-            {pilesCondition.riskFactors?.map((riskFactor, index) => {
+            {data.riskFactors?.map((riskFactor, index) => {
               const IconComponent =
                 IconMap[riskFactor.icon as keyof typeof IconMap];
 
@@ -155,7 +172,7 @@ export default async function ConditionsPage({ params }: Props) {
             Complications if Piles are Left Untreated
           </h2>
           <div className="grid md:grid-cols-3 gap-6">
-            {pilesCondition.complications?.map((complication, index) => {
+            {data.complications?.map((complication, index) => {
               const IconComponent =
                 IconMap[complication.icon as keyof typeof IconMap];
 
@@ -187,7 +204,7 @@ export default async function ConditionsPage({ params }: Props) {
         </h2>
         <div className="bg-blue-50 rounded-lg p-6">
           <div className="grid md:grid-cols-2 gap-6">
-            {pilesCondition.treatments.nonSurgical?.map((measure, index) => (
+            {data.treatments.nonSurgical?.map((measure, index) => (
               <div key={index} className="flex items-start">
                 <div className="rounded-full bg-blue-100 p-2 mr-4 mt-1">
                   <svg
@@ -226,7 +243,7 @@ export default async function ConditionsPage({ params }: Props) {
           />
 
           <div className="grid md:grid-cols-1 lg:grid-cols-3 gap-6">
-            {pilesCondition.treatments.surgical.map((treatment, index) => (
+            {data.treatments.surgical.map((treatment, index) => (
               <TreatmentCard
                 key={index}
                 name={treatment.name}
@@ -241,17 +258,19 @@ export default async function ConditionsPage({ params }: Props) {
         </div>
       </section>
 
-      <Diagnosis {...pilesCondition.diagnosis} />
-      <Types types={pilesCondition.types} />
-      <Treatment whyUs={pilesCondition.whyChooseUs} />
+      <Diagnosis {...data.diagnosis} />
+      <Types types={data.types} />
+      <Treatment whyUs={data.whyChooseUs} />
     </div>
   );
 }
 
 // Example fetch function (replace with your own)
 async function getDataFromSlug(slug: string) {
-  const mockData: { [key: string]: { title: string; content: string } } = {
-    a: { title: "Example Post", content: "This is an example." },
-  };
-  return mockData[slug];
+  try {
+    return allData[slug as keyof typeof allData] || null;
+  } catch (error) {
+    console.error(`Error fetching data for slug ${slug}:`, error);
+    return null;
+  }
 }
