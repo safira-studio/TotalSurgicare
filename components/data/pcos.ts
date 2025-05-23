@@ -1,6 +1,6 @@
 import { MedicalCondition } from "@/types";
 
-export const pcosCondition: MedicalCondition = {
+export const pcosPcodTreatment: MedicalCondition = {
   id: "16",
   slug: "pcos-pcod-symptoms-causes-treatment",
   overview: {

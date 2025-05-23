@@ -1,6 +1,6 @@
 import { MedicalCondition } from "@/types";
 
-export const lipomaCondition: MedicalCondition = {
+export const lipoma: MedicalCondition = {
   id: "17",
   slug: "lipoma-symptoms-causes-treatment",
   overview: {

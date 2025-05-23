@@ -1,6 +1,6 @@
 import { MedicalCondition } from "@/types";
 
-export const myomectomyCondition: MedicalCondition = {
+export const myomectomy: MedicalCondition = {
   id: "15",
   slug: "myomectomy-procedure-treatment",
   overview: {

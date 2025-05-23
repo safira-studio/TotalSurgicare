@@ -1,6 +1,6 @@
 import { MedicalCondition } from "@/types";
 
-export const sebaceousCystCondition: MedicalCondition = {
+export const sebaceousCyst: MedicalCondition = {
   id: "18",
   slug: "sebaceous-cyst-symptoms-causes-treatment",
   overview: {
