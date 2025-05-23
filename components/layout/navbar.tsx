@@ -16,6 +16,7 @@ import clsx from "clsx";
 import { useState } from "react";
 import { ChevronDown } from "lucide-react";
 import Image from "next/image";
+import { siteConfig } from "@/config/site";
 
 export const Navbar = () => {
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
@@ -46,7 +47,7 @@ export const Navbar = () => {
         justify="end"
       >
         <ul className="hidden  lg:flex gap-4 justify-start ml-2">
-          {menuSections.map((item, index) => (
+          {siteConfig.navItems.map((item, index) => (
             <NavbarItem
               key={`${item.title}-${index}`}
               className="relative group"
@@ -102,7 +103,7 @@ export const Navbar = () => {
 
       <NavbarMenu>
         <div className="mx-4 mt-2 flex flex-col gap-2">
-          {menuSections.map((item, index) => (
+          {siteConfig.navItems.map((item, index) => (
             <div key={`${item.title}-${index}`} className="mb-2">
               <div
                 className="flex items-center justify-between"
@@ -153,69 +154,3 @@ export const Navbar = () => {
     </HeroUINavbar>
   );
 };
-
-const menuSections = [
-  {
-    title: "Proctology",
-    items: [
-      "Piles Treatment",
-      "Fistula Treatment",
-      "Fissure Treatment",
-      "Pollonodal sinus Treatment",
-      "Rectal prolapse",
-    ],
-  },
-  {
-    title: "Laparoscopy",
-    items: [
-      "Hernia surgery",
-      "Gallstone surgery",
-      "Appendectomy",
-      "Inguinal Hernia Surgery",
-      "Umbillical Hernia surgery",
-    ],
-  },
-  {
-    title: "Urology",
-    items: [
-      "Stapler Circumcision",
-      "Kidney Stone Treatment (RIRS/PCNL/URSL)",
-      "Enlarged Prostate Surgery",
-    ],
-  },
-  {
-    title: "Gynaecology",
-    items: [
-      "Hysterectomy",
-      "Hymenoplasty",
-      "Vaginoplasty",
-      "Labiaplasty",
-      "Myomectomy",
-      "PCOS-PCOD Treatment",
-    ],
-  },
-  {
-    title: "Aesthetics",
-    items: ["Lipoma", "Sebaceous Cyst", "Breast Lump", "Breast Augmentation"],
-  },
-  {
-    title: "Vascular",
-    items: ["Varicose Veins", "AV Fistula"],
-  },
-  {
-    title: "Opthalmology",
-    items: ["Cataract"],
-  },
-  {
-    title: "Cardiology",
-    items: [],
-  },
-  {
-    title: "Diagnostic",
-    items: [],
-  },
-  {
-    title: "Post Surgery Care",
-    items: [],
-  },
-];

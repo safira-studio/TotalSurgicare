@@ -5,58 +5,67 @@ export const siteConfig = {
   description: "Make beautiful websites regardless of your design experience.",
   navItems: [
     {
-      label: "Home",
-      href: "/",
+      title: "Proctology",
+      items: [
+        "Piles Treatment",
+        "Fistula Treatment",
+        "Fissure Treatment",
+        "Pollonodal sinus Treatment",
+        "Rectal prolapse",
+      ],
     },
     {
-      label: "Docs",
-      href: "/docs",
+      title: "Laparoscopy",
+      items: [
+        "Hernia surgery",
+        "Gallstone surgery",
+        "Appendectomy",
+        "Inguinal Hernia Surgery",
+        "Umbillical Hernia surgery",
+      ],
     },
     {
-      label: "Pricing",
-      href: "/pricing",
+      title: "Urology",
+      items: [
+        "Stapler Circumcision",
+        "Kidney Stone Treatment (RIRS/PCNL/URSL)",
+        "Enlarged Prostate Surgery",
+      ],
     },
     {
-      label: "Blog",
-      href: "/blog",
+      title: "Gynaecology",
+      items: [
+        "Hysterectomy",
+        "Hymenoplasty",
+        "Vaginoplasty",
+        "Labiaplasty",
+        "Myomectomy",
+        "PCOS-PCOD Treatment",
+      ],
     },
     {
-      label: "About",
-      href: "/about",
-    },
-  ],
-  navMenuItems: [
-    {
-      label: "Profile",
-      href: "/profile",
+      title: "Aesthetics",
+      items: ["Lipoma", "Sebaceous Cyst", "Breast Lump", "Breast Augmentation"],
     },
     {
-      label: "Dashboard",
-      href: "/dashboard",
+      title: "Vascular",
+      items: ["Varicose Veins", "AV Fistula"],
     },
     {
-      label: "Projects",
-      href: "/projects",
+      title: "Opthalmology",
+      items: ["Cataract"],
     },
     {
-      label: "Team",
-      href: "/team",
+      title: "Cardiology",
+      items: [],
     },
     {
-      label: "Calendar",
-      href: "/calendar",
+      title: "Diagnostic",
+      items: [],
     },
     {
-      label: "Settings",
-      href: "/settings",
-    },
-    {
-      label: "Help & Feedback",
-      href: "/help-feedback",
-    },
-    {
-      label: "Logout",
-      href: "/logout",
+      title: "Post Surgery Care",
+      items: [],
     },
   ],
   links: {
