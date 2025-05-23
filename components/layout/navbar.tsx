@@ -33,19 +33,28 @@ export const Navbar = () => {
 
   return (
     <HeroUINavbar maxWidth="2xl" position="sticky" className="lg:px-10">
-      <NavbarContent className="basis-1/5 sm:basis-full" justify="start">
+      <NavbarContent
+        className="basis-1/5 sm:basis-1/3 lg:basis-1/5"
+        justify="start"
+      >
         <NavbarBrand as="li" className="gap-3 max-w-fit">
-          <NextLink className="flex justify-start items-center gap-1" href="/">
-            <Image src={"/logo.png"} alt="Logo" width={100} height={100} />
+          <NextLink href="/">
+            <Image
+              src={"/logo.png"}
+              alt="Logo"
+              width={90}
+              height={90}
+              className="min-w-24"
+            />
           </NextLink>
         </NavbarBrand>
       </NavbarContent>
 
       <NavbarContent
-        className="hidden lg:flex basis-1/5 sm:basis-full"
+        className="hidden lg:flex basis-1/5 sm:basis-2/3 lg:basis-4/5"
         justify="end"
       >
-        <ul className="hidden  lg:flex gap-4 justify-start ml-2">
+        <ul className="hidden lg:flex justify-end ml-2 gap-3">
           {siteConfig.navItems.map((item, index) => (
             <NavbarItem
               key={`${item.title}-${index}`}
@@ -63,7 +72,7 @@ export const Navbar = () => {
                 <span
                   className={clsx(
                     linkStyles({ color: "foreground" }),
-                    "data-[active=true]:text-primary data-[active=true]:font-medium hover:text-clinic-primary transition-colors duration-200"
+                    "data-[active=true]:text-primary text-sm data-[active=true]:font-medium hover:text-clinic-primary transition-colors duration-200"
                   )}
                 >
                   {item.title}
