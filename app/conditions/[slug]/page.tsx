@@ -26,13 +26,11 @@ const IconMap = {
   "alert-circle": Pill, // Using Pill as a fallback for alert-circle
 };
 type Props = {
-  params: {
-    slug: string;
-  };
+  params: Promise<{ slug: string }>;
 };
 
 export default async function ConditionsPage({ params }: Props) {
-  const { slug } = params;
+  const { slug } = await params;
 
   // Fetch your data here
   const data = await getDataFromSlug(slug);
