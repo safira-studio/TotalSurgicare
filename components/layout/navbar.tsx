@@ -16,6 +16,7 @@ import { useState } from "react";
 import { ChevronDown } from "lucide-react";
 import Image from "next/image";
 import { siteConfig } from "@/config/site";
+import Hamburger from "hamburger-react";
 
 export const Navbar = () => {
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
@@ -113,11 +114,24 @@ export const Navbar = () => {
       </NavbarContent>
 
       <NavbarContent className="lg:hidden basis-1 pl-4" justify="end">
-        {/* <NavbarMenuToggle /> */}
+        <NavbarMenuToggle />
         <AnimatedHamburger
           isOpen={isMenuOpen} // You'll need to track this state
           onToggle={() => setIsMenuOpen(!isMenuOpen)} // Your toggle function
           className="text-foreground hover:text-clinic-primary"
+        />
+        <LucideHamburger
+          isOpen={isMenuOpen} // You'll need to track this state
+          onToggle={() => setIsMenuOpen(!isMenuOpen)} // Your toggle function
+        />
+        <Hamburger
+          toggled={isMenuOpen}
+          toggle={setIsMenuOpen}
+          size={20}
+          color="currentColor"
+          duration={0.3}
+          rounded
+          label="Toggle menu"
         />
       </NavbarContent>
 
@@ -224,3 +238,26 @@ const AnimatedHamburger = ({
     </button>
   );
 };
+
+import { Menu, X } from "lucide-react";
+
+const LucideHamburger = ({
+  isOpen,
+  onToggle,
+}: {
+  isOpen: boolean;
+  onToggle: () => void;
+}) => (
+  <button onClick={onToggle} className="relative w-6 h-6">
+    <Menu
+      className={`absolute inset-0 transition-all duration-300 ${
+        isOpen ? "rotate-180 opacity-0" : "rotate-0 opacity-100"
+      }`}
+    />
+    <X
+      className={`absolute inset-0 transition-all duration-300 ${
+        isOpen ? "rotate-0 opacity-100" : "rotate-180 opacity-0"
+      }`}
+    />
+  </button>
+);
