@@ -90,7 +90,7 @@ export const Navbar = () => {
               {item.items.length > 0 && (
                 <div
                   className={clsx(
-                    "absolute top-full left-0 min-w-64 bg-white rounded-md  z-50 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 overflow-hidden",
+                    "absolute top-full left-0 min-w-64 bg-clinic-background rounded-md  z-50 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 overflow-hidden",
                     openDropdown === item.title ? "opacity-100 visible" : ""
                   )}
                   onMouseEnter={() => setOpenDropdown(item.title)}
@@ -100,7 +100,7 @@ export const Navbar = () => {
                     <NextLink
                       key={`${subItem}-${subIndex}`}
                       href={`/conditions/${subItem.toLowerCase().replace(/\s+/g, "-")}`}
-                      className="block px-4 py-2 text-sm hover:bg-gray-100 hover:text-clinic-primary transition-colors duration-200"
+                      className="block px-4 py-2 text-sm hover:bg-clinic-accent/10 hover:text-clinic-primary transition-colors duration-200"
                     >
                       {subItem}
                     </NextLink>
