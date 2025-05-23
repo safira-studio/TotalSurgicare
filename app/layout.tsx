@@ -42,13 +42,13 @@ export default function RootLayout({
           fontSans.variable
         )}
       >
-        <Providers themeProps={{ attribute: "class", defaultTheme: "light" }}>
-          <div className="relative h-screen">
-            <Navbar />
-            <main className="mx-auto max-w-8xl">{children}</main>
-            <Footer />
-          </div>
-        </Providers>
+        {/* <Providers themeProps={{ attribute: "class", defaultTheme: "light" }}> */}
+        <div className="relative h-screen">
+          <Navbar />
+          <main className="mx-auto max-w-8xl">{children}</main>
+          <Footer />
+        </div>
+        {/* </Providers> */}
       </body>
     </html>
   );

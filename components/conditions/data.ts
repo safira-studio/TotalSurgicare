@@ -206,4 +206,196 @@ export const medicalData = {
       "Sclerotherapy: Injection of a chemical solution to shrink hemorrhoids",
     ],
   },
+  fistula: {
+    main: {
+      title: "Fistula Treatment - Advanced Laser Surgery & Expert Care",
+      description:
+        "Anal fistulas are abnormal tunnels connecting the anal canal to the skin. At Total MediCare, we specialize in treating all types of anal fistulas using modern, minimally invasive laser surgery and expert surgical care. Experience quick relief, reduced recurrence, and same-day discharge with our proven techniques and experienced proctologists.",
+    },
+
+    treatmentStages: [
+      {
+        id: "01",
+        title: "Minimally Invasive Fistula Laser Surgery",
+        description:
+          "Total MediCare offers cutting-edge laser surgery for fistula treatment, eliminating the need for conventional open surgery. This advanced laser procedure is precise, less painful, and promotes faster recovery with minimal scarring. Most patients are discharged the same day.",
+      },
+      {
+        id: "02",
+        title: "Consult Top Fistula Surgeons – Book FREE Appointment",
+        description:
+          "Get expert advice from proctologists with over 8–15 years of experience in treating complex fistula cases. We provide personalized consultation, detailed diagnosis, and treatment planning tailored to each patient’s condition.",
+      },
+      {
+        id: "03",
+        title: "Faster Healing and Better Outcomes",
+        description:
+          "Our laser-assisted fistula procedures ensure reduced postoperative complications, faster wound healing, and low recurrence rates. Most patients resume daily activities within 1 week after the procedure.",
+      },
+      {
+        id: "04",
+        title: "Complete Insurance Assistance & Cashless Facility",
+        description:
+          "We handle insurance documentation, pre-approvals, and claim settlements from start to finish. At Total MediCare, our focus is to ensure a smooth experience while you focus on healing.",
+      },
+    ],
+
+    fistulaTypes: [
+      {
+        type: "Intersphincteric Fistula",
+        description:
+          "The most common type of anal fistula. It starts in the anal gland and opens between the internal and external sphincter muscles.",
+        procedure:
+          "Fistulotomy: The tract is opened, cleaned, and allowed to heal naturally from the inside out.",
+      },
+      {
+        type: "Trans-sphincteric Fistula",
+        description:
+          "This type of fistula passes through both the internal and external sphincter muscles, making it more complex.",
+        procedure:
+          "Seton Placement: A surgical thread is used to drain infection and prepare the tract for future closure.",
+      },
+      {
+        type: "Suprasphincteric Fistula",
+        description:
+          "This rare type of fistula goes above the sphincter muscles and may involve deeper tissues.",
+        procedure:
+          "LIFT Surgery: Ligation of the Intersphincteric Fistula Tract helps in closing the tract without affecting sphincter control.",
+      },
+      {
+        type: "Extrasphincteric Fistula",
+        description:
+          "A rare and complicated fistula that originates from the rectum or pelvic area and extends to the skin.",
+        procedure:
+          "Endorectal Advancement Flap: The internal opening is closed using a tissue flap to prevent recurrence.",
+      },
+      {
+        type: "Submucosal Fistula",
+        description:
+          "Located beneath the mucosal lining of the rectum, this type of fistula does not affect the sphincter muscles.",
+        procedure:
+          "Laser Fistula Surgery: High-precision laser is used to seal the tract with minimal tissue damage and fast healing.",
+      },
+      {
+        type: "Complex or Recurrent Fistula",
+        description:
+          "Includes multiple tracts, often associated with conditions like Crohn’s disease or previous failed surgeries.",
+        procedure:
+          "Staged Surgery: May involve multiple procedures using a multidisciplinary approach to achieve permanent healing.",
+      },
+    ],
+
+    diagnosticMethods: [
+      "Detailed physical examination and medical history",
+      "Digital rectal examination to locate internal openings",
+      "Proctoscopy or Anoscopy to assess internal tracts",
+      "MRI Fistulography or Endoanal Ultrasound for complex cases",
+    ],
+
+    procedureSteps: [
+      "Initial consultation and diagnosis by fistula specialist",
+      "Preoperative preparation and anesthesia",
+      "Laser or surgical closure of the fistula tract",
+      "Post-surgical observation and dressing",
+      "Discharge with diet, hygiene, and follow-up care instructions",
+    ],
+
+    causesOfFistula: [
+      {
+        title: "Anal Abscess",
+        description:
+          "Untreated or recurring anal abscesses can form fistulas when the infection creates a tunnel to the skin.",
+        icon: "alert-octagon",
+      },
+      {
+        title: "Inflammatory Bowel Diseases (IBD)",
+        description:
+          "Conditions like Crohn’s disease or ulcerative colitis can contribute to fistula formation due to chronic inflammation.",
+        icon: "activity",
+      },
+      {
+        title: "Infections (Tuberculosis, STDs)",
+        description:
+          "Certain bacterial or sexually transmitted infections may lead to fistula development.",
+        icon: "biohazard",
+      },
+      {
+        title: "Radiation Therapy",
+        description:
+          "Patients who have undergone radiation in the pelvic area may develop rectal or anal fistulas as a side effect.",
+        icon: "radiation",
+      },
+      {
+        title: "Surgical Complications",
+        description:
+          "Post-surgical infections near the rectum or anus can result in a fistula.",
+        icon: "scissors",
+      },
+    ],
+
+    triggerFoods: [
+      {
+        name: "Spicy Foods",
+        description: "Can irritate the digestive tract and worsen inflammation",
+        bgColor: "bg-orange-100",
+      },
+      {
+        name: "Red Meat",
+        description:
+          "High-fat foods can slow digestion and aggravate bowel conditions",
+        bgColor: "bg-rose-100",
+      },
+      {
+        name: "Caffeinated Drinks",
+        description: "May cause dehydration and worsen bowel movement issues",
+        bgColor: "bg-yellow-100",
+      },
+      {
+        name: "Processed & Fried Foods",
+        description: "Low fiber and high fat content can slow healing",
+        bgColor: "bg-red-100",
+      },
+      {
+        name: "Dairy Products",
+        description: "May cause constipation in sensitive individuals",
+        bgColor: "bg-blue-100",
+      },
+    ],
+
+    preventiveMeasures: [
+      {
+        title: "Maintain Anal Hygiene",
+        description:
+          "Keep the anal area clean and dry to avoid infections that may lead to fistulas.",
+      },
+      {
+        title: "Manage Digestive Health",
+        description:
+          "Treat anal abscesses early and maintain healthy gut function to prevent fistula formation.",
+      },
+      {
+        title: "High-Fiber Diet",
+        description:
+          "Consume fiber-rich foods to ensure smooth bowel movements and avoid strain.",
+      },
+      {
+        title: "Stay Hydrated",
+        description:
+          "Drink plenty of water daily to maintain soft stool consistency and reduce infection risk.",
+      },
+      {
+        title: "Timely Medical Attention",
+        description:
+          "Don’t ignore symptoms like pus discharge, pain near the anus, or swelling. Early detection helps prevent complications.",
+      },
+    ],
+
+    surgeryTypes: [
+      "Laser Fistula Surgery: Modern, non-invasive, faster healing, minimal bleeding",
+      "Fistulotomy: Surgical opening and cleaning of the fistula tract",
+      "Seton Placement: Thread used to drain and treat complex fistulas",
+      "LIFT Procedure: Sphincter-preserving technique for complex tracts",
+      "Endorectal Flap Surgery: Internal closure for high or extrasphincteric fistulas",
+    ],
+  },
 };
