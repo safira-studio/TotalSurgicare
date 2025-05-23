@@ -5,6 +5,7 @@ import Hero from "@/components/conditions/Hero";
 import { notFound } from "next/navigation";
 import Types from "@/components/conditions/Types";
 import { medicalData } from "@/components/conditions/data";
+import { pilesCondition } from "@/app/conditions2/[slug]/data";
 
 type Props = {
   params: {
@@ -25,9 +26,9 @@ export default async function ConditionsPage({ params }: Props) {
   return (
     <div>
       {/* Hero Section */}
-      <Hero main={medicalData.piles.main} />
+      <Hero {...pilesCondition.overview} />
       {/* What is the condition section */}
-      <InfoSection />
+      <InfoSection {...pilesCondition.aboutCondition} />
 
       <DiagnosisProcedure />
       <Types />

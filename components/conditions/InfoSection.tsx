@@ -19,7 +19,15 @@ const IconMap = {
   "alert-circle": Pill, // Using Pill as a fallback for alert-circle
 };
 
-const InfoSection = () => {
+const InfoSection = ({
+  title,
+  description,
+  images,
+}: {
+  title: string;
+  description: string;
+  images?: { src: string; alt: string }[];
+}) => {
   return (
     <div className="py-16 px-6 lg:px-12 bg-white">
       <div className="max-w-7xl mx-auto">
@@ -27,17 +35,11 @@ const InfoSection = () => {
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="space-y-6 text-center md:text-left">
               <h2 className="text-4xl font-onest text-gray-800 mb-10">
-                What are Piles?
+                {title}
               </h2>
 
               {/* Text Content */}
-              <p className="text-gray-600 leading-relaxed">
-                Piles, also known as hemorrhoids, are a common condition that
-                affects many people globally. They are cushions of tissue filled
-                with blood vessels located at the end of the rectum or anus.
-                While they are normal parts of the human anatomy, they can
-                become inflamed and enlarged, causing discomfort.
-              </p>
+              <p className="text-gray-600 leading-relaxed">{description}</p>
               <p className="text-gray-600 leading-relaxed">
                 At higher stages of piles, such as Grade 3 or 4, an enlargement,
                 pain, and bleeding is common, and a surgical solution is often
