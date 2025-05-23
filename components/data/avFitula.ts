@@ -118,6 +118,16 @@ export const avFistula: MedicalCondition = {
         name: "Medication",
         description: "To manage blood pressure or prevent clotting.",
       },
+      {
+        name: "Physical Therapy",
+        description:
+          "Exercises and limb massage to promote blood flow and prevent stiffness around the fistula.",
+      },
+      {
+        name: "Anticoagulant Therapy",
+        description:
+          "Use of blood thinners to reduce the risk of clotting in the fistula without surgery.",
+      },
     ],
     surgical: [
       {
@@ -143,6 +153,18 @@ export const avFistula: MedicalCondition = {
           "Restores fistula function",
           "Prevents clot formation",
           "Improves blood flow",
+        ],
+      },
+      {
+        name: "Endovascular Fistula Creation",
+        description:
+          "Minimally invasive procedure using a catheter to create the fistula without open surgery.",
+        recoveryTime: "2-4 weeks",
+        anesthesia: "Local",
+        benefits: [
+          "Less invasive with smaller incisions",
+          "Faster healing and fewer complications",
+          "Outpatient procedure possible",
         ],
       },
     ],

@@ -197,6 +197,11 @@ export const appendectomy: MedicalCondition = {
         name: "Observation",
         description: "For mild symptoms, patient may be monitored closely",
       },
+      {
+        name: "Antibiotic Therapy",
+        description:
+          "Treatment with intravenous and oral antibiotics to reduce infection and inflammation",
+      },
     ],
     surgical: [
       {
@@ -220,6 +225,18 @@ export const appendectomy: MedicalCondition = {
           "Direct access for cleaning",
         ],
         recoveryTime: "7–10 days",
+        anesthesia: "General",
+      },
+      {
+        name: "Laparoscopic Appendectomy",
+        description:
+          "Minimally invasive removal of the appendix using small incisions and a camera",
+        benefits: [
+          "Faster recovery",
+          "Less postoperative pain",
+          "Minimal scarring",
+        ],
+        recoveryTime: "2–4 days",
         anesthesia: "General",
       },
     ],

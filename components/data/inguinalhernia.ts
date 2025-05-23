@@ -198,6 +198,16 @@ export const inguinalHerniaSurgery: MedicalCondition = {
         description:
           "Supports the bulge temporarily but is not a permanent solution",
       },
+      {
+        name: "Lifestyle Modifications",
+        description:
+          "Includes avoiding heavy lifting, managing weight, and treating chronic cough or constipation to reduce hernia strain",
+      },
+      {
+        name: "Physical Therapy",
+        description:
+          "Guided exercises to strengthen abdominal muscles, potentially reducing hernia discomfort in select cases",
+      },
     ],
     surgical: [
       {
@@ -218,6 +228,18 @@ export const inguinalHerniaSurgery: MedicalCondition = {
         ],
         recoveryTime: "2–4 weeks",
         anesthesia: "Local/General",
+      },
+      {
+        name: "Robotic-Assisted Hernia Repair",
+        description:
+          "Advanced minimally invasive surgery using robotic instruments for precise mesh placement",
+        benefits: [
+          "Improved precision and control",
+          "Reduced postoperative pain",
+          "Faster return to normal activities",
+        ],
+        recoveryTime: "1–2 weeks",
+        anesthesia: "General",
       },
     ],
   },

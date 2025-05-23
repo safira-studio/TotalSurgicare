@@ -122,6 +122,16 @@ export const lipoma: MedicalCondition = {
         name: "Steroid Injections",
         description: "May reduce size but not commonly used.",
       },
+      {
+        name: "Cryotherapy",
+        description:
+          "Freezing the lipoma to reduce size, though less commonly practiced.",
+      },
+      {
+        name: "Laser Therapy",
+        description:
+          "Using laser to shrink or soften the lipoma as a non-invasive option.",
+      },
     ],
     surgical: [
       {
@@ -146,6 +156,18 @@ export const lipoma: MedicalCondition = {
           "Minimally invasive",
           "Less scarring",
           "Shorter recovery time",
+        ],
+      },
+      {
+        name: "Minimal Incision Excision",
+        description:
+          "Removal through a small incision, balancing minimal scarring and thorough excision.",
+        recoveryTime: "1 week",
+        anesthesia: "Local",
+        benefits: [
+          "Less invasive than full excision",
+          "Faster healing",
+          "Lower risk of infection",
         ],
       },
     ],

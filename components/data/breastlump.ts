@@ -125,6 +125,16 @@ export const breastLump: MedicalCondition = {
         name: "Medications",
         description: "Pain relief or hormone therapy in certain cases.",
       },
+      {
+        name: "Fine Needle Aspiration (FNA)",
+        description:
+          "Minimally invasive procedure to sample lump cells for diagnosis.",
+      },
+      {
+        name: "Ultrasound Monitoring",
+        description:
+          "Regular imaging follow-up to track lump changes over time.",
+      },
     ],
     surgical: [
       {
@@ -148,6 +158,18 @@ export const breastLump: MedicalCondition = {
           "Effective cancer control",
           "Reduces recurrence risk",
           "Can be combined with reconstruction",
+        ],
+      },
+      {
+        name: "Excisional Biopsy / Lump Removal",
+        description: "Surgical removal of the lump to diagnose or treat.",
+        recoveryTime: "1-2 weeks",
+        anesthesia: "Local or General",
+        benefits: [
+          "Definitive diagnosis through histopathology",
+          "Complete removal of suspicious lumps",
+          "Relief from symptoms",
+          "Prevention of malignancy progression",
         ],
       },
     ],

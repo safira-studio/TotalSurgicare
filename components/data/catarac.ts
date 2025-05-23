@@ -123,6 +123,16 @@ export const cataract: MedicalCondition = {
         name: "Lifestyle Changes",
         description: "Reducing glare and wearing sunglasses.",
       },
+      {
+        name: "Anti-glare Coated Glasses",
+        description:
+          "Special lenses to reduce glare and improve contrast in mild cataracts.",
+      },
+      {
+        name: "Nutritional Supplements",
+        description:
+          "Antioxidants like Vitamin C, E, lutein, and zeaxanthin may slow cataract progression.",
+      },
     ],
     surgical: [
       {
@@ -136,6 +146,31 @@ export const cataract: MedicalCondition = {
           "Quick recovery",
           "High success rate",
           "Improves quality of life",
+        ],
+      },
+      {
+        name: "Femtosecond Laser-Assisted Cataract Surgery (FLACS)",
+        description:
+          "Laser technology used to perform precise incisions and soften the lens before removal.",
+        recoveryTime: "1-2 weeks",
+        anesthesia: "Topical or Local",
+        benefits: [
+          "Highly precise",
+          "Reduced ultrasound energy needed",
+          "Potentially faster healing",
+          "Improved surgical outcomes",
+        ],
+      },
+      {
+        name: "Intracapsular Cataract Extraction (ICCE)",
+        description:
+          "Complete removal of the lens and capsule in one piece, rare but used in complicated cases.",
+        recoveryTime: "3-6 weeks",
+        anesthesia: "General",
+        benefits: [
+          "Useful when lens capsule is damaged",
+          "Allows implantation of special IOLs",
+          "Effective in traumatic cataracts",
         ],
       },
     ],

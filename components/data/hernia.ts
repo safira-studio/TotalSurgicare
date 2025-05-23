@@ -224,6 +224,18 @@ export const herniaSurgery: MedicalCondition = {
         recoveryTime: "7–10 days",
         anesthesia: "Spinal or general",
       },
+      {
+        name: "Robotic Hernia Repair",
+        description:
+          "Advanced minimally invasive surgery using robotic arms for precision mesh placement",
+        benefits: [
+          "Enhanced precision and flexibility",
+          "Reduced post-op pain and scarring",
+          "Faster return to normal activities",
+        ],
+        recoveryTime: "3–5 days",
+        anesthesia: "General",
+      },
     ],
   },
   types: [

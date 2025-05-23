@@ -119,7 +119,18 @@ export const sebaceousCyst: MedicalCondition = {
         name: "Antibiotics",
         description: "Used if cyst is infected to control bacterial growth.",
       },
+      {
+        name: "Steroid Injection",
+        description:
+          "Reduces inflammation and cyst size, especially in recurring cases.",
+      },
+      {
+        name: "Observation",
+        description:
+          "Small, painless cysts can be monitored if not causing discomfort or infection.",
+      },
     ],
+
     surgical: [
       {
         name: "Surgical Excision",
@@ -144,6 +155,18 @@ export const sebaceousCyst: MedicalCondition = {
           "Immediate symptom relief",
           "Minimally invasive",
           "Quick procedure",
+        ],
+      },
+      {
+        name: "Punch Excision",
+        description:
+          "Less invasive surgical method using a circular blade to remove cyst through a small incision.",
+        recoveryTime: "1 week",
+        anesthesia: "Local",
+        benefits: [
+          "Minimal scarring",
+          "Faster healing",
+          "Suitable for small to medium cysts",
         ],
       },
     ],

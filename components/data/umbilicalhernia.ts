@@ -193,6 +193,21 @@ export const umbillicalHerniaSurgery: MedicalCondition = {
         description:
           "In infants, many umbilical hernias close on their own by age 1–2",
       },
+      {
+        name: "Hernia Belt or Binder",
+        description:
+          "Supports the abdominal wall and reduces discomfort, especially in adults unfit for surgery",
+      },
+      {
+        name: "Weight Management",
+        description:
+          "Losing excess weight helps reduce pressure on the hernia and prevent worsening",
+      },
+      {
+        name: "Avoiding Heavy Lifting",
+        description:
+          "Prevents strain on the abdominal area and reduces risk of hernia enlargement or pain",
+      },
     ],
     surgical: [
       {
@@ -214,6 +229,18 @@ export const umbillicalHerniaSurgery: MedicalCondition = {
         benefits: ["Small incisions", "Quick recovery", "Low recurrence"],
         recoveryTime: "1 week",
         anesthesia: "General",
+      },
+      {
+        name: "Mesh Reinforced Open Repair",
+        description:
+          "Traditional open surgery enhanced with mesh to strengthen the abdominal wall",
+        benefits: [
+          "Reduces risk of recurrence",
+          "Ideal for larger or recurrent hernias",
+          "Long-term durability",
+        ],
+        recoveryTime: "1–2 weeks",
+        anesthesia: "General or Local",
       },
     ],
   },

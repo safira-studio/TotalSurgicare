@@ -224,6 +224,18 @@ export const rectalProlapse: MedicalCondition = {
         recoveryTime: "1–2 weeks",
         anesthesia: "General",
       },
+      {
+        name: "Perineal Rectosigmoidectomy (Altemeier Procedure)",
+        description:
+          "Surgery through the perineum to remove the prolapsed rectum and reconnect the bowel.",
+        benefits: [
+          "Preferred for elderly or high-risk patients",
+          "No abdominal incision needed",
+          "Shorter hospital stay",
+        ],
+        recoveryTime: "5–7 days",
+        anesthesia: "Spinal or general",
+      },
     ],
   },
   types: [

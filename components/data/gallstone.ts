@@ -223,6 +223,18 @@ export const gallstoneSurgery: MedicalCondition = {
         recoveryTime: "7–10 days",
         anesthesia: "General",
       },
+      {
+        name: "Mini-Laparoscopic Cholecystectomy",
+        description:
+          "A less invasive version of laparoscopic surgery using smaller instruments and incisions",
+        benefits: [
+          "Smaller scars and less pain",
+          "Faster recovery than traditional laparoscopic",
+          "Lower risk of infection",
+        ],
+        recoveryTime: "2–4 days",
+        anesthesia: "General",
+      },
     ],
   },
   types: [
