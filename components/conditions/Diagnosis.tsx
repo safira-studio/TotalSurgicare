@@ -1,3 +1,4 @@
+import Image from "next/image";
 import React from "react";
 
 const Diagnosis = ({
@@ -43,10 +44,12 @@ const Diagnosis = ({
                   ))}
                 </ul>
               </div>
-              <img
+              <Image
                 src="/placeholder.svg"
                 alt="Diagnostic procedure"
                 className="rounded-lg shadow-md w-full max-w-md mx-auto"
+                width={100}
+                height={100}
               />
             </div>
           </div>

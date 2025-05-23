@@ -39,8 +39,8 @@ export default function Contact() {
         <div className="container mx-auto px-4 text-center">
           <h1 className="text-4xl md:text-5xl font-bold mb-4">Contact Us</h1>
           <p className="text-xl text-blue-100 max-w-2xl mx-auto">
-            Get in touch with our medical experts. We're here to help with your
-            healthcare needs.
+            Get in touch with our medical experts. We&apos;re here to help with
+            your healthcare needs.
           </p>
         </div>
       </div>
@@ -54,8 +54,8 @@ export default function Contact() {
                 Send us a Message
               </CardTitle>
               <p className="text-gray-600">
-                Fill out the form below and we'll get back to you as soon as
-                possible.
+                Fill out the form below and we&apos;ll get back to you as soon
+                as possible.
               </p>
             </CardHeader>
             <CardContent>
@@ -205,8 +205,8 @@ export default function Contact() {
                   Medical Emergency?
                 </h3>
                 <p className="text-red-700 mb-4">
-                  If you're experiencing a medical emergency, please call 112
-                  immediately or go to your nearest emergency room.
+                  If you&apos;re experiencing a medical emergency, please call
+                  112 immediately or go to your nearest emergency room.
                 </p>
                 <Button
                   variant="destructive"

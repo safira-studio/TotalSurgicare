@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 
 interface SpecialtyItemProps {
   icon: string;
@@ -13,7 +14,9 @@ const SpecialtyItem = ({ icon, name }: SpecialtyItemProps) => {
           <h3 className="text-lg font-thin text-slate-800 tracking-tight">
             {name}
           </h3>
-          <img
+          <Image
+            width={100}
+            height={100}
             src={icon}
             alt={name}
             className="w-14 h-14 object-contain rounded-md border border-slate-200"

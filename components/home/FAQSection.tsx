@@ -23,12 +23,12 @@ const FAQSection = () => {
     {
       question: "How do I schedule an appointment?",
       answer:
-        "You can schedule an appointment by calling our office during business hours, using our online appointment booking system on our website, or using our patient portal if you're an existing patient.",
+        "You can schedule an appointment by calling our office during business hours, using our online appointment booking system on our website, or using our patient portal if you&apos;re an existing patient.",
     },
     {
       question: "What should I bring to my first appointment?",
       answer:
-        "Please bring your photo ID, insurance card, a list of current medications, medical records if available, and any relevant imaging or test results. It's also helpful to arrive 15 minutes early to complete paperwork.",
+        "Please bring your photo ID, insurance card, a list of current medications, medical records if available, and any relevant imaging or test results. It&apos;s also helpful to arrive 15 minutes early to complete paperwork.",
     },
     {
       question: "Do you offer telehealth services?",
@@ -99,8 +99,8 @@ const FAQSection = () => {
                 <h3 className="text-xl font-semibold">Need Help?</h3>
               </div>
               <p className="text-white/90 mb-6">
-                If you can't find the answer to your question, please don't
-                hesitate to contact our customer support team.
+                If you can&apos;t find the answer to your question, please
+                don&apos;t hesitate to contact our customer support team.
               </p>
 
               <div className="space-y-4">

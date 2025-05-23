@@ -1,7 +1,12 @@
 import React from "react";
 import AppointmentForm from "./AppointmentForm";
-import { medicalData } from "./data";
-import { Calendar, Check, Info, Image, CircleArrowDown } from "lucide-react";
+import {
+  Calendar,
+  Check,
+  Info,
+  Image as ImageIcon,
+  CircleArrowDown,
+} from "lucide-react";
 import InfoIcon from "./InfoIcon";
 
 interface Heroprops {
@@ -48,7 +53,7 @@ const Hero = ({ title, brief, alternateNames }: Heroprops) => {
                 description="Advanced techniques with minimal pain"
               />
               <InfoIcon
-                icon={<Image className="h-6 w-6" />}
+                icon={<ImageIcon className="h-6 w-6" />}
                 title="Modern Technology"
                 description="State-of-the-art equipment"
               />

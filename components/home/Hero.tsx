@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { AvatarCircles } from "@/components/ui/avatar-circles";
 import { NumberTicker } from "@/components/ui/number-ticker";
+import Image from "next/image";
 
 const avatars = [
   {
@@ -82,7 +83,9 @@ export default function Hero() {
         </div>
 
         <div className="relative mt-4 bg-blue-500 rounded-3xl p-4 pt-16">
-          <img
+          <Image
+            width={100}
+            height={100}
             src="doctor.png"
             alt="Doctor"
             className="absolute -top-12 left-1/2 -translate-x-1/2 h-48 object-contain"
@@ -174,7 +177,13 @@ export default function Hero() {
           </div>
           {/* doctor image and floating text */}
           <div className="absolute bottom-0 left-1/2 -translate-x-1/2 z-10 scale-125">
-            <img src="doctor.png" alt="Doctor" className="object-contain" />
+            <Image
+              width={100}
+              height={100}
+              src="doctor.png"
+              alt="Doctor"
+              className="object-contain"
+            />
             <div className="absolute top-48 left-16 bg-gray-500/20 backdrop-blur-sm px-3 py-1 rounded-full text-sm text-clinic-accent">
               Reliability
             </div>

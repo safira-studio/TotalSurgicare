@@ -3,6 +3,7 @@ import { Calendar, User, ArrowRight } from "lucide-react";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import Image from "next/image";
 import {
   Carousel,
   CarouselContent,
@@ -34,7 +35,9 @@ const BlogCard = ({
   return (
     <Card className="overflow-hidden transition-all duration-300 hover:shadow-lg bg-white h-full flex flex-col">
       <div className="w-full h-48 overflow-hidden">
-        <img
+        <Image
+          width={100}
+          height={100}
           src={image || "/placeholder.svg"}
           alt={title}
           className="w-full h-full object-cover transition-transform hover:scale-105"

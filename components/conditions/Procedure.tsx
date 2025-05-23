@@ -1,5 +1,5 @@
 import React from "react";
-
+import Image from "next/image";
 const Procedure = ({
   description,
   steps,
@@ -18,7 +18,9 @@ const Procedure = ({
             <p className="text-gray-600 mb-6">{description}</p>
 
             <div className="grid md:grid-cols-2 gap-8 items-center">
-              <img
+              <Image
+                width={100}
+                height={100}
                 src="/placeholder.svg"
                 alt="Procedure illustration"
                 className="rounded-lg shadow-md w-full max-w-md mx-auto order-2 md:order-1"

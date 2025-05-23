@@ -2,6 +2,7 @@ import React from "react";
 import { Badge } from "@/components/ui/badge";
 import { NumberTicker } from "@/components/ui/number-ticker";
 import { Button } from "@/components/ui/button";
+import Image from "next/image";
 
 const StatItem = ({
   value,
@@ -73,7 +74,9 @@ const WhyChooseUs = () => {
 
             <div className="absolute right-0 bottom-0 hidden sm:block sm:max-w-[20rem] lg:max-w-none">
               <div className="">
-                <img
+                <Image
+                  width={100}
+                  height={100}
                   src="/doctor2.png"
                   alt="Medical team"
                   className="transform scale-x-[-1] "

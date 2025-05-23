@@ -106,6 +106,7 @@ export const Navbar = () => {
             <div key={`${item.title}-${index}`} className="mb-2">
               <div
                 className="flex items-center justify-between"
+                role="button"
                 onClick={() => handleMobileSectionToggle(item.title)}
               >
                 <NavbarMenuItem>

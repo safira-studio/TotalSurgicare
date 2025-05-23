@@ -125,9 +125,9 @@ const AppointmentBooking = () => {
 
                   <form onSubmit={handleSubmit} className="space-y-4">
                     <div className="space-y-2">
-                      <label className="text-sm font-medium">
+                      <Label className="text-sm font-medium">
                         Select Department
-                      </label>
+                      </Label>
                       <Select
                         value={specialty}
                         onValueChange={(value) => setSpecialty(value)}
@@ -145,9 +145,9 @@ const AppointmentBooking = () => {
                       </Select>
                     </div>
                     <div className="space-y-2">
-                      <label htmlFor="name" className="text-sm font-medium">
+                      <Label htmlFor="name" className="text-sm font-medium">
                         Full Name
-                      </label>
+                      </Label>
                       <Input id="name" placeholder="Your full name" required />
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">

@@ -1,8 +1,9 @@
 import React from "react";
+import Image from "next/image";
 import {
   Pill,
   Clock,
-  Image,
+  Image as ImageIcon,
   ArrowUp,
   Thermometer,
   Syringe,
@@ -11,7 +12,7 @@ import {
 const IconMap = {
   pill: Pill,
   clock: Clock,
-  image: Image,
+  image: ImageIcon,
   "arrow-up": ArrowUp,
   thermometer: Thermometer,
   syringe: Syringe,
@@ -46,30 +47,38 @@ const InfoSection = ({
               </p>
               <p className="text-gray-600 leading-relaxed">
                 Although piles are not a serious health risk, they can be
-                irritating and uncomfortable. If you're ready to move forward
-                with our team, we can guide you to the best treatment options
-                for lasting relief.
+                irritating and uncomfortable. If you&apos;re ready to move
+                forward with our team, we can guide you to the best treatment
+                options for lasting relief.
               </p>
             </div>
 
             {/* Image Grid */}
             <div className="grid grid-cols-2 gap-4">
-              <img
+              <Image
+                width={100}
+                height={100}
                 src="/placeholder.svg"
                 alt="Grade 1 Piles"
                 className="rounded-xl shadow-md object-cover w-full h-42"
               />
-              <img
+              <Image
+                width={100}
+                height={100}
                 src="/placeholder.svg"
                 alt="Grade 2 Piles"
                 className="rounded-xl shadow-md object-cover w-full h-42"
               />
-              <img
+              <Image
+                width={100}
+                height={100}
                 src="/placeholder.svg"
                 alt="Grade 3 Piles"
                 className="rounded-xl shadow-md object-cover w-full h-42"
               />
-              <img
+              <Image
+                width={100}
+                height={100}
                 src="/placeholder.svg"
                 alt="Grade 4 Piles"
                 className="rounded-xl shadow-md object-cover w-full h-42"
