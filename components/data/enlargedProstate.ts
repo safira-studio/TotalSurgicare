@@ -1,6 +1,6 @@
 import { MedicalCondition } from "@/types";
 
-export const enlargedProstateCondition: MedicalCondition = {
+export const enlargedProstateSurgery: MedicalCondition = {
   id: "13",
   slug: "enlarged-prostate-treatment",
   overview: {

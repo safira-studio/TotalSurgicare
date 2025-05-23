@@ -1,6 +1,6 @@
 import { MedicalCondition } from "@/types";
 
-export const breastLumpCondition: MedicalCondition = {
+export const breastLump: MedicalCondition = {
   id: "19",
   slug: "breast-lump-symptoms-causes-treatment",
   overview: {

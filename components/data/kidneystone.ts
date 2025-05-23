@@ -1,6 +1,6 @@
 import { MedicalCondition } from "@/types";
 
-export const kidneyStoneCondition: MedicalCondition = {
+export const kidneyStoneTreatmentRirspcnlursl: MedicalCondition = {
   id: "12",
   slug: "kidney-stone-treatment",
   overview: {

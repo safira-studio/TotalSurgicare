@@ -1,6 +1,6 @@
 import { MedicalCondition } from "@/types";
 
-export const varicoseVeinsCondition: MedicalCondition = {
+export const varicoseVeins: MedicalCondition = {
   id: "20",
   slug: "varicose-veins-symptoms-causes-treatment",
   overview: {

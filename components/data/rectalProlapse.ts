@@ -1,6 +1,6 @@
 import { MedicalCondition } from "@/types";
 
-export const rectalProlapseCondition: MedicalCondition = {
+export const rectalProlapse: MedicalCondition = {
   id: "5",
   slug: "rectal-prolapse-treatment",
   overview: {

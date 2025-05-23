@@ -1,6 +1,6 @@
 import { MedicalCondition } from "@/types";
 
-export const cataractCondition: MedicalCondition = {
+export const cataract: MedicalCondition = {
   id: "22",
   slug: "cataract-symptoms-causes-treatment",
   overview: {

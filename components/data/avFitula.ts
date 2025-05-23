@@ -1,6 +1,6 @@
 import { MedicalCondition } from "@/types";
 
-export const avFistulaCondition: MedicalCondition = {
+export const avFistula: MedicalCondition = {
   id: "21",
   slug: "av-fistula-symptoms-causes-treatment",
   overview: {

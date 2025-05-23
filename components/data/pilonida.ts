@@ -1,6 +1,6 @@
 import { MedicalCondition } from "@/types";
 
-export const pilonidalSinusCondition: MedicalCondition = {
+export const pollonodalSinusTreatment: MedicalCondition = {
   id: "4",
   slug: "pilonidal-sinus-treatment",
   overview: {
