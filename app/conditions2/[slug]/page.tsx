@@ -58,11 +58,11 @@ export default async function ConditionsPage({ params }: Props) {
           <div className="flex flex-col md:flex-row items-start gap-8">
             <div className="w-full md:w-7/12 animate-fade-in">
               <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
-                {condition.title}
+                {condition.overview.title}
               </h1>
 
               <p className="text-lg text-white/90 mb-8 max-w-2xl">
-                {condition.overview.description}
+                {condition.overview.brief}
               </p>
 
               {/* Quick Info Icons */}
@@ -129,13 +129,13 @@ export default async function ConditionsPage({ params }: Props) {
       <section className="py-12 bg-white">
         <div className="container mx-auto px-4">
           <SectionTitle
-            title={`What are ${condition.title.split("-")[0].trim()}?`}
+            title={`What are ${condition.overview.title.split("-")[0].trim()}?`}
             subtitle="Understanding the condition is the first step toward effective treatment"
           />
 
           <div className="grid md:grid-cols-2 gap-8">
             <div className="space-y-4">
-              <p className="text-gray-700">{condition.overview.description}</p>
+              <p className="text-gray-700">{condition.overview.brief}</p>
 
               {condition.symptoms.length > 0 && (
                 <div>
@@ -169,32 +169,31 @@ export default async function ConditionsPage({ params }: Props) {
       </section>
 
       {/* Factors to Avoid */}
-      {condition.overview.riskFactors &&
-        condition.overview.riskFactors.length > 0 && (
-          <section className="py-12 bg-clinic-light">
-            <div className="container mx-auto px-4">
-              <SectionTitle
-                title="Important Factors to Avoid if You Have Piles"
-                align="center"
-              />
+      {condition.riskFactors && condition.riskFactors.length > 0 && (
+        <section className="py-12 bg-clinic-light">
+          <div className="container mx-auto px-4">
+            <SectionTitle
+              title="Important Factors to Avoid if You Have Piles"
+              align="center"
+            />
 
-              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                {condition.overview.riskFactors.map((factor, index) => (
-                  <div
-                    key={index}
-                    className={`bg-white/80 backdrop-blur-sm p-6 rounded-lg shadow-sm border-l-4 border-clinic-primary transition-all duration-300 hover:shadow-md ${isLoaded ? "opacity-100" : "opacity-0"}`}
-                    style={{ transitionDelay: `${index * 100}ms` }}
-                  >
-                    <h3 className="font-medium text-lg mb-2 text-clinic-dark">
-                      Risk Factor
-                    </h3>
-                    <p className="text-gray-700">{factor}</p>
-                  </div>
-                ))}
-              </div>
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {condition.riskFactors.map((factor, index) => (
+                <div
+                  key={index}
+                  className={`bg-white/80 backdrop-blur-sm p-6 rounded-lg shadow-sm border-l-4 border-clinic-primary transition-all duration-300 hover:shadow-md ${isLoaded ? "opacity-100" : "opacity-0"}`}
+                  style={{ transitionDelay: `${index * 100}ms` }}
+                >
+                  <h3 className="font-medium text-lg mb-2 text-clinic-dark">
+                    Risk Factor
+                  </h3>
+                  <p className="text-gray-700">{factor}</p>
+                </div>
+              ))}
             </div>
-          </section>
-        )}
+          </div>
+        </section>
+      )}
 
       {/* Common Causes */}
       <section className="py-12 bg-white">

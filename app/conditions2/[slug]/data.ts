@@ -3,28 +3,33 @@ import { MedicalCondition } from "@/types";
 export const pilesCondition: MedicalCondition = {
   id: "1",
   slug: "piles-treatment",
-  title: "Piles Treatment - Laser Surgery Procedure",
   overview: {
-    description:
+    title: "Piles Treatment - Laser Surgery Procedure",
+    brief:
       "Piles (hemorrhoids) are swollen veins in the lower rectum and anus. They can cause discomfort, pain, and bleeding. Our advanced laser treatment provides quick relief with minimal recovery time.",
     alternateNames: [
       { language: "Hindi", name: "बवासीर" },
       { language: "Tamil", name: "மூலம்" },
     ],
-    riskFactors: [
-      "Chronic constipation or diarrhea",
-      "Sitting for long periods",
-      "Obesity",
-      "Pregnancy",
-      "Straining during bowel movements",
-    ],
-    complications: [
-      "Anemia (due to chronic blood loss)",
-      "Blood clots",
-      "Infection",
-      "Strangulated hemorrhoid",
-    ],
   },
+  aboutCondition: {
+    title: "What are Piles?",
+    description:
+      "lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+  },
+  riskFactors: [
+    "Chronic constipation or diarrhea",
+    "Sitting for long periods",
+    "Obesity",
+    "Pregnancy",
+    "Straining during bowel movements",
+  ],
+  complications: [
+    "Anemia (due to chronic blood loss)",
+    "Blood clots",
+    "Infection",
+    "Strangulated hemorrhoid",
+  ],
   symptoms: [
     "Painless bleeding during bowel movements",
     "Itching or irritation in the anal region",

@@ -7,20 +7,27 @@ export type IconSvgProps = SVGProps<SVGSVGElement> & {
 export interface MedicalCondition {
   id: string; // Unique identifier (e.g., UUID or auto-incremented ID)
   slug: string; // URL-friendly identifier (e.g., "piles", "inguinal-hernia-surgery")
-  title: string; // Page title (e.g., "Piles Treatment", "Inguinal Hernia Surgery")
   overview: {
-    description: string; // Brief description of the condition
+    title: string; // Page title (e.g., "Piles Treatment", "Inguinal Hernia Surgery")
+    brief: string; // Brief description of the condition
     alternateNames?: {
       // Optional translations or alternate names
       language: string; // e.g., "Hindi", "Tamil"
       name: string; // e.g., "पाइलोनिडल साइनस" for Pilonidal Sinus in Hindi
     }[];
-    riskFactors?: string[]; // List of risk factors (e.g., ["Sedentary lifestyle", "Obesity"])
-    complications?: string[]; // List of complications if untreated
   };
-
-  symptoms: string[]; // List of symptoms (e.g., ["Pain", "Bleeding"])
+  aboutCondition: {
+    title: string; // e.g., "What are Piles?"
+    description: string; // Detailed description of the condition
+    images?: {
+      src: string; // URL of the image
+      alt: string; // Alternate text for the image
+    }[];
+  };
   causes: string[]; // List of causes (e.g., ["Constipation", "Prolonged sitting"])
+  riskFactors?: string[]; // List of risk factors (e.g., ["Sedentary lifestyle", "Obesity"])
+  complications?: string[]; // List of complications if untreated
+  symptoms: string[]; // List of symptoms (e.g., ["Pain", "Bleeding"])
   diagnosis: {
     methods: {
       name: string; // e.g., "Physical Examination", "Ultrasound"
