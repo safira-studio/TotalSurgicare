@@ -22,6 +22,7 @@ export const Navbar = () => {
   const [openMobileSection, setOpenMobileSection] = useState<string | null>(
     null
   );
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const handleDropdownToggle = (title: string) => {
     setOpenDropdown(openDropdown === title ? null : title);
@@ -32,7 +33,13 @@ export const Navbar = () => {
   };
 
   return (
-    <HeroUINavbar maxWidth="2xl" position="sticky" className="lg:px-10">
+    <HeroUINavbar
+      maxWidth="2xl"
+      position="sticky"
+      className="lg:px-10"
+      isMenuOpen={isMenuOpen}
+      onMenuOpenChange={setIsMenuOpen}
+    >
       <NavbarContent
         className="basis-1/5 sm:basis-1/3 lg:basis-1/5"
         justify="start"
@@ -106,7 +113,12 @@ export const Navbar = () => {
       </NavbarContent>
 
       <NavbarContent className="lg:hidden basis-1 pl-4" justify="end">
-        <NavbarMenuToggle />
+        {/* <NavbarMenuToggle /> */}
+        <AnimatedHamburger
+          isOpen={isMenuOpen} // You'll need to track this state
+          onToggle={() => setIsMenuOpen(!isMenuOpen)} // Your toggle function
+          className="text-foreground hover:text-clinic-primary"
+        />
       </NavbarContent>
 
       <NavbarMenu>
@@ -159,5 +171,56 @@ export const Navbar = () => {
         </div>
       </NavbarMenu>
     </HeroUINavbar>
+  );
+};
+
+const AnimatedHamburger = ({
+  isOpen,
+  onToggle,
+  className = "",
+}: {
+  isOpen: boolean;
+  onToggle: () => void;
+  className?: string;
+}) => {
+  const [isHovered, setIsHovered] = useState(false);
+
+  return (
+    <button
+      className={`relative w-10 h-12 flex flex-col justify-center items-center bg-transparent border-none cursor-pointer transition-all duration-300 ${className}`}
+      onClick={onToggle}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      aria-label="Toggle menu"
+    >
+      {/* Top line */}
+      <span
+        className={`block  w-6 bg-current transition-all duration-300 ease-in-out ${
+          isOpen
+            ? "rotate-45 translate-y-1.5 h-0.5"
+            : isHovered
+              ? "w-7 translate-x-0.5 h-[3px]"
+              : "h-[3px]"
+        }`}
+      />
+
+      {/* Middle line */}
+      <span
+        className={`block h-0.5 w-6 bg-current my-1 transition-all duration-300 ease-in-out ${
+          isOpen ? "opacity-0 scale-0" : isHovered ? "w-5" : ""
+        }`}
+      />
+
+      {/* Bottom line */}
+      <span
+        className={`block  w-6 bg-current transition-all duration-300 ease-in-out ${
+          isOpen
+            ? "-rotate-45 -translate-y-1.5 h-0.5"
+            : isHovered
+              ? "w-7 translate-x-0.5 h-[3px]"
+              : "h-[3px]"
+        }`}
+      />
+    </button>
   );
 };
