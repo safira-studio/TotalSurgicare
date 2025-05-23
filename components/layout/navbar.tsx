@@ -9,7 +9,6 @@ import {
   NavbarItem,
   NavbarMenuItem,
 } from "@heroui/navbar";
-import { Link } from "@heroui/link";
 import { link as linkStyles } from "@heroui/theme";
 import NextLink from "next/link";
 import clsx from "clsx";
@@ -52,7 +51,7 @@ export const Navbar = () => {
               key={`${item.title}-${index}`}
               className="relative group"
             >
-              <Link
+              <NextLink
                 className="flex items-center cursor-pointer py-2"
                 onMouseEnter={() => setOpenDropdown(item.title)}
                 href={
@@ -69,7 +68,7 @@ export const Navbar = () => {
                 >
                   {item.title}
                 </span>
-              </Link>
+              </NextLink>
 
               {/* Dropdown Menu */}
               {item.items.length > 0 && (
@@ -111,16 +110,15 @@ export const Navbar = () => {
                 onClick={() => handleMobileSectionToggle(item.title)}
               >
                 <NavbarMenuItem>
-                  <Link
+                  <NextLink
                     href={
                       item.items.length == 0
                         ? `/conditions/${item.title.toLowerCase().replace(/\s+/g, "-")}`
                         : "#"
                     }
-                    size="lg"
                   >
                     {item.title}
-                  </Link>
+                  </NextLink>
                 </NavbarMenuItem>
                 {item.items.length > 0 && (
                   <ChevronDown

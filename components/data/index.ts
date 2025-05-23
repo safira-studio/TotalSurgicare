@@ -1,4 +1,24 @@
+import { appendectomy } from "./appendicitis";
+import { avFistula } from "./avFitula";
+import { breastLump } from "./breastlump";
+import { cataract } from "./catarac";
+import { enlargedProstateSurgery } from "./enlargedProstate";
+import { fissureTreatment } from "./fissure";
+import { fistulaTreatment } from "./fistula";
+import { gallstoneSurgery } from "./gallstone";
+import { herniaSurgery } from "./hernia";
+import { hysterectomy } from "./hysterectomy";
+import { inguinalHerniaSurgery } from "./inguinalhernia";
+import { kidneyStoneTreatmentRirspcnlursl } from "./kidneystone";
+import { lipoma } from "./lipoma";
+import { myomectomy } from "./myomectomy";
 import { pilesTreatment } from "./piles";
+import { pollonodalSinusTreatment } from "./pilonida";
+import { rectalProlapse } from "./rectalProlapse";
+import { sebaceousCyst } from "./sebaceousCyst";
+import { staplerCircumcision } from "./stapleCircumcision";
+import { umbillicalHerniaSurgery } from "./umbilicalhernia";
+import { varicoseVeins } from "./varicosVeins";
 
 export default {
   pilesTreatment,
@@ -15,19 +35,19 @@ export default {
   kidneyStoneTreatmentRirspcnlursl,
   enlargedProstateSurgery,
   hysterectomy,
-  hymenoplasty,
-  vaginoplasty,
-  labiaplasty,
-  myomectomy,
-  pcospcodTreatment,
   lipoma,
   sebaceousCyst,
   breastLump,
-  breastAugmentation,
+  myomectomy,
   varicoseVeins,
   avFistula,
   cataract,
-  cardiology,
-  diagnostic,
-  postSurgeryCare,
+  //   hymenoplasty,
+  //   vaginoplasty,
+  //   labiaplasty,
+  //   pcospcodTreatment,
+  //   breastAugmentation,
+  //   cardiology,
+  //   diagnostic,
+  //   postSurgeryCare,
 };

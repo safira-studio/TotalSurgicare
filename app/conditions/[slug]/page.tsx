@@ -268,7 +268,10 @@ export default async function ConditionsPage({ params }: Props) {
 // Example fetch function (replace with your own)
 async function getDataFromSlug(slug: string) {
   try {
-    return allData[slug as keyof typeof allData] || null;
+    const dataKey = slug.replace(/-([a-z])/g, (_, letter) =>
+      letter.toUpperCase()
+    );
+    return allData[dataKey as keyof typeof allData] || null;
   } catch (error) {
     console.error(`Error fetching data for slug ${slug}:`, error);
     return null;
