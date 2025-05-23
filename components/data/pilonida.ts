@@ -231,6 +231,18 @@ export const pollonodalSinusTreatment: MedicalCondition = {
         recoveryTime: "2-3 weeks",
         anesthesia: "Spinal or general",
       },
+      {
+        name: "Bascom Cleft Lift Procedure",
+        description:
+          "A flap surgery technique where the sinus is excised and the wound is closed off-center to reduce recurrence.",
+        benefits: [
+          "Lower recurrence rate compared to traditional methods",
+          "Faster healing with less discomfort",
+          "Preserves natural shape of the cleft",
+        ],
+        recoveryTime: "1-2 weeks",
+        anesthesia: "Spinal or general",
+      },
     ],
   },
   types: [

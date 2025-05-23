@@ -235,6 +235,18 @@ export const fissureTreatment: MedicalCondition = {
         recoveryTime: "1 week",
         anesthesia: "Spinal or general",
       },
+      {
+        name: "Anal Advancement Flap Surgery",
+        description:
+          "A procedure where healthy tissue is used to cover the fissure, promoting faster healing in chronic or non-healing cases.",
+        benefits: [
+          "Effective for non-healing fissures",
+          "Preserves anal function",
+          "Promotes rapid tissue regeneration",
+        ],
+        recoveryTime: "1-2 weeks",
+        anesthesia: "Spinal or general",
+      },
     ],
   },
   types: [
