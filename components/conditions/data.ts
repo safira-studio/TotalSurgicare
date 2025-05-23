@@ -2745,7 +2745,7 @@ export const umbilicalHerniaCondition: MedicalCondition = {
 };
 
 export const staplerCircumcision: MedicalCondition = {
-  id: "stapler-circumcision-001",
+  id: "11",
   slug: "stapler-circumcision",
   overview: {
     title: "Stapler Circumcision Treatment",
