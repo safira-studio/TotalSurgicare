@@ -24,16 +24,20 @@ export interface MedicalCondition {
       alt: string; // Alternate text for the image
     }[];
   };
-  causes: string[]; // List of causes (e.g., ["Constipation", "Prolonged sitting"])
+  foodTriggers?: { name: string; description: string; bgColor: string }[]; // List of food triggers (e.g., ["Spicy food", "Caffeine"])
+  causes: {
+    title: string; // e.g., "Chronic Constipation"
+    description: string;
+    icon: string; // Icon name (e.g., "pill", "clock", "image")
+  }[]; // List of causes (e.g., ["Constipation", "Prolonged sitting"])
   riskFactors?: string[]; // List of risk factors (e.g., ["Sedentary lifestyle", "Obesity"])
   complications?: string[]; // List of complications if untreated
   symptoms: string[]; // List of symptoms (e.g., ["Pain", "Bleeding"])
   diagnosis: {
-    methods: {
-      name: string; // e.g., "Physical Examination", "Ultrasound"
-      description: string; // Description of the diagnostic method
-    }[];
+    description: string; // e.g., "The proper diagnosis requires a physical examination of the anal area, including the use of a proctoscope."
+    methods: string[];
   };
+
   treatments: {
     nonSurgical?: {
       name: string; // e.g., "Dietary Changes", "Sitz Baths"
@@ -47,15 +51,9 @@ export interface MedicalCondition {
       anesthesia?: string; // e.g., "General", "Local"
     }[];
   };
+  types: { type: string; description: string; procedure: string }[]; // e.g., ["Internal", "External"]
   whyChooseUs: {
-    reasons: {
-      title: string; // e.g., "Advanced Treatment Through Laser Surgery"
-      description: string;
-    }[];
-  };
-  meta: {
-    pageUrl: string; // Full URL (e.g., "https://totalsurgicare.com/piles/")
-    lastUpdated: string; // ISO date string (e.g., "2025-05-21T18:13:00Z")
-    tags?: string[]; // Keywords for SEO or filtering (e.g., ["anorectal", "laser surgery"])
-  };
+    title: string; // e.g., "Advanced Treatment Through Laser Surgery"
+    description: string;
+  }[];
 }

@@ -1,7 +1,10 @@
 import React from "react";
-import { medicalData } from "./data";
 
-const TreatmentStages = () => {
+const TreatmentStages = ({
+  whyUs,
+}: {
+  whyUs: { title: string; description: string }[];
+}) => {
   return (
     <div className="bg-gray-50 py-16 px-6 lg:px-12">
       <div className="max-w-7xl mx-auto">
@@ -10,11 +13,11 @@ const TreatmentStages = () => {
         </h2>
 
         <div className="grid md:grid-cols-2 gap-x-12 gap-y-16">
-          {medicalData.piles.treatmentStages.map((stage) => (
-            <div key={stage.id} className="bg-white rounded-lg p-8 shadow-md">
+          {whyUs.map((stage, index) => (
+            <div key={index} className="bg-white rounded-lg p-8 shadow-md">
               <div className="flex items-center mb-4">
                 <div className="bg-clinic-primary text-white rounded-full w-10 h-10 flex items-center justify-center font-semibold mr-3">
-                  {stage.id}
+                  {index}
                 </div>
                 <h3 className="text-xl font-onest text-gray-800">
                   {stage.title}

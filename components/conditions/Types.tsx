@@ -1,5 +1,4 @@
 import React from "react";
-import { medicalData } from "./data";
 import {
   Table,
   TableBody,
@@ -9,7 +8,11 @@ import {
   TableRow,
 } from "@/components/ui/table";
 
-const FistulaTypes = () => {
+const FistulaTypes = ({
+  types,
+}: {
+  types: { type: string; description: string; procedure: string }[];
+}) => {
   return (
     <div className="bg-white py-16 px-6 lg:px-12">
       <div className="max-w-7xl mx-auto">
@@ -29,7 +32,7 @@ const FistulaTypes = () => {
               </TableRow>
             </TableHeader>
             <TableBody>
-              {medicalData.piles.fistulaTypes.map((item, index) => (
+              {types.map((item, index) => (
                 <TableRow key={index} className="hover:bg-gray-50">
                   <TableCell>
                     <span className="font-medium text-clinic-primary">

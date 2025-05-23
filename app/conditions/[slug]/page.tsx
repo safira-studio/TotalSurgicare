@@ -1,12 +1,31 @@
-import DiagnosisProcedure from "@/components/conditions/DiagnosisProcedure";
+import Diagnosis from "@/components/conditions/Diagnosis";
 import InfoSection from "@/components/conditions/InfoSection";
 import Treatment from "@/components/conditions/Treatment";
 import Hero from "@/components/conditions/Hero";
 import { notFound } from "next/navigation";
 import Types from "@/components/conditions/Types";
-import { medicalData } from "@/components/conditions/data";
-import { pilesCondition } from "@/app/conditions2/[slug]/data";
+import {
+  Pill,
+  Clock,
+  Image,
+  ArrowUp,
+  Thermometer,
+  Syringe,
+} from "lucide-react";
+import SectionTitle from "@/components/conditions/SectionTitle";
+import TreatmentCard from "@/components/conditions/TreatmentCard";
+import Procedure from "@/components/conditions/Procedure";
+import { pilesCondition } from "@/components/conditions/data";
 
+const IconMap = {
+  pill: Pill,
+  clock: Clock,
+  image: Image,
+  "arrow-up": ArrowUp,
+  thermometer: Thermometer,
+  syringe: Syringe,
+  "alert-circle": Pill, // Using Pill as a fallback for alert-circle
+};
 type Props = {
   params: {
     slug: string;
@@ -22,17 +41,121 @@ export default async function ConditionsPage({ params }: Props) {
   if (!data) {
     notFound(); // shows 404 page
   }
-
   return (
     <div>
       {/* Hero Section */}
       <Hero {...pilesCondition.overview} />
       {/* What is the condition section */}
       <InfoSection {...pilesCondition.aboutCondition} />
+      {/* food triggers */}
+      <div className="mb-16">
+        <h2 className="text-3xl font-onest text-gray-800 mb-6">
+          Trigger Foods to Avoid in a Diet
+        </h2>
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+          {pilesCondition.foodTriggers?.map((food, index) => (
+            <div key={index} className={`${food.bgColor} p-4 rounded-lg`}>
+              <h3 className="font-semibold text-gray-800 mb-2">{food.name}</h3>
+              <p className="text-sm text-gray-600">{food.description}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+      {/* Common Causes */}
+      <div className="mb-16">
+        <h2 className="text-3xl font-onest text-gray-800 mb-6">
+          Common Causes of Piles
+        </h2>
+        <div className="grid md:grid-cols-3 gap-6">
+          {pilesCondition.causes.map((cause, index) => {
+            const IconComponent = IconMap[cause.icon as keyof typeof IconMap];
 
-      <DiagnosisProcedure />
-      <Types />
-      <Treatment />
+            return (
+              <div
+                key={index}
+                className="bg-white border border-gray-100 rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow"
+              >
+                <div className="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center mb-4">
+                  {IconComponent && (
+                    <IconComponent className="w-6 h-6 text-clinic-primary" />
+                  )}
+                </div>
+                <h3 className="font-semibold text-gray-800 mb-2">
+                  {cause.title}
+                </h3>
+                <p className="text-gray-600">{cause.description}</p>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+      {/* to be Added Important: symptoms */}
+      {/* to be added - risk factor, complication if left untreated */}
+
+      {/* Prevention and Non-Surgical Treatment */}
+      <div className="mb-16">
+        <h2 className="text-3xl font-onest text-gray-800 mb-6">
+          Preventive Measures
+        </h2>
+        <div className="bg-blue-50 rounded-lg p-6">
+          <div className="grid md:grid-cols-2 gap-6">
+            {pilesCondition.treatments.nonSurgical?.map((measure, index) => (
+              <div key={index} className="flex items-start">
+                <div className="rounded-full bg-blue-100 p-2 mr-4 mt-1">
+                  <svg
+                    className="w-4 h-4 text-clinic-primary"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M5 13l4 4L19 7"
+                    ></path>
+                  </svg>
+                </div>
+                <div>
+                  <h3 className="font-semibold text-gray-800 mb-1">
+                    {measure.name}
+                  </h3>
+                  <p className="text-gray-600">{measure.description}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* sugrical treatment */}
+      <section className="py-12 bg-white">
+        <div className="container mx-auto px-4">
+          <SectionTitle
+            title="Surgical Treatment Options"
+            subtitle="Our advanced surgical procedures provide effective, long-term relief"
+          />
+
+          <div className="grid md:grid-cols-1 lg:grid-cols-3 gap-6">
+            {pilesCondition.treatments.surgical.map((treatment, index) => (
+              <TreatmentCard
+                key={index}
+                name={treatment.name}
+                description={treatment.description}
+                benefits={treatment.benefits}
+                recoveryTime={treatment.recoveryTime}
+                anesthesia={treatment.anesthesia}
+                isFeatured={index === 0} // First treatment is featured (typically laser)
+              />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <Diagnosis {...pilesCondition.diagnosis} />
+      <Types types={pilesCondition.types} />
+      <Treatment whyUs={pilesCondition.whyChooseUs} />
     </div>
   );
 }

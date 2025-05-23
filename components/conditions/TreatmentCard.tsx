@@ -23,19 +23,19 @@ const TreatmentCard: React.FC<TreatmentCardProps> = ({
       className={`rounded-lg p-6 transition-all duration-300 h-full flex flex-col justify-between
         ${
           isFeatured
-            ? "bg-medical-primary text-white shadow-lg"
+            ? "bg-clinic-primary text-white shadow-lg"
             : "bg-white border border-gray-200 hover:shadow-md"
         }`}
     >
       {isFeatured && (
-        <span className="bg-white text-medical-primary text-xs font-bold px-3 py-1 rounded-full w-fit mb-4">
+        <span className="bg-white text-clinic-primary text-xs font-bold px-3 py-1 rounded-full w-fit mb-4">
           Recommended
         </span>
       )}
 
       <div>
         <h3
-          className={`text-xl font-bold mb-2 ${isFeatured ? "text-white" : "text-medical-dark"}`}
+          className={`text-xl font-bold mb-2 ${isFeatured ? "text-white" : "text-clinic-dark"}`}
         >
           {name}
         </h3>
@@ -48,7 +48,7 @@ const TreatmentCard: React.FC<TreatmentCardProps> = ({
           {benefits.map((benefit, index) => (
             <div key={index} className="flex items-start">
               <span
-                className={`mr-2 mt-1 ${isFeatured ? "text-white" : "text-medical-primary"}`}
+                className={`mr-2 mt-1 ${isFeatured ? "text-white" : "text-clinic-primary"}`}
               >
                 <Check size={16} />
               </span>
@@ -73,7 +73,7 @@ const TreatmentCard: React.FC<TreatmentCardProps> = ({
                 Recovery Time
               </p>
               <p
-                className={`font-medium ${isFeatured ? "text-white" : "text-medical-dark"}`}
+                className={`font-medium ${isFeatured ? "text-white" : "text-clinic-dark"}`}
               >
                 {recoveryTime}
               </p>
@@ -88,7 +88,7 @@ const TreatmentCard: React.FC<TreatmentCardProps> = ({
                 Anesthesia
               </p>
               <p
-                className={`font-medium ${isFeatured ? "text-white" : "text-medical-dark"}`}
+                className={`font-medium ${isFeatured ? "text-white" : "text-clinic-dark"}`}
               >
                 {anesthesia}
               </p>
