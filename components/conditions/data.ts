@@ -85,26 +85,101 @@ export const pilesCondition: MedicalCondition = {
       icon: "syringe",
     },
   ],
+  symptoms: [
+    {
+      title: "Bleeding",
+      description: "Bright red blood during or after bowel movements",
+      icon: "pill",
+    },
+    {
+      title: "Pain and Discomfort",
+      description: "Especially when sitting or during bowel movements",
+      icon: "thermometer",
+    },
+    {
+      title: "Itching and Irritation",
+      description: "Around the anal area",
+      icon: "clock",
+    },
+    {
+      title: "Swelling",
+      description: "Lumps around the anus",
+      icon: "arrow-up",
+    },
+    {
+      title: "Mucus Discharge",
+      description: "Clear or yellowish discharge",
+      icon: "image",
+    },
+    {
+      title: "Incomplete Evacuation",
+      description: "Feeling of incomplete bowel movement",
+      icon: "syringe",
+    },
+  ],
   riskFactors: [
-    "Chronic constipation or diarrhea",
-    "Sitting for long periods",
-    "Obesity",
-    "Pregnancy",
-    "Straining during bowel movements",
+    {
+      title: "Age Over 50",
+      description: "Tissues supporting veins weaken with age",
+      icon: "clock",
+    },
+    {
+      title: "Family History",
+      description: "Genetic predisposition to developing piles",
+      icon: "pill",
+    },
+    {
+      title: "Chronic Diarrhea",
+      description: "Frequent loose stools can irritate the area",
+      icon: "thermometer",
+    },
+    {
+      title: "Low-Fiber Diet",
+      description: "Can lead to constipation and straining",
+      icon: "image",
+    },
+    {
+      title: "Sedentary Lifestyle",
+      description: "Lack of physical activity",
+      icon: "arrow-up",
+    },
+    {
+      title: "Anal Intercourse",
+      description: "May increase risk of hemorrhoids",
+      icon: "syringe",
+    },
   ],
   complications: [
-    "Anemia (due to chronic blood loss)",
-    "Blood clots",
-    "Infection",
-    "Strangulated hemorrhoid",
-  ],
-  symptoms: [
-    "Painless bleeding during bowel movements",
-    "Itching or irritation in the anal region",
-    "Pain or discomfort",
-    "Swelling around the anus",
-    "A lump near the anus, which may be sensitive or painful",
-    "Leakage of feces",
+    {
+      title: "Anemia",
+      description: "Chronic blood loss can lead to iron deficiency",
+      icon: "pill",
+    },
+    {
+      title: "Strangulated Hemorrhoid",
+      description: "Blood supply cut off, causing severe pain",
+      icon: "thermometer",
+    },
+    {
+      title: "Blood Clots",
+      description: "Thrombosed hemorrhoids can be extremely painful",
+      icon: "clock",
+    },
+    {
+      title: "Infection",
+      description: "Open wounds can become infected",
+      icon: "arrow-up",
+    },
+    {
+      title: "Incontinence",
+      description: "Difficulty controlling bowel movements",
+      icon: "image",
+    },
+    {
+      title: "Prolapse",
+      description: "Internal hemorrhoids may protrude outside",
+      icon: "syringe",
+    },
   ],
   diagnosis: {
     description:

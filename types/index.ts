@@ -30,9 +30,9 @@ export interface MedicalCondition {
     description: string;
     icon: string; // Icon name (e.g., "pill", "clock", "image")
   }[]; // List of causes (e.g., ["Constipation", "Prolonged sitting"])
-  riskFactors?: string[]; // List of risk factors (e.g., ["Sedentary lifestyle", "Obesity"])
-  complications?: string[]; // List of complications if untreated
-  symptoms: string[]; // List of symptoms (e.g., ["Pain", "Bleeding"])
+  riskFactors?: { title: string; description: string; icon: string }[]; // List of risk factors (e.g., ["Sedentary lifestyle", "Obesity"])
+  complications?: { title: string; description: string; icon: string }[]; // List of complications if untreated
+  symptoms: { title: string; description: string; icon: string }[]; // List of symptoms (e.g., ["Pain", "Bleeding"])
   diagnosis: {
     description: string; // e.g., "The proper diagnosis requires a physical examination of the anal area, including the use of a proctoscope."
     methods: string[];

@@ -14,7 +14,6 @@ import {
 } from "lucide-react";
 import SectionTitle from "@/components/conditions/SectionTitle";
 import TreatmentCard from "@/components/conditions/TreatmentCard";
-import Procedure from "@/components/conditions/Procedure";
 import { pilesCondition } from "@/components/conditions/data";
 
 const IconMap = {
@@ -61,6 +60,37 @@ export default async function ConditionsPage({ params }: Props) {
           ))}
         </div>
       </div>
+      {/* Symptoms */}
+      <div className="mb-16">
+        <div className="container mx-auto px-4">
+          <h2 className="text-3xl font-semibold text-gray-800 mb-6">
+            Symptoms of Piles
+          </h2>
+          <div className="grid md:grid-cols-3 gap-6">
+            {pilesCondition.symptoms?.map((symptom, index) => {
+              const IconComponent =
+                IconMap[symptom.icon as keyof typeof IconMap];
+
+              return (
+                <div
+                  key={index}
+                  className="bg-white border border-gray-100 rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow"
+                >
+                  <div className="w-12 h-12 rounded-full bg-red-100 flex items-center justify-center mb-4">
+                    {IconComponent && (
+                      <IconComponent className="w-6 h-6 text-red-600" />
+                    )}
+                  </div>
+                  <h3 className="font-semibold text-gray-800 mb-2">
+                    {symptom.title}
+                  </h3>
+                  <p className="text-gray-600">{symptom.description}</p>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </div>
       {/* Common Causes */}
       <div className="mb-16">
         <h2 className="text-3xl font-onest text-gray-800 mb-6">
@@ -89,8 +119,68 @@ export default async function ConditionsPage({ params }: Props) {
           })}
         </div>
       </div>
-      {/* to be Added Important: symptoms */}
-      {/* to be added - risk factor, complication if left untreated */}
+      {/* Risk Factors */}
+      <div className="mb-16">
+        <div className="container mx-auto px-4">
+          <h2 className="text-3xl font-semibold text-gray-800 mb-6">
+            Risk Factors for Piles
+          </h2>
+          <div className="grid md:grid-cols-3 gap-6">
+            {pilesCondition.riskFactors?.map((riskFactor, index) => {
+              const IconComponent =
+                IconMap[riskFactor.icon as keyof typeof IconMap];
+
+              return (
+                <div
+                  key={index}
+                  className="bg-white border border-gray-100 rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow"
+                >
+                  <div className="w-12 h-12 rounded-full bg-orange-100 flex items-center justify-center mb-4">
+                    {IconComponent && (
+                      <IconComponent className="w-6 h-6 text-orange-600" />
+                    )}
+                  </div>
+                  <h3 className="font-semibold text-gray-800 mb-2">
+                    {riskFactor.title}
+                  </h3>
+                  <p className="text-gray-600">{riskFactor.description}</p>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </div>
+      {/* Complications if Left Untreated */}
+      <div className="mb-16">
+        <div className="container mx-auto px-4">
+          <h2 className="text-3xl font-semibold text-gray-800 mb-6">
+            Complications if Piles are Left Untreated
+          </h2>
+          <div className="grid md:grid-cols-3 gap-6">
+            {pilesCondition.complications?.map((complication, index) => {
+              const IconComponent =
+                IconMap[complication.icon as keyof typeof IconMap];
+
+              return (
+                <div
+                  key={index}
+                  className="bg-white border border-gray-100 rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow"
+                >
+                  <div className="w-12 h-12 rounded-full bg-red-100 flex items-center justify-center mb-4">
+                    {IconComponent && (
+                      <IconComponent className="w-6 h-6 text-red-600" />
+                    )}
+                  </div>
+                  <h3 className="font-semibold text-gray-800 mb-2">
+                    {complication.title}
+                  </h3>
+                  <p className="text-gray-600">{complication.description}</p>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </div>
 
       {/* Prevention and Non-Surgical Treatment */}
       <div className="mb-16">
