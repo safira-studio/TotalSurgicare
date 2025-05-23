@@ -51,9 +51,14 @@ export const Navbar = () => {
               key={`${item.title}-${index}`}
               className="relative group"
             >
-              <div
+              <Link
                 className="flex items-center cursor-pointer py-2"
                 onMouseEnter={() => setOpenDropdown(item.title)}
+                href={
+                  item.items.length == 0
+                    ? `/conditions/${item.title.toLowerCase().replace(/\s+/g, "-")}`
+                    : "#"
+                }
               >
                 <span
                   className={clsx(
@@ -63,7 +68,7 @@ export const Navbar = () => {
                 >
                   {item.title}
                 </span>
-              </div>
+              </Link>
 
               {/* Dropdown Menu */}
               {item.items.length > 0 && (
@@ -104,7 +109,14 @@ export const Navbar = () => {
                 onClick={() => handleMobileSectionToggle(item.title)}
               >
                 <NavbarMenuItem>
-                  <Link href="#" size="lg">
+                  <Link
+                    href={
+                      item.items.length == 0
+                        ? `/conditions/${item.title.toLowerCase().replace(/\s+/g, "-")}`
+                        : "#"
+                    }
+                    size="lg"
+                  >
                     {item.title}
                   </Link>
                 </NavbarMenuItem>
