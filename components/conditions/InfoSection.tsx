@@ -24,13 +24,13 @@ const InfoSection = () => {
     <div className="py-16 px-6 lg:px-12 bg-white">
       <div className="max-w-7xl mx-auto">
         <div className="mb-20 max-w-6xl mx-auto px-4">
-          <h2 className="text-4xl font-onest text-center text-gray-800 mb-10">
-            What are Piles?
-          </h2>
-
           <div className="grid md:grid-cols-2 gap-12 items-center">
-            {/* Text Content */}
             <div className="space-y-6 text-center md:text-left">
+              <h2 className="text-4xl font-onest text-gray-800 mb-10">
+                What are Piles?
+              </h2>
+
+              {/* Text Content */}
               <p className="text-gray-600 leading-relaxed">
                 Piles, also known as hemorrhoids, are a common condition that
                 affects many people globally. They are cushions of tissue filled

@@ -87,54 +87,6 @@ const AppointmentForm = () => {
           </Select>
         </div>
 
-        {/* <div>
-          <Label htmlFor="preferred_date">Preferred Date</Label>
-          <Input id="preferred_date" type="date" className="mt-1" />
-        </div> */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div className="space-y-2">
-            <Label className="text-sm font-medium">Choose Date</Label>
-            <Popover>
-              <PopoverTrigger asChild>
-                <Button
-                  variant="outline"
-                  className={cn(
-                    "w-full justify-start text-left font-normal",
-                    !date && "text-clinic-accent"
-                  )}
-                >
-                  <CalendarIcon className="mr-2 h-4 w-4" />
-                  {date ? format(date, "PPP") : <span>Select date</span>}
-                </Button>
-              </PopoverTrigger>
-              <PopoverContent className="w-auto p-0">
-                <Calendar
-                  mode="single"
-                  selected={date}
-                  onSelect={setDate}
-                  initialFocus
-                  disabled={(date) =>
-                    date < new Date() ||
-                    date >
-                      new Date(
-                        new Date().setMonth(new Date().getMonth() + 2)
-                      ) ||
-                    date.getDay() === 0 ||
-                    date.getDay() === 6
-                  }
-                />
-              </PopoverContent>
-            </Popover>
-          </div>
-
-          <div className="space-y-2">
-            <label htmlFor="phone" className="text-sm font-medium">
-              Phone Number
-            </label>
-            <Input id="phone" placeholder="Your phone number" required />
-          </div>
-        </div>
-
         <div className="pt-2">
           <Button className="w-full bg-clinic-primary hover:bg-clinic-dark group">
             Book Appointment

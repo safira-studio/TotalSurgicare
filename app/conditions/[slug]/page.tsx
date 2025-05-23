@@ -24,8 +24,11 @@ export default async function ConditionsPage({ params }: Props) {
 
   return (
     <div>
+      {/* Hero Section */}
       <Hero main={medicalData.piles.main} />
+      {/* What is the condition section */}
       <InfoSection />
+
       <DiagnosisProcedure />
       <Types />
       <Treatment />

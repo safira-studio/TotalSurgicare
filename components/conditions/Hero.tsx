@@ -1,113 +1,95 @@
 import React from "react";
 import AppointmentForm from "./AppointmentForm";
 import { medicalData } from "./data";
+import { Calendar, Check, Info, Image, CircleArrowDown } from "lucide-react";
+import InfoIcon from "./InfoIcon";
+import { pilesCondition } from "@/app/conditions2/[slug]/data";
 
 const Hero = (main: any) => {
+  const condition = pilesCondition;
+
   return (
-    <div className="bg-gradient-to-r from-blue-50 to-blue-100">
-      <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-10 py-16 px-6 lg:px-12">
-        <div className="flex flex-col justify-center">
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-onest text-gray-800 leading-tight mb-6">
-            {main.main.title}
-          </h1>
-          <p className="text-lg text-gray-600 mb-8">{main.main.description}</p>
+    <section className="relative h-screen overflow-hidden">
+      <div
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        style={{
+          backgroundImage:
+            "url('https://images.unsplash.com/photo-1500673922987-e212871fec22?auto=format&fit=crop&q=80')",
+        }}
+        aria-hidden="true"
+      ></div>
+      <div
+        className="absolute inset-0 bg-gradient-to-r from-clinic-primary/90 via-clinic-primary/70 to-transparent z-0"
+        aria-hidden="true"
+      ></div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <div className="flex flex-col items-center bg-white p-4 rounded-lg shadow-sm">
-              <div className="rounded-full bg-blue-100 p-3 mb-3">
-                <svg
-                  className="w-6 h-6 text-clinic-primary"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
-                  ></path>
-                </svg>
-              </div>
-              <p className="text-center text-sm font-medium">
-                Painless Procedure
-              </p>
+      <div className="container mx-auto relative z-10">
+        <div className="max-w-7xl mx-auto flex gap-10 py-16 px-6 lg:px-12">
+          <div className="flex flex-col justify-center w-3/5 ">
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-onest text-white leading-tight mb-6 font-bold">
+              {main.main.title}
+            </h1>
+            <p className="text-lg text-gray-200 mb-8">
+              {main.main.description}
+            </p>
+
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+              <InfoIcon
+                icon={<Calendar className="h-6 w-6" />}
+                title="Quick Recovery"
+                description="Return to normal activities fast"
+              />
+              <InfoIcon
+                icon={<Check className="h-6 w-6" />}
+                title="Minimally Invasive"
+                description="Advanced techniques with minimal pain"
+              />
+              <InfoIcon
+                icon={<Image className="h-6 w-6" />}
+                title="Modern Technology"
+                description="State-of-the-art equipment"
+              />
+              <InfoIcon
+                icon={<Info className="h-6 w-6" />}
+                title="Expert Doctors"
+                description="Specialized in treatment"
+              />
             </div>
-
-            <div className="flex flex-col items-center bg-white p-4 rounded-lg shadow-sm">
-              <div className="rounded-full bg-blue-100 p-3 mb-3">
-                <svg
-                  className="w-6 h-6 text-clinic-primary"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
-                  ></path>
-                </svg>
-              </div>
-              <p className="text-center text-sm font-medium">
-                Quick Recovery Time
-              </p>
-            </div>
-
-            <div className="flex flex-col items-center bg-white p-4 rounded-lg shadow-sm">
-              <div className="rounded-full bg-blue-100 p-3 mb-3">
-                <svg
-                  className="w-6 h-6 text-clinic-primary"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"
-                  ></path>
-                </svg>
-              </div>
-              <p className="text-center text-sm font-medium">
-                Advanced Technology
-              </p>
-            </div>
-
-            <div className="flex flex-col items-center bg-white p-4 rounded-lg shadow-sm">
-              <div className="rounded-full bg-blue-100 p-3 mb-3">
-                <svg
-                  className="w-6 h-6 text-clinic-primary"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"
-                  ></path>
-                </svg>
-              </div>
-              <p className="text-center text-sm font-medium">
-                1-Day Rehabilitation
-              </p>
+            {condition.overview.alternateNames &&
+              condition.overview.alternateNames.length > 0 && (
+                <div className="my-6">
+                  <h3 className="text-lg font-medium mb-2 text-white">
+                    Also Known As:
+                  </h3>
+                  <div className="flex flex-wrap gap-2">
+                    {condition.overview.alternateNames.map((item, index) => (
+                      <span
+                        key={index}
+                        className="bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full text-sm text-white"
+                      >
+                        {item.name}{" "}
+                        <span className="text-xs text-white/70">
+                          ({item.language})
+                        </span>
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )}
+            <div className="hidden md:block">
+              <CircleArrowDown className="h-8 w-8 text-white animate-bounce" />
+              <span className="text-sm text-white/80">
+                Scroll for more information
+              </span>
             </div>
           </div>
-        </div>
 
-        <div className="flex justify-center items-center">
-          <AppointmentForm />
+          <div className="flex justify-center items-center w-2/5">
+            <AppointmentForm />
+          </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 
