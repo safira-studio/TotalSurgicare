@@ -75,7 +75,7 @@ const WhyChooseUs = () => {
             <div className="absolute right-0 bottom-0 hidden sm:block sm:max-w-[20rem] lg:max-w-none">
               <div className="">
                 <Image
-                  width={100}
+                  width={400}
                   height={100}
                   src="/doctor2.png"
                   alt="Medical team"

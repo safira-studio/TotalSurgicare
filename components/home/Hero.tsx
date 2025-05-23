@@ -6,15 +6,15 @@ import Image from "next/image";
 const avatars = [
   {
     imageUrl: "https://avatars.githubusercontent.com/u/59228569?v=4",
-    profileUrl: "https://github.com/username",
+    profileUrl: "#",
   },
   {
     imageUrl: "https://github.com/shadcn.png",
-    profileUrl: "https://github.com/username",
+    profileUrl: "#",
   },
   {
     imageUrl: "https://avatars.githubusercontent.com/u/68136265?v=4",
-    profileUrl: "https://github.com/username",
+    profileUrl: "#",
   },
 ];
 
@@ -86,7 +86,7 @@ export default function Hero() {
           <Image
             width={100}
             height={100}
-            src="doctor.png"
+            src="/doctor.png"
             alt="Doctor"
             className="absolute -top-12 left-1/2 -translate-x-1/2 h-48 object-contain"
           />
@@ -178,9 +178,9 @@ export default function Hero() {
           {/* doctor image and floating text */}
           <div className="absolute bottom-0 left-1/2 -translate-x-1/2 z-10 scale-125">
             <Image
-              width={100}
+              width={500}
               height={100}
-              src="doctor.png"
+              src="/doctor.png"
               alt="Doctor"
               className="object-contain"
             />
