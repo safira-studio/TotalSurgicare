@@ -14,7 +14,7 @@ import {
 } from "lucide-react";
 import SectionTitle from "@/components/conditions/SectionTitle";
 import TreatmentCard from "@/components/conditions/TreatmentCard";
-import { pilesCondition } from "@/components/conditions/data";
+import { pilesCondition } from "@/components/data/piles";
 
 const IconMap = {
   pill: Pill,
