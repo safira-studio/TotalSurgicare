@@ -48,6 +48,7 @@ export async function generateStaticParams() {
 }
 export default async function ConditionsPage({ params }: Props) {
   const { slug } = await params;
+  await new Promise((resolve) => setTimeout(resolve, 500));
   // Fetch your data here
   const data = await getDataFromSlug(slug);
 
