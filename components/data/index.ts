@@ -12,6 +12,7 @@ import { inguinalHerniaSurgery } from "./inguinalhernia";
 import { kidneyStoneTreatmentRirspcnlursl } from "./kidneystone";
 import { lipoma } from "./lipoma";
 import { myomectomy } from "./myomectomy";
+import { pcosPcodTreatment } from "./pcos";
 import { pilesTreatment } from "./piles";
 import { pollonodalSinusTreatment } from "./pilonida";
 import { rectalProlapse } from "./rectalProlapse";
@@ -45,7 +46,7 @@ export default {
   //   hymenoplasty,
   //   vaginoplasty,
   //   labiaplasty,
-  //   pcospcodTreatment,
+  pcosPcodTreatment,
   //   breastAugmentation,
   //   cardiology,
   //   diagnostic,
