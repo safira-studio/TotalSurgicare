@@ -48,7 +48,6 @@ export async function generateStaticParams() {
 }
 export default async function ConditionsPage({ params }: Props) {
   const { slug } = await params;
-
   // Fetch your data here
   const data = await getDataFromSlug(slug);
 
@@ -271,6 +270,7 @@ async function getDataFromSlug(slug: string) {
     const dataKey = slug.replace(/-([a-z])/g, (_, letter) =>
       letter.toUpperCase()
     );
+    console.log(dataKey);
     return allData[dataKey as keyof typeof allData] || null;
   } catch (error) {
     console.error(`Error fetching data for slug ${slug}:`, error);

@@ -13,7 +13,7 @@ import { link as linkStyles } from "@heroui/theme";
 import NextLink from "next/link";
 import clsx from "clsx";
 import { useState } from "react";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, Minus } from "lucide-react";
 import Image from "next/image";
 import { siteConfig } from "@/config/site";
 
@@ -99,7 +99,10 @@ export const Navbar = () => {
                   {item.items.map((subItem, subIndex) => (
                     <NextLink
                       key={`${subItem}-${subIndex}`}
-                      href={`/conditions/${subItem.toLowerCase().replace(/\s+/g, "-")}`}
+                      href={`/conditions/${subItem
+                        .toLowerCase()
+                        .replace(/\s+/g, "-")
+                        .replace(/[^a-z0-9-]/g, "")}`}
                       className="block px-4 py-2 text-sm hover:bg-clinic-accent/10 hover:text-clinic-primary transition-colors duration-200"
                     >
                       {subItem}
@@ -114,10 +117,10 @@ export const Navbar = () => {
 
       <NavbarContent className="lg:hidden basis-1 pl-4" justify="end">
         {/* <NavbarMenuToggle /> */}
-        <AnimatedHamburger
+
+        <LucideHamburger
           isOpen={isMenuOpen} // You'll need to track this state
           onToggle={() => setIsMenuOpen(!isMenuOpen)} // Your toggle function
-          className="text-foreground hover:text-clinic-primary"
         />
       </NavbarContent>
 
@@ -174,53 +177,28 @@ export const Navbar = () => {
   );
 };
 
-const AnimatedHamburger = ({
+import { Menu, X } from "lucide-react";
+
+const LucideHamburger = ({
   isOpen,
   onToggle,
-  className = "",
 }: {
   isOpen: boolean;
   onToggle: () => void;
-  className?: string;
-}) => {
-  const [isHovered, setIsHovered] = useState(false);
-
-  return (
-    <button
-      className={`relative w-10 h-12 flex flex-col justify-center items-center bg-transparent border-none cursor-pointer transition-all duration-300 ${className}`}
-      onClick={onToggle}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-      aria-label="Toggle menu"
-    >
-      {/* Top line */}
-      <span
-        className={`block  w-6 bg-current transition-all duration-300 ease-in-out ${
-          isOpen
-            ? "rotate-45 translate-y-1.5 h-0.5"
-            : isHovered
-              ? "w-7 translate-x-0.5 h-[3px]"
-              : "h-[3px]"
-        }`}
-      />
-
-      {/* Middle line */}
-      <span
-        className={`block h-0.5 w-6 bg-current my-1 transition-all duration-300 ease-in-out ${
-          isOpen ? "opacity-0 scale-0" : isHovered ? "w-5" : ""
-        }`}
-      />
-
-      {/* Bottom line */}
-      <span
-        className={`block  w-6 bg-current transition-all duration-300 ease-in-out ${
-          isOpen
-            ? "-rotate-45 -translate-y-1.5 h-0.5"
-            : isHovered
-              ? "w-7 translate-x-0.5 h-[3px]"
-              : "h-[3px]"
-        }`}
-      />
-    </button>
-  );
-};
+}) => (
+  <button
+    onClick={onToggle}
+    className="relative w-6 h-6 hover:text-clinic-primary"
+  >
+    <Menu
+      className={`absolute inset-0 transition-all duration-300  ${
+        isOpen ? "rotate-180 opacity-0" : "rotate-0 opacity-100"
+      }`}
+    />
+    <X
+      className={`absolute inset-0 transition-all duration-300  ${
+        isOpen ? "rotate-0 opacity-100" : "rotate-180 opacity-0"
+      }`}
+    />
+  </button>
+);
