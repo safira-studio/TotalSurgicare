@@ -133,7 +133,7 @@ const BlogSection = () => {
       <div className="container mx-auto px-4">
         <div className="flex flex-col md:flex-row justify-between items-center mb-10">
           <div>
-            <p className="text-sm font-medium text-clinic-blue mb-2">
+            <p className="text-sm font-medium text-clinic-primary mb-2">
               HEALTH INSIGHTS
             </p>
             <h2 className="text-3xl font-bold">Latest Articles</h2>
@@ -141,14 +141,6 @@ const BlogSection = () => {
               Stay informed with the latest health news, tips, and insights from
               our medical experts.
             </p>
-          </div>
-          <div className="mt-4 md:mt-0">
-            <Button
-              variant="outline"
-              className="border-clinic-blue text-clinic-blue hover:bg-clinic-primary hover:text-white"
-            >
-              View All Articles
-            </Button>
           </div>
         </div>
 
@@ -176,7 +168,14 @@ const BlogSection = () => {
             </div>
           </Carousel>
         </div>
-
+        <div className="mt-4 md:mt-0 flex justify-center w-full">
+          <Button
+            variant="outline"
+            className="mx-auto  text-clinic-blue hover:bg-clinic-primary hover:text-white"
+          >
+            View All Articles
+          </Button>
+        </div>
         <div className="text-center mt-10 ">
           <p className="text-gray-600">
             Subscribe to our newsletter to receive health tips and updates
@@ -191,7 +190,7 @@ const BlogSection = () => {
               className="max-w-2xl px-3 gap-2 text-gray-700 focus:outline-none"
             />
             <button className="bg-clinic-primary hover:bg-clinic-dark text-white font-medium px-4 py-2 ml-2 rounded-md transition-colors">
-              Subscribe to Newsletter
+              Subscribe
             </button>
           </div>
           {/* </div> */}

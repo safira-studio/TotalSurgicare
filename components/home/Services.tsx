@@ -14,7 +14,7 @@ const ServiceCard = ({
 }) => {
   return (
     <Card className="relative overflow-hidden">
-      <CardContent className="p-7">
+      <CardContent className="p-2 md:p-5 lg:p-7">
         <div className="flex items-center gap-2 mt-4 mb-2">
           {icon}
           <h3 className="font-medium">{title}</h3>
@@ -34,14 +34,18 @@ const ServiceCard = ({
 const BlueServiceCard = ({
   title,
   description,
+  className,
 }: {
   title: string;
   description: string;
+  className?: string;
 }) => {
   return (
-    <Card className="relative overflow-hidden bg-clinic-primary text-white">
-      <CardContent className="p-7">
-        <div className="text-2xl font-semibold mt-4 mb-2">{title}</div>
+    <Card
+      className={`relative overflow-hidden bg-clinic-primary text-white ${className}`}
+    >
+      <CardContent className="p-2 md:p-5 lg:p-7">
+        <div className="md:text-2xl font-bold mt-4 mb-2 text-xl">{title}</div>
         <p className="text-xs mb-4 opacity-80">{description}</p>
         <div className="absolute top-0 right-0 w-full h-full opacity-30">
           <div className="absolute top-20 right-10 h-20 w-20 rounded-full bg-clinic-accent/50"></div>
@@ -55,7 +59,7 @@ const BlueServiceCard = ({
 
 const Services = () => {
   return (
-    <div className="w-full py-12 bg-gray-50 rounded-lg ">
+    <div className="w-full py-12 bg-gray-50 rounded-lg px-5">
       <div className="container mt-5 mx-auto">
         <div className="w-full mx-auto mb-2 text-center">
           <div>
@@ -66,7 +70,7 @@ const Services = () => {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-2 md:gap-4 lg:gap-6">
           <ServiceCard
             title="Family medicine"
             description="Comprehensive medical care for adults and children - prevention, diagnosis and treatment of diseases."
@@ -76,6 +80,11 @@ const Services = () => {
             title="Total Surgicare"
             description="From consultation and diagnosis to treatment with care and attention to detail."
           />
+          <BlueServiceCard
+            title="Women's health"
+            description="Gynecological care, family planning, prenatal health and comprehensive women's healthcare."
+            className="md:hidden"
+          />
           <ServiceCard
             title="Pediatrics"
             description="Caring for children's health from the first days of life - check-ups, immunizations, and treatments."
@@ -84,6 +93,7 @@ const Services = () => {
           <BlueServiceCard
             title="Women's health"
             description="Gynecological care, family planning, prenatal health and comprehensive women's healthcare."
+            className="hidden md:block"
           />
           <ServiceCard
             title="Cardiology"
@@ -102,7 +112,7 @@ const Services = () => {
           We provide a full range of medical services — from consultation to
           diagnosis and treatment.
         </p>
-        <Button variant="link" className="text-clinic-blue p-0 h-auto">
+        <Button variant="link" className="text-clinic-primary p-0 h-auto">
           See all services
         </Button>
       </div>

@@ -17,7 +17,7 @@ const StatItem = ({
 }) => {
   return (
     <div className="mt-8 flex flex-col justify-center">
-      <div className="flex items-baseline gap-1 my-3">
+      <div className="flex items-start gap-1 my-3">
         <span className={`text-5xl font-bold ${color}`}>{value}</span>
         <span className={`text-3xl ${color}`}>+</span>
       </div>
@@ -109,7 +109,7 @@ const WhyChooseUs = () => {
                 />
               }
               label="Years of experience"
-              description="We have been working since 2012, improving the quality of services every day."
+              description="We have been working since 2012, improving the quality every day."
               color="text-clinic-primary"
             />
 

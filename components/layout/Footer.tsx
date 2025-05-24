@@ -18,9 +18,9 @@ const Footer = () => {
     <footer className="w-full bg-clinic-dark text-white">
       <div className="container mx-auto px-4 py-12">
         {/* Top Section with Logo and Contact */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 mb-8">
           {/* Logo and Description */}
-          <div className="space-y-4">
+          <div className="space-y-4 w-2/3 lg:w-full">
             <h2 className="text-xl font-onest text-white">MedClinic</h2>
             <p className="text-gray-300 text-sm">
               Providing quality healthcare services with advanced technology and
@@ -58,120 +58,122 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* Quick Links */}
-          <div className="space-y-4">
-            <h3 className="text-lg font-onest text-white">Quick Links</h3>
-            <ul className="space-y-2">
-              <li>
-                <Link
-                  href="/"
-                  className="text-gray-300 hover:text-white text-sm transition-colors"
-                >
-                  Home
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/"
-                  className="text-gray-300 hover:text-white text-sm transition-colors"
-                >
-                  About Us
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/"
-                  className="text-gray-300 hover:text-white text-sm transition-colors"
-                >
-                  Our Doctors
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/"
-                  className="text-gray-300 hover:text-white text-sm transition-colors"
-                >
-                  Services
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/"
-                  className="text-gray-300 hover:text-white text-sm transition-colors"
-                >
-                  Blog
-                </Link>
-              </li>
-            </ul>
-          </div>
+          <div className="lg:col-span-2 flex justify-center items-center gap-8">
+            {/* Quick Links */}
+            <div className="space-y-4 w-1/2 self-center">
+              <h3 className="text-lg font-onest text-white">Quick Links</h3>
+              <ul className="space-y-2">
+                <li>
+                  <Link
+                    href="/"
+                    className="text-gray-300 hover:text-white text-sm transition-colors"
+                  >
+                    Home
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/"
+                    className="text-gray-300 hover:text-white text-sm transition-colors"
+                  >
+                    About Us
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/"
+                    className="text-gray-300 hover:text-white text-sm transition-colors"
+                  >
+                    Our Doctors
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/"
+                    className="text-gray-300 hover:text-white text-sm transition-colors"
+                  >
+                    Services
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/"
+                    className="text-gray-300 hover:text-white text-sm transition-colors"
+                  >
+                    Blog
+                  </Link>
+                </li>
+              </ul>
+            </div>
 
-          {/* Our Services */}
-          <div className="space-y-4">
-            <h3 className="text-lg font-onest text-white">Our Services</h3>
-            <ul className="space-y-2">
-              <li>
-                <Link
-                  href="/"
-                  className="text-gray-300 hover:text-white text-sm transition-colors"
-                >
-                  Fissure Treatment
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/"
-                  className="text-gray-300 hover:text-white text-sm transition-colors"
-                >
-                  Hernia Surgery
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/"
-                  className="text-gray-300 hover:text-white text-sm transition-colors"
-                >
-                  Piles Treatment
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/"
-                  className="text-gray-300 hover:text-white text-sm transition-colors"
-                >
-                  Gallstone Surgery
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/"
-                  className="text-gray-300 hover:text-white text-sm transition-colors"
-                >
-                  PCOS-Pcod Care
-                </Link>
-              </li>
-            </ul>
+            {/* Our Services */}
+            <div className="space-y-4 w-1/2">
+              <h3 className="text-lg font-onest text-white">Our Services</h3>
+              <ul className="space-y-2">
+                <li>
+                  <Link
+                    href="/"
+                    className="text-gray-300 hover:text-white text-sm transition-colors"
+                  >
+                    Fissure Treatment
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/"
+                    className="text-gray-300 hover:text-white text-sm transition-colors"
+                  >
+                    Hernia Surgery
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/"
+                    className="text-gray-300 hover:text-white text-sm transition-colors"
+                  >
+                    Piles Treatment
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/"
+                    className="text-gray-300 hover:text-white text-sm transition-colors"
+                  >
+                    Gallstone Surgery
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/"
+                    className="text-gray-300 hover:text-white text-sm transition-colors"
+                  >
+                    PCOS-Pcod Care
+                  </Link>
+                </li>
+              </ul>
+            </div>
           </div>
-
           {/* Contact Info */}
           <div className="space-y-4">
             <h3 className="text-lg font-onest text-white">Contact Us</h3>
-            <div className="space-y-3 text-sm">
-              <div className="flex items-center space-x-3">
-                <div className="bg-clinic-primary p-2 rounded-full">
-                  <Phone size={16} />
+            <div className="space-y-3 text-sm ">
+              <div className="sm:flex lg:block gap-2 max-sm:space-y-2 lg:space-y-2">
+                <div className="flex items-center space-x-3">
+                  <div className="bg-clinic-primary p-2 rounded-full">
+                    <Phone size={16} />
+                  </div>
+                  <span className="text-gray-300">+1 (555) 123-4567</span>
                 </div>
-                <span className="text-gray-300">+1 (555) 123-4567</span>
-              </div>
-              <div className="flex items-center space-x-3">
-                <div className="bg-clinic-primary p-2 rounded-full">
-                  <Mail size={16} />
+                <div className="flex items-center space-x-3">
+                  <div className="bg-clinic-primary p-2 rounded-full">
+                    <Mail size={16} />
+                  </div>
+                  <span className="text-gray-300">contact@medclinic.com</span>
                 </div>
-                <span className="text-gray-300">contact@medclinic.com</span>
               </div>
               <p className="text-gray-300 pt-2">
-                123 Healthcare Street
-                <br />
-                Medical District, MD 12345
+                123 Healthcare Street <br className="max-lg:hidden" />
+                {" Medical District, MD 12345"}
               </p>
             </div>
           </div>

@@ -65,9 +65,9 @@ const TestimonialCard = ({
     <Card className="h-full bg-white rounded-lg p-4 shadow-md hover:shadow-lg transition-shadow w-80">
       <CardContent className="p-0 space-y-4">
         <div className="flex items-center gap-3 pt-3">
-          <Avatar className="h-10 w-10 border-2 border-clinic-blue">
+          <Avatar className="h-10 w-10 border-2 border-clinic-primary">
             <AvatarImage src={image || "/placeholder.svg"} />
-            <AvatarFallback className="bg-clinic-lightBlue text-white">
+            <AvatarFallback className="bg-clinic-primary/80 text-white">
               {author
                 .split(" ")
                 .map((n) => n[0])
@@ -76,7 +76,7 @@ const TestimonialCard = ({
           </Avatar>
           <div>
             <h4 className="font-semibold">{author}</h4>
-            {role && <p className="text-xs text-clinic-blue">{role}</p>}
+            {role && <p className="text-xs text-clinic-primary">{role}</p>}
           </div>
         </div>
 
@@ -90,7 +90,7 @@ export function TestimonialMarquee() {
   return (
     <div className="relative flex w-full flex-col items-center justify-center overflow-hidden">
       <div className="text-center mb-10">
-        <p className="text-sm font-medium text-clinic-blue mb-2">
+        <p className="text-sm font-medium text-clinic-primary mb-2">
           TESTIMONIALS
         </p>
         <h2 className="text-3xl font-bold">What Our Patients Say</h2>

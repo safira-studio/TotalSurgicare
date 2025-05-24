@@ -57,7 +57,7 @@ const FAQSection = () => {
     <div className="w-full py-12 mb-6 ">
       <div className="container mx-auto px-4 md:px-10">
         <div className="text-center mb-10">
-          <p className="text-sm font-medium text-clinic-blue mb-2">
+          <p className="text-sm font-medium text-clinic-primary mb-2">
             FREQUENTLY ASKED QUESTIONS
           </p>
           <h2 className="text-3xl font-onest">Common Questions</h2>
@@ -67,8 +67,8 @@ const FAQSection = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          <div className="col-span-2">
+        <div className="flex flex-col lg:flex-row gap-4 lg:gap-8">
+          <div className="lg:w-2/3 px-3">
             <Accordion
               type="single"
               collapsible
@@ -92,7 +92,7 @@ const FAQSection = () => {
             </Accordion>
           </div>
 
-          <div className="col-span-1">
+          <div className="lg:w-1/3 mx-auto">
             <Card className="p-6 bg-gradient-to-br from-clinic-primary to-clinic-dark text-white">
               <div className="flex items-center mb-4">
                 <HelpCircle className="mr-2" size={24} />
