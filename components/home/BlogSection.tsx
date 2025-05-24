@@ -44,10 +44,13 @@ const BlogCard = ({
         />
       </div>
       <CardContent className="flex-grow p-6">
-        <Badge variant="outline" className="mb-2 bg-blue-50 text-clinic-blue">
+        <Badge
+          variant="outline"
+          className="mb-2 bg-blue-50 text-clinic-primary"
+        >
           {category}
         </Badge>
-        <h3 className="text-xl font-semibold mb-2 line-clamp-2 hover:text-clinic-blue transition-colors">
+        <h3 className="text-xl font-semibold mb-2 line-clamp-2 hover:text-clinic-primary transition-colors">
           <a href={`/blog/${slug}`}>{title}</a>
         </h3>
         <p className="text-gray-600 line-clamp-3 mb-4">{excerpt}</p>
@@ -65,7 +68,7 @@ const BlogCard = ({
       <CardFooter className="pt-0 pb-6 px-6">
         <a
           href={`/blog/${slug}`}
-          className="text-clinic-blue font-medium flex items-center hover:underline"
+          className="text-clinic-primary font-medium flex items-center hover:underline"
         >
           Read more <ArrowRight size={16} className="ml-2" />
         </a>
@@ -171,7 +174,7 @@ const BlogSection = () => {
         <div className="mt-4 md:mt-0 flex justify-center w-full">
           <Button
             variant="outline"
-            className="mx-auto  text-clinic-blue hover:bg-clinic-primary hover:text-white"
+            className="mx-auto  text-clinic-primary hover:bg-clinic-primary hover:text-white"
           >
             View All Articles
           </Button>
@@ -183,16 +186,17 @@ const BlogSection = () => {
           </p>
 
           {/* <div className=" mx-auto"> */}
-          <div className="bg-white flex justify-center w-fit h-fit p-0 overflow-hidden mx-auto rounded-md border border-gray-300 focus-within:bg-clinic-dark focus-within:ring-2 focus-within:ring-blue-200 transition-all">
+          <div className="bg-white flex justify-center w-fit md:w-3/5 lg:w-2/5 h-fit p-0 overflow-hidden mx-auto rounded-md border border-gray-300  focus-within:ring-2 focus-within:ring-blue-200 transition-all min-w-0">
             <input
               type="email"
               placeholder="Enter your email"
-              className="max-w-2xl px-3 gap-2 text-gray-700 focus:outline-none"
+              className="w-full min-w-0 px-3 gap-2 text-gray-700 focus:outline-none"
             />
-            <button className="bg-clinic-primary hover:bg-clinic-dark text-white font-medium px-4 py-2 ml-2 rounded-md transition-colors">
+            <button className="bg-clinic-primary hover:bg-clinic-dark text-white font-medium px-4 py-2 ml-2  transition-colors">
               Subscribe
             </button>
           </div>
+
           {/* </div> */}
         </div>
       </div>

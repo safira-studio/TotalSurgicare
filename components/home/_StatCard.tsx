@@ -9,7 +9,7 @@ interface StatCardProps {
 const StatCard = ({
   value,
   label,
-  color = "text-clinic-blue",
+  color = "text-clinic-primary",
 }: StatCardProps) => {
   return (
     <div className="flex flex-col items-center mr-8">

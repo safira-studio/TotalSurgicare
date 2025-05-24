@@ -42,24 +42,24 @@ const DoctorCard = ({
         <div className="space-y-3">
           {education && (
             <div className="flex items-start gap-2 text-sm">
-              <User size={18} className="text-clinic-blue mt-0.5" />
+              <User size={18} className="text-clinic-primary mt-0.5" />
               <span>{education}</span>
             </div>
           )}
 
           {experience && (
             <div className="flex items-start gap-2 text-sm">
-              <Calendar size={18} className="text-clinic-blue mt-0.5" />
+              <Calendar size={18} className="text-clinic-primary mt-0.5" />
               <span>{experience}</span>
             </div>
           )}
 
           {email && (
             <div className="flex items-start gap-2 text-sm">
-              <Mail size={18} className="text-clinic-blue mt-0.5" />
+              <Mail size={18} className="text-clinic-primary mt-0.5" />
               <a
                 href={`mailto:${email}`}
-                className="hover:text-clinic-blue transition-colors"
+                className="hover:text-clinic-primary transition-colors"
               >
                 {email}
               </a>
@@ -68,10 +68,10 @@ const DoctorCard = ({
 
           {phone && (
             <div className="flex items-start gap-2 text-sm">
-              <Phone size={18} className="text-clinic-blue mt-0.5" />
+              <Phone size={18} className="text-clinic-primary mt-0.5" />
               <a
                 href={`tel:${phone}`}
-                className="hover:text-clinic-blue transition-colors"
+                className="hover:text-clinic-primary transition-colors"
               >
                 {phone}
               </a>
@@ -82,7 +82,7 @@ const DoctorCard = ({
         <div className="mt-4">
           <Button
             variant="outline"
-            className="w-full border-clinic-blue text-clinic-blue hover:bg-clinic-blue hover:text-white"
+            className="w-full border-clinic-primary text-clinic-primary hover:bg-clinic-primary hover:text-white"
           >
             Book Appointment
           </Button>
@@ -136,7 +136,9 @@ const DoctorProfiles = () => {
     <div className="w-full py-12 mb-6">
       <div className="container mx-auto px-4">
         <div className="text-center mb-10">
-          <p className="text-sm font-medium text-clinic-blue mb-2">OUR TEAM</p>
+          <p className="text-sm font-medium text-clinic-primary mb-2">
+            OUR TEAM
+          </p>
           <h2 className="text-3xl font-bold">Meet Our Specialists</h2>
           <p className="text-gray-500 mt-2 max-w-lg mx-auto">
             Our team of highly qualified doctors with many years of experience
@@ -151,7 +153,7 @@ const DoctorProfiles = () => {
         </div>
 
         <div className="text-center mt-10">
-          <Button className="bg-clinic-blue hover:bg-clinic-darkBlue">
+          <Button className="bg-clinic-primary hover:bg-clinic-darkBlue">
             View All Doctors
           </Button>
         </div>
