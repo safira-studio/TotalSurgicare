@@ -7,6 +7,7 @@ const config = {
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
     "./node_modules/@heroui/theme/dist/**/*.{js,ts,jsx,tsx}",
   ],
+  safelist: ["animate-marquee", "animate-marquee-vertical"],
   theme: {
     extend: {
       fontFamily: {
@@ -73,6 +74,10 @@ const config = {
           from: { transform: "translateX(0)" },
           to: { transform: "translateX(calc(-100% - var(--gap)))" },
         },
+        marqueeVertical: {
+          from: { transform: "translateY(0)" },
+          to: { transform: "translateY(calc(-100% - var(--gap)))" },
+        },
         "accordion-down": {
           from: {
             height: "0",
@@ -92,6 +97,7 @@ const config = {
       },
       animation: {
         marquee: "marquee var(--duration) linear infinite",
+        marqueeVertical: "marqueeVertical var(--duration) linear infinite",
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
       },
