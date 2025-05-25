@@ -78,6 +78,14 @@ const config = {
           from: { transform: "translateY(0)" },
           to: { transform: "translateY(calc(-100% - var(--gap)))" },
         },
+        scale: {
+          "0%, 40%, 100%": {
+            transform: "scaleY(0.05)",
+          },
+          "20%": {
+            transform: "scaleY(1)",
+          },
+        },
         "accordion-down": {
           from: {
             height: "0",
@@ -98,6 +106,7 @@ const config = {
       animation: {
         marquee: "marquee var(--duration) linear infinite",
         marqueeVertical: "marqueeVertical var(--duration) linear infinite",
+        scale: "scale 0.9s ease-in-out infinite",
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
       },
