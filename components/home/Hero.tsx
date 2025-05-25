@@ -30,7 +30,7 @@ export default function Hero() {
               Total <br />
               Surgicare
             </h1>
-            <div className="text-sm ml-2 my-4 text-clinic-accent">
+            <div className="text-sm ml-2 my-4 text-clinic-accent max-lg:hidden">
               We treat <span className="text-gray-400">not only symptoms</span>{" "}
               -<br />
               We care <span className="text-gray-400">about each person.</span>
@@ -97,36 +97,35 @@ export default function Hero() {
             </div>
           </div>
           {/* doctor image and floating text */}
-          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 z-10">
+          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 z-10 w-[380px] sm:w-[380px] md:w-[380px] lg:w-[550px] h-auto">
             <Image
               src="/doctor.png"
               alt="Doctor"
               width={550}
               height={100}
-              className="
-               w-[300px] sm:w-[400px] md:w-[500px] lg:w-[550px]" // Responsive width
+              className="w-[400px] sm:w-[450px] md:w-[500px] lg:w-[550px] h-auto"
             />
 
-            <div className="absolute top-48 left-4 sm:left-8 md:left-16 bg-gray-500/20 backdrop-blur-sm px-3 py-1 rounded-full text-xs sm:text-sm text-clinic-accent">
+            <div className="absolute top-40 sm:top-40 lg:top-48 left-4 sm:left-6 lg:left-16 bg-gray-500/20 backdrop-blur-sm px-3 py-1 rounded-full text-xs sm:text-sm text-clinic-accent">
               Reliability
             </div>
 
-            <div className="absolute top-44 right-4 sm:right-12 md:right-24 bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full text-xs sm:text-sm text-clinic-accent">
+            <div className="absolute top-28 sm:top-40 lg:top-44 right-4 sm:right-10 lg:right-24 bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full text-xs sm:text-sm text-clinic-accent">
               Experience
             </div>
 
-            <div className="absolute bottom-36 right-2 sm:bottom-40 sm:right-8 md:bottom-44 md:right-12 bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full text-xs sm:text-sm text-clinic-accent">
+            <div className="absolute bottom-24 sm:bottom-32 md:bottom-28 lg:bottom-36 right-2 sm:right-8 md:right-0 lg:right-12 bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full text-xs sm:text-sm text-clinic-accent">
               Professional
             </div>
           </div>
 
           {/* right the blue block */}
-          <div className="h-full w-full lg:w-1/2 relative  flex items-center justify-center">
+          <div className="h-full w-full lg:w-1/2 relative  flex items-center justify-center max-lg:bg-clinic-background">
             <div className="hidden lg:block absolute top-48 right-28 h-16 w-16 rounded-lg bg-clinic-secondary z-10"></div>
             <div className="hidden lg:block absolute top-80 right-32 h-20 w-20 rounded-lg bg-clinic-secondary z-10"></div>
             <div className="hidden lg:block absolute top-56 right-10 h-28 w-28 rounded-2xl bg-white/20 z-10"></div>
-            <div className="w-1/2 lg:hidden h-full ">
-              <div className="text-sm ml-2 my-4 text-clinic-accent">
+            <div className="w-1/2 lg:hidden h-full p-5 md:p-10">
+              <div className="text-sm my-4 text-clinic-accent w-2/3">
                 We treat{" "}
                 <span className="text-gray-400">not only symptoms</span> -<br />
                 We care{" "}
