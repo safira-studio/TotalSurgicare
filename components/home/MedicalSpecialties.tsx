@@ -70,37 +70,31 @@ const MedicalSpecialties = () => {
     },
   ];
 
-  // Function to get initial items based on screen size
-  const getInitialItems = () => {
-    if (typeof window === "undefined") return 9; // Default for SSR
-
-    const width = window.innerWidth;
-    if (width < 640) return 6; // mobile: < sm (640px)
-    if (width < 1024) return 9; // tablet: sm to lg (640px - 1024px)
-    return 12; // large: >= lg (1024px+)
-  };
-
-  const [initialItems, setInitialItems] = useState(getInitialItems);
-  const [visibleItems, setVisibleItems] = useState(initialItems);
+  const [initialItems, setInitialItems] = useState(9); // Default for SSR
+  const [visibleItems, setVisibleItems] = useState(9); // Default for SSR
   const [isAnimating, setIsAnimating] = useState(false);
   const buttonRef = React.useRef(null);
 
-  // Update initial items on window resize
+  // Set initial items based on screen size (client-side only)
   useEffect(() => {
+    const getInitialItems = () => {
+      const width = window.innerWidth;
+      if (width < 640) return 6; // mobile: < sm (640px)
+      if (width < 1024) return 9; // tablet: sm to lg (640px - 1024px)
+      return 12; // large: >= lg (1024px+)
+    };
+
     const handleResize = () => {
       const newInitialItems = getInitialItems();
       setInitialItems(newInitialItems);
-
-      // If currently showing initial amount, update visible items too
+      // If currently showing initial amount, update visible items
       if (visibleItems <= initialItems) {
         setVisibleItems(newInitialItems);
       }
     };
 
+    handleResize(); // Set initial values on mount
     window.addEventListener("resize", handleResize);
-
-    // Set initial values on client-side mount
-    handleResize();
 
     return () => window.removeEventListener("resize", handleResize);
   }, [visibleItems, initialItems]);
@@ -109,7 +103,6 @@ const MedicalSpecialties = () => {
     if (isAnimating) return;
     setIsAnimating(true);
 
-    // Calculate how many items to add in each batch
     const remainingItems = specialties.length - visibleItems;
     const batchSize = Math.min(6, remainingItems);
     const batches = Math.ceil(remainingItems / batchSize);
@@ -140,7 +133,6 @@ const MedicalSpecialties = () => {
     if (isAnimating) return;
     setIsAnimating(true);
 
-    // Calculate how many items to remove in each batch
     const itemsToRemove = visibleItems - initialItems;
     const batchSize = Math.min(6, itemsToRemove);
     const batches = Math.ceil(itemsToRemove / batchSize);
@@ -159,7 +151,6 @@ const MedicalSpecialties = () => {
         if (currentBatch < batches) {
           setTimeout(animateLess, 150);
         } else {
-          // Scroll to keep buttons in view after animation completes
           setTimeout(() => {
             setIsAnimating(false);
             if (buttonRef.current) {
