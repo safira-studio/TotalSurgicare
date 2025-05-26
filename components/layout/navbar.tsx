@@ -160,7 +160,10 @@ export const Navbar = () => {
                   {item.items.map((subItem, subIndex) => (
                     <NavbarMenuItem key={`${subItem}-${subIndex}`}>
                       <NextLink
-                        href={`/conditions/${subItem.toLowerCase().replace(/\s+/g, "-")}`}
+                        href={`/conditions/${subItem
+                          .toLowerCase()
+                          .replace(/\s+/g, "-")
+                          .replace(/[^a-z0-9-]/g, "")}`}
                         className="text-sm"
                       >
                         {subItem}
