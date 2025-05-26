@@ -165,6 +165,7 @@ export const Navbar = () => {
                           .replace(/\s+/g, "-")
                           .replace(/[^a-z0-9-]/g, "")}`}
                         className="text-sm"
+                        onClick={() => setIsMenuOpen(!isMenuOpen)}
                       >
                         {subItem}
                       </NextLink>
@@ -181,6 +182,7 @@ export const Navbar = () => {
 };
 
 import { Menu, X } from "lucide-react";
+import { Button } from "../ui/button";
 
 const LucideHamburger = ({
   isOpen,
