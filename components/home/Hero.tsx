@@ -26,7 +26,7 @@ export default function Hero() {
         <div className="w-full relative flex flex-col lg:flex-row">
           {/* left side title */}
           <div className="w-full lg:w-1/2 p-5 lg:py-12 max-lg:text-center">
-            <h1 className="text-5xl md:text-7xl font-onest mt-10 text-clinic-accent ">
+            <h1 className="text-5xl md:text-7xl font-onest mt-2 sm:mt-3 md:mt-7 lg:mt-10 text-clinic-accent ">
               Total <br />
               Surgicare
             </h1>
@@ -45,7 +45,7 @@ export default function Hero() {
                 <p className="text-xs text-gray-500 mb-2">
                   Results we are proud of
                 </p>
-                <div className="flex justify-evenly lg:justify-between">
+                <div className="flex justify-evenly lg:justify-between gap-3">
                   <div className="flex flex-col max-lg:items-center justify-center">
                     <div className="flex items-center font-semibold text-clinic-primary">
                       <NumberTicker
@@ -55,7 +55,7 @@ export default function Hero() {
                       />
                       <span className="ml-1">+</span>
                     </div>
-                    <div className="text-sm md:text-base text-gray-600">
+                    <div className="text-xs md:text-base text-gray-600">
                       years of
                       <br />
                       experience
@@ -70,7 +70,7 @@ export default function Hero() {
                       />
                       <span className="ml-1">+</span>
                     </div>
-                    <div className="text-sm md:text-base text-gray-600">
+                    <div className="text-xs md:text-base text-gray-600">
                       highly qualified
                       <br />
                       doctors
@@ -86,7 +86,7 @@ export default function Hero() {
                       />
                       <span className="ml-1">%</span>
                     </div>
-                    <div className="text-sm md:text-base text-gray-600">
+                    <div className="text-xs md:text-base text-gray-600">
                       digital
                       <br />
                       diagnostics
