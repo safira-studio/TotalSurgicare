@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   Select,
   SelectContent,
@@ -10,95 +11,108 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { cn } from "@/lib/utils";
-import { format } from "date-fns";
-
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { CalendarCheck, ArrowUp, CalendarIcon } from "lucide-react";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
-import { Calendar } from "@/components/ui/calendar";
+import { Textarea } from "@/components/ui/textarea";
 
 const AppointmentForm = () => {
-  const [date, setDate] = useState<Date | undefined>(undefined);
+  const [formData, setFormData] = useState({
+    name: "",
+    phone: "",
+    email: "",
+    service: "",
+    message: "",
+  });
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    console.log("Form submitted:", formData);
+  };
+
+  const handleInputChange = (field: string, value: string) => {
+    setFormData((prev) => ({ ...prev, [field]: value }));
+  };
 
   return (
-    <div className="bg-white rounded-lg shadow-lg p-6 w-full max-w-md">
-      <div className="flex items-center justify-between mb-6">
-        <h3 className="text-xl font-onest text-clinic-primary">
-          Book an Appointment
-        </h3>
-        <CalendarCheck className="text-clinic-primary h-5 w-5" />
-      </div>
+    <Card className="w-full max-w-md bg-white/95 backdrop-blur-sm shadow-xl">
+      <CardHeader className="pb-4">
+        <CardTitle className="text-xl text-center text-gray-800">
+          Book Appointment
+        </CardTitle>
+      </CardHeader>
+      <CardContent className="space-y-4">
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <div>
+            <Label htmlFor="name">Full Name</Label>
+            <Input
+              id="name"
+              type="text"
+              value={formData.name}
+              onChange={(e) => handleInputChange("name", e.target.value)}
+              placeholder="Enter your full name"
+              required
+            />
+          </div>
 
-      <div className="space-y-4">
-        <div>
-          <Label htmlFor="name">Your Name</Label>
-          <Input id="name" placeholder="Full name" className="mt-1" />
-        </div>
+          <div>
+            <Label htmlFor="phone">Phone Number</Label>
+            <Input
+              id="phone"
+              type="tel"
+              value={formData.phone}
+              onChange={(e) => handleInputChange("phone", e.target.value)}
+              placeholder="Enter your phone number"
+              required
+            />
+          </div>
 
-        <div>
-          <Label htmlFor="phone">Your Phone</Label>
-          <Input id="phone" placeholder="Phone number" className="mt-1" />
-        </div>
+          <div>
+            <Label htmlFor="email">Email</Label>
+            <Input
+              id="email"
+              type="email"
+              value={formData.email}
+              onChange={(e) => handleInputChange("email", e.target.value)}
+              placeholder="Enter your email"
+              required
+            />
+          </div>
 
-        <div>
-          <Label htmlFor="email">Your Email Address</Label>
-          <Input id="email" placeholder="Email" className="mt-1" />
-        </div>
+          <div>
+            <Label htmlFor="service">Service</Label>
+            <Select
+              onValueChange={(value) => handleInputChange("service", value)}
+            >
+              <SelectTrigger>
+                <SelectValue placeholder="Select a service" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="consultation">Consultation</SelectItem>
+                <SelectItem value="treatment">Treatment</SelectItem>
+                <SelectItem value="surgery">Surgery</SelectItem>
+                <SelectItem value="followup">Follow-up</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
 
-        <div>
-          <Label>Gender</Label>
-          <RadioGroup defaultValue="male" className="flex space-x-4 mt-1">
-            <div className="flex items-center space-x-1">
-              <RadioGroupItem value="male" id="male" />
-              <Label htmlFor="male">Male</Label>
-            </div>
-            <div className="flex items-center space-x-1">
-              <RadioGroupItem value="female" id="female" />
-              <Label htmlFor="female">Female</Label>
-            </div>
-          </RadioGroup>
-        </div>
+          <div>
+            <Label htmlFor="message">Message (Optional)</Label>
+            <Textarea
+              id="message"
+              value={formData.message}
+              onChange={(e) => handleInputChange("message", e.target.value)}
+              placeholder="Any additional information"
+              rows={3}
+            />
+          </div>
 
-        <div>
-          <Label htmlFor="procedure">Select Procedure</Label>
-          <Select>
-            <SelectTrigger>
-              <SelectValue placeholder="Select Department" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="Proctology">Proctology</SelectItem>
-              <SelectItem value="Laparoscopy">Laparoscopy</SelectItem>
-              <SelectItem value="Urology">Urology</SelectItem>
-              <SelectItem value="Gynaecology">Gynaecology</SelectItem>
-              <SelectItem value="Aesthetics">Aesthetics</SelectItem>
-              <SelectItem value="Vascular">Vascular</SelectItem>
-              <SelectItem value="Opthalmology">Opthalmology</SelectItem>
-              <SelectItem value="Cardiology">Cardiology</SelectItem>
-              <SelectItem value="Diagnostic">Diagnostic</SelectItem>
-              <SelectItem value="Post Surgery Care">
-                Post Surgery Care
-              </SelectItem>
-            </SelectContent>
-          </Select>
-        </div>
-
-        <div className="pt-2">
-          <Button className="w-full bg-clinic-primary hover:bg-clinic-dark group">
+          <Button
+            type="submit"
+            className="w-full bg-clinic-primary hover:bg-clinic-primary/90"
+          >
             Book Appointment
-            <ArrowUp className="ml-2 h-4 w-4 rotate-45 transition group-hover:translate-x-1" />
           </Button>
-        </div>
-
-        <p className="text-xs text-gray-500 text-center mt-2">
-          Free consultation with our specialists available
-        </p>
-      </div>
-    </div>
+        </form>
+      </CardContent>
+    </Card>
   );
 };
 

@@ -6,14 +6,12 @@ interface InfoIconProps {
   description: string;
 }
 
-const InfoIcon: React.FC<InfoIconProps> = ({ icon, title, description }) => {
+const InfoIcon = ({ icon, title, description }: InfoIconProps) => {
   return (
-    <div className="flex flex-col items-center bg-white p-4 rounded-lg shadow-sm">
-      <div className="rounded-full bg-blue-100 p-3 mb-3 text-clinic-primary">
-        {icon}
-      </div>
-      <h3 className="font-medium text-sm mb-1 text-center">{title}</h3>
-      {/* <p className="text-gray-600 text-sm">{description}</p> */}
+    <div className="flex flex-col items-center text-center p-3 bg-white/10 backdrop-blur-sm rounded-lg hover:bg-white/20 transition-all duration-300">
+      <div className="mb-2 text-white">{icon}</div>
+      <h3 className="text-sm font-semibold text-white mb-1">{title}</h3>
+      <p className="text-xs text-gray-200 leading-tight">{description}</p>
     </div>
   );
 };
