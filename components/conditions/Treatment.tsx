@@ -12,11 +12,11 @@ const TreatmentStages = ({
           Why choose Total MediCare for Piles Surgery?
         </h2>
 
-        <div className="grid md:grid-cols-2 gap-x-12 gap-y-16">
+        <div className="grid md:grid-cols-2 gap-x-12  gap-y-16">
           {whyUs.map((stage, index) => (
-            <div key={index} className="bg-white rounded-lg p-8 shadow-md">
+            <div key={index} className=" rounded-lg p-8 shadow-md bg-white">
               <div className="flex items-center mb-4">
-                <div className="bg-clinic-primary text-white rounded-full w-10 h-10 flex items-center justify-center font-semibold mr-3">
+                <div className="bg-clinic-primary text-white rounded-full max-sm:rounded-lg w-10 h-10 flex items-center justify-center font-semibold mr-3">
                   {index}
                 </div>
                 <h3 className="text-xl font-onest text-gray-800">

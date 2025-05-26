@@ -21,11 +21,13 @@ const SectionTitle: React.FC<SectionTitleProps> = ({
             : "text-left"
       }`}
     >
-      <h2 className="text-2xl md:text-3xl font-bold text-medical-dark">
+      <h2 className="text-2xl md:text-3xl font-bold text-medical-dark text-center">
         {title}
       </h2>
       {subtitle && (
-        <p className="text-gray-600 mt-2 max-w-2xl mx-auto">{subtitle}</p>
+        <p className="text-gray-600 mt-2 max-w-2xl mx-auto text-center">
+          {subtitle}
+        </p>
       )}
     </div>
   );

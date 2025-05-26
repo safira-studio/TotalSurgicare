@@ -216,7 +216,7 @@ export default async function Content({ slug }: Props) {
       </div>
 
       {/* Prevention and Non-Surgical Treatment */}
-      <div className="mb-16 md:px-10">
+      <div className="mb-16 md:px-10 max-sm:px-3">
         <h2 className="text-3xl text-center font-onest text-gray-800 mb-6">
           Preventive Measures
         </h2>
@@ -254,7 +254,7 @@ export default async function Content({ slug }: Props) {
 
       {/* sugrical treatment */}
       <section className="py-12 lg:px-10 bg-white">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-4 ">
           <SectionTitle
             title="Surgical Treatment Options"
             subtitle="Our advanced surgical procedures provide effective, long-term relief"
