@@ -9,10 +9,14 @@ const Diagnosis = ({
   methods: string[];
 }) => {
   return (
-    <div className="bg-gray-50 py-16 px-6 lg:px-12">
+    <div className="bg-gray-50 py-10 px-6 lg:px-12">
       <div className="max-w-7xl mx-auto">
-        <div className="mb-16">
-          <h2 className="text-3xl font-onest text-gray-800 mb-6">Diagnosis</h2>
+        <div className="mb-16 ">
+          {/* <h2 className="text-3xl font-onest text-gray-800 mb-4">Diagnosis</h2> */}
+          <h2 className="text-3xl font-onest text-gray-800 mb-4 text-center">
+            Diagnosis
+          </h2>
+
           <div className="bg-white rounded-lg shadow-sm p-6 md:p-8">
             <p className="text-gray-600 mb-6">{description}</p>
             <div className="grid md:grid-cols-2 gap-8 items-center">

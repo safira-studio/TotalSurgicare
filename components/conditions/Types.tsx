@@ -48,7 +48,7 @@ const FistulaTypes = ({
         </div>
 
         {/* Card layout for mobile */}
-        <div className="md:hidden space-y-6">
+        <div className="md:hidden space-y-4">
           {types.map((item, index) => (
             <div
               key={index}
