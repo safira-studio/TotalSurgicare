@@ -2,7 +2,9 @@ export type SiteConfig = typeof siteConfig;
 
 export const siteConfig = {
   name: "Total Surgicare",
-  description: "Make beautiful websites regardless of your design experience.",
+  description:
+    "Advanced surgical care with minimally invasive procedures. Expert treatment for proctology, laparoscopy, urology, gynaecology, and more.",
+  tagline: "Your Health, Our Priority",
   navItems: [
     {
       title: "Proctology",
@@ -68,11 +70,27 @@ export const siteConfig = {
       items: [],
     },
   ],
-  links: {
-    github: "https://github.com/heroui-inc/heroui",
-    twitter: "https://twitter.com/hero_ui",
-    docs: "https://heroui.com",
-    discord: "https://discord.gg/9b6yyZKmH4",
-    sponsor: "https://patreon.com/jrgarciadev",
+  contact: {
+    phone: {
+      primary: "+91-9665551711",
+      secondary: "+91-9665551712",
+    },
+    email: {
+      primary: "info@totalsurgicare.com",
+      support: "support@totalsurgicare.com",
+    },
+    address: {
+      street: "B48 /9, Swamivivekanand Road",
+      area: "Bibwewadi",
+      city: "Pune",
+      state: "Maharashtra",
+      pincode: "411047",
+      country: "India",
+      full: "Swamivivekanand Road, Bibwewadi, Pune, Maharashtra, 411047, India",
+      coordinates: {
+        lat: 18.475050317494727,
+        lng: 73.8724136352539,
+      },
+    },
   },
 };

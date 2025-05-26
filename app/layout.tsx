@@ -5,6 +5,7 @@ import { siteConfig } from "@/config/site";
 import { fontSans } from "@/config/fonts";
 import { Navbar } from "@/components/layout/navbar";
 import Footer from "@/components/layout/Footer";
+import ChatWidget from "@/components/chatWidget";
 
 export const metadata: Metadata = {
   title: {
@@ -35,7 +36,7 @@ export default function RootLayout({
       <body
         className={clsx(
           "min-h-screen bg-background font-sans antialiased",
-          fontSans.variable,
+          fontSans.variable
         )}
       >
         {/* <Providers themeProps={{ attribute: "class", defaultTheme: "light" }}> */}
@@ -44,6 +45,7 @@ export default function RootLayout({
           <main className="mx-auto max-w-8xl">{children}</main>
           <Footer />
         </div>
+        <ChatWidget />
         {/* </Providers> */}
       </body>
     </html>
