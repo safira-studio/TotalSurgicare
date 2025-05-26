@@ -1,12 +1,4 @@
 import React from "react";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
 
 const FistulaTypes = ({
   types,
@@ -14,52 +6,78 @@ const FistulaTypes = ({
   types: { type: string; description: string; procedure: string }[];
 }) => {
   return (
-    <div className="bg-white py-16 px-6 lg:px-12">
-      <div className="max-w-7xl mx-auto">
-        <h2 className="text-3xl font-onest text-gray-800 mb-10 text-center">
+    <div className="bg-white  sm:px-6 ">
+      <div className="max-w-full px-6 mx-auto">
+        <h2 className="text-2xl sm:text-3xl font-onest text-gray-800 mb-8 sm:mb-10 text-center">
           Fistula Types and Surgical Procedures
         </h2>
 
-        <div className="overflow-x-auto">
-          <Table>
-            <TableHeader>
-              <TableRow className="bg-blue-50">
-                <TableHead className="text-gray-800">Type of Fistula</TableHead>
-                <TableHead className="text-gray-800">Description</TableHead>
-                <TableHead className="text-gray-800">
+        {/* Table for md and above */}
+        <div className="overflow-x-auto hidden md:block">
+          <table className="min-w-full">
+            <thead>
+              <tr className="bg-blue-50">
+                <th className="text-gray-800 px-4 py-2 text-left">
+                  Type of Fistula
+                </th>
+                <th className="text-gray-800 px-4 py-2 text-left">
+                  Description
+                </th>
+                <th className="text-gray-800 px-4 py-2 text-left">
                   Surgical Procedure
-                </TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
               {types.map((item, index) => (
-                <TableRow key={index} className="hover:bg-gray-50">
-                  <TableCell>
-                    <span className="font-medium text-clinic-primary">
-                      {item.type}
-                    </span>
-                  </TableCell>
-                  <TableCell className="text-gray-600">
+                <tr key={index} className="hover:bg-gray-50">
+                  <td className="font-medium text-clinic-primary px-4 py-3 whitespace-nowrap">
+                    {item.type}
+                  </td>
+                  <td className="text-gray-600 px-4 py-3">
                     {item.description}
-                  </TableCell>
-                  <TableCell className="text-gray-600">
+                  </td>
+                  <td className="text-gray-600 px-4 py-3">
                     <strong>{item.procedure.split(" - ")[0]}</strong> -{" "}
                     {item.procedure.split(" - ")[1]}
-                  </TableCell>
-                </TableRow>
+                  </td>
+                </tr>
               ))}
-            </TableBody>
-          </Table>
+            </tbody>
+          </table>
         </div>
 
-        <div className="mt-10 text-center">
-          <p className="text-gray-600 mb-6">
+        {/* Card layout for mobile */}
+        <div className="md:hidden space-y-6">
+          {types.map((item, index) => (
+            <div
+              key={index}
+              className="bg-white border border-gray-200 rounded-lg p-4 shadow-sm"
+            >
+              <h3 className="font-medium text-clinic-primary mb-2">
+                {item.type}
+              </h3>
+              <p className="text-gray-600 mb-2">
+                <span className="font-semibold">Description:</span>{" "}
+                {item.description}
+              </p>
+              <p className="text-gray-600">
+                <span className="font-semibold">Surgical Procedure:</span>{" "}
+                <strong>{item.procedure.split(" - ")[0]}</strong> -{" "}
+                {item.procedure.split(" - ")[1]}
+              </p>
+            </div>
+          ))}
+        </div>
+
+        <div className="mt-10 text-center px-2 sm:px-0">
+          <p className="text-gray-600 mb-6 text-sm sm:text-base max-w-2xl mx-auto">
             At Total MediCare, our specialist proctologists will determine the
             best surgical approach based on the specific type and location of
             your fistula, ensuring the best outcome with minimal disruption to
             sphincter function.
           </p>
-          <button className="bg-clinic-primary hover:bg-clinic-dark text-white font-semibold py-3 px-8 rounded-lg transition-colors">
+          <button className="bg-clinic-primary hover:bg-clinic-dark text-white font-semibold py-3 px-8 rounded-lg transition-colors text-sm sm:text-base">
             Schedule a Consultation
           </button>
         </div>
