@@ -3,6 +3,7 @@ import { MedicalCondition } from "@/types";
 export const pollonodalSinusTreatment: MedicalCondition = {
   id: "4",
   slug: "pilonidal-sinus-treatment",
+  name: "Pilonidal Sinus",
   overview: {
     title: "Pilonidal Sinus Treatment – Permanent Cure with Laser Surgery",
     brief:

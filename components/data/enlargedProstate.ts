@@ -3,6 +3,7 @@ import { MedicalCondition } from "@/types";
 export const enlargedProstateSurgery: MedicalCondition = {
   id: "13",
   slug: "enlarged-prostate-treatment",
+  name: "Enlarged Prostate (BPH)",
   overview: {
     title: "Enlarged Prostate (BPH) - Symptoms and Treatment Options",
     brief:

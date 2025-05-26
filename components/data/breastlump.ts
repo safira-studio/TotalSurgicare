@@ -3,6 +3,7 @@ import { MedicalCondition } from "@/types";
 export const breastLump: MedicalCondition = {
   id: "19",
   slug: "breast-lump-symptoms-causes-treatment",
+  name: "Breast Lump",
   overview: {
     title: "Breast Lump - Symptoms, Causes & Treatment",
     brief:

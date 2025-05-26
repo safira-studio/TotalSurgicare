@@ -3,6 +3,7 @@ import { MedicalCondition } from "@/types";
 export const sebaceousCyst: MedicalCondition = {
   id: "18",
   slug: "sebaceous-cyst-symptoms-causes-treatment",
+  name: "Sebaceous Cyst",
   overview: {
     title: "Sebaceous Cyst - Symptoms, Causes & Treatment",
     brief:

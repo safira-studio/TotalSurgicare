@@ -3,6 +3,7 @@ import { MedicalCondition } from "@/types";
 export const staplerCircumcision: MedicalCondition = {
   id: "11",
   slug: "stapler-circumcision",
+  name: "Stapler Circumcision",
   overview: {
     title: "Stapler Circumcision Treatment",
     brief:

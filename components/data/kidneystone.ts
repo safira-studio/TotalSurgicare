@@ -3,6 +3,7 @@ import { MedicalCondition } from "@/types";
 export const kidneyStoneTreatmentRirspcnlursl: MedicalCondition = {
   id: "12",
   slug: "kidney-stone-treatment",
+  name: "Kidney Stone",
   overview: {
     title: "Kidney Stone Treatment – Fast & Effective Relief",
     brief:

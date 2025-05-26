@@ -3,6 +3,7 @@ import { MedicalCondition } from "@/types";
 export const gallstoneSurgery: MedicalCondition = {
   id: "7",
   slug: "gallstone-treatment",
+  name: "Gallstone",
   overview: {
     title: "Gallstone Treatment – Laparoscopic Gallbladder Surgery",
     brief:

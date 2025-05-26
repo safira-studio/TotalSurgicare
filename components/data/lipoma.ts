@@ -3,6 +3,7 @@ import { MedicalCondition } from "@/types";
 export const lipoma: MedicalCondition = {
   id: "17",
   slug: "lipoma-symptoms-causes-treatment",
+  name: "Lipoma",
   overview: {
     title: "Lipoma - Symptoms, Causes & Treatment",
     brief:

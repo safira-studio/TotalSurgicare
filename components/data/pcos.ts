@@ -3,6 +3,7 @@ import { MedicalCondition } from "@/types";
 export const pcosPcodTreatment: MedicalCondition = {
   id: "16",
   slug: "pcos-pcod-symptoms-causes-treatment",
+  name: "PCOS / PCOD",
   overview: {
     title: "PCOS / PCOD - Symptoms, Causes & Treatment",
     brief:

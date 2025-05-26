@@ -3,6 +3,7 @@ import { MedicalCondition } from "@/types";
 export const umbillicalHerniaSurgery: MedicalCondition = {
   id: "10",
   slug: "umbilical-hernia-treatment",
+  name: "Umbilical Hernia",
   overview: {
     title: "Umbilical Hernia Treatment – Safe & Effective Repair",
     brief:

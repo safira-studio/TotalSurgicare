@@ -3,6 +3,7 @@ import { MedicalCondition } from "@/types";
 export const fistulaTreatment: MedicalCondition = {
   id: "2",
   slug: "fistula-treatment",
+  name: "Fistula",
   overview: {
     title: "Fistula Treatment - Advanced Laser Surgery Procedure",
     brief:

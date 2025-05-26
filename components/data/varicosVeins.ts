@@ -3,6 +3,7 @@ import { MedicalCondition } from "@/types";
 export const varicoseVeins: MedicalCondition = {
   id: "20",
   slug: "varicose-veins-symptoms-causes-treatment",
+  name: "Varicose Veins",
   overview: {
     title: "Varicose Veins - Symptoms, Causes & Treatment",
     brief:

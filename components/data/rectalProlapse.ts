@@ -3,6 +3,7 @@ import { MedicalCondition } from "@/types";
 export const rectalProlapse: MedicalCondition = {
   id: "5",
   slug: "rectal-prolapse-treatment",
+  name: "Rectal Prolapse",
   overview: {
     title: "Rectal Prolapse Treatment – Advanced Laser & Surgical Options",
     brief:

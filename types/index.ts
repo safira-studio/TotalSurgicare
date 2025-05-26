@@ -7,6 +7,7 @@ export type IconSvgProps = SVGProps<SVGSVGElement> & {
 export interface MedicalCondition {
   id: string; // Unique identifier (e.g., UUID or auto-incremented ID)
   slug: string; // URL-friendly identifier (e.g., "piles", "inguinal-hernia-surgery")
+  name: string;
   overview: {
     title: string; // Page title (e.g., "Piles Treatment", "Inguinal Hernia Surgery")
     brief: string; // Brief description of the condition

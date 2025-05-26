@@ -3,6 +3,7 @@ import { MedicalCondition } from "@/types";
 export const herniaSurgery: MedicalCondition = {
   id: "6",
   slug: "hernia-treatment",
+  name: "Hernia",
   overview: {
     title: "Hernia Treatment – Advanced Laparoscopic & Laser Surgery",
     brief:

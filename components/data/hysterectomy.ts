@@ -3,6 +3,7 @@ import { MedicalCondition } from "@/types";
 export const hysterectomy: MedicalCondition = {
   id: "14",
   slug: "hysterectomy-procedure-treatment",
+  name: "Hysterectomy",
   overview: {
     title: "Hysterectomy - Procedure, Types & Recovery",
     brief:

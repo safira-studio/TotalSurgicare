@@ -3,6 +3,7 @@ import { MedicalCondition } from "@/types";
 export const inguinalHerniaSurgery: MedicalCondition = {
   id: "9",
   slug: "inguinal-hernia-treatment",
+  name: "Inguinal Hernia",
   overview: {
     title: "Inguinal Hernia Treatment – Laparoscopic Hernia Repair",
     brief:

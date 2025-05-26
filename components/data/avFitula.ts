@@ -3,6 +3,7 @@ import { MedicalCondition } from "@/types";
 export const avFistula: MedicalCondition = {
   id: "21",
   slug: "av-fistula-symptoms-causes-treatment",
+  name: "AV Fistula",
   overview: {
     title: "AV Fistula - Symptoms, Causes & Treatment",
     brief:

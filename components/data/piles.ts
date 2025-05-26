@@ -3,6 +3,7 @@ import { MedicalCondition } from "@/types";
 export const pilesTreatment: MedicalCondition = {
   id: "1",
   slug: "piles-treatment",
+  name: "Piles",
   overview: {
     title: "Piles Treatment - Laser Surgery Procedure",
     brief:

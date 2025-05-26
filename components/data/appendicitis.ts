@@ -3,6 +3,7 @@ import { MedicalCondition } from "@/types";
 export const appendectomy: MedicalCondition = {
   id: "8",
   slug: "appendicitis-treatment",
+  name: "Appendicitis",
   overview: {
     title: "Appendicitis Treatment – Laparoscopic Appendectomy",
     brief:

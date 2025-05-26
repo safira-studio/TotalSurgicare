@@ -3,6 +3,7 @@ import { MedicalCondition } from "@/types";
 export const cataract: MedicalCondition = {
   id: "22",
   slug: "cataract-symptoms-causes-treatment",
+  name: "Cataract",
   overview: {
     title: "Cataract - Symptoms, Causes & Treatment",
     brief:
