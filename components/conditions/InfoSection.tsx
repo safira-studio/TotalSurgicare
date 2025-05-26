@@ -40,17 +40,6 @@ const InfoSection = ({
 
               {/* Text Content */}
               <p className="text-gray-600 leading-relaxed">{description}</p>
-              <p className="text-gray-600 leading-relaxed">
-                At higher stages of piles, such as Grade 3 or 4, an enlargement,
-                pain, and bleeding is common, and a surgical solution is often
-                needed to bring lasting relief.
-              </p>
-              <p className="text-gray-600 leading-relaxed">
-                Although piles are not a serious health risk, they can be
-                irritating and uncomfortable. If you&apos;re ready to move
-                forward with our team, we can guide you to the best treatment
-                options for lasting relief.
-              </p>
             </div>
 
             {/* Image Grid */}

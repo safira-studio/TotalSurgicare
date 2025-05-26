@@ -2,14 +2,16 @@ import React from "react";
 
 const TreatmentStages = ({
   whyUs,
+  name,
 }: {
   whyUs: { title: string; description: string }[];
+  name: string;
 }) => {
   return (
     <div className="bg-gray-50 py-16 px-6 lg:px-12">
       <div className="max-w-7xl mx-auto">
         <h2 className="text-3xl font-onest text-gray-800 text-center mb-12">
-          Why choose Total MediCare for Piles Surgery?
+          Why choose Total MediCare for {name} Surgery?
         </h2>
 
         <div className="grid md:grid-cols-2 gap-x-12  gap-y-16">

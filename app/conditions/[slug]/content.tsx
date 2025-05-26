@@ -86,7 +86,7 @@ export default async function Content({ slug }: Props) {
       <div className="mb-16">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-semibold text-gray-800 mb-6 text-center">
-            Symptoms of Piles
+            Symptoms of {data.name}
           </h2>
 
           <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-6">
@@ -118,7 +118,7 @@ export default async function Content({ slug }: Props) {
       {/* Common Causes */}
       <div className="mb-16">
         <h2 className="text-3xl font-onest text-gray-800 mb-6 text-center">
-          Common Causes of Piles
+          Common Causes of {data.name}
         </h2>
 
         <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-6 px-4 sm:px-6 lg:px-0">
@@ -149,7 +149,7 @@ export default async function Content({ slug }: Props) {
       <div className="mb-14">
         <div className="container mx-auto px-4 ">
           <h2 className="text-3xl font-semibold text-gray-800 mb-6 text-center">
-            Risk Factors for Piles
+            Risk Factors for {data.name}
           </h2>
 
           <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-6 ">
@@ -184,7 +184,7 @@ export default async function Content({ slug }: Props) {
       <div className="mb-16">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-semibold text-gray-800 mb-6 text-center">
-            Complications if Piles are Left Untreated
+            Complications if {data.name} are Left Untreated
           </h2>
 
           <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-6">
@@ -278,7 +278,7 @@ export default async function Content({ slug }: Props) {
 
       <Diagnosis {...data.diagnosis} />
       <Types types={data.types} />
-      <Treatment whyUs={data.whyChooseUs} />
+      <Treatment whyUs={data.whyChooseUs} name={data.name} />
     </div>
   );
 }
@@ -289,7 +289,6 @@ async function getDataFromSlug(slug: string) {
     const dataKey = slug.replace(/-([a-z])/g, (_, letter) =>
       letter.toUpperCase()
     );
-    console.log(dataKey);
     return allData[dataKey as keyof typeof allData] || null;
   } catch (error) {
     console.error(`Error fetching data for slug ${slug}:`, error);
