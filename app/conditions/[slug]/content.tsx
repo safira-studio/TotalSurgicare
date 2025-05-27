@@ -63,11 +63,11 @@ export default async function Content({ slug }: Props) {
       <InfoSection {...data.aboutCondition} />
       {/* food triggers */}
       <div className="mb-16 px-5">
-        <h2 className="text-3xl font-onest text-gray-800 mb-6 text-center px-4 sm:px-6 lg:px-0">
+        <h2 className="text-3xl font-onest text-gray-800 mb-6 text-center px-4 sm:px-6 lg:px-0 pb-4">
           Trigger Foods to Avoid in a Diet
         </h2>
 
-        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-4 px-4 sm:px-6 lg:px-0">
+        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-4  sm:px-6 lg:px-16">
           {data.foodTriggers?.map((food, index) => (
             <div
               key={index}
