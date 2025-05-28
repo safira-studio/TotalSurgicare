@@ -9,9 +9,9 @@ const Cardiac = () => {
   return (
     <div className="min-h-screen  to-white rounded-2xl">
       {/* Hero Section */}
-      <section className="py-16 px-4 bg-clinic-dark/20">
+      <section className="py-16 px-4 bg-clinic-primary/90">
         <div className="container mx-auto text-center">
-          <h1 className="text-5xl font-onest text-clinic-primary mb-6">
+          <h1 className="text-5xl font-onest text-white mb-6">
             Specialized Cardiac Services
           </h1>
           <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
