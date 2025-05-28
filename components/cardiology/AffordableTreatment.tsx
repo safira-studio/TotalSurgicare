@@ -57,9 +57,9 @@ const AffordableTreatment = () => {
             Affordable Treatment Options
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Quality cardiac care shouldn't be a financial burden. We're
-            committed to providing world-class treatment options that are
-            accessible to everyone, regardless of their economic situation.
+            Quality cardiac care shouldn&apos;t be a financial burden.
+            We&apos;re committed to providing world-class treatment options that
+            are accessible to everyone, regardless of their economic situation.
           </p>
         </div>
 
@@ -106,7 +106,7 @@ const AffordableTreatment = () => {
               <CardHeader>
                 <CardTitle className="text-lg text-blue-900 flex items-center">
                   <Heart className="h-5 w-5 mr-2 text-green-600" />
-                  What's Included
+                  What&apos;s Included
                 </CardTitle>
               </CardHeader>
               <CardContent>

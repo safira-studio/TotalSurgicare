@@ -34,7 +34,7 @@ const AngiographyService = () => {
             <p className="text-lg text-gray-600 mb-6">
               Angiography is a sophisticated medical imaging technique that
               allows our specialists to visualize the inside of blood vessels
-              and organs, particularly the heart's coronary arteries. Using
+              and organs, particularly the heart&apos;s coronary arteries. Using
               contrast dye and advanced X-ray technology, we can detect
               blockages, narrowing, or other abnormalities that may be affecting
               your heart health.

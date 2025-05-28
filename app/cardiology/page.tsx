@@ -34,7 +34,7 @@ const Cardiac = () => {
             Ready to Take Care of Your Heart?
           </h3>
           <p className="text-clinic-primary mb-8 text-lg max-w-2xl mx-auto">
-            Don't wait when it comes to your heart health. Schedule a
+            Don&apos;t wait when it comes to your heart health. Schedule a
             consultation with our cardiac specialists today.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">

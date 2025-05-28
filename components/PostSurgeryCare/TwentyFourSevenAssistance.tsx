@@ -42,8 +42,8 @@ const TwentyFourSevenAssistance = () => {
             24/7 Assistance for Post-Operative Care
           </h2>
           <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-            Recovery doesn't follow business hours. Our round-the-clock support
-            ensures that help is always available when you need it most,
+            Recovery doesn&apos;t follow business hours. Our round-the-clock
+            support ensures that help is always available when you need it most,
             providing peace of mind for patients and their families.
           </p>
         </div>
