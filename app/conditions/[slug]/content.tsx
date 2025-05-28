@@ -3,7 +3,7 @@ import InfoSection from "@/components/conditions/InfoSection";
 import Treatment from "@/components/conditions/Treatment";
 import Hero from "@/components/conditions/Hero";
 import { notFound } from "next/navigation";
-import Types from "@/components/conditions/Types";
+import FistulaTypes from "@/components/conditions/Types";
 import {
   Pill,
   Clock,
@@ -310,7 +310,7 @@ export default async function Content({ slug }: Props) {
       </section>
 
       <Diagnosis {...data.diagnosis} />
-      <Types types={data.types} />
+      <FistulaTypes name={data.name} types={data.types} />
       <Treatment whyUs={data.whyChooseUs} name={data.name} />
     </div>
   );
