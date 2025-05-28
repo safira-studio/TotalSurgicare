@@ -1,7 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Heart, Circle } from "lucide-react";
-import AppointmentForm from "./conditions/AppointmentForm";
+import AppointmentForm from "../conditions/AppointmentForm";
 
 const AngiographyService = () => {
   const benefits = [

@@ -1,6 +1,6 @@
-import AffordableTreatment from "@/components/AffordableTreatment";
-import AngiographyService from "@/components/AngiographyService";
-import AngioplastyService from "@/components/AngioplastyService";
+import AffordableTreatment from "@/components/cardiology/AffordableTreatment";
+import AngiographyService from "@/components/cardiology/AngiographyService";
+import AngioplastyService from "@/components/cardiology/AngioplastyService";
 import { Button } from "@/components/ui/button";
 import { Heart } from "lucide-react";
 import Link from "next/link";
@@ -47,7 +47,7 @@ const Cardiac = () => {
             <Button
               size="lg"
               variant="outline"
-              className="border-white text-clinic-primary hover:bg-white border-clinic-primary border-2 hover:text-clinic-dark px-8 py-3"
+              className=" text-clinic-primary hover:bg-white border-clinic-primary border-2 hover:text-clinic-dark px-8 py-3"
             >
               Call Now: (555) 123-4567
             </Button>
