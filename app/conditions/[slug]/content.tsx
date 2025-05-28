@@ -16,6 +16,13 @@ import SectionTitle from "@/components/conditions/SectionTitle";
 import TreatmentCard from "@/components/conditions/TreatmentCard";
 import { siteConfig } from "@/config/site";
 import allData from "@/components/data/index";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 
 const IconMap = {
   pill: Pill,
@@ -85,7 +92,7 @@ export default async function Content({ slug }: Props) {
       {/* Symptoms */}
       <div className="mb-16">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-semibold text-gray-800 mb-6 text-center">
+          <h2 className="text-3xl font-onest text-gray-800 mb-6 text-center">
             Symptoms of {data.name}
           </h2>
 
@@ -148,7 +155,7 @@ export default async function Content({ slug }: Props) {
       {/* Risk Factors */}
       <div className="mb-14">
         <div className="container mx-auto px-4 ">
-          <h2 className="text-3xl font-semibold text-gray-800 mb-6 text-center">
+          <h2 className="text-3xl font-onest text-gray-800 mb-6 text-center">
             Risk Factors for {data.name}
           </h2>
 
@@ -183,7 +190,7 @@ export default async function Content({ slug }: Props) {
       {/* Complications if Left Untreated */}
       <div className="mb-16">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-semibold text-gray-800 mb-6 text-center">
+          <h2 className="text-3xl font-onest text-gray-800 mb-6 text-center">
             Complications if {data.name} are Left Untreated
           </h2>
 
@@ -253,14 +260,40 @@ export default async function Content({ slug }: Props) {
       </div>
 
       {/* sugrical treatment */}
+
       <section className="py-12 lg:px-10 bg-white">
-        <div className="container mx-auto px-4 ">
+        <div className="container mx-auto px-4">
           <SectionTitle
-            title="Surgical Treatment Options"
+            title={"Surgical Treatment Options"}
             subtitle="Our advanced surgical procedures provide effective, long-term relief"
           />
 
-          <div className="grid md:grid-cols-1 lg:grid-cols-3 gap-6">
+          {/* Mobile Carousel View */}
+          <div className="block md:hidden">
+            <Carousel className="w-full relative overflow-hidden">
+              <CarouselContent>
+                {data.treatments.surgical.map((treatment, index) => (
+                  <CarouselItem key={index} className="flex justify-center">
+                    <TreatmentCard
+                      name={treatment.name}
+                      description={treatment.description}
+                      benefits={treatment.benefits}
+                      recoveryTime={treatment.recoveryTime}
+                      anesthesia={treatment.anesthesia}
+                      isFeatured={index === 0}
+                    />
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+
+              {/* Navigation Buttons */}
+              <CarouselPrevious className="absolute left-2 top-1/2 -translate-y-1/2 z-10" />
+              <CarouselNext className="absolute right-2 top-1/2 -translate-y-1/2 z-10" />
+            </Carousel>
+          </div>
+
+          {/* Desktop Grid View */}
+          <div className="hidden md:grid md:grid-cols-1 lg:grid-cols-3 gap-6">
             {data.treatments.surgical.map((treatment, index) => (
               <TreatmentCard
                 key={index}
@@ -269,7 +302,7 @@ export default async function Content({ slug }: Props) {
                 benefits={treatment.benefits}
                 recoveryTime={treatment.recoveryTime}
                 anesthesia={treatment.anesthesia}
-                isFeatured={index === 0} // First treatment is featured (typically laser)
+                isFeatured={index === 0}
               />
             ))}
           </div>

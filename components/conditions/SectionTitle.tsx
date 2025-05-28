@@ -21,7 +21,7 @@ const SectionTitle: React.FC<SectionTitleProps> = ({
             : "text-left"
       }`}
     >
-      <h2 className="text-2xl md:text-3xl font-bold text-medical-dark text-center">
+      <h2 className="text-2xl md:text-3xl font-onest text-medical-dark text-center">
         {title}
       </h2>
       {subtitle && (
