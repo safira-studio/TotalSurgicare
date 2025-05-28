@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 
 type FistulaType = {
@@ -92,9 +93,11 @@ const FistulaTypes = ({
             {name.toLowerCase()}, ensuring optimal outcomes with minimal
             disruption to sphincter function.
           </p>
-          <button className="bg-clinic-primary hover:bg-clinic-dark text-white font-semibold py-3 px-8 rounded-lg transition-colors text-sm sm:text-base">
-            Schedule a Consultation
-          </button>
+          <Link href={"/contact"}>
+            <button className="bg-clinic-primary hover:bg-clinic-dark text-white font-semibold py-3 px-8 rounded-lg transition-colors text-sm sm:text-base">
+              Schedule a Consultation
+            </button>
+          </Link>
         </div>
       </div>
     </div>

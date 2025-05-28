@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 
 const TreatmentStages = ({
@@ -31,9 +32,11 @@ const TreatmentStages = ({
         </div>
 
         <div className="mt-12 text-center">
-          <button className="bg-clinic-primary hover:bg-blue-700 text-white font-semibold py-3 px-8 rounded-lg transition-colors">
-            Book Your FREE Consultation
-          </button>
+          <Link href={"/contact"}>
+            <button className="bg-clinic-primary hover:bg-clinic-dark text-white font-semibold py-3 px-8 rounded-lg transition-colors">
+              Book Your FREE Consultation
+            </button>
+          </Link>
         </div>
       </div>
     </div>
