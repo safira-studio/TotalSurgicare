@@ -72,7 +72,7 @@ export const Navbar = () => {
                 onMouseEnter={() => setOpenDropdown(item.title)}
                 href={
                   item.items.length == 0
-                    ? `/conditions/${item.title.toLowerCase().replace(/\s+/g, "-")}`
+                    ? `/${item.title.toLowerCase().replace(/\s+/g, "-")}`
                     : "#"
                 }
               >
@@ -137,7 +137,7 @@ export const Navbar = () => {
                   <NextLink
                     href={
                       item.items.length == 0
-                        ? `/conditions/${item.title.toLowerCase().replace(/\s+/g, "-")}`
+                        ? `/${item.title.toLowerCase().replace(/\s+/g, "-")}`
                         : "#"
                     }
                   >
