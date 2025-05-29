@@ -150,50 +150,8 @@ const AppointmentBooking = () => {
                       </Label>
                       <Input id="name" placeholder="Your full name" required />
                     </div>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      <div className="space-y-2">
-                        <Label className="text-sm font-medium">
-                          Choose Date
-                        </Label>
-                        <Popover>
-                          <PopoverTrigger asChild>
-                            <Button
-                              variant="outline"
-                              className={cn(
-                                "w-full justify-start text-left font-normal",
-                                !date && "text-clinic-accent"
-                              )}
-                            >
-                              <CalendarIcon className="mr-2 h-4 w-4" />
-                              {date ? (
-                                format(date, "PPP")
-                              ) : (
-                                <span>Select date</span>
-                              )}
-                            </Button>
-                          </PopoverTrigger>
-                          <PopoverContent className="w-auto p-0">
-                            <Calendar
-                              mode="single"
-                              selected={date}
-                              onSelect={setDate}
-                              initialFocus
-                              disabled={(date) =>
-                                date < new Date() ||
-                                date >
-                                  new Date(
-                                    new Date().setMonth(
-                                      new Date().getMonth() + 2
-                                    )
-                                  ) ||
-                                date.getDay() === 0 ||
-                                date.getDay() === 6
-                              }
-                            />
-                          </PopoverContent>
-                        </Popover>
-                      </div>
-
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+                      {/* Phone Number */}
                       <div className="space-y-2">
                         <label htmlFor="phone" className="text-sm font-medium">
                           Phone Number
@@ -203,6 +161,31 @@ const AppointmentBooking = () => {
                           placeholder="Your phone number"
                           required
                         />
+                      </div>
+
+                      {/* Gender */}
+                      <div className="space-y-2">
+                        <label className="text-sm font-medium">Gender</label>
+                        <div className="flex items-center gap-4">
+                          <label className="flex items-center gap-2">
+                            <input
+                              type="radio"
+                              name="gender"
+                              value="male"
+                              className="accent-clinic-primary"
+                            />
+                            Male
+                          </label>
+                          <label className="flex items-center gap-2">
+                            <input
+                              type="radio"
+                              name="gender"
+                              value="female"
+                              className="accent-clinic-primary"
+                            />
+                            Female
+                          </label>
+                        </div>
                       </div>
                     </div>
 
