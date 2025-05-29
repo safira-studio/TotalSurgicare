@@ -167,9 +167,9 @@ export default async function Content({ slug }: Props) {
               return (
                 <div
                   key={index}
-                  className="bg-white border border-gray-100 rounded-lg p-6 lg:p-8 shadow-sm hover:shadow-md transition-shadow text-center w-full"
+                  className="bg-clinic-secondary/20 border border-gray-100 rounded-3xl p-6 lg:p-8 shadow-sm hover:shadow-md transition-shadow text-center w-full"
                 >
-                  <div className="w-14 h-14 rounded-full bg-orange-100 flex items-center justify-center mb-4 mx-auto">
+                  <div className="w-14 h-14 rounded-full border-2 border-clinic-secondary/50 bg-orange-80 flex items-center justify-center mb-4 mx-auto">
                     {IconComponent && (
                       <IconComponent className="w-7 h-7 text-orange-600" />
                     )}
@@ -202,7 +202,7 @@ export default async function Content({ slug }: Props) {
               return (
                 <div
                   key={index}
-                  className="bg-white border border-gray-100 rounded-lg p-6 lg:p-8 shadow-sm hover:shadow-md transition-shadow text-center w-full"
+                  className="bg-red-200 border border-gray-100 rounded-3xl p-6 lg:p-8 shadow-sm hover:shadow-md transition-shadow text-center w-full"
                 >
                   <div className="w-14 h-14 rounded-full bg-red-100 flex items-center justify-center mb-4 mx-auto">
                     {IconComponent && (
