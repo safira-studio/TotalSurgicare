@@ -62,6 +62,8 @@ const config = {
         },
         clinic: {
           primary: "#00A9B7",
+          light_primary: "#33C1CC",
+          vlight_primary: "#99E5EE",
           secondary: "#F4A300",
           secondaryDark: "#E49501",
           accent: "#1B2A41",

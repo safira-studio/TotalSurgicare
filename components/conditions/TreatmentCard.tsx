@@ -20,11 +20,11 @@ const TreatmentCard: React.FC<TreatmentCardProps> = ({
 }) => {
   return (
     <div
-      className={`rounded-lg p-6 transition-all duration-300 h-full flex flex-col justify-between
+      className={`rounded-lg p-6 transition-all duration-300 h-full flex flex-col justify-between 
         ${
           isFeatured
             ? "bg-clinic-primary text-white shadow-lg"
-            : "bg-white border border-gray-200 hover:shadow-md"
+            : " border border-gray-200 hover:shadow-md bg-clinic-vlight_primary/40"
         }`}
     >
       {isFeatured && (
