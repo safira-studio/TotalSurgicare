@@ -200,6 +200,19 @@ export const enlargedProstateSurgery: MedicalCondition = {
         anesthesia: "General or spinal",
       },
       {
+        name: "Rezūm Procedure",
+        description:
+          "A minimally invasive treatment for enlarged prostate (BPH) that uses water vapor (steam) to destroy excess prostate tissue.",
+        benefits: [
+          "Minimally invasive with no incisions",
+          "Preserves sexual function in most patients",
+          "Performed as an outpatient procedure",
+        ],
+        recoveryTime: "2-5 days for normal activities",
+        anesthesia: "Local or Light Sedation",
+      },
+
+      {
         name: "Laser Therapy",
         description:
           "Minimally invasive laser treatments to remove or shrink prostate tissue.",
@@ -209,14 +222,6 @@ export const enlargedProstateSurgery: MedicalCondition = {
         ],
         recoveryTime: "1-2 weeks",
         anesthesia: "Local or general",
-      },
-      {
-        name: "Prostatectomy",
-        description:
-          "Surgical removal of part or all of the prostate in severe cases.",
-        benefits: ["Effective for very large prostates or complicated cases"],
-        recoveryTime: "4-6 weeks",
-        anesthesia: "General",
       },
     ],
   },

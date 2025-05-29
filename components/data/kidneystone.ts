@@ -188,6 +188,18 @@ export const kidneyStoneTreatmentRirspcnlursl: MedicalCondition = {
     ],
     surgical: [
       {
+        name: "Retrograde Intrarenal Surgery (RIRS)",
+        description:
+          "A minimally invasive procedure to remove kidney stones using a flexible ureteroscope passed through the urethra.",
+        benefits: [
+          "Minimally invasive with no external incision",
+          "Quick recovery and reduced pain",
+          "Can treat stones in hard-to-reach areas of the kidney",
+        ],
+        recoveryTime: "3-5 days",
+        anesthesia: "General or Spinal",
+      },
+      {
         name: "Extracorporeal Shock Wave Lithotripsy (ESWL)",
         description:
           "Non-invasive treatment using shock waves to break stones into smaller pieces",
@@ -208,17 +220,6 @@ export const kidneyStoneTreatmentRirspcnlursl: MedicalCondition = {
           "Effective for mid and lower urinary tract stones",
         ],
         recoveryTime: "1 week",
-        anesthesia: "General",
-      },
-      {
-        name: "Percutaneous Nephrolithotomy (PCNL)",
-        description:
-          "Surgical removal of large stones via a small incision in the back",
-        benefits: [
-          "Effective for large or complex stones",
-          "Short hospital stay",
-        ],
-        recoveryTime: "1-2 weeks",
         anesthesia: "General",
       },
     ],
