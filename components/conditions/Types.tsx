@@ -88,7 +88,7 @@ const FistulaTypes = ({
         {/* Footer */}
         <div className="mt-10 text-center px-2 sm:px-0">
           <p className="text-gray-600 mb-6 text-sm sm:text-base max-w-2xl mx-auto">
-            At Total MediCare, our specialist proctologists determine the best
+            At Total Surgicare, our specialist proctologists determine the best
             surgical approach based on the specific type and location of your{" "}
             {name.toLowerCase()}, ensuring optimal outcomes with minimal
             disruption to sphincter function.

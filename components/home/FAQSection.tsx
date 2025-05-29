@@ -18,7 +18,7 @@ const FAQSection = () => {
     {
       question: "What insurance plans do you accept?",
       answer:
-        "We accept most major insurance plans, including Medicare, Blue Cross Blue Shield, Aetna, Cigna, and United Healthcare. Please contact our office to verify if we accept your specific insurance plan.",
+        "We accept most major insurance plans, including Total Surgicare, Blue Cross Blue Shield, Aetna, Cigna, and United Healthcare. Please contact our office to verify if we accept your specific insurance plan.",
     },
     {
       question: "How do I schedule an appointment?",
@@ -28,7 +28,7 @@ const FAQSection = () => {
     {
       question: "What should I bring to my first appointment?",
       answer:
-        "Please bring your photo ID, insurance card, a list of current medications, medical records if available, and any relevant imaging or test results. It&apos;s also helpful to arrive 15 minutes early to complete paperwork.",
+        "Please bring your photo ID, insurance card, a list of current medications, medical records if available, and any relevant imaging or test results. It's also helpful to arrive 15 minutes early to complete paperwork.",
     },
     {
       question: "Do you offer telehealth services?",
