@@ -15,16 +15,19 @@ const ServiceCard = ({
   return (
     <Card className="relative overflow-hidden">
       <CardContent className="p-2 md:p-5 lg:p-7">
-        <div className="flex items-center gap-2 mt-4 mb-2">
-          {icon}
+        {/* Icon + Title centered and side-by-side */}
+        <div className="flex items-center justify-center gap-2 mt-4 mb-2">
+          <div className="text-clinic-primary">{icon}</div>
           <h3 className="font-medium">{title}</h3>
         </div>
-        <p className="text-xs text-gray-500 mb-4">{description}</p>
-        <div className="flex justify-between items-center">
+
+        <p className="text-xs text-gray-500 mb-4 text-center">{description}</p>
+
+        {/* Centered Button */}
+        <div className="flex justify-center">
           <Button variant="link" className="text-clinic-primary p-0 h-auto">
             Make an appointment
           </Button>
-          {/* <span className="text-sm text-gray-500">Price</span> */}
         </div>
       </CardContent>
     </Card>
@@ -44,13 +47,13 @@ const BlueServiceCard = ({
     <Card
       className={`relative overflow-hidden bg-clinic-primary text-white ${className}`}
     >
-      <CardContent className="p-2 md:p-5 lg:p-7">
-        <div className="md:text-2xl font-bold mt-4 mb-2 text-xl">{title}</div>
+      <CardContent className="p-2 md:p-5 lg:p-7 text-center">
+        <div className="md:text-2xl font-onest mt-4 mb-2 text-xl">{title}</div>
         <p className="text-xs mb-4 opacity-80">{description}</p>
         <div className="absolute top-0 right-0 w-full h-full opacity-30">
-          <div className="absolute top-20 right-10 h-20 w-20 rounded-full bg-clinic-accent/50"></div>
+          {/* <div className="absolute top-20 right-10 h-20 w-20 rounded-full bg-clinic-accent/50"></div>
           <div className="absolute top-10 right-32 h-12 w-12 rounded-full bg-clinic-accent/50"></div>
-          <div className="absolute top-40 right-28 h-16 w-16 rounded-full bg-clinic-dark/50"></div>
+          <div className="absolute top-40 right-28 h-16 w-16 rounded-full bg-clinic-dark/50"></div> */}
         </div>
       </CardContent>
     </Card>
@@ -70,7 +73,7 @@ const Services = () => {
           </div>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-2 md:gap-4 lg:gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-2 md:gap-4 lg:gap-6 text-center">
           <ServiceCard
             title="Family medicine"
             description="Comprehensive medical care for adults and children - prevention, diagnosis and treatment of diseases."
