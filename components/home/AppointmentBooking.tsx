@@ -165,7 +165,7 @@ const AppointmentBooking = () => {
 
                       {/* Gender */}
                       <div className="space-y-2">
-                        <label className="text-sm font-medium">Gender</label>
+                        <span className="text-sm font-medium">Gender</span>
                         <div className="flex items-center gap-4">
                           <label className="flex items-center gap-2">
                             <input
