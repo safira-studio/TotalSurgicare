@@ -21,7 +21,7 @@ const Footer = () => {
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 mb-8">
           {/* Logo and Description */}
           <div className="space-y-4 w-2/3 lg:w-full">
-            <h2 className="text-xl font-onest text-white">MedClinic</h2>
+            <h2 className="text-xl font-onest text-white">Total Surgicare</h2>
             <p className="text-gray-300 text-sm">
               Providing quality healthcare services with advanced technology and
               experienced professionals.
@@ -168,7 +168,9 @@ const Footer = () => {
                   <div className="bg-clinic-primary p-2 rounded-full">
                     <Mail size={16} />
                   </div>
-                  <span className="text-gray-300">contact@medclinic.com</span>
+                  <span className="text-gray-300">
+                    contact@Total Surgicare.com
+                  </span>
                 </div>
               </div>
               <p className="text-gray-300 pt-2">
@@ -184,7 +186,7 @@ const Footer = () => {
         {/* Copyright Section */}
         <div className="text-center pt-4">
           <p className="text-gray-400 text-sm">
-            © {currentYear} MedClinic. All Rights Reserved.
+            © {currentYear} Total Surgicare. All Rights Reserved.
           </p>
         </div>
       </div>
