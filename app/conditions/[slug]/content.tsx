@@ -104,11 +104,11 @@ export default async function Content({ slug }: Props) {
               return (
                 <div
                   key={index}
-                  className="bg-white border border-gray-200 rounded-lg p-4 shadow-sm hover:shadow-lg transition-shadow text-center"
+                  className="bg-[#DCFCE7] border border-gray-200 rounded-lg p-4 shadow-sm hover:shadow-lg transition-shadow text-center"
                 >
-                  <div className="w-12 h-12 rounded-full bg-red-100 flex items-center justify-center mb-4 mx-auto">
+                  <div className="w-12 h-12 rounded-full border-2 border-[#4CAF7D] flex items-center justify-center mb-4 mx-auto">
                     {IconComponent && (
-                      <IconComponent className="w-6 h-6 text-red-600" />
+                      <IconComponent className="w-6 h-6 text-[#4CAF7D]" />
                     )}
                   </div>
                   <h3 className="font-semibold text-gray-800 mb-2">
@@ -124,31 +124,33 @@ export default async function Content({ slug }: Props) {
 
       {/* Common Causes */}
       <div className="mb-16">
-        <h2 className="text-3xl font-onest text-gray-800 mb-6 text-center">
-          Common Causes of {data.name}
-        </h2>
+        <div className="container mx-auto px-4">
+          <h2 className="text-3xl font-onest text-gray-800 mb-6 text-center">
+            Common Causes of {data.name}
+          </h2>
 
-        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-6 px-4 sm:px-6 lg:px-0">
-          {data.causes.map((cause, index) => {
-            const IconComponent = IconMap[cause.icon as keyof typeof IconMap];
+          <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-6 px-4 sm:px-6 lg:px-0">
+            {data.causes.map((cause, index) => {
+              const IconComponent = IconMap[cause.icon as keyof typeof IconMap];
 
-            return (
-              <div
-                key={index}
-                className="bg-white border border-gray-100 rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow text-center"
-              >
-                <div className="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center mb-4 mx-auto">
-                  {IconComponent && (
-                    <IconComponent className="w-6 h-6 text-clinic-primary" />
-                  )}
+              return (
+                <div
+                  key={index}
+                  className="bg-clinic-vlight_primary/50 border border-gray-100 rounded-3xl p-6 shadow-sm hover:shadow-md transition-shadow text-center"
+                >
+                  <div className="w-12 h-12 rounded-full border-2 border-clinic-primary/40 flex items-center justify-center mb-4 mx-auto">
+                    {IconComponent && (
+                      <IconComponent className="w-6 h-6 text-clinic-primary" />
+                    )}
+                  </div>
+                  <h3 className="font-semibold text-gray-800 mb-2">
+                    {cause.title}
+                  </h3>
+                  <p className="text-gray-600 text-sm">{cause.description}</p>
                 </div>
-                <h3 className="font-semibold text-gray-800 mb-2">
-                  {cause.title}
-                </h3>
-                <p className="text-gray-600 text-sm">{cause.description}</p>
-              </div>
-            );
-          })}
+              );
+            })}
+          </div>
         </div>
       </div>
 
@@ -204,7 +206,7 @@ export default async function Content({ slug }: Props) {
                   key={index}
                   className="bg-red-200 border border-gray-100 rounded-3xl p-6 lg:p-8 shadow-sm hover:shadow-md transition-shadow text-center w-full"
                 >
-                  <div className="w-14 h-14 rounded-full bg-red-100 flex items-center justify-center mb-4 mx-auto">
+                  <div className="w-14 h-14 rounded-full border-2 border-red-400 flex items-center justify-center mb-4 mx-auto">
                     {IconComponent && (
                       <IconComponent className="w-7 h-7 text-red-600" />
                     )}
