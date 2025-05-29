@@ -44,9 +44,9 @@ const ContactForm = () => {
   };
 
   return (
-    <div className="w-full py-12 mb-6">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-10">
+    <div className="w-full py-12 mb-6 ">
+      <div className="container mx-auto px-4 ">
+        <div className="text-center mb-10 ">
           <p className="text-sm font-medium text-clinic-primary mb-2">
             CONTACT US
           </p>
@@ -57,9 +57,9 @@ const ContactForm = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          <div className="lg:col-span-1">
-            <Card className="p-8 h-full">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 ">
+          <div className="lg:col-span-1 ">
+            <Card className="p-8 h-full border-2 border-clinic-primary">
               <h3 className="text-xl font-onest mb-6">Contact Information</h3>
 
               <ContactInfo
@@ -114,7 +114,7 @@ const ContactForm = () => {
           </div>
 
           <div className="lg:col-span-2">
-            <Card className="p-8">
+            <Card className="p-8 border-2 border-clinic-primary">
               <h3 className="text-xl font-onest mb-6">Send us a Message</h3>
 
               <form onSubmit={handleSubmit} className="space-y-4">

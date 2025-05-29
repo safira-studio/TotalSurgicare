@@ -62,7 +62,7 @@ const TestimonialCard = ({
   image,
 }: TestimonialProps) => {
   return (
-    <Card className="h-full bg-white rounded-lg p-4 shadow-md hover:shadow-lg transition-shadow w-80">
+    <Card className="h-full bg-white rounded-lg p-4 shadow-md hover:shadow-lg transition-shadow w-80 border-2 border-clinic-primary">
       <CardContent className="p-0 space-y-4">
         <div className="flex items-center gap-3 pt-3">
           <Avatar className="h-10 w-10 border-2 border-clinic-primary">
