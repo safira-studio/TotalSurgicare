@@ -10,10 +10,10 @@ interface SpecialtyItemProps {
 
 const SpecialtyItem = ({ icon, name }: SpecialtyItemProps) => {
   return (
-    <div className="bg-white border border-slate-200 rounded-xl shadow-sm hover:shadow-xl transition-all duration-300 ease-in-out transform hover:-translate-y-1 max-w-sm overflow-hidden">
+    <div className="bg-white border border-clinic-primary rounded-xl shadow-sm hover:shadow-xl transition-all duration-300 ease-in-out transform hover:-translate-y-1 max-w-sm overflow-hidden">
       <div className="p-4 sm:p-6">
         <div className="flex items-start h-14 relative">
-          <h3 className="text-base sm:text-lg font-thin text-slate-800 tracking-tight whitespace-normal pr-16 sm:pr-20 max-w-[calc(100%-4rem)] sm:max-w-[calc(100%-5rem)]">
+          <h3 className="text-base sm:text-lg font-semi-bold text-slate-800 tracking-tight whitespace-normal pr-16 sm:pr-20 max-w-[calc(100%-4rem)] sm:max-w-[calc(100%-5rem)]">
             {name}
           </h3>
           <Image
@@ -181,11 +181,11 @@ const MedicalSpecialties = () => {
           </p>
         </div>
 
-        <div className="container grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4 lg:gap-5 transition-all duration-300 ease-in-out">
+        <div className=" container grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4 lg:gap-5 transition-all duration-300 ease-in-out">
           {specialties.slice(0, visibleItems).map((specialty, index) => (
             <div
               key={index}
-              className="animate-in fade-in slide-in-from-bottom-4 duration-300"
+              className="animate-in  fade-in slide-in-from-bottom-4 duration-300"
               style={{
                 animationDelay: `${(index % 6) * 50}ms`,
                 animationFillMode: "both",
