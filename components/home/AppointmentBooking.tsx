@@ -90,7 +90,7 @@ const AppointmentBooking = () => {
                   </div>
                 </div>
 
-                <AppointmentForm />
+                <AppointmentForm parentClass={"space-y-4"} />
               </div>
             </CardContent>
           </Card>

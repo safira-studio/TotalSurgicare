@@ -103,7 +103,7 @@ const Hero = ({ title, brief, alternateNames }: Heroprops) => {
           </div>
 
           <div className="flex justify-center items-start lg:items-center w-full lg:w-2/5 mt-4 lg:mt-0">
-            <AppointmentForm />
+            <AppointmentForm parentClass={"space-y-2"} />
           </div>
         </div>
       </div>
