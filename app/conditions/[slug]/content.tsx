@@ -106,7 +106,7 @@ export default async function Content({ slug }: Props) {
               return (
                 <div
                   key={index}
-                  className="bg-[#DCFCE7] border border-gray-200 rounded-lg p-4 shadow-sm hover:shadow-lg transition-shadow text-center"
+                  className="bg-[#DCFCE7] border border-gray-200 rounded-3xl p-4 shadow-sm hover:shadow-lg transition-shadow text-center"
                 >
                   <div className="w-12 h-12 rounded-full border-2 border-[#4CAF7D] flex items-center justify-center mb-4 mx-auto">
                     {IconComponent && (
