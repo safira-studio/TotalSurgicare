@@ -1,5 +1,5 @@
 "use client";
-import { useState, useRef } from "react";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Input } from "@/components/ui/input";
@@ -29,7 +29,6 @@ const specialties = [
   "Post Surgery Care",
 ];
 
-// Define the form schema with Zod
 const formSchema = z.object({
   specialty: z.string().min(1, "Please select a department"),
   name: z.string().min(2, "Name is required"),
@@ -56,7 +55,8 @@ export default function AppointmentForm({
 }: AppointmentProps) {
   const [submitted, setSubmitted] = useState(false);
   const [submittedData, setSubmittedData] = useState<FormValues | null>(null);
-  const printRef = useRef<HTMLDivElement>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   const {
     register,
     handleSubmit,
@@ -79,10 +79,29 @@ export default function AppointmentForm({
   const specialty = watch("specialty");
   const gender = watch("gender");
 
-  const onSubmit = (data: FormValues) => {
-    console.log("Form submitted with values:", data);
-    setSubmittedData(data);
-    setSubmitted(true);
+  const onSubmit = async (data: FormValues) => {
+    setIsSubmitting(true);
+    try {
+      console.log("Form submitted with values:", data);
+      const res = await fetch("/api/book", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+
+      const result = await res.json();
+      if (result.success) {
+        setSubmitted(true);
+        setSubmittedData(data);
+      } else {
+        alert(`Booking failed: ${result.error || "Unknown error"}`);
+      }
+    } catch (error) {
+      console.error("Booking error:", error);
+      alert("An error occurred while booking the appointment.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -318,12 +337,14 @@ export default function AppointmentForm({
             <div className="pt-2">
               <Button
                 type="submit"
+                disabled={isSubmitting}
                 className={cn(
                   "w-full bg-clinic-secondary hover:bg-clinic-secondaryDark",
-                  buttonClass
+                  buttonClass,
+                  isSubmitting && "opacity-50 cursor-not-allowed"
                 )}
               >
-                Book Appointment
+                {isSubmitting ? "Submitting..." : "Book Appointment"}
               </Button>
             </div>
           </form>
