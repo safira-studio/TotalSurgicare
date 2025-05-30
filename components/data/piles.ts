@@ -269,48 +269,61 @@ export const pilesTreatment: MedicalCondition = {
   },
   types: [
     {
-      type: "Intersphincteric Fistula",
+      type: "Internal Piles",
       description:
-        "Passes through the internal sphincter and exits between internal and external sphincter.",
+        "Located inside the rectum, usually painless but may cause bleeding during bowel movements.",
       procedure:
-        "Fistulotomy - A surgical procedure where the fistula tract is opened up, tissue is cleaned, and left to heal.",
+        "Rubber Band Ligation - A band is placed around the base of the hemorrhoid to cut off blood supply, causing it to shrink and fall off.",
     },
     {
-      type: "Trans-sphincteric Fistula",
+      type: "External Piles",
       description:
-        "Crosses through both the internal and external anal sphincter muscles.",
+        "Develop under the skin around the anus and can be painful, especially when thrombosed.",
       procedure:
-        "Seton Procedure - A surgical thread placed through the fistula tract to help drain it before final repair.",
+        "Excision - Surgical removal of the thrombosed hemorrhoid under local anesthesia for quick relief.",
     },
     {
-      type: "Suprasphincteric Fistula",
+      type: "Thrombosed Piles",
       description:
-        "Crosses over the top of the puborectalis muscle then passes between the internal and external sphincter.",
+        "Blood clot forms inside external hemorrhoids, causing severe pain, swelling, and inflammation.",
       procedure:
-        "LIFT Procedure - Ligation of Intersphincteric Fistula Tract to close connections while preserving sphincter function.",
+        "Thrombectomy - Minor surgery to remove the clot and relieve pain.",
     },
     {
-      type: "Extrasphincteric Fistula",
+      type: "Prolapsed Piles",
       description:
-        "Originates from the rectum or another pelvic organ and passes through the levator muscles to skin.",
+        "Internal hemorrhoids that protrude outside the anus, especially during straining.",
       procedure:
-        "Endorectal Flap - Creates a flap to cover the internal opening after cleaning the tract.",
+        "Stapled Hemorrhoidopexy - Hemorrhoidal tissue is repositioned and blood flow is restricted, causing shrinkage.",
     },
     {
-      type: "Submucosal Fistula",
+      type: "Grade I Hemorrhoids",
       description:
-        "Confined to the submucosal layer of the rectum, does not involve sphincter muscles.",
+        "Small internal piles that do not prolapse and are often asymptomatic.",
       procedure:
-        "Laser Surgery - Precise laser treatment sealing the tract with minimal tissue damage.",
+        "Diet & Medication - High-fiber diet, stool softeners, and topical treatments.",
     },
     {
-      type: "Complex Fistula",
-      description:
-        "Multiple tracts, recurrent, or associated with inflammatory bowel disease.",
+      type: "Grade II Hemorrhoids",
+      description: "Prolapse during straining but retract spontaneously.",
       procedure:
-        "Combined approaches - Often requires staged procedures and multidisciplinary care.",
+        "Infrared Coagulation (IRC) - A quick, non-surgical treatment using infrared light to shrink the hemorrhoid.",
+    },
+    {
+      type: "Grade III Hemorrhoids",
+      description:
+        "Prolapse during straining and require manual repositioning.",
+      procedure:
+        "Doppler-Guided Hemorrhoidal Artery Ligation - Ties off blood vessels feeding the hemorrhoid using ultrasound guidance.",
+    },
+    {
+      type: "Grade IV Hemorrhoids",
+      description: "Permanently prolapsed and cannot be pushed back inside.",
+      procedure:
+        "Hemorrhoidectomy - Surgical removal of severe or large hemorrhoids.",
     },
   ],
+
   whyChooseUs: [
     {
       title: "Advanced Treatment Through Laser Surgery",
