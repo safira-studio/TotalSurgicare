@@ -1,26 +1,7 @@
-"use client";
-import React, { useState } from "react";
+import React from "react";
 import { Calendar as CalendarIcon, Clock, Users } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Calendar } from "@/components/ui/calendar";
 import { Card, CardContent } from "@/components/ui/card";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
-import { Textarea } from "@/components/ui/textarea";
-import { format } from "date-fns";
-import { cn } from "@/lib/utils";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import { Label } from "@/components/ui/label";
-import { Input } from "@/components/ui/input";
+import AppointmentForm from "@/components/AppointmentForm";
 
 const specialties = [
   "Proctology",
@@ -36,15 +17,6 @@ const specialties = [
 ];
 
 const AppointmentBooking = () => {
-  const [date, setDate] = useState<Date | undefined>(undefined);
-  const [specialty, setSpecialty] = useState<string>("");
-  const [timeSlot, setTimeSlot] = useState<string>("");
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // Appointment booking logic would go here
-  };
-
   return (
     <div className="w-full py-12 mb-6 bg-gray-50">
       <div className="container mx-auto px-4">
@@ -118,111 +90,7 @@ const AppointmentBooking = () => {
                   </div>
                 </div>
 
-                <div className="md:col-span-3 p-8">
-                  <h3 className="text-xl font-onest mb-6">
-                    Book an Appointment
-                  </h3>
-
-                  <form onSubmit={handleSubmit} className="space-y-4">
-                    <div className="space-y-2">
-                      <Label className="text-sm font-medium">
-                        Select Department
-                      </Label>
-                      <Select
-                        value={specialty}
-                        onValueChange={(value) => setSpecialty(value)}
-                      >
-                        <SelectTrigger className="w-full focus:ring-2 focus:ring-clinic-primary">
-                          <SelectValue placeholder="Select a specialty" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          {specialties.map((s, index) => (
-                            <SelectItem key={index} value={s}>
-                              {s}
-                            </SelectItem>
-                          ))}
-                        </SelectContent>
-                      </Select>
-                    </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="name" className="text-sm font-medium">
-                        Full Name
-                      </Label>
-                      <Input id="name" placeholder="Your full name" required />
-                    </div>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-                      {/* Phone Number */}
-                      <div className="space-y-2">
-                        <label htmlFor="phone" className="text-sm font-medium">
-                          Phone Number
-                        </label>
-                        <Input
-                          id="phone"
-                          placeholder="Your phone number"
-                          required
-                        />
-                      </div>
-
-                      {/* Gender */}
-                      <div className="space-y-2">
-                        <span className="text-sm font-medium">Gender</span>
-                        <div className="flex items-center gap-4">
-                          <label className="flex items-center gap-2">
-                            <input
-                              type="radio"
-                              name="gender"
-                              value="male"
-                              className="accent-clinic-primary"
-                            />
-                            Male
-                          </label>
-                          <label className="flex items-center gap-2">
-                            <input
-                              type="radio"
-                              name="gender"
-                              value="female"
-                              className="accent-clinic-primary"
-                            />
-                            Female
-                          </label>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="space-y-2">
-                      <label htmlFor="email" className="text-sm font-medium">
-                        Email Address
-                      </label>
-                      <Input
-                        id="email"
-                        type="email"
-                        placeholder="Your email address"
-                        required
-                      />
-                    </div>
-
-                    <div className="space-y-2">
-                      <label htmlFor="reason" className="text-sm font-medium">
-                        Reason for Visit
-                      </label>
-                      <Textarea
-                        id="reason"
-                        placeholder="Please briefly describe your symptoms or reason for the appointment"
-                        rows={3}
-                        required
-                      />
-                    </div>
-
-                    <div className="pt-2">
-                      <Button
-                        type="submit"
-                        className="w-full bg-clinic-secondary hover:bg-clinic-secondaryDark"
-                      >
-                        Book Appointment
-                      </Button>
-                    </div>
-                  </form>
-                </div>
+                <AppointmentForm />
               </div>
             </CardContent>
           </Card>

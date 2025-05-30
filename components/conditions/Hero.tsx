@@ -1,5 +1,5 @@
 import React from "react";
-import AppointmentForm from "./AppointmentForm";
+import AppointmentForm from "@/components/AppointmentForm";
 import {
   Calendar,
   Check,
