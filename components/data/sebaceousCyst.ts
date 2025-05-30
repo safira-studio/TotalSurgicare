@@ -10,7 +10,8 @@ export const sebaceousCyst: MedicalCondition = {
       "Sebaceous cyst is a noncancerous lump beneath the skin caused by blocked sebaceous glands. Learn about its symptoms, causes, and treatment options.",
     alternateNames: [
       { language: "Hindi", name: "सेबेसियस सिस्ट" },
-      { language: "Tamil", name: "செபாசியஸ் சிஸ்ட்" },
+      { language: "Marathi", name: "सेबेशस सिस्ट" }, // Sebaceous cyst
+      // Umbilical hernia
     ],
   },
   aboutCondition: {

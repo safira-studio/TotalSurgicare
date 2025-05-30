@@ -10,7 +10,7 @@ export const varicoseVeins: MedicalCondition = {
       "Varicose veins are swollen, twisted veins visible under the skin, commonly in the legs. Learn about symptoms, causes, diagnosis, and treatment options.",
     alternateNames: [
       { language: "Hindi", name: "वरिकोस नसें" },
-      { language: "Tamil", name: "சுருங்கிய இரத்தக் குழாய்கள்" },
+      { language: "Marathi", name: "वॅरिकोज वेन्स (विक्सरलेले शिरा)" },
     ],
   },
   aboutCondition: {

@@ -10,7 +10,7 @@ export const appendectomy: MedicalCondition = {
       "Appendicitis is a medical emergency where the appendix becomes inflamed and painful. We provide quick and minimally invasive laparoscopic appendectomy to relieve pain and prevent complications.",
     alternateNames: [
       { language: "Hindi", name: "अपेंडिक्स की सूजन" },
-      { language: "Tamil", name: "அப்பெண்டிசைட்டிஸ்" },
+      { language: "Marathi", name: "अपेंडिक्सची सूज" },
     ],
   },
   aboutCondition: {

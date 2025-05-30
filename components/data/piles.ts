@@ -10,7 +10,7 @@ export const pilesTreatment: MedicalCondition = {
       "Piles (hemorrhoids) are swollen veins in the lower rectum and anus. They can cause discomfort, pain, and bleeding. Our advanced laser treatment provides quick relief with minimal recovery time.",
     alternateNames: [
       { language: "Hindi", name: "बवासीर" },
-      { language: "Tamil", name: "மூலம்" },
+      { language: "Marathi", name: "बवासीर" },
     ],
   },
   aboutCondition: {

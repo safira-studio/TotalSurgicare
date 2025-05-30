@@ -10,7 +10,7 @@ export const cataract: MedicalCondition = {
       "Cataract is a clouding of the eye's natural lens leading to blurred vision. Learn about its symptoms, causes, and treatment options.",
     alternateNames: [
       { language: "Hindi", name: "धुंधला मोती" },
-      { language: "Tamil", name: "முகப்பு பளபளப்பு" },
+      { language: "Marathi", name: "मोतिबिंदू" },
     ],
   },
   aboutCondition: {

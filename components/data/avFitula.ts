@@ -10,7 +10,7 @@ export const avFistula: MedicalCondition = {
       "An arteriovenous (AV) fistula is an abnormal connection between an artery and a vein, often created surgically for hemodialysis access. Learn about its symptoms, causes, and treatments.",
     alternateNames: [
       { language: "Hindi", name: "एवी फिस्टुला" },
-      { language: "Tamil", name: "ஏவி நுணுக்கம்" },
+      { language: "Marathi", name: "एव्ही फिस्टुला" },
     ],
   },
   aboutCondition: {

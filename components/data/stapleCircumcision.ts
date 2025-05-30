@@ -10,8 +10,8 @@ export const staplerCircumcision: MedicalCondition = {
       "Stapler circumcision is a modern surgical procedure offering faster healing and minimal pain compared to traditional circumcision methods.",
     alternateNames: [
       { language: "Hindi", name: "स्टेपलर खतना" },
-      { language: "Tamil", name: "ஸ்டேப்பிளர் உருக்கணம்" },
-    ],
+      { language: "Marathi", name: "सर्कमसिझन" },
+    ], // Circumcision (Stapecircumcision is likely a typo; assuming "Staple Circumcision")
   },
   aboutCondition: {
     title: "What is Stapler Circumcision?",

@@ -10,7 +10,7 @@ export const fistulaTreatment: MedicalCondition = {
       "Fistula is an abnormal tunnel-like connection between the anal canal and the skin near the anus. It can lead to pain, swelling, and discharge. Our advanced laser treatment offers a safe, minimally invasive solution with faster recovery.",
     alternateNames: [
       { language: "Hindi", name: "भगंदर" },
-      { language: "Tamil", name: "குடல் fistula" },
+      { language: "Marathi", name: "फिस्टुला" },
     ],
   },
   aboutCondition: {
