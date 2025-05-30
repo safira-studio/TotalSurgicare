@@ -29,25 +29,25 @@ export const staplerCircumcision: MedicalCondition = {
       title: "Phimosis",
       description:
         "A condition where the foreskin cannot be fully retracted over the glans, causing discomfort and hygiene issues.",
-      icon: "warning",
+      icon: "arrow-up",
     },
     {
       title: "Recurrent Infections",
       description:
         "Repeated infections of the foreskin or glans often necessitate circumcision.",
-      icon: "medkit",
+      icon: "syringe",
     },
   ],
   symptoms: [
     {
       title: "Tight foreskin",
       description: "Difficulty or pain while retracting the foreskin.",
-      icon: "pain",
+      icon: "syringe",
     },
     {
       title: "Inflammation",
       description: "Redness, swelling, and discomfort in the foreskin area.",
-      icon: "inflammation",
+      icon: "thermometer",
     },
   ],
   diagnosis: {

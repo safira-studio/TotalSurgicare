@@ -140,7 +140,7 @@ export default async function Content({ slug }: Props) {
                   key={index}
                   className="bg-clinic-vlight_primary/50 border border-gray-100 rounded-3xl p-6 shadow-sm hover:shadow-md transition-shadow text-center"
                 >
-                  <div className="w-12 h-12 rounded-full border-2 border-clinic-primary/40 flex items-center justify-center mb-4 mx-auto">
+                  <div className="w-12 h-12 rounded-full border-2 border-clinic-primary/50 flex items-center justify-center mb-4 mx-auto">
                     {IconComponent && (
                       <IconComponent className="w-6 h-6 text-clinic-primary" />
                     )}

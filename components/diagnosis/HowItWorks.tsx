@@ -47,7 +47,7 @@ const HowItWorks = () => {
     <section className="py-16 px-4 bg-gray-50">
       <div className="container mx-auto">
         <div className="text-center mb-12">
-          <Badge className="bg-blue-100 text-clinic-primary mb-4">
+          <Badge className="bg-blue-100 hover:bg-white text-clinic-primary mb-4">
             Simple Process
           </Badge>
           <h2 className="text-4xl font-onest text-clinic-primary mb-6">

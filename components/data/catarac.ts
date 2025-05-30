@@ -50,29 +50,29 @@ export const cataract: MedicalCondition = {
     {
       title: "Prolonged Sun Exposure",
       description: "UV radiation accelerates lens clouding.",
-      icon: "sun",
+      icon: "thermometer",
     },
   ],
   symptoms: [
     {
       title: "Blurred or Cloudy Vision",
       description: "Difficulty seeing clearly.",
-      icon: "eye",
+      icon: "syringe",
     },
     {
       title: "Difficulty Seeing at Night",
       description: "Poor vision in low light conditions.",
-      icon: "moon",
+      icon: "arrow-up",
     },
     {
       title: "Glare or Halos Around Lights",
       description: "Sensitivity to bright lights.",
-      icon: "sun",
+      icon: "thermometer",
     },
     {
       title: "Faded Colors",
       description: "Colors appear less vibrant.",
-      icon: "palette",
+      icon: "image",
     },
   ],
   riskFactors: [
@@ -94,14 +94,14 @@ export const cataract: MedicalCondition = {
     {
       title: "Excessive UV Exposure",
       description: "Risk factor for lens clouding.",
-      icon: "sun",
+      icon: "thermometer",
     },
   ],
   complications: [
     {
       title: "Vision Loss",
       description: "If untreated, cataracts can cause blindness.",
-      icon: "eye-off",
+      icon: "arrow-up",
     },
     {
       title: "Difficulty Performing Daily Tasks",
