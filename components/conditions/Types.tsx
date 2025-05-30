@@ -22,10 +22,10 @@ const FistulaTypes = ({
         </h2>
 
         {/* Table layout for md and above */}
-        <div className="overflow-x-auto hidden md:block">
+        <div className="overflow-x-auto hidden md:block ">
           <table className="min-w-full">
             <thead>
-              <tr className="bg-blue-50">
+              <tr className="bg-clinic-vlight_primary/50  ">
                 <th className="text-gray-800 px-4 py-2 text-left">
                   Type of {name}
                 </th>
@@ -45,10 +45,10 @@ const FistulaTypes = ({
                     <td className="font-medium text-clinic-primary px-4 py-3 whitespace-nowrap">
                       {item.type}
                     </td>
-                    <td className="text-gray-600 px-4 py-3">
+                    <td className="text-gray-600  px-4 py-3">
                       {item.description}
                     </td>
-                    <td className="text-gray-600 px-4 py-3">
+                    <td className="text-gray-600  px-4 py-3">
                       <strong>{title}</strong>
                       {detail ? ` - ${detail}` : ""}
                     </td>
