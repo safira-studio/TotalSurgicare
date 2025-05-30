@@ -6,6 +6,7 @@ import { fontSans } from "@/config/fonts";
 import { Navbar } from "@/components/layout/navbar";
 import Footer from "@/components/layout/Footer";
 import ChatWidget from "@/components/chatWidget";
+import ChatBot from "@/components/ChatBot";
 
 export const metadata: Metadata = {
   title: {
@@ -46,6 +47,7 @@ export default function RootLayout({
           <Footer />
         </div>
         <ChatWidget />
+        <ChatBot />
         {/* </Providers> */}
       </body>
     </html>
