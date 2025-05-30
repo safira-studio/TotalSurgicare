@@ -2,13 +2,15 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 interface SpecialtyItemProps {
   icon: string;
   name: string;
+  link: string;
 }
 
-const SpecialtyItem = ({ icon, name }: SpecialtyItemProps) => {
+const SpecialtyItem = ({ icon, name, link }: SpecialtyItemProps) => {
   return (
     <div className="bg-white border border-clinic-primary rounded-xl shadow-sm hover:shadow-xl transition-all duration-300 ease-in-out transform hover:-translate-y-1 max-w-sm overflow-hidden">
       <div className="p-4 sm:p-6">
@@ -26,9 +28,12 @@ const SpecialtyItem = ({ icon, name }: SpecialtyItemProps) => {
         </div>
       </div>
       <div className="px-4 sm:px-6 py-3 bg-gradient-to-r from-blue-50 to-indigo-50 flex justify-end">
-        <button className="text-xs sm:text-sm font-medium text-clinic-primary hover:text-clinic-dark transition-colors">
+        <Link
+          href={`/conditions/${link}`}
+          className="text-xs sm:text-sm font-medium text-clinic-primary hover:text-clinic-dark transition-colors"
+        >
           Learn More
-        </button>
+        </Link>
       </div>
     </div>
   );
@@ -36,37 +41,85 @@ const SpecialtyItem = ({ icon, name }: SpecialtyItemProps) => {
 
 const MedicalSpecialties = () => {
   const specialties = [
-    { name: "Fissure", icon: "/images/specialties/Fissure.png" },
-    { name: "Fistula", icon: "/images/specialties/Fistula.png" },
-    { name: "Hernia", icon: "/images/specialties/Hernia.png" },
-    { name: "Piles", icon: "/images/specialties/Piles.png" },
-    { name: "Galstone", icon: "/images/specialties/Galstone.png" },
-    { name: "Appendicitis", icon: "/images/specialties/Appendicitis.png" },
-    { name: "PCOS-Pcod", icon: "/images/specialties/PcosPcod.png" },
-    { name: "AV Fistula", icon: "/images/specialties/AVFistula.png" },
-    { name: "Varicose Veins", icon: "/images/specialties/VaricoseVeins.png" },
-    { name: "Vaginoplasty", icon: "/images/specialties/Vaginoplasty.png" },
-    { name: "Hymenoplasty", icon: "/images/specialties/Hymenoplasty.png" },
-    { name: "Labiaplasty", icon: "/images/specialties/Labiaplasty.png" },
     {
-      name: "Vaginal wart removal",
-      icon: "/images/specialties/VaginalWartRemoval.png",
+      name: "Fissure",
+      icon: "/images/specialties/Fissure.png",
+      link: "fissure-treatment",
+    },
+    {
+      name: "Fistula",
+      icon: "/images/specialties/Fistula.png",
+      link: "fistula-treatment",
+    },
+    {
+      name: "Hernia",
+      icon: "/images/specialties/Hernia.png",
+      link: "hernia-surgery",
+    },
+    {
+      name: "Piles",
+      icon: "/images/specialties/Piles.png",
+      link: "piles-treatment",
+    },
+    {
+      name: "Galstone",
+      icon: "/images/specialties/Galstone.png",
+      link: "gallstone-surgery",
+    },
+    {
+      name: "Appendicitis",
+      icon: "/images/specialties/Appendicitis.png",
+      link: "appendectomy",
+    },
+    {
+      name: "PCOS-Pcod",
+      icon: "/images/specialties/PcosPcod.png",
+      link: "pcos-pcod-treatment",
+    },
+    {
+      name: "AV Fistula",
+      icon: "/images/specialties/AVFistula.png",
+      link: "av-fistula",
+    },
+    {
+      name: "Varicose Veins",
+      icon: "/images/specialties/VaricoseVeins.png",
+      link: "varicose-veins",
+    },
+    {
+      name: "Vaginoplasty",
+      icon: "/images/specialties/Vaginoplasty.png",
+      link: "vaginoplasty",
+    },
+    {
+      name: "Hymenoplasty",
+      icon: "/images/specialties/Hymenoplasty.png",
+      link: "hymenoplasty",
+    },
+    {
+      name: "Labiaplasty",
+      icon: "/images/specialties/Labiaplasty.png",
+      link: "labiaplasty",
     },
     {
       name: "Pilonidal sinus",
       icon: "/images/specialties/PilonidalSinus.png",
+      link: "pollonodal-sinus-treatment",
     },
     {
       name: "Enlarged Prostate",
       icon: "/images/specialties/EnlargedProstate.png",
+      link: "enlarged-prostate-surgery",
     },
     {
       name: "Inguinal Hernia",
       icon: "/images/specialties/InguinalHernia.png",
+      link: "inguinal-hernia-surgery",
     },
     {
       name: "Umbilical Hernia",
       icon: "/images/specialties/UmbilicalHernia.png",
+      link: "umbillical-hernia-surgery",
     },
   ];
 
@@ -191,7 +244,7 @@ const MedicalSpecialties = () => {
                 animationFillMode: "both",
               }}
             >
-              <SpecialtyItem icon={specialty.icon} name={specialty.name} />
+              <SpecialtyItem {...specialty} />
             </div>
           ))}
         </div>
