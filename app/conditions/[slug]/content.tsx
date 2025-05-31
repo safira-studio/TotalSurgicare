@@ -67,7 +67,7 @@ export default async function Content({ slug }: Props) {
       {/* Hero Section */}
       <Hero {...data.overview} />
       {/* What is the condition section */}
-      <InfoSection {...data.aboutCondition} />
+      <InfoSection {...data.aboutCondition} slug={slug} />
       {/* food triggers */}
       <div className="mb-16">
         <div className="container mx-auto px-4">
@@ -313,7 +313,7 @@ export default async function Content({ slug }: Props) {
         </div>
       </section>
 
-      <Diagnosis {...data.diagnosis} />
+      <Diagnosis {...data.diagnosis} slug={slug} />
       <FistulaTypes name={data.name} types={data.types} />
       <Treatment whyUs={data.whyChooseUs} name={data.name} />
     </div>

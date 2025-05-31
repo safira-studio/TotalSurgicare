@@ -1,13 +1,33 @@
+"use client";
 import Image from "next/image";
-import React from "react";
+import React, { useState } from "react";
 
 const Diagnosis = ({
   description,
   methods,
+  slug,
 }: {
   description: string;
   methods: string[];
+  slug: string;
 }) => {
+  const imageExtensions = ["webp", "avif", "png", "jpg", "jpeg", "gif"];
+  const [extIndex, setExtIndex] = useState(0);
+  const [errorFallback, setErrorFallback] = useState(false);
+
+  const handleError = () => {
+    if (extIndex < imageExtensions.length - 1) {
+      setExtIndex(extIndex + 1);
+    } else {
+      // All extensions failed, show placeholder
+      setErrorFallback(true);
+    }
+  };
+
+  const imgSrc = errorFallback
+    ? "/placeholder.svg"
+    : `/conditions/${slug}/2.${imageExtensions[extIndex]}`;
+
   return (
     <div className="bg-gray-50 py-10 px-6 lg:px-12">
       <div className="max-w-7xl mx-auto">
@@ -49,7 +69,8 @@ const Diagnosis = ({
                 </ul>
               </div>
               <Image
-                src="/placeholder.svg"
+                src={imgSrc}
+                onError={handleError}
                 alt="Diagnostic procedure"
                 className="rounded-lg shadow-md w-full max-w-md mx-auto"
                 width={100}

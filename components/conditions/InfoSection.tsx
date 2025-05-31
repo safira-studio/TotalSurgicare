@@ -1,4 +1,5 @@
-import React from "react";
+"use client";
+import React, { useState } from "react";
 import Image from "next/image";
 import {
   Pill,
@@ -22,12 +23,29 @@ const IconMap = {
 const InfoSection = ({
   title,
   description,
-  images,
+  slug,
 }: {
   title: string;
   description: string;
-  images?: { src: string; alt: string }[];
+  slug: string;
 }) => {
+  const imageExtensions = ["webp", "avif", "png", "jpg", "jpeg", "gif"];
+  const [extIndex, setExtIndex] = useState(0);
+  const [errorFallback, setErrorFallback] = useState(false);
+
+  const handleError = () => {
+    if (extIndex < imageExtensions.length - 1) {
+      setExtIndex(extIndex + 1);
+    } else {
+      // All extensions failed, show placeholder
+      setErrorFallback(true);
+    }
+  };
+
+  const imgSrc = errorFallback
+    ? "/placeholder.svg"
+    : `/conditions/${slug}/1.${imageExtensions[extIndex]}`;
+
   return (
     <div className="py-16 px-6 lg:px-12 bg-white">
       <div className="max-w-7xl mx-auto">
@@ -43,36 +61,15 @@ const InfoSection = ({
             </div>
 
             {/* Image Grid */}
-            <div className="grid grid-cols-2 gap-4">
-              <Image
-                width={100}
-                height={100}
-                src="/placeholder.svg"
-                alt="Grade 1 Piles"
-                className="rounded-xl shadow-md object-cover w-full h-42"
-              />
-              <Image
-                width={100}
-                height={100}
-                src="/placeholder.svg"
-                alt="Grade 2 Piles"
-                className="rounded-xl shadow-md object-cover w-full h-42"
-              />
-              <Image
-                width={100}
-                height={100}
-                src="/placeholder.svg"
-                alt="Grade 3 Piles"
-                className="rounded-xl shadow-md object-cover w-full h-42"
-              />
-              <Image
-                width={100}
-                height={100}
-                src="/placeholder.svg"
-                alt="Grade 4 Piles"
-                className="rounded-xl shadow-md object-cover w-full h-42"
-              />
-            </div>
+
+            <Image
+              width={100}
+              height={100}
+              src={imgSrc}
+              onError={handleError}
+              alt="Grade 1 Piles"
+              className="rounded-xl shadow-md object-cover w-full "
+            />
           </div>
         </div>
       </div>
