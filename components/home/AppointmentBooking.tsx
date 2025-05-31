@@ -89,8 +89,9 @@ const AppointmentBooking = () => {
                     </p>
                   </div>
                 </div>
-
-                <AppointmentForm formClass={"space-y-4"} />
+                <div className="md:col-span-3 ">
+                  <AppointmentForm formClass={"space-y-4"} />
+                </div>
               </div>
             </CardContent>
           </Card>

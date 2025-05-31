@@ -101,7 +101,7 @@ export default function Hero() {
           {/* doctor image and floating text */}
           <div className="absolute bottom-0 left-1/2 -translate-x-1/2 z-10 w-[380px] sm:w-[380px] md:w-[380px] lg:w-[550px] h-auto">
             <Image
-              src="/doctor.png"
+              src="/doctor3.png"
               alt="Doctor"
               width={550}
               height={100}

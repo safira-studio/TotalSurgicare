@@ -111,7 +111,7 @@ export default function AppointmentForm({
   return (
     <div
       className={cn(
-        "md:col-span-3 p-8 bg-white/95 backdrop-blur-sm shadow-xl rounded-xl",
+        "w-full p-8 bg-white/95 backdrop-blur-sm shadow-xl rounded-xl",
         parentClass
       )}
     >
