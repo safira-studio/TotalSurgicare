@@ -10,7 +10,7 @@ export const hysterectomy: MedicalCondition = {
       "Hysterectomy is a surgical procedure to remove the uterus, often used to treat various gynecological conditions. Learn about types, reasons, and recovery.",
     alternateNames: [
       { language: "Hindi", name: "गर्भाशय निष्कासन" },
-      { language: "Tamil", name: "கருப்பைப் பாய் அகற்றல்" },
+      { language: "Marathi", name: "गर्भाशय काढण्याची शस्त्रक्रिया" }, // Hysterectomy
     ],
   },
   aboutCondition: {

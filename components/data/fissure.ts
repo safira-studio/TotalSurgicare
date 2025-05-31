@@ -10,7 +10,7 @@ export const fissureTreatment: MedicalCondition = {
       "Anal fissure is a small tear in the skin lining the anus, causing pain and bleeding during bowel movements. Our advanced laser treatment ensures rapid healing, minimal discomfort, and faster recovery.",
     alternateNames: [
       { language: "Hindi", name: "शारीरिक दरार (एनल फिशर)" },
-      { language: "Tamil", name: "குடல் கிழிவு (அனல் ஃபிஷர்)" },
+      { language: "Marathi", name: "फिशर" },
     ],
   },
   aboutCondition: {

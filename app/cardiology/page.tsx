@@ -9,12 +9,12 @@ const Cardiac = () => {
   return (
     <div className="min-h-screen  to-white rounded-2xl">
       {/* Hero Section */}
-      <section className="py-16 px-4 bg-clinic-primary/90">
+      <section className="py-16 px-4 bg-clinic-primary/80">
         <div className="container mx-auto text-center">
           <h1 className="text-5xl font-onest text-white mb-6">
             Specialized Cardiac Services
           </h1>
-          <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
+          <p className="text-xl text-white mb-8 max-w-3xl mx-auto">
             Our state-of-the-art cardiac care center offers comprehensive heart
             health services with advanced diagnostic tools and minimally
             invasive treatment options.

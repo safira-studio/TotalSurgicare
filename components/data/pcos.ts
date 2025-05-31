@@ -10,10 +10,7 @@ export const pcosPcodTreatment: MedicalCondition = {
       "PCOS and PCOD are hormonal disorders affecting women of reproductive age, causing irregular periods, cysts, and fertility issues. Learn about symptoms, causes, and treatments.",
     alternateNames: [
       { language: "Hindi", name: "पीसीओएस / पीसीओडी" },
-      {
-        language: "Tamil",
-        name: "பால்சிஸ்டிக் ஓவரி சிண்ட்ரோம் / பால்சிஸ்டிக் ஓவரி நோய்",
-      },
+      { language: "Marathi", name: "पॉलिसिस्टिक अंडाशय सिंड्रोम (PCOS)" }, // PCOS
     ],
   },
   aboutCondition: {

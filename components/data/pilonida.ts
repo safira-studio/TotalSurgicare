@@ -10,7 +10,7 @@ export const pollonodalSinusTreatment: MedicalCondition = {
       "Pilonidal sinus is a small tunnel or cyst in the skin, usually near the tailbone, that may become infected and filled with pus. Our advanced laser surgery offers a quick, painless, and permanent solution with minimal downtime.",
     alternateNames: [
       { language: "Hindi", name: "पाइलोनिडल साइनस" },
-      { language: "Tamil", name: "பைலோனிடல் சைனஸ்" },
+      { language: "Marathi", name: "पायलोनिडल सिस्ट" }, // Pilonidal cyst (पायलोनिडल सिस्ट)
     ],
   },
   aboutCondition: {

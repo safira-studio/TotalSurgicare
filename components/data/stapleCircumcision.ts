@@ -10,8 +10,8 @@ export const staplerCircumcision: MedicalCondition = {
       "Stapler circumcision is a modern surgical procedure offering faster healing and minimal pain compared to traditional circumcision methods.",
     alternateNames: [
       { language: "Hindi", name: "स्टेपलर खतना" },
-      { language: "Tamil", name: "ஸ்டேப்பிளர் உருக்கணம்" },
-    ],
+      { language: "Marathi", name: "सर्कमसिझन" },
+    ], // Circumcision (Stapecircumcision is likely a typo; assuming "Staple Circumcision")
   },
   aboutCondition: {
     title: "What is Stapler Circumcision?",
@@ -29,25 +29,25 @@ export const staplerCircumcision: MedicalCondition = {
       title: "Phimosis",
       description:
         "A condition where the foreskin cannot be fully retracted over the glans, causing discomfort and hygiene issues.",
-      icon: "warning",
+      icon: "arrow-up",
     },
     {
       title: "Recurrent Infections",
       description:
         "Repeated infections of the foreskin or glans often necessitate circumcision.",
-      icon: "medkit",
+      icon: "syringe",
     },
   ],
   symptoms: [
     {
       title: "Tight foreskin",
       description: "Difficulty or pain while retracting the foreskin.",
-      icon: "pain",
+      icon: "syringe",
     },
     {
       title: "Inflammation",
       description: "Redness, swelling, and discomfort in the foreskin area.",
-      icon: "inflammation",
+      icon: "thermometer",
     },
   ],
   diagnosis: {

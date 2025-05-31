@@ -10,7 +10,7 @@ export const rectalProlapse: MedicalCondition = {
       "Rectal prolapse occurs when the rectum slips through the anus, causing discomfort and bowel issues. We offer effective laser-assisted and surgical treatments to restore normal function and improve quality of life.",
     alternateNames: [
       { language: "Hindi", name: "रेक्टल प्रोलैप्स" },
-      { language: "Tamil", name: "குத புளிப்பு" },
+      { language: "Marathi", name: "मलद्वाराचा बाहेर पडणे" }, // Rectal prolapse
     ],
   },
   aboutCondition: {

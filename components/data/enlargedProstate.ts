@@ -10,7 +10,7 @@ export const enlargedProstateSurgery: MedicalCondition = {
       "Enlarged prostate, or benign prostatic hyperplasia (BPH), is a common condition in older men causing urinary difficulties. Our expert treatments help relieve symptoms and improve quality of life.",
     alternateNames: [
       { language: "Hindi", name: "वृद्ध प्रोस्टेट" },
-      { language: "Tamil", name: "நெருக்கமான பிறுதிப் பாகம்" },
+      { language: "Marathi", name: "प्रोस्टेट ग्रंथीचा वाढलेला आकार" },
     ],
   },
   aboutCondition: {

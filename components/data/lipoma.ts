@@ -10,7 +10,7 @@ export const lipoma: MedicalCondition = {
       "Lipoma is a benign fatty tumor under the skin, usually painless and slow-growing. Learn about its symptoms, causes, and treatment options.",
     alternateNames: [
       { language: "Hindi", name: "लाइपोमा" },
-      { language: "Tamil", name: "லிபோமா" },
+      { language: "Marathi", name: "लिपोमा (चरबीचा गाठ)" }, // Lipoma
     ],
   },
   aboutCondition: {

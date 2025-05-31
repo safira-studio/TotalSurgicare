@@ -10,7 +10,7 @@ export const breastLump: MedicalCondition = {
       "A breast lump is a swelling or mass in the breast tissue. Learn about its symptoms, causes, diagnosis, and treatment options.",
     alternateNames: [
       { language: "Hindi", name: "स्तन में गांठ" },
-      { language: "Tamil", name: "பெருஞ்சோலை முனை" },
+      { language: "Marathi", name: "स्तनातील गाठ" },
     ],
   },
   aboutCondition: {

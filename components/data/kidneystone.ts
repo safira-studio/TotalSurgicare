@@ -10,7 +10,7 @@ export const kidneyStoneTreatmentRirspcnlursl: MedicalCondition = {
       "Kidney stones are hard deposits formed from minerals in the urine. We provide advanced treatment options to relieve pain and remove stones safely.",
     alternateNames: [
       { language: "Hindi", name: "गुर्दे की पथरी" },
-      { language: "Tamil", name: "சிறுநீரகக் கல்" },
+      { language: "Marathi", name: "मूत्रपिंडातील खडा" }, // Kidney Stone
     ],
   },
   aboutCondition: {

@@ -10,7 +10,8 @@ export const myomectomy: MedicalCondition = {
       "Myomectomy is a surgical procedure to remove uterine fibroids while preserving the uterus. Learn about types, indications, and recovery.",
     alternateNames: [
       { language: "Hindi", name: "मायोमेक्टॉमी" },
-      { language: "Tamil", name: "மயோமேக்டோமி" },
+      { language: "Marathi", name: "मायोमेक्टॉमी" }, // Myomectomy (usually called the same, or मायोम काढणी)
+      // Piles (Hemorrhoids)
     ],
   },
   aboutCondition: {

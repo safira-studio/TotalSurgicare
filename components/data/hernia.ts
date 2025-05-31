@@ -10,7 +10,7 @@ export const herniaSurgery: MedicalCondition = {
       "A hernia occurs when an organ or tissue pushes through a weak spot in the surrounding muscle. We offer minimally invasive laparoscopic and laser treatments for long-lasting relief.",
     alternateNames: [
       { language: "Hindi", name: "हर्निया" },
-      { language: "Tamil", name: "மூளை வீக்கம்" },
+      { language: "Marathi", name: "हर्निया" }, // Hernia
     ],
   },
   aboutCondition: {

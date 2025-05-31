@@ -10,7 +10,7 @@ export const gallstoneSurgery: MedicalCondition = {
       "Gallstones are hardened deposits that form in the gallbladder and can lead to severe abdominal pain. We offer safe, effective laparoscopic gallbladder removal surgery for long-term relief.",
     alternateNames: [
       { language: "Hindi", name: "पित्त की पथरी" },
-      { language: "Tamil", name: "பித்த பாறைகள்" },
+      { language: "Marathi", name: "पित्ताशयातील खडे" }, // Gallstone
     ],
   },
   aboutCondition: {

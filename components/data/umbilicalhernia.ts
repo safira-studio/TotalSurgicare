@@ -10,7 +10,7 @@ export const umbillicalHerniaSurgery: MedicalCondition = {
       "Umbilical hernia occurs when part of the intestine protrudes through the abdominal muscles near the navel. We provide advanced hernia repair with minimal discomfort and quick recovery.",
     alternateNames: [
       { language: "Hindi", name: "नाभि हर्निया" },
-      { language: "Tamil", name: "தொப்புள் கசிவு சிகிச்சை" },
+      { language: "Marathi", name: "नाभीचा काढा" },
     ],
   },
   aboutCondition: {

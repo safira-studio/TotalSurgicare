@@ -10,7 +10,7 @@ export const inguinalHerniaSurgery: MedicalCondition = {
       "Inguinal hernia occurs when tissue pushes through a weak spot in the groin muscles. We offer advanced laparoscopic hernia repair for quick recovery and minimal discomfort.",
     alternateNames: [
       { language: "Hindi", name: "इंगुइनल हर्निया" },
-      { language: "Tamil", name: "கசிவு விரைவு சிகிச்சை" },
+      { language: "Marathi", name: "इन्ग्वायनल हर्निया" }, // Inguinal Hernia
     ],
   },
   aboutCondition: {
