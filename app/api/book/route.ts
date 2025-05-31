@@ -45,7 +45,7 @@ export async function POST(req: Request) {
     const event = await calendar.events.insert({
       calendarId,
       requestBody: {
-        summary: `${specialty} Consultation`,
+        summary: `TOTAL SURGICARE ${specialty} Consultation`,
         description: `Name: ${name}\nEmail: ${email}\nPhone: ${phone}\nGender: ${gender}\nReason: ${reason}`,
         start: { dateTime: startTime.toISOString(), timeZone: "Asia/Kolkata" },
         end: { dateTime: endTime.toISOString(), timeZone: "Asia/Kolkata" },
