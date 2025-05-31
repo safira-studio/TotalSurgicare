@@ -12,10 +12,10 @@ const About = () => {
       {/* Hero Section */}
       <section className="py-20 px-4">
         <div className="container mx-auto text-center">
-          <h1 className="text-5xl font-onest text-white mb-6">
+          <h1 className="text-5xl font-onest text-white mb-6 max-sm:text-4xl">
             About TotalSurgicare
           </h1>
-          <p className="text-xl text-white mb-8 max-w-3xl mx-auto">
+          <p className="text-xl text-white mb-8 max-w-3xl mx-auto  max-sm:text-md">
             Dedicated to providing exceptional healthcare services with
             compassion, expertise, and innovation. We are committed to improving
             lives through advanced medical care and personalized treatment.
@@ -24,7 +24,7 @@ const About = () => {
       </section>
 
       {/* Mission & Vision */}
-      <section className=" py-12 px-14 bg-white ">
+      <section className=" py-12 px-14 bg-white max-sm:px-4">
         <div className="container mx-auto">
           <div className="grid md:grid-cols-2 gap-12">
             <div>
