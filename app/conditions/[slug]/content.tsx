@@ -131,7 +131,7 @@ export default async function Content({ slug }: Props) {
             Common Causes of {data.name}
           </h2>
 
-          <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-3 md:gap-6 px-4 sm:px-6 lg:px-0">
+          <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-3 md:gap-6 ">
             {data.causes.map((cause, index) => {
               const IconComponent = IconMap[cause.icon as keyof typeof IconMap];
 
