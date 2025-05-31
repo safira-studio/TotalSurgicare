@@ -56,10 +56,10 @@ const RemotePatientMonitoring = () => {
           <Badge className="bg-white text-clinic-primary mb-4">
             Advanced Technology
           </Badge>
-          <h2 className="text-4xl font-bold text-clinic-primary mb-6">
+          <h2 className="text-2xl md:text-4xl font-bold text-clinic-primary mb-6">
             Role of Remote Patient Monitoring (RPM) in Postoperative Care
           </h2>
-          <p className="text-lg text-gray-600 max-w-4xl mx-auto">
+          <p className="md:text-lg text-gray-600 max-w-4xl mx-auto">
             Remote Patient Monitoring technology revolutionizes post-operative
             care by enabling continuous tracking of vital signs and patient
             progress from the comfort of home. This innovative approach enhances

@@ -56,10 +56,10 @@ const EnhancingPatientExperience = () => {
           <Badge className="bg-clinic-primary/10 text-clinic-primary mb-4">
             Patient-Centered Care
           </Badge>
-          <h2 className="text-4xl font-bold text-clinic-primary mb-6">
+          <h2 className="text-2xl md:text-4xl font-bold text-clinic-primary mb-6">
             Enhancing Patient Experience
           </h2>
-          <p className="text-lg text-gray-600 max-w-4xl mx-auto">
+          <p className="md:text-lg text-gray-600 max-w-4xl mx-auto">
             Our comprehensive post-operative care program, enhanced by Remote
             Patient Monitoring and continuous support, transforms the recovery
             experience. We focus on comfort, convenience, and confidence
@@ -92,7 +92,7 @@ const EnhancingPatientExperience = () => {
 
         <div className="bg-clinic-primary/5 rounded-2xl p-8">
           <div className="text-center mb-8">
-            <h3 className="text-3xl font-bold text-clinic-primary mb-4">
+            <h3 className="text-xl md:text-3xl font-bold text-clinic-primary mb-4">
               The Complete Recovery Experience
             </h3>
             <p className="text-gray-700 max-w-3xl mx-auto">

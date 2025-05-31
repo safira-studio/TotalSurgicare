@@ -2,6 +2,8 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Clock, Phone, Stethoscope, Headphones } from "lucide-react";
+import { siteConfig } from "@/config/site";
+import Link from "next/link";
 
 const TwentyFourSevenAssistance = () => {
   const assistanceFeatures = [
@@ -38,10 +40,10 @@ const TwentyFourSevenAssistance = () => {
           <Badge className="bg-purple-100 text-clinic-primary mb-4">
             24/7 Support
           </Badge>
-          <h2 className="text-4xl font-bold text-clinic-primary mb-6">
+          <h2 className="text-2xl md:text-4xl font-bold text-clinic-primary mb-6">
             24/7 Assistance for Post-Operative Care
           </h2>
-          <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+          <p className="md:text-lg text-gray-600 max-w-3xl mx-auto">
             Recovery doesn&apos;t follow business hours. Our round-the-clock
             support ensures that help is always available when you need it most,
             providing peace of mind for patients and their families.
@@ -72,7 +74,7 @@ const TwentyFourSevenAssistance = () => {
         <div className="bg-purple-50 rounded-2xl p-8">
           <div className="grid md:grid-cols-2 gap-8 items-center">
             <div>
-              <h3 className="text-2xl font-bold text-clinic-primary mb-4">
+              <h3 className="text-xl md:text-2xl font-bold text-clinic-primary mb-4">
                 Always Here When You Need Us
               </h3>
               <p className="text-gray-700 mb-6">
@@ -106,15 +108,17 @@ const TwentyFourSevenAssistance = () => {
                 <h4 className="text-xl font-bold text-clinic-primary mb-4">
                   Emergency Contact
                 </h4>
-                <div className="text-3xl font-bold text-clinic-primary mb-2">
-                  1-800-CARE-24/7
+                <div className="text-xl md:text-3xl font-bold text-clinic-primary mb-2">
+                  {siteConfig.contact.phone.primary}
                 </div>
-                <p className="text-gray-600 mb-4">
+                <p className="max-sm:text-sm text-gray-600 mb-4">
                   Available 24 hours, 365 days a year
                 </p>
-                <Button className="bg-clinic-primary hover:bg-purple-700">
-                  Contact Support
-                </Button>
+                <Link href={`tel:${siteConfig.contact.phone.primary}`} passHref>
+                  <Button className="bg-clinic-primary hover:bg-purple-700">
+                    Contact Support
+                  </Button>
+                </Link>
               </div>
             </div>
           </div>

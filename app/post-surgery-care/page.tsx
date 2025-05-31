@@ -11,8 +11,10 @@ const PostSurgeryCare = () => {
       {/* Hero Section */}
       <section className="bg-clinic-primary text-white py-20">
         <div className="container mx-auto px-4 text-center">
-          <h1 className="text-5xl font-onest mb-6">Post Surgery Care</h1>
-          <p className="text-xl max-w-3xl mx-auto">
+          <h1 className="text-3xl md:text-5xl font-onest mb-6">
+            Post Surgery Care
+          </h1>
+          <p className="md:text-xl max-w-3xl mx-auto">
             Comprehensive post-operative care with 24/7 monitoring, specialized
             nursing support, and advanced remote patient monitoring to ensure
             your complete recovery.

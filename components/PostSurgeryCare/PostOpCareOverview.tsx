@@ -32,10 +32,10 @@ const PostOpCareOverview = () => {
           <Badge className="bg-blue-100 text-clinic-primary mb-4">
             Post-Operative Excellence
           </Badge>
-          <h2 className="text-4xl font-bold text-clinic-primary mb-6">
+          <h2 className="text-2xl md:text-4xl font-bold text-clinic-primary mb-6">
             Overview of Post-Operative Nursing Care
           </h2>
-          <p className="text-lg text-gray-600 max-w-4xl mx-auto">
+          <p className="md:text-lg text-gray-600 max-w-4xl mx-auto">
             Post-operative nursing care is crucial for ensuring a safe and
             effective recovery following surgery. Our comprehensive approach
             focuses on preventing complications, managing pain, and supporting
@@ -70,7 +70,7 @@ const PostOpCareOverview = () => {
         </div>
 
         <div className="mt-12 bg-blue-50 rounded-2xl p-8">
-          <h3 className="text-2xl font-bold text-clinic-primary mb-4 text-center">
+          <h3 className="text-xl Md:text-2xl font-bold text-clinic-primary mb-4 text-center">
             Why Post-Operative Care Matters
           </h3>
           <p className="text-gray-700 text-center max-w-3xl mx-auto">

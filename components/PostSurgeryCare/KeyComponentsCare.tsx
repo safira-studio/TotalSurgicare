@@ -112,10 +112,10 @@ const KeyComponentsCare = () => {
           <Badge className="bg-clinic-primary/10 text-clinic-primary mb-4">
             Comprehensive Care
           </Badge>
-          <h2 className="text-4xl font-bold text-clinic-primary mb-6">
+          <h2 className="text-2xl md:text-4xl font-bold text-clinic-primary mb-6">
             Key Components of Post-Operative Nursing Care
           </h2>
-          <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+          <p className="md:text-lg text-gray-600 max-w-3xl mx-auto">
             Our multidisciplinary approach ensures every aspect of your recovery
             is carefully managed with evidence-based protocols and personalized
             care plans.
