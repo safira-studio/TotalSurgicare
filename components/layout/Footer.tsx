@@ -1,4 +1,5 @@
 import React from "react";
+import { siteConfig } from "@/config/site"; // adjust path if needed
 import { Separator } from "@/components/ui/separator";
 import {
   Facebook,
@@ -112,7 +113,7 @@ const Footer = () => {
               <ul className="space-y-2">
                 <li>
                   <Link
-                    href="/"
+                    href="/conditions/fissure-treatment"
                     className="text-gray-300 hover:text-white text-sm transition-colors"
                   >
                     Fissure Treatment
@@ -120,7 +121,7 @@ const Footer = () => {
                 </li>
                 <li>
                   <Link
-                    href="/"
+                    href="/conditions/hernia-surgery"
                     className="text-gray-300 hover:text-white text-sm transition-colors"
                   >
                     Hernia Surgery
@@ -128,7 +129,7 @@ const Footer = () => {
                 </li>
                 <li>
                   <Link
-                    href="/"
+                    href="/conditions/piles-treatment"
                     className="text-gray-300 hover:text-white text-sm transition-colors"
                   >
                     Piles Treatment
@@ -136,7 +137,7 @@ const Footer = () => {
                 </li>
                 <li>
                   <Link
-                    href="/"
+                    href="/conditions/gallstone-surgery"
                     className="text-gray-300 hover:text-white text-sm transition-colors"
                   >
                     Gallstone Surgery
@@ -144,7 +145,7 @@ const Footer = () => {
                 </li>
                 <li>
                   <Link
-                    href="/"
+                    href="/conditions/pcos-pcod-treatment"
                     className="text-gray-300 hover:text-white text-sm transition-colors"
                   >
                     PCOS-Pcod Care
@@ -162,20 +163,27 @@ const Footer = () => {
                   <div className="bg-clinic-primary p-2 rounded-full">
                     <Phone size={16} />
                   </div>
-                  <span className="text-gray-300">+1 (555) 123-4567</span>
+                  <span className="text-gray-300">
+                    {siteConfig.contact.phone.primary}
+                    <br></br>
+                    {siteConfig.contact.phone.secondary}{" "}
+                  </span>
                 </div>
                 <div className="flex items-center space-x-3">
                   <div className="bg-clinic-primary p-2 rounded-full">
                     <Mail size={16} />
                   </div>
                   <span className="text-gray-300">
-                    contact@Total Surgicare.com
+                    {siteConfig.contact.email.primary}
                   </span>
                 </div>
               </div>
               <p className="text-gray-300 pt-2">
-                123 Healthcare Street <br className="max-lg:hidden" />
-                {" Medical District, MD 12345"}
+                Address: {siteConfig.contact.address.street},{" "}
+                {siteConfig.contact.address.city},{" "}
+                {siteConfig.contact.address.state} -{" "}
+                {siteConfig.contact.address.pincode},{" "}
+                <br className="max-lg:hidden" />
               </p>
             </div>
           </div>
