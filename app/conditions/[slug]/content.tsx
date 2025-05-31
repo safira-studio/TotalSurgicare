@@ -98,7 +98,7 @@ export default async function Content({ slug }: Props) {
             Symptoms of {data.name}
           </h2>
 
-          <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-3 md:gap-6">
             {data.symptoms?.map((symptom, index) => {
               const IconComponent =
                 IconMap[symptom.icon as keyof typeof IconMap];
@@ -106,7 +106,7 @@ export default async function Content({ slug }: Props) {
               return (
                 <div
                   key={index}
-                  className="bg-[#DCFCE7] border border-gray-200 rounded-3xl p-4 shadow-sm hover:shadow-lg transition-shadow text-center"
+                  className="bg-[#DCFCE7] border border-gray-200 rounded-2xl md:rounded-3xl p-4 shadow-sm hover:shadow-lg transition-shadow text-center"
                 >
                   <div className="w-12 h-12 rounded-full border-2 border-[#4CAF7D] flex items-center justify-center mb-4 mx-auto">
                     {IconComponent && (
@@ -131,14 +131,14 @@ export default async function Content({ slug }: Props) {
             Common Causes of {data.name}
           </h2>
 
-          <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-6 px-4 sm:px-6 lg:px-0">
+          <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-3 md:gap-6 px-4 sm:px-6 lg:px-0">
             {data.causes.map((cause, index) => {
               const IconComponent = IconMap[cause.icon as keyof typeof IconMap];
 
               return (
                 <div
                   key={index}
-                  className="bg-clinic-vlight_primary/50 border border-gray-100 rounded-3xl p-6 shadow-sm hover:shadow-md transition-shadow text-center"
+                  className="bg-clinic-vlight_primary/50 border border-gray-100 rounded-2xl md:rounded-3xl p-6 shadow-sm hover:shadow-md transition-shadow text-center"
                 >
                   <div className="w-12 h-12 rounded-full border-2 border-clinic-primary/50 flex items-center justify-center mb-4 mx-auto">
                     {IconComponent && (
@@ -163,7 +163,7 @@ export default async function Content({ slug }: Props) {
             Risk Factors for {data.name}
           </h2>
 
-          <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-6 ">
+          <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-3 md:gap-6 ">
             {data.riskFactors?.map((riskFactor, index) => {
               const IconComponent =
                 IconMap[riskFactor.icon as keyof typeof IconMap];
@@ -171,7 +171,7 @@ export default async function Content({ slug }: Props) {
               return (
                 <div
                   key={index}
-                  className="bg-clinic-secondary/20 border border-gray-100 rounded-3xl p-6 lg:p-8 shadow-sm hover:shadow-md transition-shadow text-center w-full"
+                  className="bg-clinic-secondary/20 border border-gray-100 rounded-2xl md:rounded-3xl p-6 lg:p-8 shadow-sm hover:shadow-md transition-shadow text-center w-full"
                 >
                   <div className="w-14 h-14 rounded-full border-2 border-clinic-secondary/50 bg-orange-80 flex items-center justify-center mb-4 mx-auto">
                     {IconComponent && (
@@ -198,7 +198,7 @@ export default async function Content({ slug }: Props) {
             Complications if {data.name} are Left Untreated
           </h2>
 
-          <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-3 md:gap-6">
             {data.complications?.map((complication, index) => {
               const IconComponent =
                 IconMap[complication.icon as keyof typeof IconMap];
@@ -206,7 +206,7 @@ export default async function Content({ slug }: Props) {
               return (
                 <div
                   key={index}
-                  className="bg-red-200 border border-gray-100 rounded-3xl p-6 lg:p-8 shadow-sm hover:shadow-md transition-shadow text-center w-full"
+                  className="bg-red-200 border border-gray-100 rounded-2xl md:rounded-3xl p-6 lg:p-8 shadow-sm hover:shadow-md transition-shadow text-center w-full"
                 >
                   <div className="w-14 h-14 rounded-full border-2 border-red-400 flex items-center justify-center mb-4 mx-auto">
                     {IconComponent && (
@@ -231,7 +231,7 @@ export default async function Content({ slug }: Props) {
         <h2 className="text-3xl text-center font-onest text-gray-800 mb-6">
           Preventive Measures
         </h2>
-        <div className="bg-blue-50 rounded-3xl p-6 ">
+        <div className="bg-blue-50 rounded-2xl md:rounded-3xl p-6 ">
           <div className="grid md:grid-cols-2 gap-6">
             {data.treatments.nonSurgical?.map((measure, index) => (
               <div key={index} className="flex items-start">
