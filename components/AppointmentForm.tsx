@@ -188,7 +188,7 @@ export default function AppointmentForm({
               </svg>
               <div className="text-left">
                 <p className="text-blue-800 font-medium text-sm">
-                  What's Next?
+                  What&apos;s Next?
                 </p>
                 <p className="text-blue-700 text-sm mt-1">
                   We will contact you within 24 hours on your provided phone
