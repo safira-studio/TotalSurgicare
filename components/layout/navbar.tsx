@@ -35,13 +35,14 @@ export const Navbar = () => {
   return (
     <HeroUINavbar
       maxWidth="2xl"
-      position="sticky"
+      // position="sticky"
       className="lg:px-10"
+      shouldHideOnScroll
       isMenuOpen={isMenuOpen}
       onMenuOpenChange={setIsMenuOpen}
     >
       <NavbarContent
-        className="basis-1/5 sm:basis-1/3 lg:basis-1/5"
+        // className="basis-1/5 sm:basis-1/3 lg:basis-1/5"
         justify="start"
       >
         <NavbarBrand as="li" className="gap-3 max-w-fit">
