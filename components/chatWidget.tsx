@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { MessageCircle, Phone, Mail, X } from "lucide-react";
+import { siteConfig } from "@/config/site";
 
 const ChatWidget = () => {
   const [open, setOpen] = useState(false);
@@ -11,7 +12,7 @@ const ChatWidget = () => {
       {open && (
         <>
           <a
-            href="https://wa.me/9665551711"
+            href={`https://wa.me/${siteConfig.contact.phone.primary}`}
             target="_blank"
             rel="noopener noreferrer"
             className="bg-green-500 text-white p-3 rounded-full shadow-md hover:bg-green-600 transition"
@@ -26,40 +27,15 @@ const ChatWidget = () => {
             </svg>
           </a>
 
-          <div>
-            {/* Phone button */}
-            <button
-              onClick={() => setIsOpen(true)}
-              className="bg-blue-500 text-white p-3 rounded-full shadow-md hover:bg-blue-600 transition"
-            >
-              <Phone className="w-5 h-5" />
-            </button>
-
-            {/* Modal */}
-            {isOpen && (
-              <div className="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50">
-                <div className="bg-white p-6 rounded-lg shadow-lg text-center">
-                  <h2 className="text-lg font-semibold mb-4">Contact Number</h2>
-                  <p className="text-xl text-clinic-primary font-bold mb-4">
-                    9665551711
-                  </p>
-                  <p className="text-xl text-black font-bold mb-4">OR</p>
-                  <p className="text-xl text-clinic-primary font-bold mb-4">
-                    9665551712
-                  </p>
-                  <button
-                    onClick={() => setIsOpen(false)}
-                    className="mt-2 px-2 py-1 bg-red-500 text-white rounded hover:bg-red-600 transition"
-                  >
-                    Close
-                  </button>
-                </div>
-              </div>
-            )}
-          </div>
+          <a
+            href={`tel:${siteConfig.contact.phone.primary}`}
+            className="bg-blue-500 text-white p-3 rounded-full shadow-md hover:bg-blue-600 transition"
+          >
+            <Phone className="w-5 h-5" />
+          </a>
 
           <a
-            href="mailto:info@totalsurgicare.com"
+            href={`mailto:${siteConfig.contact.email.primary}`}
             className="bg-red-500 text-white p-3 rounded-full shadow-md hover:bg-red-600 transition"
           >
             <Mail className="w-5 h-5" />
