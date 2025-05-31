@@ -16,9 +16,8 @@ export async function POST(req: Request) {
   const calendarId = process.env.GOOGLE_CALENDAR_ID; // Must be set to the calendarId of the "SurgicareAppointment" calendar
   const serviceAccountEmail = process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL;
   const privateKey = process.env.GOOGLE_PRIVATE_KEY?.replace(/\\n/g, "\n");
-  const ownerEmail = process.env.OWNER_EMAIL;
 
-  if (!calendarId || !serviceAccountEmail || !privateKey || !ownerEmail) {
+  if (!calendarId || !serviceAccountEmail || !privateKey) {
     return NextResponse.json(
       { error: "Missing Google Calendar configuration" },
       { status: 500 }
@@ -31,7 +30,6 @@ export async function POST(req: Request) {
       email: serviceAccountEmail,
       key: privateKey,
       scopes: ["https://www.googleapis.com/auth/calendar"],
-      subject: ownerEmail,
     });
 
     const calendar = google.calendar({ version: "v3", auth });
