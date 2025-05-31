@@ -81,7 +81,7 @@ const ContactForm = () => {
                 title="Email Address"
                 content={
                   <a
-                    href="mailto:info@salvamedic.com"
+                    href="mailto:info@totalsurgicare.com"
                     className="hover:text-clinic-primary transition-colors"
                   >
                     {siteConfig.contact.email.primary}

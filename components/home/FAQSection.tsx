@@ -123,7 +123,7 @@ const FAQSection = () => {
                 <div className="pt-4 mt-4 border-t border-white/20">
                   <h4 className="text-lg font-medium mb-2">Email Support</h4>
                   <a
-                    href="mailto:support@salvamedic.com"
+                    href="mailto:info@totalsurgicare.com"
                     className="text-white underline hover:no-underline"
                   >
                     {siteConfig.contact.email.primary}
