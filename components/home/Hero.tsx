@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { AvatarCircles } from "@/components/ui/avatar-circles";
 import { NumberTicker } from "@/components/ui/number-ticker";
 import Image from "next/image";
+import Link from "next/link";
 
 const avatars = [
   {
@@ -35,10 +36,11 @@ export default function Hero() {
               -<br />
               We care <span className="text-gray-400">about each person.</span>
             </div>
-
-            <Button className="rounded-full bg-clinic-secondary hover:bg-clinic-secondaryDark text-primary-foreground px-6 mt-4">
-              Book Appointment
-            </Button>
+            <Link href="/contact">
+              <Button className="rounded-full bg-clinic-secondary hover:bg-clinic-secondaryDark text-primary-foreground px-6 mt-4">
+                Book Appointment
+              </Button>
+            </Link>
 
             <div className="mt-5 lg:mt-16 flex items-center md:gap-4 gap-6 bg-gray-50 rounded-xl p-4 w-full md:w-3/5 lg:w-3/5 max-lg:mx-auto">
               <div className="w-full">
