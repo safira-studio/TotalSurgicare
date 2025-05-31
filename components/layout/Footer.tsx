@@ -74,7 +74,7 @@ const Footer = () => {
                 </li>
                 <li>
                   <Link
-                    href="/"
+                    href="/aboutus"
                     className="text-gray-300 hover:text-white text-sm transition-colors"
                   >
                     About Us
@@ -90,7 +90,7 @@ const Footer = () => {
                 </li>
                 <li>
                   <Link
-                    href="/"
+                    href="/terms"
                     className="text-gray-300 hover:text-white text-sm transition-colors"
                   >
                     Terms and Conditions
