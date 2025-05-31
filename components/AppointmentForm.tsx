@@ -46,12 +46,16 @@ type FormValues = z.infer<typeof formSchema>;
 
 interface AppointmentProps {
   parentClass?: string;
+  colorClass?: string;
   buttonClass?: string;
+  formClass?: string;
 }
 
 export default function AppointmentForm({
   parentClass = "",
+  colorClass = "",
   buttonClass = "",
+  formClass = "",
 }: AppointmentProps) {
   const [submitted, setSubmitted] = useState(false);
   const [submittedData, setSubmittedData] = useState<FormValues | null>(null);
@@ -213,17 +217,19 @@ export default function AppointmentForm({
         <>
           <h3 className="text-xl font-onest mb-6">Book an Appointment</h3>
 
-          <form
-            onSubmit={handleSubmit(onSubmit)}
-            className={cn("", parentClass)}
-          >
+          <form onSubmit={handleSubmit(onSubmit)} className={cn("", formClass)}>
             <div className="space-y-2">
               <Label className="text-sm font-medium">Select Department</Label>
               <Select
                 value={specialty}
                 onValueChange={(value) => setValue("specialty", value)}
               >
-                <SelectTrigger className="w-full focus:ring-2 focus:ring-clinic-secondary focus-visible:ring-clinic-secondary">
+                <SelectTrigger
+                  className={cn(
+                    "w-full focus:ring-2 focus:ring-clinic-secondary focus-visible:ring-clinic-secondary",
+                    colorClass
+                  )}
+                >
                   <SelectValue placeholder="Select a specialty" />
                 </SelectTrigger>
                 <SelectContent>
@@ -248,7 +254,10 @@ export default function AppointmentForm({
               <Input
                 id="name"
                 placeholder="Your full name"
-                className="focus:ring-2 focus:ring-clinic-secondary focus-visible:ring-clinic-secondary"
+                className={cn(
+                  "focus:ring-2 focus:ring-clinic-secondary focus-visible:ring-clinic-secondary",
+                  colorClass
+                )}
                 {...register("name")}
               />
               {errors.name && (
@@ -266,7 +275,10 @@ export default function AppointmentForm({
                 <Input
                   id="phone"
                   placeholder="Your phone number"
-                  className="focus:ring-2 focus:ring-clinic-secondary focus-visible:ring-clinic-secondary"
+                  className={cn(
+                    "focus:ring-2 focus:ring-clinic-secondary focus-visible:ring-clinic-secondary",
+                    colorClass
+                  )}
                   {...register("phone")}
                 />
                 {errors.phone && (
@@ -282,7 +294,12 @@ export default function AppointmentForm({
                   value={gender}
                   onValueChange={(value) => setValue("gender", value)}
                 >
-                  <SelectTrigger className="w-full focus:ring-2 focus:ring-clinic-secondary focus-visible:ring-clinic-secondary">
+                  <SelectTrigger
+                    className={cn(
+                      "w-full focus:ring-2 focus:ring-clinic-secondary focus-visible:ring-clinic-secondary",
+                      colorClass
+                    )}
+                  >
                     <SelectValue placeholder="Select gender" />
                   </SelectTrigger>
                   <SelectContent>
@@ -306,7 +323,10 @@ export default function AppointmentForm({
                 id="email"
                 type="email"
                 placeholder="Your email address"
-                className="focus:ring-2 focus:ring-clinic-secondary focus-visible:ring-clinic-secondary"
+                className={cn(
+                  "focus:ring-2 focus:ring-clinic-secondary focus-visible:ring-clinic-secondary",
+                  colorClass
+                )}
                 {...register("email")}
               />
               {errors.email && (
@@ -324,7 +344,10 @@ export default function AppointmentForm({
                 id="reason"
                 placeholder="Please briefly describe your symptoms or reason for the appointment"
                 rows={3}
-                className="focus:ring-2 focus:ring-clinic-secondary focus-visible:ring-clinic-secondary"
+                className={cn(
+                  "focus:ring-2 focus:ring-clinic-secondary focus-visible:ring-clinic-secondary",
+                  colorClass
+                )}
                 {...register("reason")}
               />
               {errors.reason && (

@@ -1,7 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Heart, Circle } from "lucide-react";
-import AppointmentForm from "../conditions/AppointmentForm";
+import AppointmentForm from "@/components/AppointmentForm";
 
 const AngiographyService = () => {
   const benefits = [
@@ -89,7 +89,12 @@ const AngiographyService = () => {
             </div>
           </div>
           <div className="pl-10 ">
-            <AppointmentForm />
+            <AppointmentForm
+              formClass="space-y-2"
+              parentClass="border border-clinic-primary"
+              colorClass="focus:ring-clinic-primary focus-visible:ring-clinic-primary"
+              buttonClass="bg-clinic-primary hover:bg-clinic-dark"
+            />
           </div>
         </div>
       </div>
