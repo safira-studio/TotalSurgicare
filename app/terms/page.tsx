@@ -252,7 +252,7 @@ const TermsAndConditions = () => {
               <div className="bg-red-50 p-6 rounded-lg border-l-4 border-red-500">
                 <p className="text-red-800 font-semibold mb-2">IMPORTANT:</p>
                 <p className="text-red-700 leading-relaxed">
-                  In case of a medical emergency, call 911 immediately or go to
+                  In case of a medical emergency, call 112 immediately or go to
                   the nearest emergency room. Our website and online services
                   are not intended for emergency medical situations and should
                   not be used to seek emergency care.

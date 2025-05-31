@@ -30,7 +30,6 @@ const Footer = () => {
               height={100}
               className="min-w-24"
             />
-            <h2 className="text-xl font-onest text-white">Total Surgicare</h2>
             <p className="text-gray-300 text-sm">
               Providing quality healthcare services with advanced technology and
               experienced professionals.
@@ -145,18 +144,18 @@ const Footer = () => {
                 </li>
                 <li>
                   <Link
-                    href="/conditions/gallstone-surgery"
+                    href="/cardiology"
                     className="text-gray-300 hover:text-white text-sm transition-colors"
                   >
-                    Gallstone Surgery
+                    Cardiology
                   </Link>
                 </li>
                 <li>
                   <Link
-                    href="/conditions/pcos-pcod-treatment"
+                    href="/diagnostic"
                     className="text-gray-300 hover:text-white text-sm transition-colors"
                   >
-                    PCOS-Pcod Care
+                    Diagnostic
                   </Link>
                 </li>
               </ul>
