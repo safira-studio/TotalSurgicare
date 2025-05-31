@@ -140,6 +140,7 @@ export const Navbar = () => {
                         ? `/${item.title.toLowerCase().replace(/\s+/g, "-")}`
                         : "#"
                     }
+                    onClick={() => setIsMenuOpen(!isMenuOpen)}
                   >
                     {item.title}
                   </NextLink>
