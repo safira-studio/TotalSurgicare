@@ -1,5 +1,5 @@
 import React from "react";
-import { siteConfig } from "@/config/site"; // adjust path if needed
+import { siteConfig } from "@/config/site";
 import { Separator } from "@/components/ui/separator";
 import {
   Facebook,
@@ -82,10 +82,10 @@ const Footer = () => {
                 </li>
                 <li>
                   <Link
-                    href="/"
+                    href="/contact"
                     className="text-gray-300 hover:text-white text-sm transition-colors"
                   >
-                    Our Doctors
+                    Contact
                   </Link>
                 </li>
                 <li>
@@ -93,15 +93,15 @@ const Footer = () => {
                     href="/"
                     className="text-gray-300 hover:text-white text-sm transition-colors"
                   >
-                    Services
+                    Terms and Conditions
                   </Link>
                 </li>
                 <li>
                   <Link
-                    href="/"
+                    href="/privacy"
                     className="text-gray-300 hover:text-white text-sm transition-colors"
                   >
-                    Blog
+                    Privacy Policy
                   </Link>
                 </li>
               </ul>
