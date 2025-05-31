@@ -2,6 +2,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Heart, Circle, Plus } from "lucide-react";
+import Link from "next/link";
 
 const AffordableTreatment = () => {
   const strategies = [
@@ -53,30 +54,30 @@ const AffordableTreatment = () => {
           <Badge className="bg-green-100 text-clinic-primary mb-4">
             Affordable Excellence
           </Badge>
-          <h2 className="text-4xl font-bold text-clinic-primary mb-6">
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-clinic-primary mb-6">
             Affordable Treatment Options
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="md:text-xl text-gray-600 max-w-3xl mx-auto">
             Quality cardiac care shouldn&apos;t be a financial burden.
             We&apos;re committed to providing world-class treatment options that
             are accessible to everyone, regardless of their economic situation.
           </p>
         </div>
 
-        <div className="grid grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+        <div className="grid grid-cols-2 lg:grid-cols-3 gap-8 mb-8 md:mb-12">
           {strategies.map((strategy, index) => (
             <Card
               key={index}
               className="border-green-200 hover:shadow-lg transition-shadow"
             >
               <CardHeader className="text-center">
-                <div className="text-4xl mb-2">{strategy.icon}</div>
-                <CardTitle className="text-lg text-blue-900">
+                <div className="text-2xl md:text-4xl">{strategy.icon}</div>
+                <CardTitle className="text-base md:text-lg text-clinic-accent">
                   {strategy.title}
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-gray-600 text-center">
+                <p className="max-md:text-sm text-gray-600 text-center">
                   {strategy.description}
                 </p>
               </CardContent>
@@ -86,10 +87,10 @@ const AffordableTreatment = () => {
 
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div>
-            <h3 className="text-3xl font-bold text-clinic-primary mb-6">
+            <h3 className="text-2xl  md:text-3xl font-bold text-clinic-primary mb-6">
               Our Commitment to Affordable Care
             </h3>
-            <p className="text-lg text-gray-600 mb-6">
+            <p className="md:text-lg text-gray-600 mb-6">
               We believe that exceptional cardiac care should be accessible to
               all patients. Our clinic has implemented comprehensive strategies
               to reduce treatment costs while maintaining the highest standards
@@ -125,7 +126,7 @@ const AffordableTreatment = () => {
           <div className="bg-clinic-secondary/10 rounded-2xl p-8">
             <div className="text-center mb-6">
               <h4
-                className="text-2xl font-bold text-clinic-primary
+                className="text-xl md:text-2xl font-bold text-clinic-primary
                mb-4"
               >
                 Free Financial Consultation
@@ -170,9 +171,11 @@ const AffordableTreatment = () => {
             </div>
 
             <div className="mt-6 space-y-3">
-              <Button className="w-full bg-clinic-primary hover:bg-clinic-dark text-white">
-                Schedule Financial Consultation
-              </Button>
+              <Link href="/contact">
+                <Button className="w-full bg-clinic-primary hover:bg-clinic-dark text-white">
+                  Schedule Financial Consultation
+                </Button>
+              </Link>
               <Button
                 variant="outline"
                 className="w-full border-clinic-primary text-clinic-primary hover:bg-clinic-dark/20 hover:text-clinic-primary"

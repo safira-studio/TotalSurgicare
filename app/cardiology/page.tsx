@@ -2,6 +2,7 @@ import AffordableTreatment from "@/components/cardiology/AffordableTreatment";
 import AngiographyService from "@/components/cardiology/AngiographyService";
 import AngioplastyService from "@/components/cardiology/AngioplastyService";
 import { Button } from "@/components/ui/button";
+import { siteConfig } from "@/config/site";
 import { Heart } from "lucide-react";
 import Link from "next/link";
 
@@ -11,10 +12,10 @@ const Cardiac = () => {
       {/* Hero Section */}
       <section className="py-16 px-4 bg-clinic-primary/80">
         <div className="container mx-auto text-center">
-          <h1 className="text-5xl font-onest text-white mb-6">
+          <h1 className="text-3xl md:text-5xl font-onest text-white mb-6">
             Specialized Cardiac Services
           </h1>
-          <p className="text-xl text-white mb-8 max-w-3xl mx-auto">
+          <p className="text-sm md:text-xl text-white mb-8 max-w-3xl mx-auto">
             Our state-of-the-art cardiac care center offers comprehensive heart
             health services with advanced diagnostic tools and minimally
             invasive treatment options.
@@ -38,19 +39,23 @@ const Cardiac = () => {
             consultation with our cardiac specialists today.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button
-              size="lg"
-              className="bg-white text-clinic-primary hover:bg-clinic-dark border-clinic-primary border-2 hover:text-white px-8 py-3"
-            >
-              Schedule Consultation
-            </Button>
-            <Button
-              size="lg"
-              variant="outline"
-              className=" text-clinic-primary hover:bg-white border-clinic-primary border-2 hover:text-clinic-dark px-8 py-3"
-            >
-              Call Now: (555) 123-4567
-            </Button>
+            <Link href={"/contact"}>
+              <Button
+                size="lg"
+                className="bg-white text-clinic-primary hover:bg-clinic-dark border-clinic-primary border-2 hover:text-white px-8 py-3"
+              >
+                Schedule Consultation
+              </Button>
+            </Link>
+            <Link href={`tel:${siteConfig.contact.phone.primary}`}>
+              <Button
+                size="lg"
+                variant="outline"
+                className=" text-clinic-primary hover:bg-white border-clinic-primary border-2 hover:text-clinic-dark px-8 py-3"
+              >
+                Call Now: +91-{siteConfig.contact.phone.primary}
+              </Button>
+            </Link>
           </div>
         </div>
       </section>

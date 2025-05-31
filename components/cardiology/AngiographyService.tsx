@@ -28,7 +28,7 @@ const AngiographyService = () => {
             <Badge className="bg-blue-100 text-clinic-primary mb-4">
               Advanced Diagnosis
             </Badge>
-            <h2 className="text-4xl font-onest text-clinic-primary mb-6">
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-onest text-clinic-primary mb-6">
               Angiography – Advanced Heart Diagnosis
             </h2>
             <p className="text-lg text-gray-600 mb-6">
@@ -88,7 +88,7 @@ const AngiographyService = () => {
               </Card>
             </div>
           </div>
-          <div className="pl-10 ">
+          <div className="">
             <AppointmentForm
               formClass="space-y-2"
               parentClass="border border-clinic-primary"

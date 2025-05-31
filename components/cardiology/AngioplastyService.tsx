@@ -36,7 +36,7 @@ const AngioplastyService = () => {
                 </p>
               </div>
             </div>
-            <div className="absolute -top-6 -left-6 bg-white rounded-lg shadow-lg p-4 border border-emerald-200">
+            <div className="absolute -top-3 -left-3 md:-top-6 md:-left-6 bg-white rounded-lg shadow-lg p-2 md:p-4 border border-emerald-200">
               <div className="flex items-center space-x-2">
                 <div className="h-3 w-3 bg-emerald-500 rounded-full"></div>
                 <span className="text-sm font-medium text-gray-700">
@@ -50,10 +50,10 @@ const AngioplastyService = () => {
             <Badge className="bg-emerald-100 text-emerald-600 mb-4">
               Minimally Invasive Treatment
             </Badge>
-            <h2 className="text-4xl font-bold text-clinic-primary mb-6">
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-clinic-primary mb-6">
               Angioplasty – Minimally Invasive Treatment
             </h2>
-            <p className="text-lg text-gray-600 mb-6">
+            <p className="md:text-lg text-gray-600 mb-6">
               Angioplasty, also known as percutaneous coronary intervention
               (PCI), is a minimally invasive procedure used to open blocked or
               narrowed coronary arteries. Using a small balloon catheter, we can
