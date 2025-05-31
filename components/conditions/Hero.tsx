@@ -21,7 +21,7 @@ interface Heroprops {
 const Hero = ({ title, brief, alternateNames }: Heroprops) => {
   return (
     <section className="relative min-h-screen overflow-hidden">
-      <div
+      {/* <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat max-lg:max-h-[100vh]"
         style={{
           backgroundImage:
@@ -30,9 +30,9 @@ const Hero = ({ title, brief, alternateNames }: Heroprops) => {
             "linear-gradient(to bottom, black 80%, transparent 100%)",
         }}
         aria-hidden="true"
-      ></div>
+      ></div> */}
       <div
-        className="absolute inset-0 bg-gradient-to-r from-clinic-primary/90 via-clinic-primary/70 to-transparent z-0 max-lg:max-h-[100vh]"
+        className="absolute inset-0 bg-gradient-to-r from-clinic-primary via-clinic-primary/70 to-clinic-primary/40 md:to-black z-0 max-lg:max-h-[100vh]"
         style={{
           WebkitMaskImage:
             "linear-gradient(to bottom, black 80%, transparent 100%)",
