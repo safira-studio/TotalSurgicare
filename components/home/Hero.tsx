@@ -146,14 +146,14 @@ export default function Hero() {
               </div>
 
               <div className="justify-end hidden lg:flex">
-                <div className="bg-white/10 backdrop-blur-sm rounded-lg p-3 text-xs text-white max-w-[250px] items-end">
+                <div className="bg-white/10 backdrop-blur-sm rounded-lg p-3 text-xs text-center text-white max-w-[250px] items-end">
                   <p>
                     We appreciate every feedback, because it helps us to become
                     better.
                   </p>
-                  <div className="flex mt-2">
+                  {/* <div className="flex mt-2">
                     <AvatarCircles numPeople={99} avatarUrls={avatars} />
-                  </div>
+                  </div> */}
                 </div>
               </div>
             </div>
