@@ -30,7 +30,6 @@ const Footer = () => {
               height={100}
               className="min-w-24"
             />
-            <h2 className="text-xl font-onest text-white">Total Surgicare</h2>
             <p className="text-gray-300 text-sm">
               Providing quality healthcare services with advanced technology and
               experienced professionals.
