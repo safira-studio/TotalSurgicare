@@ -46,10 +46,10 @@ const BookingHighlights = () => {
           <Badge className="bg-blue-100 text-clinic-primary mb-4">
             Service Excellence
           </Badge>
-          <h2 className="text-4xl font-onest text-clinic-primary mb-6">
+          <h2 className="text-2xl md:text-4xl font-onest text-clinic-primary mb-6">
             Booking and Service Highlights
           </h2>
-          <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+          <p className="md:text-lg text-gray-600 max-w-3xl mx-auto">
             Experience hassle-free diagnostic services with our patient-centric
             approach. We prioritize your convenience, affordability, and quick
             access to results.

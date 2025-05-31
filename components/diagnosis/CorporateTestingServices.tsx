@@ -77,10 +77,10 @@ const CorporateTestingServices = () => {
           <Badge className="bg-blue-100 text-clinic-primary mb-4">
             Corporate Solutions
           </Badge>
-          <h2 className="text-4xl font-onest text-clinic-primary mb-6">
+          <h2 className="text-2xl md:text-4xl font-onest text-clinic-primary mb-6">
             Corporate Testing Services
           </h2>
-          <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+          <p className="md:text-lg text-gray-600 max-w-3xl mx-auto">
             Comprehensive health check-up solutions for organizations committed
             to employee wellness. Our corporate packages are designed to promote
             preventive healthcare and boost productivity.
@@ -89,7 +89,7 @@ const CorporateTestingServices = () => {
 
         <div className="grid lg:grid-cols-2 gap-12 items-center mb-16">
           <div>
-            <h3 className="text-2xl font-bold text-clinic-primary mb-6">
+            <h3 className="text-xl md:text-2xl font-bold text-clinic-primary mb-6">
               Why Choose Our Corporate Services?
             </h3>
             <div className="grid sm:grid-cols-2 gap-4">

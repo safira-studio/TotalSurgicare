@@ -2,6 +2,8 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Search, Calendar, TestTube, FileCheck } from "lucide-react";
 import { Button } from "../ui/button";
+import { siteConfig } from "@/config/site";
+import Link from "next/link";
 
 const HowItWorks = () => {
   const steps = [
@@ -104,19 +106,23 @@ const HowItWorks = () => {
               consultation with our cardiac specialists today.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button
-                size="lg"
-                className="bg-white text-clinic-primary hover:bg-clinic-dark border-clinic-primary border-2 hover:text-white px-8 py-3"
-              >
-                Schedule Consultation
-              </Button>
-              <Button
-                size="lg"
-                variant="outline"
-                className=" text-clinic-primary hover:bg-white border-clinic-primary border-2 hover:text-clinic-dark px-8 py-3"
-              >
-                Call Now: (555) 123-4567
-              </Button>
+              <Link href={"/contact"}>
+                <Button
+                  size="lg"
+                  className="bg-white text-clinic-primary hover:bg-clinic-dark border-clinic-primary border-2 hover:text-white px-8 py-3"
+                >
+                  Schedule Consultation
+                </Button>
+              </Link>
+              <Link href={`tel:${siteConfig.contact.phone.primary}`}>
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className=" text-clinic-primary hover:bg-white border-clinic-primary border-2 hover:text-clinic-dark px-8 py-3"
+                >
+                  Call Now: {siteConfig.contact.phone.primary}
+                </Button>
+              </Link>
             </div>
           </div>
         </section>

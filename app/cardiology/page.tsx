@@ -53,7 +53,7 @@ const Cardiac = () => {
                 variant="outline"
                 className=" text-clinic-primary hover:bg-white border-clinic-primary border-2 hover:text-clinic-dark px-8 py-3"
               >
-                Call Now: +91-{siteConfig.contact.phone.primary}
+                Call Now: {siteConfig.contact.phone.primary}
               </Button>
             </Link>
           </div>
