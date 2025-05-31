@@ -10,7 +10,7 @@ const ChatWidget = () => {
       {open && (
         <>
           <a
-            href="https://wa.me/1234567890"
+            href="https://wa.me/9665551711"
             target="_blank"
             rel="noopener noreferrer"
             className="bg-green-500 text-white p-3 rounded-full shadow-md hover:bg-green-600 transition"
@@ -26,14 +26,14 @@ const ChatWidget = () => {
           </a>
 
           <a
-            href="tel:+1234567890"
+            href="9665551711"
             className="bg-blue-500 text-white p-3 rounded-full shadow-md hover:bg-blue-600 transition"
           >
             <Phone className="w-5 h-5" />
           </a>
 
           <a
-            href="mailto:example@example.com"
+            href="mailto:info@totalsurgicare.com"
             className="bg-red-500 text-white p-3 rounded-full shadow-md hover:bg-red-600 transition"
           >
             <Mail className="w-5 h-5" />
