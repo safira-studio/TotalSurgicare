@@ -7,6 +7,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { MapPin, Phone, Mail, Clock } from "lucide-react";
 import AppointmentForm from "@/components/AppointmentForm";
+import { siteConfig } from "@/config/site";
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -74,11 +75,10 @@ export default function Contact() {
                       Address
                     </h3>
                     <p className="text-gray-600">
-                      123 Medical Center Drive
-                      <br />
-                      Healthcare City, HC 12345
-                      <br />
-                      United States
+                      {siteConfig.contact.address.street},{" "}
+                      {siteConfig.contact.address.city},{" "}
+                      {siteConfig.contact.address.state} -{" "}
+                      {siteConfig.contact.address.pincode},{" "}
                     </p>
                   </div>
                 </div>
@@ -90,9 +90,8 @@ export default function Contact() {
                   <div>
                     <h3 className="font-semibold text-gray-800 mb-1">Phone</h3>
                     <p className="text-gray-600">
-                      Main: (555) 123-4567
-                      <br />
-                      Emergency: (555) 987-6543
+                      {siteConfig.contact.phone.primary} <br />
+                      Emergency: 112
                     </p>
                   </div>
                 </div>
@@ -104,9 +103,9 @@ export default function Contact() {
                   <div>
                     <h3 className="font-semibold text-gray-800 mb-1">Email</h3>
                     <p className="text-gray-600">
-                      info@medicalcenter.com
+                      {siteConfig.contact.email.primary}
                       <br />
-                      appointments@medicalcenter.com
+                      {siteConfig.contact.email.support}
                     </p>
                   </div>
                 </div>
