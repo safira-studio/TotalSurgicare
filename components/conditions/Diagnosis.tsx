@@ -26,7 +26,7 @@ const Diagnosis = ({
 
   const imgSrc = errorFallback
     ? "/placeholder.svg"
-    : `/conditions/${slug}/2.${imageExtensions[extIndex]}`;
+    : `/conditions/${slug}-2.${imageExtensions[extIndex]}`;
 
   return (
     <div className="bg-gray-50 py-10 px-6 lg:px-12">

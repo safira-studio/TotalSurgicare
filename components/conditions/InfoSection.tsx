@@ -44,7 +44,7 @@ const InfoSection = ({
 
   const imgSrc = errorFallback
     ? "/placeholder.svg"
-    : `/conditions/${slug}/1.${imageExtensions[extIndex]}`;
+    : `/conditions/${slug}-1.${imageExtensions[extIndex]}`;
 
   return (
     <div className="py-16 px-6 lg:px-12 bg-white">
