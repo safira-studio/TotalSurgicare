@@ -3,7 +3,7 @@ import InfoSection from "@/components/conditions/InfoSection";
 import Treatment from "@/components/conditions/Treatment";
 import Hero from "@/components/conditions/Hero";
 import { notFound } from "next/navigation";
-import FistulaTypes from "@/components/conditions/Types";
+import ConditionTypes from "@/components/conditions/ConditionTypes";
 import {
   Pill,
   Clock,
@@ -69,61 +69,66 @@ export default async function Content({ slug }: Props) {
       {/* What is the condition section */}
       <InfoSection {...data.aboutCondition} slug={slug} />
       {/* food triggers */}
-      <div className="mb-16">
-        <div className="container mx-auto px-4">
-          {" "}
-          <h2 className="text-3xl font-onest text-gray-800 mb-6 text-center px-4 sm:px-6 lg:px-0 pb-4">
-            Trigger Foods to Avoid in a Diet
-          </h2>
-          <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-4 text-center sm:px-6 lg:px-16">
-            {data.foodTriggers?.map((food, index) => (
-              <div
-                key={index}
-                className={`${food.bgColor} p-4 rounded-lg shadow-md transition-transform hover:scale-[1.02]`}
-              >
-                <h3 className="font-semibold text-gray-800 mb-2 text-lg">
-                  {food.name}
-                </h3>
-                <p className="text-sm text-gray-600">{food.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      {/* Symptoms */}
-      <div className="mb-16">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-onest text-gray-800 mb-6 text-center">
-            Symptoms of {data.name}
-          </h2>
-
-          <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-3 md:gap-6">
-            {data.symptoms?.map((symptom, index) => {
-              const IconComponent =
-                IconMap[symptom.icon as keyof typeof IconMap];
-
-              return (
+      {data.foodTriggers && (
+        <div className="mb-16">
+          <div className="container mx-auto px-4">
+            {" "}
+            <h2 className="text-3xl font-onest text-gray-800 mb-6 text-center px-4 sm:px-6 lg:px-0 pb-4">
+              Trigger Foods to Avoid in a Diet
+            </h2>
+            <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-4 text-center sm:px-6 lg:px-16">
+              {data.foodTriggers?.map((food, index) => (
                 <div
                   key={index}
-                  className="bg-[#DCFCE7] border border-gray-200 rounded-2xl md:rounded-3xl p-4 shadow-sm hover:shadow-lg transition-shadow text-center"
+                  className={`${food.bgColor} p-4 rounded-lg shadow-md transition-transform hover:scale-[1.02]`}
                 >
-                  <div className="w-12 h-12 rounded-full border-2 border-[#4CAF7D] flex items-center justify-center mb-4 mx-auto">
-                    {IconComponent && (
-                      <IconComponent className="w-6 h-6 text-[#4CAF7D]" />
-                    )}
-                  </div>
-                  <h3 className="font-semibold text-gray-800 mb-2">
-                    {symptom.title}
+                  <h3 className="font-semibold text-gray-800 mb-2 text-lg">
+                    {food.name}
                   </h3>
-                  <p className="text-gray-600 text-sm">{symptom.description}</p>
+                  <p className="text-sm text-gray-600">{food.description}</p>
                 </div>
-              );
-            })}
+              ))}
+            </div>
           </div>
         </div>
-      </div>
+      )}
+      {/* Symptoms */}
 
+      {data.symptoms && (
+        <div className="mb-16">
+          <div className="container mx-auto px-4">
+            <h2 className="text-3xl font-onest text-gray-800 mb-6 text-center">
+              Symptoms of {data.name}
+            </h2>
+
+            <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-3 md:gap-6">
+              {data.symptoms?.map((symptom, index) => {
+                const IconComponent =
+                  IconMap[symptom.icon as keyof typeof IconMap];
+
+                return (
+                  <div
+                    key={index}
+                    className="bg-[#DCFCE7] border border-gray-200 rounded-2xl md:rounded-3xl p-4 shadow-sm hover:shadow-lg transition-shadow text-center"
+                  >
+                    <div className="w-12 h-12 rounded-full border-2 border-[#4CAF7D] flex items-center justify-center mb-4 mx-auto">
+                      {IconComponent && (
+                        <IconComponent className="w-6 h-6 text-[#4CAF7D]" />
+                      )}
+                    </div>
+                    <h3 className="font-semibold text-gray-800 mb-2">
+                      {symptom.title}
+                    </h3>
+                    <p className="text-gray-600 text-sm">
+                      {symptom.description}
+                    </p>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+      )}
       {/* Common Causes */}
       <div className="mb-16">
         <div className="container mx-auto px-4">
@@ -157,112 +162,115 @@ export default async function Content({ slug }: Props) {
       </div>
 
       {/* Risk Factors */}
-      <div className="mb-14">
-        <div className="container mx-auto px-4 ">
-          <h2 className="text-3xl font-onest text-gray-800 mb-6 text-center">
-            Risk Factors for {data.name}
-          </h2>
+      {data.riskFactors && (
+        <div className="mb-14">
+          <div className="container mx-auto px-4 ">
+            <h2 className="text-3xl font-onest text-gray-800 mb-6 text-center">
+              Risk Factors for {data.name}
+            </h2>
 
-          <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-3 md:gap-6 ">
-            {data.riskFactors?.map((riskFactor, index) => {
-              const IconComponent =
-                IconMap[riskFactor.icon as keyof typeof IconMap];
+            <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-3 md:gap-6 ">
+              {data.riskFactors?.map((riskFactor, index) => {
+                const IconComponent =
+                  IconMap[riskFactor.icon as keyof typeof IconMap];
 
-              return (
-                <div
-                  key={index}
-                  className="bg-clinic-secondary/20 border border-gray-100 rounded-2xl md:rounded-3xl p-6 lg:p-8 shadow-sm hover:shadow-md transition-shadow text-center w-full"
-                >
-                  <div className="w-14 h-14 rounded-full border-2 border-clinic-secondary/50 bg-orange-80 flex items-center justify-center mb-4 mx-auto">
-                    {IconComponent && (
-                      <IconComponent className="w-7 h-7 text-orange-600" />
-                    )}
-                  </div>
-                  <h3 className="font-semibold text-gray-800 mb-2 text-lg">
-                    {riskFactor.title}
-                  </h3>
-                  <p className="text-gray-600 text-sm lg:text-base">
-                    {riskFactor.description}
-                  </p>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </div>
-
-      {/* Complications if Left Untreated */}
-      <div className="mb-16">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-onest text-gray-800 mb-6 text-center">
-            Complications if {data.name} are Left Untreated
-          </h2>
-
-          <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-3 md:gap-6">
-            {data.complications?.map((complication, index) => {
-              const IconComponent =
-                IconMap[complication.icon as keyof typeof IconMap];
-
-              return (
-                <div
-                  key={index}
-                  className="bg-red-200 border border-gray-100 rounded-2xl md:rounded-3xl p-6 lg:p-8 shadow-sm hover:shadow-md transition-shadow text-center w-full"
-                >
-                  <div className="w-14 h-14 rounded-full border-2 border-red-400 flex items-center justify-center mb-4 mx-auto">
-                    {IconComponent && (
-                      <IconComponent className="w-7 h-7 text-red-600" />
-                    )}
-                  </div>
-                  <h3 className="font-semibold text-gray-800 mb-2 text-lg">
-                    {complication.title}
-                  </h3>
-                  <p className="text-gray-600 text-sm lg:text-base">
-                    {complication.description}
-                  </p>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </div>
-
-      {/* Prevention and Non-Surgical Treatment */}
-      <div className="mb-16 md:px-10 max-sm:px-3">
-        <h2 className="text-3xl text-center font-onest text-gray-800 mb-6">
-          Preventive Measures
-        </h2>
-        <div className="bg-blue-50 rounded-2xl md:rounded-3xl p-6 ">
-          <div className="grid md:grid-cols-2 gap-6">
-            {data.treatments.nonSurgical?.map((measure, index) => (
-              <div key={index} className="flex items-start">
-                <div className="rounded-full bg-blue-100 p-2 mr-4 mt-1">
-                  <svg
-                    className="w-4 h-4 text-clinic-primary"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg"
+                return (
+                  <div
+                    key={index}
+                    className="bg-clinic-secondary/20 border border-gray-100 rounded-2xl md:rounded-3xl p-6 lg:p-8 shadow-sm hover:shadow-md transition-shadow text-center w-full"
                   >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M5 13l4 4L19 7"
-                    ></path>
-                  </svg>
-                </div>
-                <div>
-                  <h3 className="font-semibold text-gray-800 mb-1">
-                    {measure.name}
-                  </h3>
-                  <p className="text-gray-600">{measure.description}</p>
-                </div>
-              </div>
-            ))}
+                    <div className="w-14 h-14 rounded-full border-2 border-clinic-secondary/50 bg-orange-80 flex items-center justify-center mb-4 mx-auto">
+                      {IconComponent && (
+                        <IconComponent className="w-7 h-7 text-orange-600" />
+                      )}
+                    </div>
+                    <h3 className="font-semibold text-gray-800 mb-2 text-lg">
+                      {riskFactor.title}
+                    </h3>
+                    <p className="text-gray-600 text-sm lg:text-base">
+                      {riskFactor.description}
+                    </p>
+                  </div>
+                );
+              })}
+            </div>
           </div>
         </div>
-      </div>
+      )}
+      {/* Complications if Left Untreated */}
+      {data.complications && (
+        <div className="mb-16">
+          <div className="container mx-auto px-4">
+            <h2 className="text-3xl font-onest text-gray-800 mb-6 text-center">
+              Complications if {data.name} are Left Untreated
+            </h2>
 
+            <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-3 md:gap-6">
+              {data.complications?.map((complication, index) => {
+                const IconComponent =
+                  IconMap[complication.icon as keyof typeof IconMap];
+
+                return (
+                  <div
+                    key={index}
+                    className="bg-red-200 border border-gray-100 rounded-2xl md:rounded-3xl p-6 lg:p-8 shadow-sm hover:shadow-md transition-shadow text-center w-full"
+                  >
+                    <div className="w-14 h-14 rounded-full border-2 border-red-400 flex items-center justify-center mb-4 mx-auto">
+                      {IconComponent && (
+                        <IconComponent className="w-7 h-7 text-red-600" />
+                      )}
+                    </div>
+                    <h3 className="font-semibold text-gray-800 mb-2 text-lg">
+                      {complication.title}
+                    </h3>
+                    <p className="text-gray-600 text-sm lg:text-base">
+                      {complication.description}
+                    </p>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+      )}
+      {/* Prevention and Non-Surgical Treatment */}
+      {data.treatments.nonSurgical && (
+        <div className="mb-16 md:px-10 max-sm:px-3">
+          <h2 className="text-3xl text-center font-onest text-gray-800 mb-6">
+            Preventive Measures
+          </h2>
+          <div className="bg-blue-50 rounded-2xl md:rounded-3xl p-6 ">
+            <div className="grid md:grid-cols-2 gap-6">
+              {data.treatments.nonSurgical?.map((measure, index) => (
+                <div key={index} className="flex items-start">
+                  <div className="rounded-full bg-blue-100 p-2 mr-4 mt-1">
+                    <svg
+                      className="w-4 h-4 text-clinic-primary"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M5 13l4 4L19 7"
+                      ></path>
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-gray-800 mb-1">
+                      {measure.name}
+                    </h3>
+                    <p className="text-gray-600">{measure.description}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
       {/* sugrical treatment */}
 
       <section className="py-12 lg:px-10 bg-white">
@@ -314,7 +322,7 @@ export default async function Content({ slug }: Props) {
       </section>
 
       <Diagnosis {...data.diagnosis} slug={slug} />
-      <FistulaTypes name={data.name} types={data.types} />
+      <ConditionTypes name={data.name} types={data.types} />
       <Treatment whyUs={data.whyChooseUs} name={data.name} />
     </div>
   );

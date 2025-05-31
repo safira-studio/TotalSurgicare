@@ -1,18 +1,18 @@
 import Link from "next/link";
 import React from "react";
 
-type FistulaType = {
+type ConditionTypes = {
   type: string;
   description: string;
   procedure: string;
 };
 
-const FistulaTypes = ({
+const ConditionTypes = ({
   name,
   types,
 }: {
   name: string;
-  types: FistulaType[];
+  types: ConditionTypes[];
 }) => {
   return (
     <div className="bg-white sm:px-6 py-10">
@@ -104,4 +104,4 @@ const FistulaTypes = ({
   );
 };
 
-export default FistulaTypes;
+export default ConditionTypes;
