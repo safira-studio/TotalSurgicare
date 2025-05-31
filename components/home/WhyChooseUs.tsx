@@ -3,6 +3,7 @@ import { Badge } from "@/components/ui/badge";
 import { NumberTicker } from "@/components/ui/number-ticker";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
+import Link from "next/link";
 
 const StatItem = ({
   value,
@@ -62,22 +63,20 @@ const WhyChooseUs = () => {
                 Why
                 <br />
                 choose us
-                <div className="text-sm opacity-80 mb-4 font-thin">
-                  ( Advantages )
-                </div>
               </h2>
-
-              <Button className="bg-background text-black hover:bg-white/90">
-                Book Appointment
-              </Button>
+              <Link href="/contact">
+                <Button className="bg-background text-black hover:bg-white/90">
+                  Book Appointment
+                </Button>
+              </Link>
             </div>
 
             <div className="absolute right-0 bottom-0 hidden sm:block sm:max-w-[20rem] lg:max-w-none">
               <div className="">
                 <Image
-                  width={400}
-                  height={100}
-                  src="/doctor2.png"
+                  width={500}
+                  height={250}
+                  src="/doctor4.png"
                   alt="Medical team"
                   className="transform scale-x-[-1] "
                 />
@@ -88,7 +87,7 @@ const WhyChooseUs = () => {
               />
               <FeatureBadge
                 label="Certified Clinic"
-                className="absolute top-56 left-44"
+                className="absolute top-56 right-10"
               />
               <FeatureBadge
                 label="Modern Equipment"
