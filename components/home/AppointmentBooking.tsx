@@ -2,6 +2,7 @@ import React from "react";
 import { Calendar as CalendarIcon, Clock, Users } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import AppointmentForm from "@/components/AppointmentForm";
+import { siteConfig } from "@/config/site";
 
 const specialties = [
   "Proctology",
@@ -85,7 +86,10 @@ const AppointmentBooking = () => {
                     <p className="font-medium mb-2">Need urgent help?</p>
                     <p className="text-sm">
                       Call our emergency line:{" "}
-                      <span className="font-semibold">(123) 456-7890</span>
+                      <span className="font-semibold">
+                        {" "}
+                        {siteConfig.contact.phone.primary}
+                      </span>
                     </p>
                   </div>
                 </div>

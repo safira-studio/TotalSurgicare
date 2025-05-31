@@ -11,6 +11,7 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import Image from "next/image";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -22,6 +23,13 @@ const Footer = () => {
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 mb-8">
           {/* Logo and Description */}
           <div className="space-y-4 w-2/3 lg:w-full">
+            <Image
+              src={"/logo.png"}
+              alt="Logo"
+              width={200}
+              height={100}
+              className="min-w-24"
+            />
             <h2 className="text-xl font-onest text-white">Total Surgicare</h2>
             <p className="text-gray-300 text-sm">
               Providing quality healthcare services with advanced technology and

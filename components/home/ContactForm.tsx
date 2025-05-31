@@ -14,6 +14,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { TwitterIcon } from "../icons";
+import { siteConfig } from "@/config/site";
 
 const ContactInfo = ({
   icon,
@@ -70,7 +71,7 @@ const ContactForm = () => {
                     href="tel:+1234567890"
                     className="hover:text-clinic-primary transition-colors"
                   >
-                    (123) 456-7890
+                    {siteConfig.contact.phone.primary}
                   </a>
                 }
               />
@@ -83,7 +84,7 @@ const ContactForm = () => {
                     href="mailto:info@salvamedic.com"
                     className="hover:text-clinic-primary transition-colors"
                   >
-                    info@salvamedic.com
+                    {siteConfig.contact.email.primary}
                   </a>
                 }
               />
@@ -93,8 +94,10 @@ const ContactForm = () => {
                 title="Office Location"
                 content={
                   <>
-                    <p>Majokhpyi Avenue, S.A.L.O.W</p>
-                    <p>Open Mon-Fri, 9AM-5PM</p>
+                    Address: {siteConfig.contact.address.street},{" "}
+                    {siteConfig.contact.address.city},{" "}
+                    {siteConfig.contact.address.state} -{" "}
+                    {siteConfig.contact.address.pincode},{" "}
                   </>
                 }
               />

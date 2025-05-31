@@ -7,6 +7,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Card } from "@/components/ui/card";
+import { siteConfig } from "@/config/site";
 
 interface FAQItem {
   question: string;
@@ -48,9 +49,11 @@ const FAQSection = () => {
   ];
 
   const emergencyContacts = [
-    { label: "Emergency Services", value: "911" },
-    { label: "Main Clinic Number", value: "(123) 456-7890" },
-    { label: "After Hours Nurse Line", value: "(123) 456-7899" },
+    { label: "Emergency Services", value: "112" },
+    {
+      label: "Main Clinic Number",
+      value: `${siteConfig.contact.phone.primary}`,
+    },
   ];
 
   return (
@@ -123,7 +126,7 @@ const FAQSection = () => {
                     href="mailto:support@salvamedic.com"
                     className="text-white underline hover:no-underline"
                   >
-                    support@salvamedic.com
+                    {siteConfig.contact.email.primary}
                   </a>
                 </div>
               </div>
