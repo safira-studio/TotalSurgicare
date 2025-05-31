@@ -32,7 +32,7 @@ const Hero = ({ title, brief, alternateNames }: Heroprops) => {
         aria-hidden="true"
       ></div> */}
       <div
-        className="absolute inset-0 bg-gradient-to-r from-clinic-primary via-clinic-primary/70 to-clinic-primary/40 md:to-black z-0 max-lg:max-h-[100vh]"
+        className="absolute inset-0 bg-gradient-to-r from-clinic-primary via-clinic-primary/70 to-clinic-primary/40 z-0 max-lg:max-h-[100vh]"
         style={{
           WebkitMaskImage:
             "linear-gradient(to bottom, black 80%, transparent 100%)",
