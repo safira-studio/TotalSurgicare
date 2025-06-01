@@ -1,23 +1,5 @@
 import React from "react";
 import Image from "next/image";
-import {
-  Pill,
-  Clock,
-  Image as ImageIcon,
-  ArrowUp,
-  Thermometer,
-  Syringe,
-} from "lucide-react";
-
-const IconMap = {
-  pill: Pill,
-  clock: Clock,
-  image: ImageIcon,
-  "arrow-up": ArrowUp,
-  thermometer: Thermometer,
-  syringe: Syringe,
-  "alert-circle": Pill, // Using Pill as a fallback for alert-circle
-};
 
 const InfoSection = ({
   title,

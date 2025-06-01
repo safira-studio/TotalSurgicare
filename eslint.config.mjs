@@ -94,13 +94,13 @@ export default defineConfig([
     rules: {
       "no-console": "warn",
       "react/prop-types": "off",
-      "react/jsx-uses-react": "off",
+      "react/jsx-uses-react": "error",
       "react/react-in-jsx-scope": "off",
-      "react-hooks/exhaustive-deps": "off",
-      "jsx-a11y/click-events-have-key-events": "off",
-      "jsx-a11y/interactive-supports-focus": "off",
+      "react-hooks/exhaustive-deps": "error",
+      "jsx-a11y/click-events-have-key-events": "error",
+      "jsx-a11y/interactive-supports-focus": "error",
       "prettier/prettier": "off",
-      "no-unused-vars": "off",
+      "no-unused-vars": "error",
       "unused-imports/no-unused-vars": "off",
       "unused-imports/no-unused-imports": "off",
 

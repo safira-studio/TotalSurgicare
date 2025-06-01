@@ -1,8 +1,6 @@
 import React from "react";
-import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Heart, Users, Award, Target, Shield, Clock } from "lucide-react";
-import Link from "next/link";
+import { Heart, Award, Target, Shield, Clock } from "lucide-react";
 import { Metadata } from "next";
 export const metadata: Metadata = {
   title: "About Us",

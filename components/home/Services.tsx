@@ -1,7 +1,7 @@
 import React from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Heart, Baby, UserRound, HeartPulse, Stethoscope } from "lucide-react";
+import { Heart, Baby, HeartPulse } from "lucide-react";
 
 const ServiceCard = ({
   title,

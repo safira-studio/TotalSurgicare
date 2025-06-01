@@ -4,7 +4,6 @@ import {
   Activity,
   Brain,
   Shield,
-  Heart,
   Utensils,
   Bandage,
   Scale,

@@ -13,7 +13,6 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { TwitterIcon } from "../icons";
 import { siteConfig } from "@/config/site";
 
 const ContactInfo = ({

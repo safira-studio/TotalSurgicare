@@ -3,7 +3,6 @@ import AngiographyService from "@/components/cardiology/AngiographyService";
 import AngioplastyService from "@/components/cardiology/AngioplastyService";
 import { Button } from "@/components/ui/button";
 import { siteConfig } from "@/config/site";
-import { Heart } from "lucide-react";
 import { Metadata } from "next";
 import Link from "next/link";
 

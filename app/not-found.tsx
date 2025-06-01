@@ -2,7 +2,7 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Home, ArrowLeft, Search } from "lucide-react";
+import { Home } from "lucide-react";
 export default function NotFound() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-clinic-primary/10 to-clinic-primary/20 flex items-center justify-center px-4">

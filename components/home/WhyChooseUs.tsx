@@ -1,5 +1,4 @@
 import React from "react";
-import { Badge } from "@/components/ui/badge";
 import { NumberTicker } from "@/components/ui/number-ticker";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
@@ -42,13 +41,6 @@ const FeatureBadge = ({
       {label}
     </div>
   );
-};
-
-type StatItemProps = {
-  value: React.ReactNode;
-  label: string;
-  description: string;
-  color?: string;
 };
 
 const WhyChooseUs = () => {

@@ -1,16 +1,6 @@
-import { Button } from "@/components/ui/button";
 import { siteConfig } from "@/config/site";
 
-import {
-  Heart,
-  Shield,
-  Lock,
-  Eye,
-  FileText,
-  Users,
-  Globe,
-  Phone,
-} from "lucide-react";
+import { Shield, Lock, Eye, FileText, Users, Globe, Phone } from "lucide-react";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {

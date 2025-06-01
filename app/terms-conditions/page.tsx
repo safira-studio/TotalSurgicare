@@ -1,7 +1,5 @@
-import { Button } from "@/components/ui/button";
 import { siteConfig } from "@/config/site";
 import {
-  Heart,
   FileText,
   Scale,
   Shield,

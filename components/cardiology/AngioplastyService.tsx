@@ -1,6 +1,6 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Heart, Circle, Plus } from "lucide-react";
+import { Circle, Plus } from "lucide-react";
 
 const AngioplastyService = () => {
   const advantages = [

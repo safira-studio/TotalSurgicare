@@ -86,7 +86,6 @@ export default function AppointmentForm({
   const onSubmit = async (data: FormValues) => {
     setIsSubmitting(true);
     try {
-      console.log("Form submitted with values:", data);
       const res = await fetch("/api/book", {
         method: "POST",
         headers: { "Content-Type": "application/json" },

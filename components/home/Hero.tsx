@@ -1,23 +1,7 @@
 import { Button } from "@/components/ui/button";
-import { AvatarCircles } from "@/components/ui/avatar-circles";
 import { NumberTicker } from "@/components/ui/number-ticker";
 import Image from "next/image";
 import Link from "next/link";
-
-const avatars = [
-  {
-    imageUrl: "https://avatars.githubusercontent.com/u/59228569?v=4",
-    profileUrl: "#",
-  },
-  {
-    imageUrl: "https://github.com/shadcn.png",
-    profileUrl: "#",
-  },
-  {
-    imageUrl: "https://avatars.githubusercontent.com/u/68136265?v=4",
-    profileUrl: "#",
-  },
-];
 
 export default function Hero() {
   return (

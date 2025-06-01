@@ -11,7 +11,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import { Input } from "@/components/ui/input";
+import Link from "next/link";
 
 interface BlogPostProps {
   title: string;
@@ -66,12 +66,12 @@ const BlogCard = ({
         </div>
       </CardContent>
       <CardFooter className="pt-0 pb-6 px-6">
-        <a
+        <Link
           href={`#`}
           className="text-clinic-primary font-medium flex items-center hover:underline"
         >
           Read more <ArrowRight size={16} className="ml-2" />
-        </a>
+        </Link>
       </CardFooter>
     </Card>
   );

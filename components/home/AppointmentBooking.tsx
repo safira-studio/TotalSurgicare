@@ -4,19 +4,6 @@ import { Card, CardContent } from "@/components/ui/card";
 import AppointmentForm from "@/components/AppointmentForm";
 import { siteConfig } from "@/config/site";
 
-const specialties = [
-  "Proctology",
-  "Laparoscopy",
-  "Urology",
-  "Gynaecology",
-  "Aesthetics",
-  "Vascular",
-  "Opthalmology",
-  "Cardiology",
-  "Diagnostic",
-  "Post Surgery Care",
-];
-
 const AppointmentBooking = () => {
   return (
     <div className="w-full py-12 mb-6 bg-gray-50">
