@@ -206,6 +206,7 @@ export default function AppointmentForm({
                 setSubmittedData(null);
                 reset();
               }}
+              aria-label="book appointment"
               variant="outline"
               className="flex-1 border-clinic-secondary text-clinic-secondary hover:bg-clinic-secondary hover:text-white"
             >
@@ -229,6 +230,7 @@ export default function AppointmentForm({
                     "w-full focus:ring-2 focus:ring-clinic-secondary focus-visible:ring-clinic-secondary",
                     colorClass
                   )}
+                  aria-label="select specialty"
                 >
                   <SelectValue placeholder="Select a specialty" />
                 </SelectTrigger>
@@ -299,6 +301,7 @@ export default function AppointmentForm({
                       "w-full focus:ring-2 focus:ring-clinic-secondary focus-visible:ring-clinic-secondary",
                       colorClass
                     )}
+                    aria-label="Select Gender"
                   >
                     <SelectValue placeholder="Select gender" />
                   </SelectTrigger>
@@ -361,6 +364,7 @@ export default function AppointmentForm({
               <Button
                 type="submit"
                 disabled={isSubmitting}
+                aria-label="submit form"
                 className={cn(
                   "w-full bg-clinic-secondary hover:bg-clinic-secondaryDark",
                   buttonClass,

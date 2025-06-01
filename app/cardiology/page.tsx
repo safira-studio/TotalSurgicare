@@ -42,6 +42,7 @@ const Cardiac = () => {
             <Link href={"/contact"}>
               <Button
                 size="lg"
+                aria-label="appointment button"
                 className="bg-white text-clinic-primary hover:bg-clinic-dark border-clinic-primary border-2 hover:text-white px-8 py-3"
               >
                 Schedule Consultation
@@ -51,6 +52,7 @@ const Cardiac = () => {
               <Button
                 size="lg"
                 variant="outline"
+                aria-label="call button"
                 className=" text-clinic-primary hover:bg-white border-clinic-primary border-2 hover:text-clinic-dark px-8 py-3"
               >
                 Call Now: {siteConfig.contact.phone.primary}

@@ -197,6 +197,7 @@ const LucideHamburger = ({
 }) => (
   <button
     onClick={onToggle}
+    aria-label="Nav button"
     className="relative w-6 h-6 hover:text-clinic-primary"
   >
     <Menu

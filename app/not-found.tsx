@@ -34,7 +34,10 @@ export default function NotFound() {
             {/* Action Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <Link href={"/"}>
-                <Button className="flex items-center gap-2 px-6 py-3 bg-clinic-secondary hover:bg-clinic-secondaryDark">
+                <Button
+                  className="flex items-center gap-2 px-6 py-3 bg-clinic-secondary hover:bg-clinic-secondaryDark"
+                  aria-label="home button"
+                >
                   <Home className="w-4 h-4" />
                   Return Home
                 </Button>

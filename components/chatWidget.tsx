@@ -45,6 +45,7 @@ const ChatWidget = () => {
 
       <button
         onClick={() => setOpen(!open)}
+        aria-label="contact options"
         className="bg-clinic-secondaryDark text-white p-4 rounded-full shadow-lg hover:bg-gray-800 hover:scale-105 transition-all duration-200 transform active:scale-95"
       >
         <div

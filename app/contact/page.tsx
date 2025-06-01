@@ -126,6 +126,7 @@ export default function Contact() {
                   variant="destructive"
                   className="bg-red-600 hover:bg-red-700"
                   onClick={() => window.open("tel:112")}
+                  aria-label="call 112"
                 >
                   Call 112
                 </Button>
