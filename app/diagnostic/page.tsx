@@ -2,7 +2,28 @@ import BookingHighlights from "@/components/diagnosis/BookingHighlights";
 import CorporateTestingServices from "@/components/diagnosis/CorporateTestingServices";
 import DiagnosticServices from "@/components/diagnosis/DiagnosticServices";
 import HowItWorks from "@/components/diagnosis/HowItWorks";
+import { Metadata } from "next";
 import React from "react";
+
+export const metadata: Metadata = {
+  title: "Diagnostic",
+  description:
+    "At Total Surgicare, we provide reliable diagnostic tests to ensure precise health assessments. Our state-of-the-art facilities and experienced professionals are dedicated to delivering accurate results with utmost care and efficiency, supporting early detection and effective treatment planning for optimal patient outcomes.",
+  openGraph: {
+    title: "About Us - Total Surgicare",
+    description:
+      "Learn about Total Surgicare, a leading surgical care provider in Pune specializing in minimally invasive procedures for various conditions.",
+    url: "https://totalsurgicare.com/aboutus",
+    images: [
+      {
+        url: "https://totalsurgicare.com/logo.webp",
+        width: 800,
+        height: 600,
+        alt: "Total Surgicare About Us",
+      },
+    ],
+  },
+};
 
 const Diagnostic = () => {
   return (

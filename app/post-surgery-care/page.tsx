@@ -3,7 +3,28 @@ import KeyComponentsCare from "@/components/PostSurgeryCare/KeyComponentsCare";
 import PostOpCareOverview from "@/components/PostSurgeryCare/PostOpCareOverview";
 import RemotePatientMonitoring from "@/components/PostSurgeryCare/RemotePatientMonitoring";
 import TwentyFourSevenAssistance from "@/components/PostSurgeryCare/TwentyFourSevenAssistance";
+import { Metadata } from "next";
 import React from "react";
+
+export const metadata: Metadata = {
+  title: "Post Surgery Care",
+  description:
+    "Our Postoperative Care Services ensure a smooth and safe recovery. We provide expert wound care to prevent infection, effective pain management for comfort, and careful medication monitoring. Our team also offers mobility assistance and ensures timely follow-up appointments to track healing and adjust care as needed.",
+  openGraph: {
+    title: "About Us - Total Surgicare",
+    description:
+      "Learn about Total Surgicare, a leading surgical care provider in Pune specializing in minimally invasive procedures for various conditions.",
+    url: "https://totalsurgicare.com/aboutus",
+    images: [
+      {
+        url: "https://totalsurgicare.com/logo.webp",
+        width: 800,
+        height: 600,
+        alt: "Total Surgicare About Us",
+      },
+    ],
+  },
+};
 
 const PostSurgeryCare = () => {
   return (
