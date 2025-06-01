@@ -11,6 +11,27 @@ import {
   Globe,
   Phone,
 } from "lucide-react";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Privacy Policy",
+  description:
+    "Total Surgicare · 0 ... Privacy Policy · Cancellation policy. © 2025 Total Surgicare. Designed by First DigiAdd. WhatsApp us.",
+  openGraph: {
+    title: "About Us - Total Surgicare",
+    description:
+      "Learn about Total Surgicare, a leading surgical care provider in Pune specializing in minimally invasive procedures for various conditions.",
+    url: "https://totalsurgicare.com/aboutus",
+    images: [
+      {
+        url: "https://totalsurgicare.com/logo.webp",
+        width: 800,
+        height: 600,
+        alt: "Total Surgicare About Us",
+      },
+    ],
+  },
+};
 
 const PrivacyPolicy = () => {
   return (
