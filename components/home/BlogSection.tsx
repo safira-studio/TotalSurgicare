@@ -67,7 +67,7 @@ const BlogCard = ({
       </CardContent>
       <CardFooter className="pt-0 pb-6 px-6">
         <a
-          href={`/blog/${slug}`}
+          href={`#`}
           className="text-clinic-primary font-medium flex items-center hover:underline"
         >
           Read more <ArrowRight size={16} className="ml-2" />
@@ -87,7 +87,7 @@ const BlogSection = () => {
       date: "May 15, 2025",
       author: "Dr. Sarah Johnson",
       category: "Cardiology",
-      slug: "maintaining-heart-health",
+      slug: "",
     },
     {
       title: "Understanding Childhood Vaccinations",
@@ -97,7 +97,7 @@ const BlogSection = () => {
       date: "May 10, 2025",
       author: "Dr. Emily Davis",
       category: "Pediatrics",
-      slug: "understanding-childhood-vaccinations",
+      slug: "",
     },
     {
       title: "Mental Health Awareness: Breaking the Stigma",
@@ -107,7 +107,7 @@ const BlogSection = () => {
       date: "May 5, 2025",
       author: "Dr. Michael Brown",
       category: "Mental Health",
-      slug: "mental-health-awareness",
+      slug: "",
     },
     {
       title: "Nutrition Tips for a Healthy Lifestyle",
@@ -117,7 +117,7 @@ const BlogSection = () => {
       date: "April 28, 2025",
       author: "Dr. Jessica Lee",
       category: "Nutrition",
-      slug: "nutrition-tips-healthy-lifestyle",
+      slug: "",
     },
     {
       title: "The Importance of Regular Health Check-ups",
@@ -127,7 +127,7 @@ const BlogSection = () => {
       date: "April 20, 2025",
       author: "Dr. Robert Wilson",
       category: "Preventative Care",
-      slug: "importance-regular-health-checkups",
+      slug: "",
     },
   ];
 

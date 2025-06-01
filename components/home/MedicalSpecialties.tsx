@@ -27,12 +27,12 @@ const SpecialtyItem = ({ icon, name, link }: SpecialtyItemProps) => {
           />
         </div>
       </div>
-      <div className="px-4 sm:px-6 py-3 bg-gradient-to-r from-blue-50 to-indigo-50 flex justify-end">
+      <div className="px-4 sm:px-6 py-3 bg-gradient-to-r from-blue-50 to-indigo-50 flex justify-center">
         <Link
           href={`/conditions/${link}`}
           className="text-xs sm:text-sm font-medium text-clinic-primary hover:text-clinic-dark transition-colors"
         >
-          Learn More
+          Learn about {name}
         </Link>
       </div>
     </div>

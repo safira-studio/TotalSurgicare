@@ -17,6 +17,23 @@ export const metadata: Metadata = {
   icons: {
     icon: "/favicon.ico",
   },
+  openGraph: {
+    title: "Total Surgicare: Best Surgical Care in Pune",
+    description:
+      "Total Surgicare provides expert surgical care in Pune for Piles, Hernia, Kidney Stones, Cataract, Gynecology, IVF, and more.",
+    url: "https://totalsurgicare.com",
+    siteName: "Total Surgicare",
+    images: [
+      {
+        url: "https://totalsurgicare.com/logo.webp", // Ensure this image exists in /public
+        width: 800,
+        height: 600,
+        alt: "Total Surgicare Logo",
+      },
+    ],
+    locale: "en_IN",
+    type: "website",
+  },
 };
 
 export const viewport: Viewport = {
@@ -33,23 +50,58 @@ export default function RootLayout({
 }) {
   return (
     <html suppressHydrationWarning lang="en">
-      <head />
+      <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(schemaOrgData),
+          }}
+        />
+      </head>
       <body
         className={clsx(
           "min-h-screen bg-background font-sans antialiased",
           fontSans.variable
         )}
       >
-        {/* <Providers themeProps={{ attribute: "class", defaultTheme: "light" }}> */}
         <div className="relative h-screen">
           <Navbar />
           <main className="mx-auto max-w-8xl">{children}</main>
           <Footer />
         </div>
         <ChatWidget />
-        {/* <ChatBot /> */}
-        {/* </Providers> */}
       </body>
     </html>
   );
 }
+
+const schemaOrgData = {
+  "@context": "https://schema.org",
+  "@type": "MedicalBusiness",
+  name: "Total Surgicare",
+  description:
+    "Total Surgicare provides expert surgical care in Pune for Piles, Hernia, Kidney Stones, Cataract, Gynecology, IVF, and more.",
+  url: "https://totalsurgicare.com",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "B48 /9, Swamivivekanand Road",
+    addressLocality: "Bibwewadi",
+    addressRegion: "Pune, Maharashtra",
+    postalCode: "411047",
+    addressCountry: "IN",
+  },
+  telephone: "+91-9665551711",
+  email: "info@totalsurgicare.com",
+  openingHours: "Mo-Su 00:00-23:59",
+  medicalSpecialty: [
+    "Proctology",
+    "Laparoscopy",
+    "Urology",
+    "Gynaecology",
+    "Aesthetics",
+    "Vascular",
+    "Ophthalmology",
+    "Cardiology",
+  ],
+};

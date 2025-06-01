@@ -66,7 +66,7 @@ const TestimonialCard = ({
       <CardContent className="p-0 space-y-4">
         <div className="flex items-center gap-3 pt-3">
           <Avatar className="h-10 w-10 border-2 border-clinic-primary">
-            <AvatarImage src={image || "/placeholder.svg"} />
+            <AvatarImage src={image || "/placeholder.svg"} alt="Avatar" />
             <AvatarFallback className="bg-clinic-primary/80 text-white">
               {author
                 .split(" ")

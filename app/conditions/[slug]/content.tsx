@@ -2,7 +2,6 @@ import Diagnosis from "@/components/conditions/Diagnosis";
 import InfoSection from "@/components/conditions/InfoSection";
 import Treatment from "@/components/conditions/Treatment";
 import Hero from "@/components/conditions/Hero";
-import { notFound } from "next/navigation";
 import ConditionTypes from "@/components/conditions/ConditionTypes";
 import {
   Pill,
@@ -14,8 +13,6 @@ import {
 } from "lucide-react";
 import SectionTitle from "@/components/conditions/SectionTitle";
 import TreatmentCard from "@/components/conditions/TreatmentCard";
-import { siteConfig } from "@/config/site";
-import allData from "@/components/data/index";
 import {
   Carousel,
   CarouselContent,
@@ -23,6 +20,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import { MedicalCondition } from "@/types";
 
 const IconMap = {
   pill: Pill,
@@ -35,33 +33,10 @@ const IconMap = {
 };
 type Props = {
   slug: string;
+  data: MedicalCondition;
 };
-export async function generateStaticParams() {
-  const slugs = siteConfig.navItems.flatMap((section) =>
-    section.items
-      .map((item) =>
-        item
-          .toLowerCase()
-          .replace(/\s+/g, "-")
-          .replace(/[^a-z0-9-]/g, "")
-      )
-      .concat(
-        section.items.length === 0
-          ? [section.title.toLowerCase().replace(/\s+/g, "-")]
-          : []
-      )
-  );
-  return slugs.map((slug) => ({ slug }));
-}
-export default async function Content({ slug }: Props) {
-  //   const { slug } = await params;
-  await new Promise((resolve) => setTimeout(resolve, 400));
-  // Fetch your data here
-  const data = await getDataFromSlug(slug);
 
-  if (!data) {
-    notFound(); // shows 404 page
-  }
+export default async function Content({ slug, data }: Props) {
   return (
     <div>
       {/* Hero Section */}
@@ -326,17 +301,4 @@ export default async function Content({ slug }: Props) {
       <Treatment whyUs={data.whyChooseUs} name={data.name} />
     </div>
   );
-}
-
-// Example fetch function (replace with your own)
-async function getDataFromSlug(slug: string) {
-  try {
-    const dataKey = slug.replace(/-([a-z])/g, (_, letter) =>
-      letter.toUpperCase()
-    );
-    return allData[dataKey as keyof typeof allData] || null;
-  } catch (error) {
-    console.error(`Error fetching data for slug ${slug}:`, error);
-    return null;
-  }
 }

@@ -1,9 +1,9 @@
 export type SiteConfig = typeof siteConfig;
 
 export const siteConfig = {
-  name: "Total Surgicare",
+  name: "Total Surgicare: Best Surgical Care in Pune",
   description:
-    "Advanced surgical care with minimally invasive procedures. Expert treatment for proctology, laparoscopy, urology, gynaecology, and more.",
+    "Total Surgicare provides consultation for 50+ diseases and treatments such as Piles, Hernia, Kidney Stones, Cataract, Gynecomastia, Abortion, IVF, etc. across.",
   tagline: "Your Health, Our Priority",
   navItems: [
     {
