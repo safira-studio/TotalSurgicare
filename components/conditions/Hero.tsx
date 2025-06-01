@@ -52,11 +52,6 @@ const Hero = ({ title, brief, alternateNames }: Heroprops) => {
 
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 lg:gap-4 mb-6">
               <InfoIcon
-                icon={<Calendar className="h-5 w-5 lg:h-6 lg:w-6" />}
-                title="Quick Recovery"
-                description="Return to normal activities fast"
-              />
-              <InfoIcon
                 icon={<Check className="h-5 w-5 lg:h-6 lg:w-6" />}
                 title="Minimally Invasive"
                 description="Advanced techniques with minimal pain"
@@ -70,6 +65,11 @@ const Hero = ({ title, brief, alternateNames }: Heroprops) => {
                 icon={<Info className="h-5 w-5 lg:h-6 lg:w-6" />}
                 title="Expert Doctors"
                 description="Specialized in treatment"
+              />
+              <InfoIcon
+                icon={<Calendar className="h-5 w-5 lg:h-6 lg:w-6" />}
+                title="Quick Recovery"
+                description="Return to normal activities fast"
               />
             </div>
 

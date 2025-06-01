@@ -38,12 +38,14 @@ const Footer = () => {
               <Button
                 size="icon"
                 variant="ghost"
+                aria-label="social"
                 className="rounded-full hover:bg-clinic-primary hover:text-white"
               >
                 <Facebook size={18} />
               </Button>
               <Button
                 size="icon"
+                aria-label="social"
                 variant="ghost"
                 className="rounded-full hover:bg-clinic-primary hover:text-white"
               >
@@ -52,6 +54,7 @@ const Footer = () => {
               <Button
                 size="icon"
                 variant="ghost"
+                aria-label="social"
                 className="rounded-full hover:bg-clinic-primary hover:text-white"
               >
                 <Twitter size={18} />
@@ -59,6 +62,7 @@ const Footer = () => {
               <Button
                 size="icon"
                 variant="ghost"
+                aria-label="social"
                 className="rounded-full hover:bg-clinic-primary hover:text-white"
               >
                 <Linkedin size={18} />
