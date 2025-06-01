@@ -97,7 +97,7 @@ const Footer = () => {
                 </li>
                 <li>
                   <Link
-                    href="/terms"
+                    href="/terms-conditions"
                     className="text-gray-300 hover:text-white text-sm transition-colors"
                   >
                     Terms and Conditions
@@ -105,7 +105,7 @@ const Footer = () => {
                 </li>
                 <li>
                   <Link
-                    href="/privacy"
+                    href="/privacy-policy"
                     className="text-gray-300 hover:text-white text-sm transition-colors"
                   >
                     Privacy Policy
