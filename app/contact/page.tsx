@@ -1,9 +1,9 @@
-import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { MapPin, Phone, Mail } from "lucide-react";
 import AppointmentForm from "@/components/AppointmentForm";
 import { siteConfig } from "@/config/site";
 import { Metadata } from "next";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Contact",
@@ -114,14 +114,9 @@ export default function Contact() {
                   If you&aposre experiencing a medical emergency, please call
                   112 immediately or go to your nearest emergency room.
                 </p>
-                <Button
-                  aria-label="call 112"
-                  className="bg-red-600 hover:bg-red-700"
-                  variant="destructive"
-                  onClick={() => window.open("tel:112")}
-                >
+                <Link href="tel:112" className="bg-red-600 hover:bg-red-700">
                   Call 112
-                </Button>
+                </Link>
               </CardContent>
             </Card>
           </div>
