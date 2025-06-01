@@ -32,13 +32,13 @@ const Hero = ({ title, brief, alternateNames }: Heroprops) => {
         aria-hidden="true"
       ></div> */}
       <div
+        aria-hidden="true"
         className="absolute inset-0 bg-gradient-to-r from-clinic-primary via-clinic-primary/70 to-clinic-primary/40 z-0 max-lg:max-h-[100vh]"
         style={{
           WebkitMaskImage:
             "linear-gradient(to bottom, black 80%, transparent 100%)",
         }}
-        aria-hidden="true"
-      ></div>
+       />
 
       <div className="container mx-auto relative z-10">
         <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-8 lg:gap-10 py-8 lg:py-16 px-4 sm:px-6 lg:px-12">
@@ -52,24 +52,24 @@ const Hero = ({ title, brief, alternateNames }: Heroprops) => {
 
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 lg:gap-4 mb-6">
               <InfoIcon
+                description="Advanced techniques with minimal pain"
                 icon={<Check className="h-5 w-5 lg:h-6 lg:w-6" />}
                 title="Minimally Invasive"
-                description="Advanced techniques with minimal pain"
               />
               <InfoIcon
+                description="State-of-the-art equipment"
                 icon={<ImageIcon className="h-5 w-5 lg:h-6 lg:w-6" />}
                 title="Modern Technology"
-                description="State-of-the-art equipment"
               />
               <InfoIcon
+                description="Specialized in treatment"
                 icon={<Info className="h-5 w-5 lg:h-6 lg:w-6" />}
                 title="Expert Doctors"
-                description="Specialized in treatment"
               />
               <InfoIcon
+                description="Return to normal activities fast"
                 icon={<Calendar className="h-5 w-5 lg:h-6 lg:w-6" />}
                 title="Quick Recovery"
-                description="Return to normal activities fast"
               />
             </div>
 

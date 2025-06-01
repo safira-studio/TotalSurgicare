@@ -35,9 +35,9 @@ export default function Hero() {
                   <div className="flex flex-col max-lg:items-center justify-center">
                     <div className="flex items-center font-semibold text-clinic-primary">
                       <NumberTicker
-                        value={10}
-                        decimalPlaces={0}
                         className="text-2xl lg:text-3xl font-semibold text-clinic-primary"
+                        decimalPlaces={0}
+                        value={10}
                       />
                       <span className="ml-1">+</span>
                     </div>
@@ -50,9 +50,9 @@ export default function Hero() {
                   <div className="flex flex-col max-lg:items-center justify-center">
                     <div className="flex items-center text-3xl font-semibold text-clinic-primary">
                       <NumberTicker
-                        value={20}
-                        decimalPlaces={0}
                         className="text-2xl lg:text-3xl font-semibold text-clinic-primary"
+                        decimalPlaces={0}
+                        value={20}
                       />
                       <span className="ml-1">+</span>
                     </div>
@@ -66,9 +66,9 @@ export default function Hero() {
                   <div className="flex flex-col max-lg:items-center justify-center">
                     <div className="flex items-center text-3xl font-semibold text-clinic-primary">
                       <NumberTicker
-                        value={100}
-                        decimalPlaces={0}
                         className="text-2xl lg:text-3xl font-semibold text-clinic-primary"
+                        decimalPlaces={0}
+                        value={100}
                       />
                       <span className="ml-1">%</span>
                     </div>
@@ -85,11 +85,11 @@ export default function Hero() {
           {/* doctor image and floating text */}
           <div className="absolute bottom-0 left-1/2 -translate-x-1/2 z-10 w-[380px] sm:w-[380px] md:w-[380px] lg:w-[550px] h-auto">
             <Image
-              src="/doctor3.png"
               alt="Doctor"
-              width={550}
-              height={100}
               className="w-[400px] sm:w-[450px] md:w-[500px] lg:w-[550px] h-auto"
+              height={100}
+              src="/doctor3.png"
+              width={550}
             />
 
             <div className="absolute top-40 sm:top-40 lg:top-48 left-4 sm:left-6 lg:left-16 bg-gray-500/20 backdrop-blur-sm px-3 py-1 rounded-full text-xs sm:text-sm text-clinic-accent">
@@ -107,9 +107,9 @@ export default function Hero() {
 
           {/* right the blue block */}
           <div className="h-full w-full lg:w-1/2 relative  flex items-center justify-center max-lg:bg-clinic-background">
-            <div className="hidden lg:block absolute top-48 right-28 h-16 w-16 rounded-lg bg-clinic-secondary z-10"></div>
-            <div className="hidden lg:block absolute top-80 right-32 h-20 w-20 rounded-lg bg-clinic-secondary z-10"></div>
-            <div className="hidden lg:block absolute top-56 right-10 h-28 w-28 rounded-2xl bg-white/20 z-10"></div>
+            <div className="hidden lg:block absolute top-48 right-28 h-16 w-16 rounded-lg bg-clinic-secondary z-10" />
+            <div className="hidden lg:block absolute top-80 right-32 h-20 w-20 rounded-lg bg-clinic-secondary z-10" />
+            <div className="hidden lg:block absolute top-56 right-10 h-28 w-28 rounded-2xl bg-white/20 z-10" />
             <div className="w-1/2 lg:hidden h-full p-5 md:p-10">
               <div className="text-sm my-4 text-clinic-accent w-2/3">
                 We treat{" "}

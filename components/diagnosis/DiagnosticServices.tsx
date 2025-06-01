@@ -70,7 +70,7 @@ const DiagnosticServices = () => {
                     key={index}
                     className="flex items-center text-sm text-gray-700"
                   >
-                    <div className="h-2 w-2 bg-red-500 rounded-full mr-3"></div>
+                    <div className="h-2 w-2 bg-red-500 rounded-full mr-3" />
                     {test}
                   </li>
                 ))}
@@ -97,7 +97,7 @@ const DiagnosticServices = () => {
                     key={index}
                     className="flex items-center text-sm text-gray-700"
                   >
-                    <div className="h-2 w-2 bg-green-500 rounded-full mr-3"></div>
+                    <div className="h-2 w-2 bg-green-500 rounded-full mr-3" />
                     {service}
                   </li>
                 ))}
@@ -124,7 +124,7 @@ const DiagnosticServices = () => {
                     key={index}
                     className="flex items-center text-sm text-gray-700"
                   >
-                    <div className="h-2 w-2 bg-purple-500 rounded-full mr-3"></div>
+                    <div className="h-2 w-2 bg-purple-500 rounded-full mr-3" />
                     {test}
                   </li>
                 ))}

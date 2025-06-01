@@ -90,10 +90,10 @@ const AngiographyService = () => {
           </div>
           <div className="">
             <AppointmentForm
+              buttonClass="bg-clinic-primary hover:bg-clinic-dark"
+              colorClass="focus:ring-clinic-primary focus-visible:ring-clinic-primary"
               formClass="space-y-2"
               parentClass="border border-clinic-primary"
-              colorClass="focus:ring-clinic-primary focus-visible:ring-clinic-primary"
-              buttonClass="bg-clinic-primary hover:bg-clinic-dark"
             />
           </div>
         </div>

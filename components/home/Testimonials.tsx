@@ -63,7 +63,7 @@ const TestimonialCard = ({
       <CardContent className="p-0 space-y-4">
         <div className="flex items-center gap-3 pt-3">
           <Avatar className="h-10 w-10 border-2 border-clinic-primary">
-            <AvatarImage src={image || "/placeholder.svg"} alt="Avatar" />
+            <AvatarImage alt="Avatar" src={image || "/placeholder.svg"} />
             <AvatarFallback className="bg-clinic-primary/80 text-white">
               {author
                 .split(" ")
@@ -101,13 +101,13 @@ export function TestimonialMarquee() {
           <TestimonialCard {...testimonial} key={index} />
         ))}
       </Marquee>
-      <Marquee reverse pauseOnHover className="[--duration:30s]">
+      <Marquee pauseOnHover reverse className="[--duration:30s]">
         {testimonials.map((testimonial, index) => (
           <TestimonialCard {...testimonial} key={index} />
         ))}
       </Marquee>
-      <div className="pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-gradient-to-r from-background"></div>
-      <div className="pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-gradient-to-l from-background"></div>
+      <div className="pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-gradient-to-r from-background" />
+      <div className="pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-gradient-to-l from-background" />
     </div>
   );
 }

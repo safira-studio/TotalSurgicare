@@ -31,6 +31,7 @@ const IconMap = {
   syringe: Syringe,
   "alert-circle": Pill, // Using Pill as a fallback for alert-circle
 };
+
 type Props = {
   slug: string;
   data: MedicalCondition;
@@ -227,11 +228,11 @@ export default async function Content({ slug, data }: Props) {
                       xmlns="http://www.w3.org/2000/svg"
                     >
                       <path
+                        d="M5 13l4 4L19 7"
                         strokeLinecap="round"
                         strokeLinejoin="round"
                         strokeWidth="2"
-                        d="M5 13l4 4L19 7"
-                      ></path>
+                       />
                     </svg>
                   </div>
                   <div>
@@ -251,8 +252,8 @@ export default async function Content({ slug, data }: Props) {
       <section className="py-12 lg:px-10 bg-white">
         <div className="container mx-auto px-4">
           <SectionTitle
-            title={"Surgical Treatment Options"}
             subtitle="Our advanced surgical procedures provide effective, long-term relief"
+            title={"Surgical Treatment Options"}
           />
 
           {/* Mobile Carousel View */}
@@ -262,12 +263,12 @@ export default async function Content({ slug, data }: Props) {
                 {data.treatments.surgical.map((treatment, index) => (
                   <CarouselItem key={index} className="flex justify-center">
                     <TreatmentCard
-                      name={treatment.name}
-                      description={treatment.description}
-                      benefits={treatment.benefits}
-                      recoveryTime={treatment.recoveryTime}
                       anesthesia={treatment.anesthesia}
+                      benefits={treatment.benefits}
+                      description={treatment.description}
                       isFeatured={index === 0}
+                      name={treatment.name}
+                      recoveryTime={treatment.recoveryTime}
                     />
                   </CarouselItem>
                 ))}
@@ -284,12 +285,12 @@ export default async function Content({ slug, data }: Props) {
             {data.treatments.surgical.map((treatment, index) => (
               <TreatmentCard
                 key={index}
-                name={treatment.name}
-                description={treatment.description}
-                benefits={treatment.benefits}
-                recoveryTime={treatment.recoveryTime}
                 anesthesia={treatment.anesthesia}
+                benefits={treatment.benefits}
+                description={treatment.description}
                 isFeatured={index === 0}
+                name={treatment.name}
+                recoveryTime={treatment.recoveryTime}
               />
             ))}
           </div>
@@ -298,7 +299,7 @@ export default async function Content({ slug, data }: Props) {
 
       <Diagnosis {...data.diagnosis} slug={slug} />
       <ConditionTypes name={data.name} types={data.types} />
-      <Treatment whyUs={data.whyChooseUs} name={data.name} />
+      <Treatment name={data.name} whyUs={data.whyChooseUs} />
     </div>
   );
 }

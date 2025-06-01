@@ -27,11 +27,11 @@ const DoctorCard = ({
     <Card className="overflow-hidden transition-all hover:shadow-lg bg-white">
       <div className="aspect-[3/4] w-full relative overflow-hidden">
         <Image
-          width={100}
-          height={100}
-          src={image}
           alt={`Dr. ${name}`}
           className="w-full h-full object-cover transition-transform hover:scale-105"
+          height={100}
+          src={image}
+          width={100}
         />
         <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4">
           <h3 className="text-white text-lg font-semibold">{name}</h3>
@@ -42,24 +42,24 @@ const DoctorCard = ({
         <div className="space-y-3">
           {education && (
             <div className="flex items-start gap-2 text-sm">
-              <User size={18} className="text-clinic-primary mt-0.5" />
+              <User className="text-clinic-primary mt-0.5" size={18} />
               <span>{education}</span>
             </div>
           )}
 
           {experience && (
             <div className="flex items-start gap-2 text-sm">
-              <Calendar size={18} className="text-clinic-primary mt-0.5" />
+              <Calendar className="text-clinic-primary mt-0.5" size={18} />
               <span>{experience}</span>
             </div>
           )}
 
           {email && (
             <div className="flex items-start gap-2 text-sm">
-              <Mail size={18} className="text-clinic-primary mt-0.5" />
+              <Mail className="text-clinic-primary mt-0.5" size={18} />
               <a
-                href={`mailto:${email}`}
                 className="hover:text-clinic-primary transition-colors"
+                href={`mailto:${email}`}
               >
                 {email}
               </a>
@@ -68,10 +68,10 @@ const DoctorCard = ({
 
           {phone && (
             <div className="flex items-start gap-2 text-sm">
-              <Phone size={18} className="text-clinic-primary mt-0.5" />
+              <Phone className="text-clinic-primary mt-0.5" size={18} />
               <a
-                href={`tel:${phone}`}
                 className="hover:text-clinic-primary transition-colors"
+                href={`tel:${phone}`}
               >
                 {phone}
               </a>
@@ -81,8 +81,8 @@ const DoctorCard = ({
 
         <div className="mt-4">
           <Button
-            variant="outline"
             className="w-full border-clinic-primary text-clinic-primary hover:bg-clinic-primary hover:text-white"
+            variant="outline"
           >
             Book Appointment
           </Button>

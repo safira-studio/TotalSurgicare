@@ -86,19 +86,19 @@ const TwentyFourSevenAssistance = () => {
               </p>
               <ul className="space-y-2 text-gray-700">
                 <li className="flex items-center gap-2">
-                  <div className="w-2 h-2 bg-purple-600 rounded-full"></div>
+                  <div className="w-2 h-2 bg-purple-600 rounded-full" />
                   Immediate triage and assessment
                 </li>
                 <li className="flex items-center gap-2">
-                  <div className="w-2 h-2 bg-purple-600 rounded-full"></div>
+                  <div className="w-2 h-2 bg-purple-600 rounded-full" />
                   Direct communication with care team
                 </li>
                 <li className="flex items-center gap-2">
-                  <div className="w-2 h-2 bg-purple-600 rounded-full"></div>
+                  <div className="w-2 h-2 bg-purple-600 rounded-full" />
                   Emergency intervention when needed
                 </li>
                 <li className="flex items-center gap-2">
-                  <div className="w-2 h-2 bg-purple-600 rounded-full"></div>
+                  <div className="w-2 h-2 bg-purple-600 rounded-full" />
                   Family support and guidance
                 </li>
               </ul>
@@ -114,7 +114,7 @@ const TwentyFourSevenAssistance = () => {
                 <p className="max-sm:text-sm text-gray-600 mb-4">
                   Available 24 hours, 365 days a year
                 </p>
-                <Link href={`tel:${siteConfig.contact.phone.primary}`} passHref>
+                <Link passHref href={`tel:${siteConfig.contact.phone.primary}`}>
                   <Button className="bg-clinic-primary hover:bg-purple-700">
                     Contact Support
                   </Button>

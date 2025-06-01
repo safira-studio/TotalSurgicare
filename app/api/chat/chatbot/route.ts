@@ -33,6 +33,7 @@ export async function POST(req: Request) {
     });
   } catch (error) {
     console.error("Error in chat route:", error);
+
     return NextResponse.json(
       { error: "Internal server error" },
       { status: 500 }

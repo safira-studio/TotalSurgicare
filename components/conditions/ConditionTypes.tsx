@@ -40,6 +40,7 @@ const ConditionTypes = ({
             <tbody>
               {types.map((item, index) => {
                 const [title, detail] = item.procedure.split(" - ");
+
                 return (
                   <tr key={index} className="hover:bg-gray-50">
                     <td className="font-medium text-clinic-primary px-4 py-3 whitespace-nowrap">
@@ -63,6 +64,7 @@ const ConditionTypes = ({
         <div className="md:hidden space-y-4">
           {types.map((item, index) => {
             const [title, detail] = item.procedure.split(" - ");
+
             return (
               <div
                 key={index}

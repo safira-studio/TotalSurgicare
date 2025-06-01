@@ -14,7 +14,7 @@ export default function NotFound() {
               <h1 className="text-8xl font-bold text-clinic-primary mb-4">
                 404
               </h1>
-              <div className="w-24 h-1 bg-clinic-primary mx-auto rounded-full"></div>
+              <div className="w-24 h-1 bg-clinic-primary mx-auto rounded-full" />
             </div>
 
             {/* Error Message */}
@@ -35,8 +35,8 @@ export default function NotFound() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <Link href={"/"}>
                 <Button
-                  className="flex items-center gap-2 px-6 py-3 bg-clinic-secondary hover:bg-clinic-secondaryDark"
                   aria-label="home button"
+                  className="flex items-center gap-2 px-6 py-3 bg-clinic-secondary hover:bg-clinic-secondaryDark"
                 >
                   <Home className="w-4 h-4" />
                   Return Home
@@ -49,8 +49,8 @@ export default function NotFound() {
               <p className="text-sm text-gray-500">
                 Need medical assistance?
                 <a
-                  href="/contact"
                   className="text-clinic-primary hover:text-clinic-primary/80 ml-1 underline"
+                  href="/contact"
                 >
                   Contact us for help.
                 </a>

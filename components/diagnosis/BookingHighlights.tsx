@@ -89,9 +89,9 @@ const BookingHighlights = () => {
           </p>
           <div className="flex flex-wrap justify-center gap-4 ">
             <Button
-              variant="outline"
-              size="lg"
               className="border-white text-clinic-primary hover:bg-white hover:text-clinic-dark"
+              size="lg"
+              variant="outline"
             >
               Book Now
             </Button>

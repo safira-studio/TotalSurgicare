@@ -63,34 +63,32 @@ const ContactForm = () => {
               <h3 className="text-xl font-onest mb-6">Contact Information</h3>
 
               <ContactInfo
-                icon={<Phone size={18} />}
-                title="Phone Number"
                 content={
                   <a
-                    href="tel:+1234567890"
                     className="hover:text-clinic-primary transition-colors"
+                    href="tel:+1234567890"
                   >
                     {siteConfig.contact.phone.primary}
                   </a>
                 }
+                icon={<Phone size={18} />}
+                title="Phone Number"
               />
 
               <ContactInfo
-                icon={<Mail size={18} />}
-                title="Email Address"
                 content={
                   <a
-                    href="mailto:info@totalsurgicare.com"
                     className="hover:text-clinic-primary transition-colors"
+                    href="mailto:info@totalsurgicare.com"
                   >
                     {siteConfig.contact.email.primary}
                   </a>
                 }
+                icon={<Mail size={18} />}
+                title="Email Address"
               />
 
               <ContactInfo
-                icon={<MapPin size={18} />}
-                title="Office Location"
                 content={
                   <>
                     Address: {siteConfig.contact.address.street},{" "}
@@ -99,18 +97,20 @@ const ContactForm = () => {
                     {siteConfig.contact.address.pincode},{" "}
                   </>
                 }
+                icon={<MapPin size={18} />}
+                title="Office Location"
               />
 
               <ContactInfo
-                icon={<MessageSquare size={18} />}
-                title="Social Media"
                 content={
                   <div className="flex mt-1">
-                    <Facebook size={18} className="mr-2" />
-                    <Twitter size={18} className="mr-2" />
-                    <Instagram size={18} className="mr-2" />
+                    <Facebook className="mr-2" size={18} />
+                    <Twitter className="mr-2" size={18} />
+                    <Instagram className="mr-2" size={18} />
                   </div>
                 }
+                icon={<MessageSquare size={18} />}
+                title="Social Media"
               />
             </Card>
           </div>
@@ -119,67 +119,67 @@ const ContactForm = () => {
             <Card className="p-8 border-2 border-clinic-primary">
               <h3 className="text-xl font-onest mb-6">Send us a Message</h3>
 
-              <form onSubmit={handleSubmit} className="space-y-4">
+              <form className="space-y-4" onSubmit={handleSubmit}>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="space-y-2">
                     <label
-                      htmlFor="name"
                       className="text-sm font-medium text-gray-700"
+                      htmlFor="name"
                     >
                       Full Name
                     </label>
-                    <Input id="name" placeholder="Your name" required />
+                    <Input required id="name" placeholder="Your name" />
                   </div>
 
                   <div className="space-y-2">
                     <label
-                      htmlFor="email"
                       className="text-sm font-medium text-gray-700"
+                      htmlFor="email"
                     >
                       Email Address
                     </label>
                     <Input
-                      id="email"
-                      type="email"
-                      placeholder="Your email"
                       required
+                      id="email"
+                      placeholder="Your email"
+                      type="email"
                     />
                   </div>
                 </div>
 
                 <div className="space-y-2">
                   <label
-                    htmlFor="subject"
                     className="text-sm font-medium text-gray-700"
+                    htmlFor="subject"
                   >
                     Subject
                   </label>
                   <Input
+                    required
                     id="subject"
                     placeholder="How can we help you?"
-                    required
                   />
                 </div>
 
                 <div className="space-y-2">
                   <label
-                    htmlFor="message"
                     className="text-sm font-medium text-gray-700"
+                    htmlFor="message"
                   >
                     Your Message
                   </label>
                   <Textarea
+                    required
                     id="message"
                     placeholder="Please share the details of your request..."
                     rows={5}
-                    required
                   />
                 </div>
 
                 <div className="pt-2">
                   <Button
-                    type="submit"
                     className="bg-clinic-primary hover:bg-clinic-dark w-full md:w-auto"
+                    type="submit"
                   >
                     Send Message
                   </Button>

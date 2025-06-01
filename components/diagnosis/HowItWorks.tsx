@@ -88,8 +88,8 @@ const HowItWorks = () => {
 
               {index < steps.length - 1 && (
                 <div className="hidden lg:block absolute top-1/2 -right-3 transform -translate-y-1/2 z-10">
-                  <div className="w-6 h-0.5 bg-blue-300"></div>
-                  <div className="absolute right-0 top-1/2 transform -translate-y-1/2 w-0 h-0 border-l-4 border-l-blue-300 border-t-2 border-t-transparent border-b-2 border-b-transparent"></div>
+                  <div className="w-6 h-0.5 bg-blue-300" />
+                  <div className="absolute right-0 top-1/2 transform -translate-y-1/2 w-0 h-0 border-l-4 border-l-blue-300 border-t-2 border-t-transparent border-b-2 border-b-transparent" />
                 </div>
               )}
             </div>
@@ -108,17 +108,17 @@ const HowItWorks = () => {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href={"/contact"}>
                 <Button
-                  size="lg"
                   className="bg-white text-clinic-primary hover:bg-clinic-dark border-clinic-primary border-2 hover:text-white px-8 py-3"
+                  size="lg"
                 >
                   Schedule Consultation
                 </Button>
               </Link>
               <Link href={`tel:${siteConfig.contact.phone.primary}`}>
                 <Button
+                  className=" text-clinic-primary hover:bg-white border-clinic-primary border-2 hover:text-clinic-dark px-8 py-3"
                   size="lg"
                   variant="outline"
-                  className=" text-clinic-primary hover:bg-white border-clinic-primary border-2 hover:text-clinic-dark px-8 py-3"
                 >
                   Call Now: {siteConfig.contact.phone.primary}
                 </Button>

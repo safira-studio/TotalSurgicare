@@ -29,12 +29,12 @@ export const Navbar = () => {
 
   return (
     <HeroUINavbar
-      maxWidth="2xl"
-      // position="sticky"
-      className="xl:px-10"
       shouldHideOnScroll
       isMenuOpen={isMenuOpen}
       onMenuOpenChange={setIsMenuOpen}
+      maxWidth="2xl"
+      // position="sticky"
+      className="xl:px-10"
     >
       <NavbarContent
         // className="basis-1/5 sm:basis-1/3 lg:basis-1/5"
@@ -43,11 +43,11 @@ export const Navbar = () => {
         <NavbarBrand as="li" className="gap-3 max-w-fit">
           <NextLink href="/">
             <Image
-              src={"/logo.png"}
               alt="Logo"
-              width={90}
-              height={90}
               className="min-w-24"
+              height={90}
+              src={"/logo.png"}
+              width={90}
             />
           </NextLink>
         </NavbarBrand>
@@ -65,12 +65,12 @@ export const Navbar = () => {
             >
               <NextLink
                 className="flex items-center cursor-pointer py-2"
-                onMouseEnter={() => setOpenDropdown(item.title)}
                 href={
                   item.items.length == 0
                     ? `/${item.title.toLowerCase().replace(/\s+/g, "-")}`
                     : "#"
                 }
+                onMouseEnter={() => setOpenDropdown(item.title)}
               >
                 <span
                   className={clsx(
@@ -95,11 +95,11 @@ export const Navbar = () => {
                   {item.items.map((subItem, subIndex) => (
                     <NextLink
                       key={`${subItem}-${subIndex}`}
+                      className="block px-4 py-2 text-sm hover:bg-clinic-accent/10 hover:text-clinic-primary transition-colors duration-200"
                       href={`/conditions/${subItem
                         .toLowerCase()
                         .replace(/\s+/g, "-")
                         .replace(/[^a-z0-9-]/g, "")}`}
-                      className="block px-4 py-2 text-sm hover:bg-clinic-accent/10 hover:text-clinic-primary transition-colors duration-200"
                     >
                       {subItem}
                     </NextLink>
@@ -125,8 +125,8 @@ export const Navbar = () => {
           {siteConfig.navItems.map((item, index) => (
             <div key={`${item.title}-${index}`} className="mb-2">
               <Button
-                variant={"ghost"}
                 className="flex items-center justify-between hover:bg-transparent"
+                variant={"ghost"}
                 onClick={() => handleMobileSectionToggle(item.title)}
               >
                 <NavbarMenuItem>
@@ -159,11 +159,11 @@ export const Navbar = () => {
                   {item.items.map((subItem, subIndex) => (
                     <NavbarMenuItem key={`${subItem}-${subIndex}`}>
                       <NextLink
+                        className="text-sm"
                         href={`/conditions/${subItem
                           .toLowerCase()
                           .replace(/\s+/g, "-")
                           .replace(/[^a-z0-9-]/g, "")}`}
-                        className="text-sm"
                         onClick={() => setIsMenuOpen(!isMenuOpen)}
                       >
                         {subItem}
@@ -191,9 +191,9 @@ const LucideHamburger = ({
   onToggle: () => void;
 }) => (
   <button
-    onClick={onToggle}
     aria-label="Nav button"
     className="relative w-6 h-6 hover:text-clinic-primary"
+    onClick={onToggle}
   >
     <Menu
       className={`absolute inset-0 transition-all duration-300  ${

@@ -177,8 +177,8 @@ const AffordableTreatment = () => {
                 </Button>
               </Link>
               <Button
-                variant="outline"
                 className="w-full border-clinic-primary text-clinic-primary hover:bg-clinic-dark/20 hover:text-clinic-primary"
+                variant="outline"
               >
                 Download Pricing Guide
               </Button>

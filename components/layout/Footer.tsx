@@ -24,11 +24,11 @@ const Footer = () => {
           {/* Logo and Description */}
           <div className="space-y-4 w-2/3 lg:w-full">
             <Image
-              src={"/logo.png"}
               alt="Logo"
-              width={200}
-              height={100}
               className="min-w-24"
+              height={100}
+              src={"/logo.png"}
+              width={200}
             />
             <p className="text-gray-300 text-sm">
               Providing quality healthcare services with advanced technology and
@@ -36,34 +36,34 @@ const Footer = () => {
             </p>
             <div className="flex space-x-3">
               <Button
-                size="icon"
-                variant="ghost"
                 aria-label="social"
                 className="rounded-full hover:bg-clinic-primary hover:text-white"
+                size="icon"
+                variant="ghost"
               >
                 <Facebook size={18} />
               </Button>
               <Button
-                size="icon"
                 aria-label="social"
-                variant="ghost"
                 className="rounded-full hover:bg-clinic-primary hover:text-white"
+                size="icon"
+                variant="ghost"
               >
                 <Instagram size={18} />
               </Button>
               <Button
-                size="icon"
-                variant="ghost"
                 aria-label="social"
                 className="rounded-full hover:bg-clinic-primary hover:text-white"
+                size="icon"
+                variant="ghost"
               >
                 <Twitter size={18} />
               </Button>
               <Button
-                size="icon"
-                variant="ghost"
                 aria-label="social"
                 className="rounded-full hover:bg-clinic-primary hover:text-white"
+                size="icon"
+                variant="ghost"
               >
                 <Linkedin size={18} />
               </Button>
@@ -77,40 +77,40 @@ const Footer = () => {
               <ul className="space-y-2">
                 <li>
                   <Link
-                    href="/"
                     className="text-gray-300 hover:text-white text-sm transition-colors"
+                    href="/"
                   >
                     Home
                   </Link>
                 </li>
                 <li>
                   <Link
-                    href="/aboutus"
                     className="text-gray-300 hover:text-white text-sm transition-colors"
+                    href="/aboutus"
                   >
                     About Us
                   </Link>
                 </li>
                 <li>
                   <Link
-                    href="/contact"
                     className="text-gray-300 hover:text-white text-sm transition-colors"
+                    href="/contact"
                   >
                     Contact
                   </Link>
                 </li>
                 <li>
                   <Link
-                    href="/terms-conditions"
                     className="text-gray-300 hover:text-white text-sm transition-colors"
+                    href="/terms-conditions"
                   >
                     Terms and Conditions
                   </Link>
                 </li>
                 <li>
                   <Link
-                    href="/privacy-policy"
                     className="text-gray-300 hover:text-white text-sm transition-colors"
+                    href="/privacy-policy"
                   >
                     Privacy Policy
                   </Link>
@@ -124,40 +124,40 @@ const Footer = () => {
               <ul className="space-y-2">
                 <li>
                   <Link
-                    href="/conditions/fissure-treatment"
                     className="text-gray-300 hover:text-white text-sm transition-colors"
+                    href="/conditions/fissure-treatment"
                   >
                     Fissure Treatment
                   </Link>
                 </li>
                 <li>
                   <Link
-                    href="/conditions/hernia-surgery"
                     className="text-gray-300 hover:text-white text-sm transition-colors"
+                    href="/conditions/hernia-surgery"
                   >
                     Hernia Surgery
                   </Link>
                 </li>
                 <li>
                   <Link
-                    href="/conditions/piles-treatment"
                     className="text-gray-300 hover:text-white text-sm transition-colors"
+                    href="/conditions/piles-treatment"
                   >
                     Piles Treatment
                   </Link>
                 </li>
                 <li>
                   <Link
-                    href="/cardiology"
                     className="text-gray-300 hover:text-white text-sm transition-colors"
+                    href="/cardiology"
                   >
                     Cardiology
                   </Link>
                 </li>
                 <li>
                   <Link
-                    href="/diagnostic"
                     className="text-gray-300 hover:text-white text-sm transition-colors"
+                    href="/diagnostic"
                   >
                     Diagnostic
                   </Link>
@@ -176,7 +176,7 @@ const Footer = () => {
                   </div>
                   <span className="text-gray-300">
                     {siteConfig.contact.phone.primary}
-                    <br></br>
+                    <br />
                     {siteConfig.contact.phone.secondary}{" "}
                   </span>
                 </div>

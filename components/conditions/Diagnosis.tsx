@@ -38,11 +38,11 @@ const Diagnosis = ({
                           xmlns="http://www.w3.org/2000/svg"
                         >
                           <path
+                            d="M5 13l4 4L19 7"
                             strokeLinecap="round"
                             strokeLinejoin="round"
                             strokeWidth="2"
-                            d="M5 13l4 4L19 7"
-                          ></path>
+                           />
                         </svg>
                       </div>
                       <span className="text-gray-600">{method}</span>
@@ -51,11 +51,11 @@ const Diagnosis = ({
                 </ul>
               </div>
               <Image
-                src={`/conditions/${slug}-2.webp`}
                 alt="Diagnostic procedure"
                 className="rounded-lg shadow-md w-full max-w-md mx-auto"
-                width={100}
                 height={100}
+                src={`/conditions/${slug}-2.webp`}
+                width={100}
               />
             </div>
           </div>

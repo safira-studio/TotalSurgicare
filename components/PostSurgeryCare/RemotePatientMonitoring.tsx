@@ -107,7 +107,7 @@ const RemotePatientMonitoring = () => {
               <div className="space-y-4">
                 <div className="flex items-start gap-3">
                   <div className="w-6 h-6 bg-orange-100 rounded-full flex items-center justify-center mt-0.5">
-                    <div className="w-2 h-2 bg-orange-600 rounded-full"></div>
+                    <div className="w-2 h-2 bg-orange-600 rounded-full" />
                   </div>
                   <div>
                     <h4 className="font-semibold text-clinic-secondary">
@@ -120,7 +120,7 @@ const RemotePatientMonitoring = () => {
                 </div>
                 <div className="flex items-start gap-3">
                   <div className="w-6 h-6 bg-orange-100 rounded-full flex items-center justify-center mt-0.5">
-                    <div className="w-2 h-2 bg-orange-600 rounded-full"></div>
+                    <div className="w-2 h-2 bg-orange-600 rounded-full" />
                   </div>
                   <div>
                     <h4 className="font-semibold text-clinic-secondary">
@@ -133,7 +133,7 @@ const RemotePatientMonitoring = () => {
                 </div>
                 <div className="flex items-start gap-3">
                   <div className="w-6 h-6 bg-orange-100 rounded-full flex items-center justify-center mt-0.5">
-                    <div className="w-2 h-2 bg-orange-600 rounded-full"></div>
+                    <div className="w-2 h-2 bg-orange-600 rounded-full" />
                   </div>
                   <div>
                     <h4 className="font-semibold text-blue-900">

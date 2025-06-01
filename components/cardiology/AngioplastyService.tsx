@@ -38,7 +38,7 @@ const AngioplastyService = () => {
             </div>
             <div className="absolute -top-3 -left-3 md:-top-6 md:-left-6 bg-white rounded-lg shadow-lg p-2 md:p-4 border border-emerald-200">
               <div className="flex items-center space-x-2">
-                <div className="h-3 w-3 bg-emerald-500 rounded-full"></div>
+                <div className="h-3 w-3 bg-emerald-500 rounded-full" />
                 <span className="text-sm font-medium text-gray-700">
                   95% Success Rate
                 </span>

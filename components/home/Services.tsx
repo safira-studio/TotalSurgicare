@@ -25,7 +25,7 @@ const ServiceCard = ({
 
         {/* Centered Button */}
         <div className="flex justify-center">
-          <Button variant="link" className="text-clinic-primary p-0 h-auto">
+          <Button className="text-clinic-primary p-0 h-auto" variant="link">
             Make an appointment
           </Button>
         </div>
@@ -75,38 +75,38 @@ const Services = () => {
 
         <div className="grid grid-cols-2 md:grid-cols-3 gap-2 md:gap-4 lg:gap-6 text-center">
           <ServiceCard
-            title="Family medicine"
             description="Comprehensive medical care for adults and children - prevention, diagnosis and treatment of diseases."
-            icon={<Heart size={16} className="text-gray-600" />}
+            icon={<Heart className="text-gray-600" size={16} />}
+            title="Family medicine"
           />
           <BlueServiceCard
-            title="Total Surgicare"
             description="From consultation and diagnosis to treatment with care and attention to detail."
+            title="Total Surgicare"
           />
           <BlueServiceCard
-            title="Women's health"
-            description="Gynecological care, family planning, prenatal health and comprehensive women's healthcare."
             className="md:hidden"
-          />
-          <ServiceCard
-            title="Pediatrics"
-            description="Caring for children's health from the first days of life - check-ups, immunizations, and treatments."
-            icon={<Baby size={16} className="text-gray-600" />}
-          />
-          <BlueServiceCard
-            title="Women's health"
             description="Gynecological care, family planning, prenatal health and comprehensive women's healthcare."
-            className="hidden md:block"
+            title="Women's health"
           />
           <ServiceCard
-            title="Cardiology"
-            description="Diagnosis and treatment of cardiovascular diseases, ECG, monitoring, and consultations."
-            icon={<HeartPulse size={16} className="text-gray-600" />}
+            description="Caring for children's health from the first days of life - check-ups, immunizations, and treatments."
+            icon={<Baby className="text-gray-600" size={16} />}
+            title="Pediatrics"
           />
           <BlueServiceCard
-            title="Ultrasound & Lab"
+            className="hidden md:block"
+            description="Gynecological care, family planning, prenatal health and comprehensive women's healthcare."
+            title="Women's health"
+          />
+          <ServiceCard
+            description="Diagnosis and treatment of cardiovascular diseases, ECG, monitoring, and consultations."
+            icon={<HeartPulse className="text-gray-600" size={16} />}
+            title="Cardiology"
+          />
+          <BlueServiceCard
             description="Fast and accurate tests, modern laboratory diagnostics and ultrasounds
           of various organs."
+            title="Ultrasound & Lab"
           />
         </div>
       </div>
@@ -115,7 +115,7 @@ const Services = () => {
           We provide a full range of medical services — from consultation to
           diagnosis and treatment.
         </p>
-        <Button variant="link" className="text-clinic-primary p-0 h-auto">
+        <Button className="text-clinic-primary p-0 h-auto" variant="link">
           See all services
         </Button>
       </div>

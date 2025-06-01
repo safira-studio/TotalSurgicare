@@ -27,11 +27,11 @@ const InfoSection = ({
             {/* Image Grid */}
 
             <Image
-              width={100}
-              height={100}
-              src={`/conditions/${slug}-1.webp`}
               alt="Grade 1 Piles"
               className="rounded-xl shadow-md object-cover w-full "
+              height={100}
+              src={`/conditions/${slug}-1.webp`}
+              width={100}
             />
           </div>
         </div>

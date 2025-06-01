@@ -19,18 +19,18 @@ const SpecialtyItem = ({ icon, name, link }: SpecialtyItemProps) => {
             {name}
           </h3>
           <Image
-            width={100}
-            height={100}
-            src={icon}
             alt={name}
             className="w-12 h-12 sm:w-14 sm:h-14 object-contain rounded-md border border-slate-200 absolute top-0 right-0"
+            height={100}
+            src={icon}
+            width={100}
           />
         </div>
       </div>
       <div className="px-4 sm:px-6 py-3 bg-gradient-to-r from-blue-50 to-indigo-50 flex justify-center">
         <Link
-          href={`/conditions/${link}`}
           className="text-xs sm:text-sm font-medium text-clinic-primary hover:text-clinic-dark transition-colors"
+          href={`/conditions/${link}`}
         >
           Learn about {name}
         </Link>
@@ -132,13 +132,16 @@ const MedicalSpecialties = () => {
   useEffect(() => {
     const getInitialItems = () => {
       const width = window.innerWidth;
+
       if (width < 640) return 6; // mobile: < sm (640px)
       if (width < 1024) return 9; // tablet: sm to lg (640px - 1024px)
+
       return 12; // large: >= lg (1024px+)
     };
 
     const handleResize = () => {
       const newInitialItems = getInitialItems();
+
       setInitialItems(newInitialItems);
       // If currently showing initial amount, update visible items
       if (visibleItems <= initialItems) {
@@ -249,23 +252,23 @@ const MedicalSpecialties = () => {
           ))}
         </div>
 
-        <div className="text-center mt-8" ref={buttonRef}>
+        <div ref={buttonRef} className="text-center mt-8">
           {visibleItems < specialties.length && (
             <Button
-              variant="ghost"
               className="text-sm font-medium text-clinic-primary hover:text-clinic-dark transition-colors disabled:opacity-50 hover:bg-transparent"
-              onClick={handleShowMore}
               disabled={isAnimating}
+              variant="ghost"
+              onClick={handleShowMore}
             >
               {isAnimating ? "Loading..." : "Show More"}
             </Button>
           )}
           {visibleItems > initialItems && (
             <Button
-              variant="ghost"
               className="text-sm font-medium text-clinic-primary hover:text-clinic-dark transition-colors ml-4 disabled:opacity-50 hover:bg-transparent"
-              onClick={handleShowLess}
               disabled={isAnimating}
+              variant="ghost"
+              onClick={handleShowLess}
             >
               {isAnimating ? "Loading..." : "Show Less"}
             </Button>

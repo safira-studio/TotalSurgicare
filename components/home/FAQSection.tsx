@@ -73,16 +73,16 @@ const FAQSection = () => {
         <div className="flex flex-col lg:flex-row gap-4 lg:gap-8">
           <div className="lg:w-2/3 px-3">
             <Accordion
-              type="single"
               collapsible
               className="w-full"
               defaultValue="item-0"
+              type="single"
             >
               {faqs.map((faq, index) => (
                 <AccordionItem
                   key={index}
-                  value={`item-${index}`}
                   className="border-b border-gray-200"
+                  value={`item-${index}`}
                 >
                   <AccordionTrigger className="text-left font-medium hover:text-clinic-primary transition-colors">
                     {faq.question}
@@ -123,8 +123,8 @@ const FAQSection = () => {
                 <div className="pt-4 mt-4 border-t border-white/20">
                   <h4 className="text-lg font-medium mb-2">Email Support</h4>
                   <a
-                    href="mailto:info@totalsurgicare.com"
                     className="text-white underline hover:no-underline"
+                    href="mailto:info@totalsurgicare.com"
                   >
                     {siteConfig.contact.email.primary}
                   </a>

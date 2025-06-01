@@ -115,10 +115,10 @@ export default function Contact() {
                   112 immediately or go to your nearest emergency room.
                 </p>
                 <Button
-                  variant="destructive"
-                  className="bg-red-600 hover:bg-red-700"
-                  onClick={() => window.open("tel:112")}
                   aria-label="call 112"
+                  className="bg-red-600 hover:bg-red-700"
+                  variant="destructive"
+                  onClick={() => window.open("tel:112")}
                 >
                   Call 112
                 </Button>

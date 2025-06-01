@@ -19,11 +19,11 @@ const Procedure = ({
 
             <div className="grid md:grid-cols-2 gap-8 items-center">
               <Image
-                width={100}
-                height={100}
-                src="/placeholder.svg"
                 alt="Procedure illustration"
                 className="rounded-lg shadow-md w-full max-w-md mx-auto order-2 md:order-1"
+                height={100}
+                src="/placeholder.svg"
+                width={100}
               />
               <div className="space-y-4 order-1 md:order-2">
                 <h3 className="text-xl font-semibold text-gray-800">

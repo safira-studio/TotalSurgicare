@@ -9,10 +9,12 @@ type Props = {
 export default async function ConditionsPage({ params }: Props) {
   const { slug } = await params;
   const data = await getDataFromSlug(slug);
+
   if (!data) {
     notFound(); // shows 404 page
   }
-  return <Content slug={slug} data={data} />;
+
+  return <Content data={data} slug={slug} />;
 }
 
 async function getDataFromSlug(slug: string) {
@@ -20,9 +22,11 @@ async function getDataFromSlug(slug: string) {
     const dataKey = slug.replace(/-([a-z])/g, (_, letter) =>
       letter.toUpperCase()
     );
+
     return allData[dataKey as keyof typeof allData] || null;
   } catch (error) {
     console.error(`Error fetching data for slug ${slug}:`, error);
+
     return null;
   }
 }

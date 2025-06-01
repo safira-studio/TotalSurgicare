@@ -66,24 +66,24 @@ const WhyChooseUs = () => {
             <div className="absolute right-0 bottom-0 hidden sm:block sm:max-w-[20rem] lg:max-w-none">
               <div className="">
                 <Image
-                  width={500}
-                  height={250}
-                  src="/doctor4.png"
                   alt="Medical team"
                   className="transform scale-x-[-1] "
+                  height={250}
+                  src="/doctor4.png"
+                  width={500}
                 />
               </div>
               <FeatureBadge
-                label="Experienced Doctors"
                 className="absolute top-40 -left-10"
+                label="Experienced Doctors"
               />
               <FeatureBadge
-                label="Certified Clinic"
                 className="absolute top-56 right-10"
+                label="Certified Clinic"
               />
               <FeatureBadge
-                label="Modern Equipment"
                 className="absolute bottom-24 left-10"
+                label="Modern Equipment"
               />
             </div>
           </div>
@@ -92,55 +92,55 @@ const WhyChooseUs = () => {
           {/* <div className=" bg-white rounded-lg "> */}
           <div className="w-full lg:w-1/2 grid grid-cols-2 gap-4 p-8">
             <StatItem
-              value={
-                <NumberTicker
-                  value={10}
-                  decimalPlaces={0}
-                  className="text-5xl font-semibold text-clinic-primary"
-                />
-              }
-              label="Years of experience"
+              color="text-clinic-primary"
               description="We have been working since 2012, improving the quality every day."
-              color="text-clinic-primary"
+              label="Years of experience"
+              value={
+                <NumberTicker
+                  className="text-5xl font-semibold text-clinic-primary"
+                  decimalPlaces={0}
+                  value={10}
+                />
+              }
             />
 
             <StatItem
-              value={
-                <NumberTicker
-                  value={15}
-                  decimalPlaces={0}
-                  className="text-5xl font-semibold text-clinic-primary"
-                />
-              }
-              label="Areas of medicine"
+              color="text-clinic-primary"
               description="From family medicine to cardiology and laboratory diagnostics."
-              color="text-clinic-primary"
+              label="Areas of medicine"
+              value={
+                <NumberTicker
+                  className="text-5xl font-semibold text-clinic-primary"
+                  decimalPlaces={0}
+                  value={15}
+                />
+              }
             />
 
             <StatItem
-              value={
-                <NumberTicker
-                  value={95}
-                  decimalPlaces={0}
-                  className="text-5xl font-semibold text-clinic-primary"
-                />
-              }
-              label="Satisfied patients"
+              color="text-clinic-primary"
               description="According to internal surveys over the past year."
-              color="text-clinic-primary"
+              label="Satisfied patients"
+              value={
+                <NumberTicker
+                  className="text-5xl font-semibold text-clinic-primary"
+                  decimalPlaces={0}
+                  value={95}
+                />
+              }
             />
 
             <StatItem
+              color="text-clinic-primary"
+              description="Thanks to modern equipment and experienced specialists."
+              label="Diagnostic accuracy"
               value={
                 <NumberTicker
-                  value={98}
-                  decimalPlaces={0}
                   className="text-5xl font-semibold text-clinic-primary"
+                  decimalPlaces={0}
+                  value={98}
                 />
               }
-              label="Diagnostic accuracy"
-              description="Thanks to modern equipment and experienced specialists."
-              color="text-clinic-primary"
             />
           </div>
           {/* </div> */}

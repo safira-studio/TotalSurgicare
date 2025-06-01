@@ -167,7 +167,7 @@ const CorporateTestingServices = () => {
                         key={testIndex}
                         className="flex items-center text-sm text-gray-700"
                       >
-                        <div className="h-2 w-2 bg-clinic-primary rounded-full mr-3"></div>
+                        <div className="h-2 w-2 bg-clinic-primary rounded-full mr-3" />
                         {test}
                       </li>
                     ))}

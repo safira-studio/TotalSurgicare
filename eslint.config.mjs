@@ -100,12 +100,12 @@ export default defineConfig([
       "jsx-a11y/click-events-have-key-events": "error",
       "jsx-a11y/interactive-supports-focus": "error",
       "prettier/prettier": "off",
-      "no-unused-vars": "error",
-      "unused-imports/no-unused-vars": "off",
-      "unused-imports/no-unused-imports": "off",
+      "no-unused-vars": "off",
+      "unused-imports/no-unused-vars": "error",
+      "unused-imports/no-unused-imports": "error",
 
       "@typescript-eslint/no-unused-vars": [
-        "off",
+        "error",
         {
           args: "after-used",
           ignoreRestSiblings: false,
@@ -139,7 +139,7 @@ export default defineConfig([
         },
       ],
 
-      "react/self-closing-comp": "off",
+      "react/self-closing-comp": "error",
 
       "react/jsx-sort-props": [
         "off",
@@ -152,7 +152,7 @@ export default defineConfig([
       ],
 
       "padding-line-between-statements": [
-        "off",
+        "error",
         {
           blankLine: "always",
           prev: "*",

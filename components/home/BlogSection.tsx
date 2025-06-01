@@ -36,17 +36,17 @@ const BlogCard = ({
     <Card className="overflow-hidden transition-all duration-300 hover:shadow-lg bg-white h-full flex flex-col">
       <div className="w-full h-48 overflow-hidden">
         <Image
-          width={100}
-          height={100}
-          src={image || "/placeholder.svg"}
           alt={title}
           className="w-full h-full object-cover transition-transform hover:scale-105"
+          height={100}
+          src={image || "/placeholder.svg"}
+          width={100}
         />
       </div>
       <CardContent className="flex-grow p-6">
         <Badge
-          variant="outline"
           className="mb-2 bg-blue-50 text-clinic-primary"
+          variant="outline"
         >
           {category}
         </Badge>
@@ -56,21 +56,21 @@ const BlogCard = ({
         <p className="text-gray-600 line-clamp-3 mb-4">{excerpt}</p>
         <div className="flex items-center text-sm text-gray-500 space-x-4">
           <div className="flex items-center">
-            <Calendar size={14} className="mr-1" />
+            <Calendar className="mr-1" size={14} />
             <span>{date}</span>
           </div>
           <div className="flex items-center">
-            <User size={14} className="mr-1" />
+            <User className="mr-1" size={14} />
             <span>{author}</span>
           </div>
         </div>
       </CardContent>
       <CardFooter className="pt-0 pb-6 px-6">
         <Link
-          href={`#`}
           className="text-clinic-primary font-medium flex items-center hover:underline"
+          href={`#`}
         >
-          Read more <ArrowRight size={16} className="ml-2" />
+          Read more <ArrowRight className="ml-2" size={16} />
         </Link>
       </CardFooter>
     </Card>
@@ -149,11 +149,11 @@ const BlogSection = () => {
 
         <div className="relative px-4 md:px-10">
           <Carousel
+            className="w-full"
             opts={{
               align: "start",
               slidesToScroll: 1,
             }}
-            className="w-full"
           >
             <CarouselContent className="-ml-2 md:-ml-4">
               {blogPosts.map((post, index) => (
@@ -173,8 +173,8 @@ const BlogSection = () => {
         </div>
         <div className="mt-4 md:mt-0 flex justify-center w-full">
           <Button
-            variant="outline"
             className="mx-auto  text-clinic-primary hover:bg-clinic-primary hover:text-white"
+            variant="outline"
           >
             View All Articles
           </Button>
@@ -188,9 +188,9 @@ const BlogSection = () => {
           {/* <div className=" mx-auto"> */}
           <div className="bg-white flex justify-center w-fit md:w-3/5 lg:w-2/5 h-fit p-0 overflow-hidden mx-auto rounded-md border border-gray-300  focus-within:ring-2 focus-within:ring-blue-200 transition-all min-w-0">
             <input
-              type="email"
-              placeholder="Enter your email"
               className="w-full min-w-0 px-1 md:px-3 gap-2 text-gray-700 focus:outline-none"
+              placeholder="Enter your email"
+              type="email"
             />
             <button className="bg-clinic-primary hover:bg-clinic-dark text-white font-medium px-2 md:px-4 py-2 ml-2  transition-colors">
               Subscribe

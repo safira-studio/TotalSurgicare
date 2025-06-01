@@ -93,6 +93,7 @@ export default function AppointmentForm({
       });
 
       const result = await res.json();
+
       if (result.success) {
         setSubmitted(true);
         setSubmittedData(data);
@@ -125,10 +126,10 @@ export default function AppointmentForm({
               xmlns="http://www.w3.org/2000/svg"
             >
               <path
+                d="M5 13l4 4L19 7"
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 strokeWidth={2}
-                d="M5 13l4 4L19 7"
               />
             </svg>
           </div>
@@ -179,10 +180,10 @@ export default function AppointmentForm({
                 viewBox="0 0 24 24"
               >
                 <path
+                  d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
                   strokeLinecap="round"
                   strokeLinejoin="round"
                   strokeWidth={2}
-                  d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
                 />
               </svg>
               <div className="text-left">
@@ -200,14 +201,14 @@ export default function AppointmentForm({
 
           <div className="flex flex-col sm:flex-row gap-3 pt-4">
             <Button
+              aria-label="book appointment"
+              className="flex-1 border-clinic-secondary text-clinic-secondary hover:bg-clinic-secondary hover:text-white"
+              variant="outline"
               onClick={() => {
                 setSubmitted(false);
                 setSubmittedData(null);
                 reset();
               }}
-              aria-label="book appointment"
-              variant="outline"
-              className="flex-1 border-clinic-secondary text-clinic-secondary hover:bg-clinic-secondary hover:text-white"
             >
               Book Another Appointment
             </Button>
@@ -217,7 +218,7 @@ export default function AppointmentForm({
         <>
           <h3 className="text-xl font-onest mb-6">Book an Appointment</h3>
 
-          <form onSubmit={handleSubmit(onSubmit)} className={cn("", formClass)}>
+          <form className={cn("", formClass)} onSubmit={handleSubmit(onSubmit)}>
             <div className="space-y-2">
               <Label className="text-sm font-medium">Select Department</Label>
               <Select
@@ -225,11 +226,11 @@ export default function AppointmentForm({
                 onValueChange={(value) => setValue("specialty", value)}
               >
                 <SelectTrigger
+                  aria-label="select specialty"
                   className={cn(
                     "w-full focus:ring-2 focus:ring-clinic-secondary focus-visible:ring-clinic-secondary",
                     colorClass
                   )}
-                  aria-label="select specialty"
                 >
                   <SelectValue placeholder="Select a specialty" />
                 </SelectTrigger>
@@ -249,16 +250,16 @@ export default function AppointmentForm({
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="name" className="text-sm font-medium">
+              <Label className="text-sm font-medium" htmlFor="name">
                 Full Name
               </Label>
               <Input
-                id="name"
-                placeholder="Your full name"
                 className={cn(
                   "focus:ring-2 focus:ring-clinic-secondary focus-visible:ring-clinic-secondary",
                   colorClass
                 )}
+                id="name"
+                placeholder="Your full name"
                 {...register("name")}
               />
               {errors.name && (
@@ -270,16 +271,16 @@ export default function AppointmentForm({
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
               <div className="space-y-2">
-                <Label htmlFor="phone" className="text-sm font-medium">
+                <Label className="text-sm font-medium" htmlFor="phone">
                   Phone Number
                 </Label>
                 <Input
-                  id="phone"
-                  placeholder="Your phone number"
                   className={cn(
                     "focus:ring-2 focus:ring-clinic-secondary focus-visible:ring-clinic-secondary",
                     colorClass
                   )}
+                  id="phone"
+                  placeholder="Your phone number"
                   {...register("phone")}
                 />
                 {errors.phone && (
@@ -296,11 +297,11 @@ export default function AppointmentForm({
                   onValueChange={(value) => setValue("gender", value)}
                 >
                   <SelectTrigger
+                    aria-label="Select Gender"
                     className={cn(
                       "w-full focus:ring-2 focus:ring-clinic-secondary focus-visible:ring-clinic-secondary",
                       colorClass
                     )}
-                    aria-label="Select Gender"
                   >
                     <SelectValue placeholder="Select gender" />
                   </SelectTrigger>
@@ -318,17 +319,17 @@ export default function AppointmentForm({
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="email" className="text-sm font-medium">
+              <Label className="text-sm font-medium" htmlFor="email">
                 Email Address
               </Label>
               <Input
-                id="email"
-                type="email"
-                placeholder="Your email address"
                 className={cn(
                   "focus:ring-2 focus:ring-clinic-secondary focus-visible:ring-clinic-secondary",
                   colorClass
                 )}
+                id="email"
+                placeholder="Your email address"
+                type="email"
                 {...register("email")}
               />
               {errors.email && (
@@ -339,17 +340,17 @@ export default function AppointmentForm({
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="reason" className="text-sm font-medium">
+              <Label className="text-sm font-medium" htmlFor="reason">
                 Reason for Visit
               </Label>
               <Textarea
-                id="reason"
-                placeholder="Please briefly describe your symptoms or reason for the appointment"
-                rows={3}
                 className={cn(
                   "focus:ring-2 focus:ring-clinic-secondary focus-visible:ring-clinic-secondary",
                   colorClass
                 )}
+                id="reason"
+                placeholder="Please briefly describe your symptoms or reason for the appointment"
+                rows={3}
                 {...register("reason")}
               />
               {errors.reason && (
@@ -361,14 +362,14 @@ export default function AppointmentForm({
 
             <div className="pt-2">
               <Button
-                type="submit"
-                disabled={isSubmitting}
                 aria-label="submit form"
                 className={cn(
                   "w-full bg-clinic-secondary hover:bg-clinic-secondaryDark",
                   buttonClass,
                   isSubmitting && "opacity-50 cursor-not-allowed"
                 )}
+                disabled={isSubmitting}
+                type="submit"
               >
                 {isSubmitting ? "Submitting..." : "Book Appointment"}
               </Button>

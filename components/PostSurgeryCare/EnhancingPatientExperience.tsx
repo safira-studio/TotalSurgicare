@@ -137,8 +137,8 @@ const EnhancingPatientExperience = () => {
 
           <div className="text-center mt-8">
             <Button
-              size="lg"
               className="bg-clinic-primary hover:bg-clinic-primary/90"
+              size="lg"
             >
               Learn More About Our Care Program
             </Button>
