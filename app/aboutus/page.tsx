@@ -3,6 +3,26 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Heart, Users, Award, Target, Shield, Clock } from "lucide-react";
 import Link from "next/link";
+import { Metadata } from "next";
+export const metadata: Metadata = {
+  title: "About Us",
+  description:
+    "Learn about Total Surgicare, a leading surgical care provider in Pune specializing in minimally invasive procedures for various conditions.",
+  openGraph: {
+    title: "About Us - Total Surgicare",
+    description:
+      "Learn about Total Surgicare, a leading surgical care provider in Pune specializing in minimally invasive procedures for various conditions.",
+    url: "https://totalsurgicare.com/aboutus",
+    images: [
+      {
+        url: "https://totalsurgicare.com/logo.webp",
+        width: 800,
+        height: 600,
+        alt: "Total Surgicare About Us",
+      },
+    ],
+  },
+};
 
 const About = () => {
   return (
