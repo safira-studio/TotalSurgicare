@@ -40,8 +40,8 @@ const PostOpCareOverview = () => {
   return (
     <section className="py-16 px-4 bg-white">
       <div className="container mx-auto">
-        <div className="text-left mb-12 flex gap-2">
-          <div>
+        <div className="text-left mb-12 flex  flex-col md:flex-row gap-2">
+          <div className="md:w-1/2">
             <Badge className="bg-blue-100 text-clinic-primary mb-4">
               Post-Operative Excellence
             </Badge>
@@ -58,11 +58,11 @@ const PostOpCareOverview = () => {
               comfort.
             </p>
           </div>
-          <div className="grid grid-cols-3 w-3/5">
+          <div className="grid grid-cols-3 lg:w-3/5">
             {Object.entries(careComponents).map((component, index) => (
               <div
                 key={index}
-                className="my-4 flex flex-col justify-center items-center"
+                className="my-3 md:my-4 flex flex-col justify-center items-center"
               >
                 <Image
                   src={component[1]}
@@ -103,7 +103,7 @@ const PostOpCareOverview = () => {
           ))}
         </div>
 
-        <div className="mt-12 bg-blue-50 rounded-2xl p-8 flex gap-5">
+        <div className="mt-12 bg-blue-50 rounded-2xl p-8 flex flex-col-reverse md:flex-row gap-5">
           <div>
             <Image
               src={"/care-at-home.webp"}
@@ -113,7 +113,7 @@ const PostOpCareOverview = () => {
               className="mx-auto w-full rounded-lg"
             />
           </div>
-          <div className="w-1/2 flex justify-center flex-col">
+          <div className="md:w-1/2 flex justify-center flex-col">
             <h3 className="text-xl Md:text-2xl font-bold text-clinic-primary mb-4">
               Why Post-Operative Care Matters
             </h3>
