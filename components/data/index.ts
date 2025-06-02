@@ -1,5 +1,6 @@
 import { appendectomy } from "./appendicitis";
 import { avFistula } from "./avFitula";
+import { breastAugmentation } from "./breastAgumentation";
 import { breastLump } from "./breastlump";
 import { cataract } from "./catarac";
 import { enlargedProstateSurgery } from "./enlargedProstate";
@@ -39,6 +40,7 @@ export default {
   lipoma,
   sebaceousCyst,
   breastLump,
+  breastAugmentation,
   myomectomy,
   varicoseVeins,
   avFistula,

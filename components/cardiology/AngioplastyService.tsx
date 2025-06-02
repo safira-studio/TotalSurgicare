@@ -1,7 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Circle, Plus } from "lucide-react";
-
+import Image from "next/image";
 const AngioplastyService = () => {
   const advantages = [
     "Minimally invasive procedure",
@@ -25,16 +25,14 @@ const AngioplastyService = () => {
       <div className="container mx-auto">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div className="relative order-2 lg:order-1">
-            <div className="bg-gradient-to-br from-green-100 to-emerald-200 rounded-2xl p-8 h-96 flex items-center justify-center">
-              <div className="text-center">
-                <Plus className="h-24 w-24 text-emerald-600 mx-auto mb-4" />
-                <h3 className="text-2xl font-bold text-emerald-900 mb-2">
-                  Minimally Invasive
-                </h3>
-                <p className="text-emerald-700">
-                  Advanced balloon and stent technology for optimal results
-                </p>
-              </div>
+            <div className="bg-gradient-to-br from-green-100 to-emerald-200 rounded-2xl p-0 h-96 flex items-center justify-center overflow-hidden">
+              <Image
+                src="/cardiology.webp"
+                alt="Cardiology"
+                width={800}
+                height={800}
+                className="rounded-lg w-full h-full object-cover"
+              />
             </div>
             <div className="absolute -top-3 -left-3 md:-top-6 md:-left-6 bg-white rounded-lg shadow-lg p-2 md:p-4 border border-emerald-200">
               <div className="flex items-center space-x-2">
