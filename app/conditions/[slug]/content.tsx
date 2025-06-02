@@ -10,6 +10,12 @@ import {
   ArrowUp,
   Thermometer,
   Syringe,
+  Heart,
+  Bandage,
+  User,
+  Frown,
+  AlertCircle,
+  Cigarette,
 } from "lucide-react";
 import SectionTitle from "@/components/conditions/SectionTitle";
 import TreatmentCard from "@/components/conditions/TreatmentCard";
@@ -28,8 +34,13 @@ const IconMap = {
   image: Image,
   "arrow-up": ArrowUp,
   thermometer: Thermometer,
+  heart: Heart,
+  bandage: Bandage,
+  user: User,
   syringe: Syringe,
-  "alert-circle": Pill, // Using Pill as a fallback for alert-circle
+  "alert-circle": AlertCircle, // Using Pill as a fallback for alert-circle
+  cigarette: Cigarette,
+  frown: Frown,
 };
 
 type Props = {
@@ -45,7 +56,7 @@ export default async function Content({ slug, data }: Props) {
       {/* What is the condition section */}
       <InfoSection {...data.aboutCondition} slug={slug} />
       {/* food triggers */}
-      {data.foodTriggers && (
+      {data.foodTriggers && data.foodTriggers.length > 0 && (
         <div className="mb-16">
           <div className="container mx-auto px-4">
             {" "}
@@ -70,7 +81,7 @@ export default async function Content({ slug, data }: Props) {
       )}
       {/* Symptoms */}
 
-      {data.symptoms && (
+      {data.symptoms && data.symptoms.length > 0 && (
         <div className="mb-16">
           <div className="container mx-auto px-4">
             <h2 className="text-3xl font-onest text-gray-800 mb-6 text-center">
@@ -138,7 +149,7 @@ export default async function Content({ slug, data }: Props) {
       </div>
 
       {/* Risk Factors */}
-      {data.riskFactors && (
+      {data.riskFactors && data.riskFactors.length > 0 && (
         <div className="mb-14">
           <div className="container mx-auto px-4 ">
             <h2 className="text-3xl font-onest text-gray-800 mb-6 text-center">
@@ -174,7 +185,7 @@ export default async function Content({ slug, data }: Props) {
         </div>
       )}
       {/* Complications if Left Untreated */}
-      {data.complications && (
+      {data.complications && data.complications.length > 0 && (
         <div className="mb-16">
           <div className="container mx-auto px-4">
             <h2 className="text-3xl font-onest text-gray-800 mb-6 text-center">
@@ -210,43 +221,44 @@ export default async function Content({ slug, data }: Props) {
         </div>
       )}
       {/* Prevention and Non-Surgical Treatment */}
-      {data.treatments.nonSurgical && (
-        <div className="mb-16 md:px-10 max-sm:px-3">
-          <h2 className="text-3xl text-center font-onest text-gray-800 mb-6">
-            Preventive Measures
-          </h2>
-          <div className="bg-blue-50 rounded-2xl md:rounded-3xl p-6 ">
-            <div className="grid md:grid-cols-2 gap-6">
-              {data.treatments.nonSurgical?.map((measure, index) => (
-                <div key={index} className="flex items-start">
-                  <div className="rounded-full bg-blue-100 p-2 mr-4 mt-1">
-                    <svg
-                      className="w-4 h-4 text-clinic-primary"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M5 13l4 4L19 7"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                       />
-                    </svg>
+      {data.treatments.nonSurgical &&
+        data.treatments.nonSurgical.length > 0 && (
+          <div className="mb-16 md:px-10 max-sm:px-3">
+            <h2 className="text-3xl text-center font-onest text-gray-800 mb-6">
+              Preventive Measures
+            </h2>
+            <div className="bg-blue-50 rounded-2xl md:rounded-3xl p-6 ">
+              <div className="grid md:grid-cols-2 gap-6">
+                {data.treatments.nonSurgical?.map((measure, index) => (
+                  <div key={index} className="flex items-start">
+                    <div className="rounded-full bg-blue-100 p-2 mr-4 mt-1">
+                      <svg
+                        className="w-4 h-4 text-clinic-primary"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M5 13l4 4L19 7"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="2"
+                        />
+                      </svg>
+                    </div>
+                    <div>
+                      <h3 className="font-semibold text-gray-800 mb-1">
+                        {measure.name}
+                      </h3>
+                      <p className="text-gray-600">{measure.description}</p>
+                    </div>
                   </div>
-                  <div>
-                    <h3 className="font-semibold text-gray-800 mb-1">
-                      {measure.name}
-                    </h3>
-                    <p className="text-gray-600">{measure.description}</p>
-                  </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
           </div>
-        </div>
-      )}
+        )}
       {/* sugrical treatment */}
 
       <section className="py-12 lg:px-10 bg-white">
