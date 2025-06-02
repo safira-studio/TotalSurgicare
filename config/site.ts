@@ -38,16 +38,22 @@ export const siteConfig = {
       title: "Gynaecology",
       items: [
         "Hysterectomy",
-        "Hymenoplasty",
-        "Vaginoplasty",
-        "Labiaplasty",
+        // "Hymenoplasty",
+        // "Vaginoplasty",
+        // "Labiaplasty",
         "Myomectomy",
         "PCOS-PCOD Treatment",
       ],
     },
     {
       title: "Aesthetics",
-      items: ["Lipoma", "Sebaceous Cyst", "Breast Lump", "Breast Augmentation"],
+      items: [
+        "Lipoma",
+        "Sebaceous Cyst",
+        "Breast Lump",
+        "Gynecomastia",
+        "Breast Augmentation",
+      ],
     },
     {
       title: "Vascular",

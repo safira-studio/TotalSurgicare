@@ -27,7 +27,7 @@ const InfoSection = ({
             {/* Image Grid */}
 
             <Image
-              alt="Grade 1 Piles"
+              alt="Condition illustration"
               className="rounded-xl shadow-md object-cover w-full "
               height={500}
               src={`/conditions/${slug}-1.webp`}

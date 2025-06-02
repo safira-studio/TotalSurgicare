@@ -7,6 +7,7 @@ import { enlargedProstateSurgery } from "./enlargedProstate";
 import { fissureTreatment } from "./fissure";
 import { fistulaTreatment } from "./fistula";
 import { gallstoneSurgery } from "./gallstone";
+import { gynecomastia } from "./gynecomastia";
 import { herniaSurgery } from "./hernia";
 import { hysterectomy } from "./hysterectomy";
 import { inguinalHerniaSurgery } from "./inguinalhernia";
@@ -41,6 +42,7 @@ export default {
   sebaceousCyst,
   breastLump,
   breastAugmentation,
+  gynecomastia,
   myomectomy,
   varicoseVeins,
   avFistula,

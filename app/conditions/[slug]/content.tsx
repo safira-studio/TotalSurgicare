@@ -16,6 +16,7 @@ import {
   Frown,
   AlertCircle,
   Cigarette,
+  Weight,
 } from "lucide-react";
 import SectionTitle from "@/components/conditions/SectionTitle";
 import TreatmentCard from "@/components/conditions/TreatmentCard";
@@ -41,6 +42,7 @@ const IconMap = {
   "alert-circle": AlertCircle, // Using Pill as a fallback for alert-circle
   cigarette: Cigarette,
   frown: Frown,
+  weight: Weight,
 };
 
 type Props = {
