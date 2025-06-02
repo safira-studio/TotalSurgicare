@@ -29,9 +29,9 @@ const InfoSection = ({
             <Image
               alt="Grade 1 Piles"
               className="rounded-xl shadow-md object-cover w-full "
-              height={100}
+              height={500}
               src={`/conditions/${slug}-1.webp`}
-              width={100}
+              width={500}
             />
           </div>
         </div>
