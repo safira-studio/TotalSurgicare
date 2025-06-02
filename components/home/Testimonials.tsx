@@ -6,7 +6,7 @@ const testimonials = [
   {
     content:
       "The medical team provided exceptional care during my treatment. I felt like I was in safe hands throughout the whole process.",
-    author: "Sarah Johnson",
+    author: "Rahat Sayyed",
     role: "Patient",
     rating: 5,
     image: "/placeholder.svg?height=40&width=40",
@@ -14,7 +14,7 @@ const testimonials = [
   {
     content:
       "The doctors were professional and attentive to my needs. The clinic facilities are modern and clean.",
-    author: "Michael Brown",
+    author: "Akash Patil",
     role: "Patient",
     rating: 5,
     image: "/placeholder.svg?height=40&width=40",
@@ -22,7 +22,7 @@ const testimonials = [
   {
     content:
       "I've been a patient for 3 years and the quality of care has always been excellent. Highly recommended!",
-    author: "Emily Davis",
+    author: "Om Gupta",
     role: "Patient",
     rating: 4,
     image: "/placeholder.svg?height=40&width=40",
@@ -30,7 +30,7 @@ const testimonials = [
   {
     content:
       "The staff is friendly and the wait times are minimal. I appreciate how efficiently the clinic is run.",
-    author: "David Wilson",
+    author: "Faizan Shaikh",
     role: "Patient",
     rating: 5,
     image: "/placeholder.svg?height=40&width=40",
@@ -38,7 +38,7 @@ const testimonials = [
   {
     content:
       "My experience with the specialists was outstanding. They took the time to explain everything clearly.",
-    author: "Jennifer Lee",
+    author: "Manisha Deshmukh",
     role: "Patient",
     rating: 5,
     image: "/placeholder.svg?height=40&width=40",
