@@ -14,7 +14,7 @@ import { lipoma } from "./lipoma";
 import { myomectomy } from "./myomectomy";
 import { pcosPcodTreatment } from "./pcos";
 import { pilesTreatment } from "./piles";
-import { pollonodalSinusTreatment } from "./pilonida";
+import { pilonidalSinusTreatment } from "./pilonida";
 import { rectalProlapse } from "./rectalProlapse";
 import { sebaceousCyst } from "./sebaceousCyst";
 import { staplerCircumcision } from "./stapleCircumcision";
@@ -25,7 +25,7 @@ export default {
   pilesTreatment,
   fistulaTreatment,
   fissureTreatment,
-  pollonodalSinusTreatment,
+  pilonidalSinusTreatment,
   rectalProlapse,
   herniaSurgery,
   gallstoneSurgery,

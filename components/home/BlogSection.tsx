@@ -83,7 +83,7 @@ const BlogSection = () => {
       title: "Maintaining Heart Health: Tips from Cardiologists",
       excerpt:
         "Learn about the latest recommendations for heart health from our top cardiologists, including diet, exercise, and preventative measures.",
-      image: "/placeholder.svg?height=192&width=384",
+      image: "/hearthealth.webp",
       date: "May 15, 2025",
       author: "Dr. Sarah Johnson",
       category: "Cardiology",
@@ -93,7 +93,7 @@ const BlogSection = () => {
       title: "Understanding Childhood Vaccinations",
       excerpt:
         "A comprehensive guide to childhood vaccinations, their importance, and addressing common concerns parents might have.",
-      image: "/placeholder.svg?height=192&width=384",
+      image: "/childvaccine.webp",
       date: "May 10, 2025",
       author: "Dr. Emily Davis",
       category: "Pediatrics",
@@ -103,7 +103,7 @@ const BlogSection = () => {
       title: "Mental Health Awareness: Breaking the Stigma",
       excerpt:
         "Exploring the importance of mental health awareness and how we can work together to break the stigma surrounding mental health issues.",
-      image: "/placeholder.svg?height=192&width=384",
+      image: "/mentalhealth.webp",
       date: "May 5, 2025",
       author: "Dr. Michael Brown",
       category: "Mental Health",
@@ -113,7 +113,7 @@ const BlogSection = () => {
       title: "Nutrition Tips for a Healthy Lifestyle",
       excerpt:
         "Our nutritionists share practical advice on maintaining a balanced diet and making healthier food choices in your daily life.",
-      image: "/placeholder.svg?height=192&width=384",
+      image: "/healthytips.webp",
       date: "April 28, 2025",
       author: "Dr. Jessica Lee",
       category: "Nutrition",
@@ -123,7 +123,7 @@ const BlogSection = () => {
       title: "The Importance of Regular Health Check-ups",
       excerpt:
         "Why preventative care matters and how regular health screenings can help detect potential issues before they become serious.",
-      image: "/placeholder.svg?height=192&width=384",
+      image: "/healthchecup.webp",
       date: "April 20, 2025",
       author: "Dr. Robert Wilson",
       category: "Preventative Care",

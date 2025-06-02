@@ -83,7 +83,7 @@ export default function Contact() {
                     <p className="text-gray-600">
                       {siteConfig.contact.phone.primary}
                       <br />
-                      Emergency: 112
+                      Emergency: 9665551711
                     </p>
                   </div>
                 </div>
@@ -112,10 +112,13 @@ export default function Contact() {
                 </h3>
                 <p className="text-red-700 mb-4">
                   If you&aposre experiencing a medical emergency, please call
-                  112 immediately or go to your nearest emergency room.
+                  9665551712 immediately or go to your nearest emergency room.
                 </p>
-                <Link href="tel:112" className="bg-red-600 hover:bg-red-700">
-                  Call 112
+                <Link
+                  href="tel:9665551711"
+                  className="text-2xl hover:bg-red-400"
+                >
+                  Call 9665551711
                 </Link>
               </CardContent>
             </Card>

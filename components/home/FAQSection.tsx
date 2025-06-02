@@ -49,7 +49,7 @@ const FAQSection = () => {
   ];
 
   const emergencyContacts = [
-    { label: "Emergency Services", value: "112" },
+    { label: "Emergency Services", value: "9665551711" },
     {
       label: "Main Clinic Number",
       value: `${siteConfig.contact.phone.primary}`,

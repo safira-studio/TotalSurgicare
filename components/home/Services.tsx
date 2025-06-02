@@ -75,9 +75,9 @@ const Services = () => {
 
         <div className="grid grid-cols-2 md:grid-cols-3 gap-2 md:gap-4 lg:gap-6 text-center">
           <ServiceCard
-            description="Comprehensive medical care for adults and children - prevention, diagnosis and treatment of diseases."
+            description="Comprehensive testing with advanced tech and expert analysis — from routine check-ups to specialized diagnostics, delivering results you can trust."
             icon={<Heart className="text-gray-600" size={16} />}
-            title="Family medicine"
+            title="Diagnostics "
           />
           <BlueServiceCard
             description="From consultation and diagnosis to treatment with care and attention to detail."
@@ -85,18 +85,18 @@ const Services = () => {
           />
           <BlueServiceCard
             className="md:hidden"
-            description="Gynecological care, family planning, prenatal health and comprehensive women's healthcare."
-            title="Women's health"
+            description=" Fast, expert emergency care available 24/7 for urgent medical needs."
+            title="Emergency Care"
           />
           <ServiceCard
-            description="Caring for children's health from the first days of life - check-ups, immunizations, and treatments."
+            description="24/7 post-op care with expert nursing and advanced remote monitoring for a smooth, complete recovery."
             icon={<Baby className="text-gray-600" size={16} />}
-            title="Pediatrics"
+            title="Post Surgical Care"
           />
           <BlueServiceCard
             className="hidden md:block"
-            description="Gynecological care, family planning, prenatal health and comprehensive women's healthcare."
-            title="Women's health"
+            description=" Fast, expert emergency care available 24/7 for urgent medical needs."
+            title="Emergency Care"
           />
           <ServiceCard
             description="Diagnosis and treatment of cardiovascular diseases, ECG, monitoring, and consultations."

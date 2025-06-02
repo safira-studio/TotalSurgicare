@@ -189,7 +189,7 @@ export default async function Content({ slug, data }: Props) {
                 return (
                   <div
                     key={index}
-                    className="bg-red-200 border border-gray-100 rounded-2xl md:rounded-3xl p-6 lg:p-8 shadow-sm hover:shadow-md transition-shadow text-center w-full"
+                    className="bg-red-100 border border-gray-100 rounded-2xl md:rounded-3xl p-6 lg:p-8 shadow-sm hover:shadow-md transition-shadow text-center w-full"
                   >
                     <div className="w-14 h-14 rounded-full border-2 border-red-400 flex items-center justify-center mb-4 mx-auto">
                       {IconComponent && (
@@ -232,7 +232,7 @@ export default async function Content({ slug, data }: Props) {
                         strokeLinecap="round"
                         strokeLinejoin="round"
                         strokeWidth="2"
-                       />
+                      />
                     </svg>
                   </div>
                   <div>
