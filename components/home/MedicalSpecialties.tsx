@@ -62,7 +62,7 @@ const MedicalSpecialties = () => {
       link: "piles-treatment",
     },
     {
-      name: "Galstone",
+      name: "Gallstone",
       icon: "/images/specialties/Galstone.png",
       link: "gallstone-surgery",
     },

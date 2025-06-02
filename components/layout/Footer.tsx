@@ -17,7 +17,7 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="w-full bg-clinic-dark text-white">
+    <footer className="w-full bg-clinic-accent/90 text-white">
       <div className="container mx-auto px-4 py-12">
         {/* Top Section with Logo and Contact */}
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 mb-8">
@@ -34,39 +34,35 @@ const Footer = () => {
               Providing quality healthcare services with advanced technology and
               experienced professionals.
             </p>
+            import Link from "next/link";
             <div className="flex space-x-3">
-              <Button
-                aria-label="social"
-                className="rounded-full hover:bg-clinic-primary hover:text-white"
-                size="icon"
-                variant="ghost"
+              <Link
+                href="https://www.facebook.com/TotalSurgicare?mibextid=ZbWKwL"
+                aria-label="Facebook"
+                target="_blank"
               >
-                <Facebook size={18} />
-              </Button>
-              <Button
-                aria-label="social"
-                className="rounded-full hover:bg-clinic-primary hover:text-white"
-                size="icon"
-                variant="ghost"
+                <Button
+                  className="rounded-full hover:bg-clinic-primary hover:text-white"
+                  size="icon"
+                  variant="ghost"
+                >
+                  <Facebook size={18} />
+                </Button>
+              </Link>
+
+              <Link
+                href="https://www.instagram.com/total_surgicare?igsh=aXVwNTVlM2NpdWs1"
+                aria-label="Instagram"
+                target="_blank"
               >
-                <Instagram size={18} />
-              </Button>
-              <Button
-                aria-label="social"
-                className="rounded-full hover:bg-clinic-primary hover:text-white"
-                size="icon"
-                variant="ghost"
-              >
-                <Twitter size={18} />
-              </Button>
-              <Button
-                aria-label="social"
-                className="rounded-full hover:bg-clinic-primary hover:text-white"
-                size="icon"
-                variant="ghost"
-              >
-                <Linkedin size={18} />
-              </Button>
+                <Button
+                  className="rounded-full hover:bg-clinic-primary hover:text-white"
+                  size="icon"
+                  variant="ghost"
+                >
+                  <Instagram size={18} />
+                </Button>
+              </Link>
             </div>
           </div>
 

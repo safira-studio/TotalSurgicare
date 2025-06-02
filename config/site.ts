@@ -12,7 +12,7 @@ export const siteConfig = {
         "Piles Treatment",
         "Fistula Treatment",
         "Fissure Treatment",
-        "Pollonodal sinus Treatment",
+        "Pilonidal sinus Treatment",
         "Rectal prolapse",
       ],
     },
@@ -76,7 +76,7 @@ export const siteConfig = {
       secondary: "+91-9665551712",
     },
     email: {
-      primary: "info@totalsurgicare.com",
+      primary: "totalsurgicare@gmail.com",
       support: "support@totalsurgicare.com",
     },
     address: {
