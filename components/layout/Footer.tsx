@@ -1,14 +1,7 @@
 import React from "react";
 import { siteConfig } from "@/config/site";
 import { Separator } from "@/components/ui/separator";
-import {
-  Facebook,
-  Instagram,
-  Twitter,
-  Linkedin,
-  Mail,
-  Phone,
-} from "lucide-react";
+import { Facebook, Instagram, Mail, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import Image from "next/image";
@@ -33,8 +26,7 @@ const Footer = () => {
             <p className="text-gray-300 text-sm">
               Providing quality healthcare services with advanced technology and
               experienced professionals.
-            </p>
-            import Link from "next/link";
+            </p>{" "}
             <div className="flex space-x-3">
               <Link
                 href="https://www.facebook.com/TotalSurgicare?mibextid=ZbWKwL"
