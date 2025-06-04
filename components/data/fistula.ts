@@ -241,17 +241,6 @@ export const fistulaTreatment: MedicalCondition = {
         recoveryTime: "1-2 weeks",
         anesthesia: "Spinal or general",
       },
-      {
-        name: "LIFT Procedure",
-        description:
-          "Ligation of Intersphincteric Fistula Tract to treat complex fistulas without affecting continence.",
-        benefits: [
-          "Preserves anal sphincter function",
-          "Ideal for trans-sphincteric fistulas",
-        ],
-        recoveryTime: "1-2 weeks",
-        anesthesia: "Spinal",
-      },
     ],
   },
   types: [

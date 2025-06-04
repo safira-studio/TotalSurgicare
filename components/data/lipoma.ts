@@ -84,25 +84,7 @@ export const lipoma: MedicalCondition = {
       icon: "arrow-up",
     },
   ],
-  complications: [
-    {
-      title: "Rare Malignant Transformation",
-      description:
-        "Lipomas are generally benign but very rarely may become liposarcomas.",
-      icon: "alert-circle",
-    },
-    {
-      title: "Nerve Compression",
-      description:
-        "Large lipomas can press on nerves causing pain or numbness.",
-      icon: "pill",
-    },
-    {
-      title: "Cosmetic Concerns",
-      description: "Visible lumps can cause distress or discomfort.",
-      icon: "clock",
-    },
-  ],
+
   diagnosis: {
     description:
       "Diagnosis is primarily clinical by physical exam, supported by ultrasound or MRI to confirm benign nature.",
