@@ -211,18 +211,6 @@ export const enlargedProstateSurgery: MedicalCondition = {
         recoveryTime: "2-5 days for normal activities",
         anesthesia: "Local or Light Sedation",
       },
-
-      {
-        name: "Laser Therapy",
-        description:
-          "Minimally invasive laser treatments to remove or shrink prostate tissue.",
-        benefits: [
-          "Less bleeding and faster recovery",
-          "Daycare or short hospital stay",
-        ],
-        recoveryTime: "1-2 weeks",
-        anesthesia: "Local or general",
-      },
     ],
   },
   types: [
