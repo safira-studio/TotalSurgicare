@@ -36,61 +36,61 @@ export const breastAugmentation: MedicalCondition = {
       icon: "user",
     },
   ],
-  symptoms: [
-    {
-      title: "Post-Surgical Swelling",
-      description: "Temporary swelling and bruising after the procedure.",
-      icon: "alert-circle",
-    },
-    {
-      title: "Discomfort or Pain",
-      description: "Mild to moderate pain in the breast area post-surgery.",
-      icon: "thermometer",
-    },
-    {
-      title: "Temporary Numbness",
-      description: "Changes in nipple or breast sensation, usually temporary.",
-      icon: "clock",
-    },
-  ],
-  riskFactors: [
-    {
-      title: "Surgical Complications",
-      description:
-        "Risk of infection, bleeding, or adverse reaction to anesthesia.",
-      icon: "alert-circle",
-    },
-    {
-      title: "Implant Issues",
-      description:
-        "Potential for implant rupture, leakage, or capsular contracture.",
-      icon: "pill",
-    },
-    {
-      title: "Lifestyle Factors",
-      description:
-        "Smoking or certain medications may increase surgical risks.",
-      icon: "cigarette",
-    },
-  ],
-  complications: [
-    {
-      title: "Capsular Contracture",
-      description:
-        "Scar tissue tightening around the implant, causing discomfort.",
-      icon: "alert-circle",
-    },
-    {
-      title: "Implant Rupture",
-      description: "Leakage or rupture of saline or silicone implants.",
-      icon: "pill",
-    },
-    {
-      title: "Aesthetic Dissatisfaction",
-      description: "Potential for asymmetry or dissatisfaction with results.",
-      icon: "frown",
-    },
-  ],
+  // symptoms: [
+  //   {
+  //     title: "Post-Surgical Swelling",
+  //     description: "Temporary swelling and bruising after the procedure.",
+  //     icon: "alert-circle",
+  //   },
+  //   {
+  //     title: "Discomfort or Pain",
+  //     description: "Mild to moderate pain in the breast area post-surgery.",
+  //     icon: "thermometer",
+  //   },
+  //   {
+  //     title: "Temporary Numbness",
+  //     description: "Changes in nipple or breast sensation, usually temporary.",
+  //     icon: "clock",
+  //   },
+  // ],
+  // riskFactors: [
+  //   {
+  //     title: "Surgical Complications",
+  //     description:
+  //       "Risk of infection, bleeding, or adverse reaction to anesthesia.",
+  //     icon: "alert-circle",
+  //   },
+  //   {
+  //     title: "Implant Issues",
+  //     description:
+  //       "Potential for implant rupture, leakage, or capsular contracture.",
+  //     icon: "pill",
+  //   },
+  //   {
+  //     title: "Lifestyle Factors",
+  //     description:
+  //       "Smoking or certain medications may increase surgical risks.",
+  //     icon: "cigarette",
+  //   },
+  // ],
+  // complications: [
+  //   {
+  //     title: "Capsular Contracture",
+  //     description:
+  //       "Scar tissue tightening around the implant, causing discomfort.",
+  //     icon: "alert-circle",
+  //   },
+  //   {
+  //     title: "Implant Rupture",
+  //     description: "Leakage or rupture of saline or silicone implants.",
+  //     icon: "pill",
+  //   },
+  //   {
+  //     title: "Aesthetic Dissatisfaction",
+  //     description: "Potential for asymmetry or dissatisfaction with results.",
+  //     icon: "frown",
+  //   },
+  // ],
   diagnosis: {
     description:
       "Involves a consultation with a plastic surgeon, physical examination, and imaging (e.g., mammogram or MRI) to assess breast tissue and plan the procedure.",

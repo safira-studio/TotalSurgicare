@@ -163,17 +163,6 @@ export const gynecomastia: MedicalCondition = {
           "Enhanced self-confidence",
         ],
       },
-      {
-        name: "Mastectomy",
-        description: "Surgical removal of excess breast gland tissue.",
-        recoveryTime: "4-6 weeks",
-        anesthesia: "General",
-        benefits: [
-          "Permanent removal of glandular tissue",
-          "Improved aesthetic appearance",
-          "Relief from discomfort",
-        ],
-      },
     ],
   },
   types: [

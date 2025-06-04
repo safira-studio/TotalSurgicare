@@ -161,18 +161,6 @@ export const breastLump: MedicalCondition = {
           "Can be combined with reconstruction",
         ],
       },
-      {
-        name: "Excisional Biopsy / Lump Removal",
-        description: "Surgical removal of the lump to diagnose or treat.",
-        recoveryTime: "1-2 weeks",
-        anesthesia: "Local or General",
-        benefits: [
-          "Definitive diagnosis through histopathology",
-          "Complete removal of suspicious lumps",
-          "Relief from symptoms",
-          "Prevention of malignancy progression",
-        ],
-      },
     ],
   },
   types: [
