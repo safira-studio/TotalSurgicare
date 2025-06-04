@@ -18,23 +18,23 @@ export const hysterectomy: MedicalCondition = {
     description:
       "A hysterectomy is a surgical operation to remove the uterus partially or completely. It is performed for several medical reasons including fibroids, heavy bleeding, uterine prolapse, or cancer.",
   },
-  foodTriggers: [
-    {
-      name: "Heavy or Spicy Foods",
-      description: "Can increase inflammation and slow recovery after surgery.",
-      bgColor: "bg-orange-100",
-    },
-    {
-      name: "Caffeine",
-      description: "May increase discomfort or dehydration post-surgery.",
-      bgColor: "bg-green-100",
-    },
-    {
-      name: "Alcohol",
-      description: "Impairs healing and may interact with medications.",
-      bgColor: "bg-amber-100",
-    },
-  ],
+  // foodTriggers: [
+  //   {
+  //     name: "Heavy or Spicy Foods",
+  //     description: "Can increase inflammation and slow recovery after surgery.",
+  //     bgColor: "bg-orange-100",
+  //   },
+  //   {
+  //     name: "Caffeine",
+  //     description: "May increase discomfort or dehydration post-surgery.",
+  //     bgColor: "bg-green-100",
+  //   },
+  //   {
+  //     name: "Alcohol",
+  //     description: "Impairs healing and may interact with medications.",
+  //     bgColor: "bg-amber-100",
+  //   },
+  // ],
   causes: [
     {
       title: "Uterine Fibroids",
@@ -66,85 +66,85 @@ export const hysterectomy: MedicalCondition = {
       icon: "clock",
     },
   ],
-  symptoms: [
-    {
-      title: "Heavy or Prolonged Menstrual Bleeding",
-      description: "Excessive bleeding interfering with daily life.",
-      icon: "thermometer",
-    },
-    {
-      title: "Pelvic Pain or Pressure",
-      description: "Discomfort or fullness in the pelvic area.",
-      icon: "arrow-up",
-    },
-    {
-      title: "Frequent Urination",
-      description: "Pressure on the bladder causing urgency.",
-      icon: "pill",
-    },
-    {
-      title: "Pain During Intercourse",
-      description: "Discomfort affecting sexual activity.",
-      icon: "syringe",
-    },
-    {
-      title: "Uterine Prolapse Symptoms",
-      description: "Feeling of something falling out of the vagina.",
-      icon: "alert-circle",
-    },
-  ],
-  riskFactors: [
-    {
-      title: "Age Over 35",
-      description: "Most common in women aged 35 to 50.",
-      icon: "clock",
-    },
-    {
-      title: "History of Uterine Fibroids",
-      description: "Fibroids increase risk for hysterectomy.",
-      icon: "pill",
-    },
-    {
-      title: "Endometriosis or Pelvic Infections",
-      description: "Chronic conditions leading to surgery.",
-      icon: "thermometer",
-    },
-    {
-      title: "Previous Pelvic Surgery",
-      description: "Scar tissue or complications may contribute.",
-      icon: "arrow-up",
-    },
-  ],
-  complications: [
-    {
-      title: "Infection",
-      description: "Risk of wound or pelvic infection post-surgery.",
-      icon: "alert-circle",
-    },
-    {
-      title: "Bleeding",
-      description: "Excessive bleeding during or after the procedure.",
-      icon: "pill",
-    },
-    {
-      title: "Damage to Nearby Organs",
-      description:
-        "Possible injury to bladder, bowel, or blood vessels during surgery.",
-      icon: "thermometer",
-    },
-    {
-      title: "Early Menopause",
-      description:
-        "If ovaries are removed, estrogen levels drop leading to menopause symptoms.",
-      icon: "clock",
-    },
-    {
-      title: "Blood Clots",
-      description:
-        "Risk of deep vein thrombosis or pulmonary embolism after surgery.",
-      icon: "arrow-up",
-    },
-  ],
+  // symptoms: [
+  //   {
+  //     title: "Heavy or Prolonged Menstrual Bleeding",
+  //     description: "Excessive bleeding interfering with daily life.",
+  //     icon: "thermometer",
+  //   },
+  //   {
+  //     title: "Pelvic Pain or Pressure",
+  //     description: "Discomfort or fullness in the pelvic area.",
+  //     icon: "arrow-up",
+  //   },
+  //   {
+  //     title: "Frequent Urination",
+  //     description: "Pressure on the bladder causing urgency.",
+  //     icon: "pill",
+  //   },
+  //   {
+  //     title: "Pain During Intercourse",
+  //     description: "Discomfort affecting sexual activity.",
+  //     icon: "syringe",
+  //   },
+  //   {
+  //     title: "Uterine Prolapse Symptoms",
+  //     description: "Feeling of something falling out of the vagina.",
+  //     icon: "alert-circle",
+  //   },
+  // ],
+  // riskFactors: [
+  //   {
+  //     title: "Age Over 35",
+  //     description: "Most common in women aged 35 to 50.",
+  //     icon: "clock",
+  //   },
+  //   {
+  //     title: "History of Uterine Fibroids",
+  //     description: "Fibroids increase risk for hysterectomy.",
+  //     icon: "pill",
+  //   },
+  //   {
+  //     title: "Endometriosis or Pelvic Infections",
+  //     description: "Chronic conditions leading to surgery.",
+  //     icon: "thermometer",
+  //   },
+  //   {
+  //     title: "Previous Pelvic Surgery",
+  //     description: "Scar tissue or complications may contribute.",
+  //     icon: "arrow-up",
+  //   },
+  // ],
+  // complications: [
+  //   {
+  //     title: "Infection",
+  //     description: "Risk of wound or pelvic infection post-surgery.",
+  //     icon: "alert-circle",
+  //   },
+  //   {
+  //     title: "Bleeding",
+  //     description: "Excessive bleeding during or after the procedure.",
+  //     icon: "pill",
+  //   },
+  //   {
+  //     title: "Damage to Nearby Organs",
+  //     description:
+  //       "Possible injury to bladder, bowel, or blood vessels during surgery.",
+  //     icon: "thermometer",
+  //   },
+  //   {
+  //     title: "Early Menopause",
+  //     description:
+  //       "If ovaries are removed, estrogen levels drop leading to menopause symptoms.",
+  //     icon: "clock",
+  //   },
+  //   {
+  //     title: "Blood Clots",
+  //     description:
+  //       "Risk of deep vein thrombosis or pulmonary embolism after surgery.",
+  //     icon: "arrow-up",
+  //   },
+  // ],
   diagnosis: {
     description:
       "Diagnosis involves pelvic examination, ultrasound, MRI, blood tests, and biopsy if cancer is suspected.",

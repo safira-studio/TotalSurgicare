@@ -72,7 +72,7 @@ export const staplerCircumcision: MedicalCondition = {
           "Reduced operative time",
           "Faster recovery",
         ],
-        recoveryTime: "7-10 days",
+        recoveryTime: "3 days",
         anesthesia: "Local or general anesthesia",
       },
     ],

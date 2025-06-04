@@ -92,28 +92,28 @@ export const pcosPcodTreatment: MedicalCondition = {
       icon: "thermometer",
     },
   ],
-  riskFactors: [
-    {
-      title: "Obesity",
-      description: "Excess body fat worsens insulin resistance.",
-      icon: "arrow-up",
-    },
-    {
-      title: "Family History",
-      description: "Genetic links increase risk.",
-      icon: "pill",
-    },
-    {
-      title: "Age",
-      description: "Most common in women aged 15-44 years.",
-      icon: "clock",
-    },
-    {
-      title: "Sedentary Lifestyle",
-      description: "Lack of exercise exacerbates symptoms.",
-      icon: "alert-circle",
-    },
-  ],
+  // riskFactors: [
+  //   {
+  //     title: "Obesity",
+  //     description: "Excess body fat worsens insulin resistance.",
+  //     icon: "arrow-up",
+  //   },
+  //   {
+  //     title: "Family History",
+  //     description: "Genetic links increase risk.",
+  //     icon: "pill",
+  //   },
+  //   {
+  //     title: "Age",
+  //     description: "Most common in women aged 15-44 years.",
+  //     icon: "clock",
+  //   },
+  //   {
+  //     title: "Sedentary Lifestyle",
+  //     description: "Lack of exercise exacerbates symptoms.",
+  //     icon: "alert-circle",
+  //   },
+  // ],
   complications: [
     {
       title: "Type 2 Diabetes",

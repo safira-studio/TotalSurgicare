@@ -89,28 +89,28 @@ export const myomectomy: MedicalCondition = {
       icon: "alert-circle",
     },
   ],
-  riskFactors: [
-    {
-      title: "Age between 30-40 years",
-      description: "Peak incidence of fibroids.",
-      icon: "clock",
-    },
-    {
-      title: "Family History",
-      description: "Increased risk if close relatives have fibroids.",
-      icon: "pill",
-    },
-    {
-      title: "Obesity",
-      description: "Increased estrogen levels from fat tissue.",
-      icon: "thermometer",
-    },
-    {
-      title: "African Descent",
-      description: "Higher prevalence and severity among African women.",
-      icon: "arrow-up",
-    },
-  ],
+  // riskFactors: [
+  //   {
+  //     title: "Age between 30-40 years",
+  //     description: "Peak incidence of fibroids.",
+  //     icon: "clock",
+  //   },
+  //   {
+  //     title: "Family History",
+  //     description: "Increased risk if close relatives have fibroids.",
+  //     icon: "pill",
+  //   },
+  //   {
+  //     title: "Obesity",
+  //     description: "Increased estrogen levels from fat tissue.",
+  //     icon: "thermometer",
+  //   },
+  //   {
+  //     title: "African Descent",
+  //     description: "Higher prevalence and severity among African women.",
+  //     icon: "arrow-up",
+  //   },
+  // ],
   complications: [
     {
       title: "Bleeding",

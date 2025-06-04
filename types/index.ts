@@ -33,7 +33,7 @@ export interface MedicalCondition {
   }[]; // List of causes (e.g., ["Constipation", "Prolonged sitting"])
   riskFactors?: { title: string; description: string; icon: string }[]; // List of risk factors (e.g., ["Sedentary lifestyle", "Obesity"])
   complications?: { title: string; description: string; icon: string }[]; // List of complications if untreated
-  symptoms: { title: string; description: string; icon: string }[]; // List of symptoms (e.g., ["Pain", "Bleeding"])
+  symptoms?: { title: string; description: string; icon: string }[]; // List of symptoms (e.g., ["Pain", "Bleeding"])
   diagnosis: {
     description: string; // e.g., "The proper diagnosis requires a physical examination of the anal area, including the use of a proctoscope."
     methods: string[];
@@ -52,7 +52,7 @@ export interface MedicalCondition {
       anesthesia?: string; // e.g., "General", "Local"
     }[];
   };
-  types: { type: string; description: string; procedure: string }[]; // e.g., ["Internal", "External"]
+  types?: { type: string; description: string; procedure: string }[]; // e.g., ["Internal", "External"]
   whyChooseUs: {
     title: string; // e.g., "Advanced Treatment Through Laser Surgery"
     description: string;
