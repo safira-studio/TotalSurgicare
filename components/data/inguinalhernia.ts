@@ -18,38 +18,38 @@ export const inguinalHerniaSurgery: MedicalCondition = {
     description:
       "An inguinal hernia is a bulge that occurs in the groin region when tissue, such as part of the intestine, protrudes through a weak spot in the abdominal muscles. It can be painful, especially during coughing or lifting heavy objects.",
   },
-  foodTriggers: [
-    {
-      name: "Heavy Meals",
-      description: "Increase abdominal pressure and worsen symptoms",
-      bgColor: "bg-orange-100",
-    },
-    {
-      name: "Spicy Foods",
-      description: "Can cause heartburn, irritating the hernia",
-      bgColor: "bg-red-100",
-    },
-    {
-      name: "Caffeinated Drinks",
-      description: "May relax the esophageal sphincter and increase reflux",
-      bgColor: "bg-green-100",
-    },
-    {
-      name: "Carbonated Beverages",
-      description: "Cause bloating and abdominal pressure",
-      bgColor: "bg-blue-100",
-    },
-    {
-      name: "Citrus Fruits",
-      description: "May cause acid reflux and discomfort",
-      bgColor: "bg-yellow-100",
-    },
-    {
-      name: "Fried Foods",
-      description: "Slow digestion and increase bloating",
-      bgColor: "bg-amber-100",
-    },
-  ],
+  // foodTriggers: [
+  //   {
+  //     name: "Heavy Meals",
+  //     description: "Increase abdominal pressure and worsen symptoms",
+  //     bgColor: "bg-orange-100",
+  //   },
+  //   {
+  //     name: "Spicy Foods",
+  //     description: "Can cause heartburn, irritating the hernia",
+  //     bgColor: "bg-red-100",
+  //   },
+  //   {
+  //     name: "Caffeinated Drinks",
+  //     description: "May relax the esophageal sphincter and increase reflux",
+  //     bgColor: "bg-green-100",
+  //   },
+  //   {
+  //     name: "Carbonated Beverages",
+  //     description: "Cause bloating and abdominal pressure",
+  //     bgColor: "bg-blue-100",
+  //   },
+  //   {
+  //     name: "Citrus Fruits",
+  //     description: "May cause acid reflux and discomfort",
+  //     bgColor: "bg-yellow-100",
+  //   },
+  //   {
+  //     name: "Fried Foods",
+  //     description: "Slow digestion and increase bloating",
+  //     bgColor: "bg-amber-100",
+  //   },
+  // ],
   causes: [
     {
       title: "Weak Abdominal Wall",

@@ -18,38 +18,38 @@ export const umbillicalHerniaSurgery: MedicalCondition = {
     description:
       "An umbilical hernia is a condition where part of the intestine bulges through the abdominal wall near the belly button. It is common in infants but can also occur in adults due to increased abdominal pressure.",
   },
-  foodTriggers: [
-    {
-      name: "Heavy Meals",
-      description: "Can increase abdominal pressure",
-      bgColor: "bg-orange-100",
-    },
-    {
-      name: "Spicy Foods",
-      description: "Can cause bloating or irritation",
-      bgColor: "bg-red-100",
-    },
-    {
-      name: "Caffeine",
-      description: "May contribute to acid reflux",
-      bgColor: "bg-green-100",
-    },
-    {
-      name: "Fizzy Drinks",
-      description: "Lead to gas buildup and abdominal distension",
-      bgColor: "bg-blue-100",
-    },
-    {
-      name: "Citrus Fruits",
-      description: "May irritate digestive tract",
-      bgColor: "bg-yellow-100",
-    },
-    {
-      name: "Fatty Foods",
-      description: "Slow down digestion and worsen symptoms",
-      bgColor: "bg-amber-100",
-    },
-  ],
+  // foodTriggers: [
+  //   {
+  //     name: "Heavy Meals",
+  //     description: "Can increase abdominal pressure",
+  //     bgColor: "bg-orange-100",
+  //   },
+  //   {
+  //     name: "Spicy Foods",
+  //     description: "Can cause bloating or irritation",
+  //     bgColor: "bg-red-100",
+  //   },
+  //   {
+  //     name: "Caffeine",
+  //     description: "May contribute to acid reflux",
+  //     bgColor: "bg-green-100",
+  //   },
+  //   {
+  //     name: "Fizzy Drinks",
+  //     description: "Lead to gas buildup and abdominal distension",
+  //     bgColor: "bg-blue-100",
+  //   },
+  //   {
+  //     name: "Citrus Fruits",
+  //     description: "May irritate digestive tract",
+  //     bgColor: "bg-yellow-100",
+  //   },
+  //   {
+  //     name: "Fatty Foods",
+  //     description: "Slow down digestion and worsen symptoms",
+  //     bgColor: "bg-amber-100",
+  //   },
+  // ],
   causes: [
     {
       title: "Incomplete Closure of Abdominal Wall",
@@ -231,18 +231,18 @@ export const umbillicalHerniaSurgery: MedicalCondition = {
         recoveryTime: "1 week",
         anesthesia: "General",
       },
-      {
-        name: "Mesh Reinforced Open Repair",
-        description:
-          "Traditional open surgery enhanced with mesh to strengthen the abdominal wall",
-        benefits: [
-          "Reduces risk of recurrence",
-          "Ideal for larger or recurrent hernias",
-          "Long-term durability",
-        ],
-        recoveryTime: "1–2 weeks",
-        anesthesia: "General or Local",
-      },
+      // {
+      //   name: "Mesh Reinforced Open Repair",
+      //   description:
+      //     "Traditional open surgery enhanced with mesh to strengthen the abdominal wall",
+      //   benefits: [
+      //     "Reduces risk of recurrence",
+      //     "Ideal for larger or recurrent hernias",
+      //     "Long-term durability",
+      //   ],
+      //   recoveryTime: "1–2 weeks",
+      //   anesthesia: "General or Local",
+      // },
     ],
   },
   types: [

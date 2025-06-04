@@ -71,11 +71,7 @@ export const gallstoneSurgery: MedicalCondition = {
       description: "Alters bile composition quickly",
       icon: "thermometer",
     },
-    {
-      title: "Pregnancy",
-      description: "Hormonal changes affect bile flow",
-      icon: "syringe",
-    },
+
     {
       title: "High-Fat Diet",
       description: "Stimulates bile saturation",
@@ -225,15 +221,15 @@ export const gallstoneSurgery: MedicalCondition = {
         anesthesia: "General",
       },
       {
-        name: "Mini-Laparoscopic Cholecystectomy",
+        name: "Robotic Cholecystectomy",
         description:
-          "A less invasive version of laparoscopic surgery using smaller instruments and incisions",
+          "A minimally invasive gallbladder removal surgery using robotic-assisted technology for enhanced precision",
         benefits: [
-          "Smaller scars and less pain",
-          "Faster recovery than traditional laparoscopic",
-          "Lower risk of infection",
+          "Greater surgical precision and control",
+          "Reduced blood loss and minimal scarring",
+          "Faster recovery and shorter hospital stay",
         ],
-        recoveryTime: "2–4 days",
+        recoveryTime: "2–5 days",
         anesthesia: "General",
       },
     ],

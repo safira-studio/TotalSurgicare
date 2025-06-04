@@ -66,11 +66,7 @@ export const appendectomy: MedicalCondition = {
       description: "Can trigger swelling and blockage",
       icon: "pill",
     },
-    {
-      title: "Trauma",
-      description: "Injury to the abdomen may cause inflammation",
-      icon: "arrow-up",
-    },
+
     {
       title: "Tumors",
       description: "Rare, but can block the appendix",
@@ -226,18 +222,6 @@ export const appendectomy: MedicalCondition = {
           "Direct access for cleaning",
         ],
         recoveryTime: "7–10 days",
-        anesthesia: "General",
-      },
-      {
-        name: "Laparoscopic Appendectomy",
-        description:
-          "Minimally invasive removal of the appendix using small incisions and a camera",
-        benefits: [
-          "Faster recovery",
-          "Less postoperative pain",
-          "Minimal scarring",
-        ],
-        recoveryTime: "2–4 days",
         anesthesia: "General",
       },
     ],

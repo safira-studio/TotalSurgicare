@@ -173,11 +173,6 @@ export const herniaSurgery: MedicalCondition = {
       description: "May recur if not treated properly",
       icon: "image",
     },
-    {
-      title: "Surgical Infection",
-      description: "Possible in open procedures",
-      icon: "syringe",
-    },
   ],
   diagnosis: {
     description:
