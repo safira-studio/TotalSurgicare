@@ -85,8 +85,8 @@ const Services = () => {
           />
           <BlueServiceCard
             className="md:hidden"
-            description=" Fast, expert emergency care available 24/7 for urgent medical needs."
-            title="Emergency Care"
+            description="From minimally invasive techniques to complex operations, performed by skilled surgeons with precision and compassion."
+            title="Advanced Surgery"
           />
           <ServiceCard
             description="24/7 post-op care with expert nursing and advanced remote monitoring for a smooth, complete recovery."
@@ -95,8 +95,8 @@ const Services = () => {
           />
           <BlueServiceCard
             className="hidden md:block"
-            description=" Fast, expert emergency care available 24/7 for urgent medical needs."
-            title="Emergency Care"
+            description="From minimally invasive techniques to complex operations, performed by skilled surgeons with precision and compassion."
+            title="Advanced Surgery"
           />
           <ServiceCard
             description="Diagnosis and treatment of cardiovascular diseases, ECG, monitoring, and consultations."
