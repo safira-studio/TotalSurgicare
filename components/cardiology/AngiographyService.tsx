@@ -12,13 +12,6 @@ const AngiographyService = () => {
     "Minimal recovery time required",
   ];
 
-  const procedures = [
-    "Coronary Angiography",
-    "Peripheral Angiography",
-    "Cerebral Angiography",
-    "Pulmonary Angiography",
-  ];
-
   return (
     <section className="py-16 px-4 bg-white item ">
       {/* <div className="container mx-auto"> */}

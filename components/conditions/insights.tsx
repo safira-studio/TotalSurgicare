@@ -15,6 +15,7 @@ const IconMap = {
   frown: Frown,
   weight: Weight,
 };
+
 import {
   Pill,
   Clock,

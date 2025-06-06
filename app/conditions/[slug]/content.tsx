@@ -3,21 +3,6 @@ import InfoSection from "@/components/conditions/InfoSection";
 import Treatment from "@/components/conditions/Treatment";
 import Hero from "@/components/conditions/Hero";
 import ConditionTypes from "@/components/conditions/ConditionTypes";
-import {
-  Pill,
-  Clock,
-  Image,
-  ArrowUp,
-  Thermometer,
-  Syringe,
-  Heart,
-  Bandage,
-  User,
-  Frown,
-  AlertCircle,
-  Cigarette,
-  Weight,
-} from "lucide-react";
 import SectionTitle from "@/components/conditions/SectionTitle";
 import TreatmentCard from "@/components/conditions/TreatmentCard";
 import {
@@ -29,22 +14,6 @@ import {
 } from "@/components/ui/carousel";
 import { MedicalCondition } from "@/types";
 import Insights from "@/components/conditions/insights";
-
-const IconMap = {
-  pill: Pill,
-  clock: Clock,
-  image: Image,
-  "arrow-up": ArrowUp,
-  thermometer: Thermometer,
-  heart: Heart,
-  bandage: Bandage,
-  user: User,
-  syringe: Syringe,
-  "alert-circle": AlertCircle, // Using Pill as a fallback for alert-circle
-  cigarette: Cigarette,
-  frown: Frown,
-  weight: Weight,
-};
 
 type Props = {
   slug: string;
