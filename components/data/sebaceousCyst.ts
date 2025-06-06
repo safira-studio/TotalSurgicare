@@ -173,25 +173,25 @@ export const sebaceousCyst: MedicalCondition = {
       },
     ],
   },
-  types: [
-    {
-      type: "Epidermoid Cyst",
-      description:
-        "Most common type, formed from epidermal cells under the skin.",
-      procedure: "Diagnosis clinically, excision is the usual treatment.",
-    },
-    {
-      type: "Pilar Cyst",
-      description: "Arises from hair follicle cells, mostly on the scalp.",
-      procedure: "Diagnosis with clinical exam and surgical removal.",
-    },
-    {
-      type: "Steatocystoma Multiplex",
-      description: "Multiple cysts formation, often hereditary.",
-      procedure:
-        "Managed symptomatically; surgery for large or symptomatic cysts.",
-    },
-  ],
+  // types: [
+  //   {
+  //     type: "Epidermoid Cyst",
+  //     description:
+  //       "Most common type, formed from epidermal cells under the skin.",
+  //     procedure: "Diagnosis clinically, excision is the usual treatment.",
+  //   },
+  //   {
+  //     type: "Pilar Cyst",
+  //     description: "Arises from hair follicle cells, mostly on the scalp.",
+  //     procedure: "Diagnosis with clinical exam and surgical removal.",
+  //   },
+  //   {
+  //     type: "Steatocystoma Multiplex",
+  //     description: "Multiple cysts formation, often hereditary.",
+  //     procedure:
+  //       "Managed symptomatically; surgery for large or symptomatic cysts.",
+  //   },
+  // ],
   whyChooseUs: [
     {
       title: "Experienced Dermatologists and Surgeons",

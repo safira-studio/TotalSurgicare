@@ -35,7 +35,38 @@ export const hysterectomy: MedicalCondition = {
   //     bgColor: "bg-amber-100",
   //   },
   // ],
-  causes: [
+  // causes: [
+  //   {
+  //     title: "Uterine Fibroids",
+  //     description: "Noncancerous growths causing pain or heavy bleeding.",
+  //     icon: "pill",
+  //   },
+  //   {
+  //     title: "Endometriosis",
+  //     description:
+  //       "Tissue similar to uterine lining grows outside the uterus causing pain.",
+  //     icon: "thermometer",
+  //   },
+  //   {
+  //     title: "Uterine Prolapse",
+  //     description:
+  //       "Uterus descends into the vaginal canal due to weakened muscles.",
+  //     icon: "arrow-up",
+  //   },
+  //   {
+  //     title: "Cancer",
+  //     description:
+  //       "Cancer of the uterus, cervix, or ovaries may require hysterectomy.",
+  //     icon: "alert-circle",
+  //   },
+  //   {
+  //     title: "Chronic Pelvic Pain or Bleeding",
+  //     description:
+  //       "When other treatments fail, hysterectomy may be recommended.",
+  //     icon: "clock",
+  //   },
+  // ],
+  indications: [
     {
       title: "Uterine Fibroids",
       description: "Noncancerous growths causing pain or heavy bleeding.",

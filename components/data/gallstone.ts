@@ -234,23 +234,23 @@ export const gallstoneSurgery: MedicalCondition = {
       },
     ],
   },
-  types: [
-    {
-      type: "Cholesterol Gallstones",
-      description: "Most common type, formed from excess cholesterol",
-      procedure: "Laparoscopic cholecystectomy",
-    },
-    {
-      type: "Pigment Gallstones",
-      description: "Formed from excess bilirubin; smaller and darker",
-      procedure: "Gallbladder removal if symptomatic",
-    },
-    {
-      type: "Mixed Gallstones",
-      description: "Combination of cholesterol and pigment components",
-      procedure: "Surgical removal recommended",
-    },
-  ],
+  // types: [
+  //   {
+  //     type: "Cholesterol Gallstones",
+  //     description: "Most common type, formed from excess cholesterol",
+  //     procedure: "Laparoscopic cholecystectomy",
+  //   },
+  //   {
+  //     type: "Pigment Gallstones",
+  //     description: "Formed from excess bilirubin; smaller and darker",
+  //     procedure: "Gallbladder removal if symptomatic",
+  //   },
+  //   {
+  //     type: "Mixed Gallstones",
+  //     description: "Combination of cholesterol and pigment components",
+  //     procedure: "Surgical removal recommended",
+  //   },
+  // ],
   whyChooseUs: [
     {
       title: "Expert Laparoscopic Surgeons",

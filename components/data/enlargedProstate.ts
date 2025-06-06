@@ -45,31 +45,31 @@ export const enlargedProstateSurgery: MedicalCondition = {
       bgColor: "bg-blue-100",
     },
   ],
-  causes: [
-    {
-      title: "Age-Related Hormonal Changes",
-      description:
-        "Hormonal shifts with aging cause prostate cells to multiply, enlarging the gland.",
-      icon: "clock",
-    },
-    {
-      title: "Family History",
-      description: "Genetics may increase susceptibility to BPH.",
-      icon: "pill",
-    },
-    {
-      title: "Lifestyle Factors",
-      description:
-        "Obesity, lack of exercise, and poor diet can contribute to BPH development.",
-      icon: "arrow-up",
-    },
-    {
-      title: "Medical Conditions",
-      description:
-        "Diabetes and heart disease are linked to increased BPH risk.",
-      icon: "thermometer",
-    },
-  ],
+  // causes: [
+  //   {
+  //     title: "Age-Related Hormonal Changes",
+  //     description:
+  //       "Hormonal shifts with aging cause prostate cells to multiply, enlarging the gland.",
+  //     icon: "clock",
+  //   },
+  //   {
+  //     title: "Family History",
+  //     description: "Genetics may increase susceptibility to BPH.",
+  //     icon: "pill",
+  //   },
+  //   {
+  //     title: "Lifestyle Factors",
+  //     description:
+  //       "Obesity, lack of exercise, and poor diet can contribute to BPH development.",
+  //     icon: "arrow-up",
+  //   },
+  //   {
+  //     title: "Medical Conditions",
+  //     description:
+  //       "Diabetes and heart disease are linked to increased BPH risk.",
+  //     icon: "thermometer",
+  //   },
+  // ],
   symptoms: [
     {
       title: "Frequent Urination",
@@ -213,29 +213,29 @@ export const enlargedProstateSurgery: MedicalCondition = {
       },
     ],
   },
-  types: [
-    {
-      type: "Median Lobe Enlargement",
-      description:
-        "Enlargement of the middle part of the prostate pressing on the bladder neck.",
-      procedure:
-        "TURP or laser surgery to remove excess tissue and relieve bladder outlet obstruction.",
-    },
-    {
-      type: "Lateral Lobe Enlargement",
-      description:
-        "Enlargement of the side lobes of the prostate affecting the urethra.",
-      procedure:
-        "Medications or surgical procedures like TURP based on severity.",
-    },
-    {
-      type: "Peripheral Zone Enlargement",
-      description:
-        "Rarely causes obstruction but may be detected during exams.",
-      procedure:
-        "Usually monitored unless symptoms arise; biopsy may be done to rule out cancer.",
-    },
-  ],
+  // types: [
+  //   {
+  //     type: "Median Lobe Enlargement",
+  //     description:
+  //       "Enlargement of the middle part of the prostate pressing on the bladder neck.",
+  //     procedure:
+  //       "TURP or laser surgery to remove excess tissue and relieve bladder outlet obstruction.",
+  //   },
+  //   {
+  //     type: "Lateral Lobe Enlargement",
+  //     description:
+  //       "Enlargement of the side lobes of the prostate affecting the urethra.",
+  //     procedure:
+  //       "Medications or surgical procedures like TURP based on severity.",
+  //   },
+  //   {
+  //     type: "Peripheral Zone Enlargement",
+  //     description:
+  //       "Rarely causes obstruction but may be detected during exams.",
+  //     procedure:
+  //       "Usually monitored unless symptoms arise; biopsy may be done to rule out cancer.",
+  //   },
+  // ],
   whyChooseUs: [
     {
       title: "Expert Urologists",
