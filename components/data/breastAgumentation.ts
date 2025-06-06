@@ -19,7 +19,7 @@ export const breastAugmentation: MedicalCondition = {
       "Breast augmentation, also known as augmentation mammoplasty, is a cosmetic surgical procedure to increase breast size or improve breast shape. It typically involves the placement of implants (silicone or saline) or, in some cases, fat transfer from other parts of the body.",
   },
   foodTriggers: [],
-  causes: [
+  indications: [
     {
       title: "Cosmetic Desire",
       description: "To enhance breast size or symmetry for aesthetic reasons.",
