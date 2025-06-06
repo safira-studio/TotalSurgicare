@@ -26,11 +26,8 @@ export interface MedicalCondition {
     }[];
   };
   foodTriggers?: { name: string; description: string; bgColor: string }[]; // List of food triggers (e.g., ["Spicy food", "Caffeine"])
-  causes: {
-    title: string; // e.g., "Chronic Constipation"
-    description: string;
-    icon: string; // Icon name (e.g., "pill", "clock", "image")
-  }[]; // List of causes (e.g., ["Constipation", "Prolonged sitting"])
+  // below 5 are from insights tsx
+  causes: { title: string; description: string; icon: string }[];
   indications?: { title: string; description: string; icon: string }[];
   riskFactors?: { title: string; description: string; icon: string }[]; // List of risk factors (e.g., ["Sedentary lifestyle", "Obesity"])
   complications?: { title: string; description: string; icon: string }[]; // List of complications if untreated
