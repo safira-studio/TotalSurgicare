@@ -29,15 +29,15 @@ const AngiographyService = () => {
               Advanced Diagnosis
             </Badge>
             <h2 className="text-2xl md:text-3xl lg:text-4xl font-onest text-clinic-primary mb-6">
-              Angiography – Advanced Heart Diagnosis
+              Coronary Angiography – Advanced Heart Diagnosis
             </h2>
             <p className="text-lg text-gray-600 mb-6">
-              Angiography is a sophisticated medical imaging technique that
-              allows our specialists to visualize the inside of blood vessels
-              and organs, particularly the heart&apos;s coronary arteries. Using
-              contrast dye and advanced X-ray technology, we can detect
-              blockages, narrowing, or other abnormalities that may be affecting
-              your heart health.
+              Coronary Angiography is a sophisticated medical imaging technique
+              that allows our specialists to visualize the inside of blood
+              vessels and organs, particularly the heart&apos;s coronary
+              arteries. Using contrast dye and advanced X-ray technology, we can
+              detect blockages, narrowing, or other abnormalities that may be
+              affecting your heart health.
             </p>
             <p className="text-gray-600 mb-8">
               This procedure is essential for diagnosing coronary artery
@@ -47,7 +47,7 @@ const AngiographyService = () => {
               minimal discomfort to patients.
             </p>
 
-            <div className="grid sm:grid-cols-2 gap-6">
+            <div className="">
               <Card className="border-clinic-primary">
                 <CardHeader>
                   <CardTitle className="text-lg text-clinic-primary flex items-center">
@@ -56,31 +56,11 @@ const AngiographyService = () => {
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <ul className="space-y-2">
+                  <ul className="space-y-2 ">
                     {benefits.map((benefit, index) => (
-                      <li key={index} className="flex items-start">
-                        <Circle className="h-2 w-2 mt-2 mr-3 text-clinic-primary fill-current" />
+                      <li key={index} className="flex items-center gap-2">
+                        <Circle className="h-2 w-2 text-clinic-primary fill-current" />
                         <span className="text-sm text-gray-600">{benefit}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </CardContent>
-              </Card>
-
-              <Card className="border-clinic-primary">
-                <CardHeader>
-                  <CardTitle className="text-lg text-clinic-primary">
-                    Types Available
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <ul className="space-y-2">
-                    {procedures.map((procedure, index) => (
-                      <li key={index} className="flex items-start">
-                        <Circle className="h-2 w-2 mt-2 mr-3 text-clinic-primary fill-current" />
-                        <span className="text-sm text-gray-600">
-                          {procedure}
-                        </span>
                       </li>
                     ))}
                   </ul>
