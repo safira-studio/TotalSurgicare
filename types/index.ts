@@ -26,7 +26,7 @@ export interface MedicalCondition {
     }[];
   };
   foodTriggers?: { name: string; description: string; bgColor: string }[]; // List of food triggers (e.g., ["Spicy food", "Caffeine"])
-  causes: {
+  causes?: {
     title: string; // e.g., "Chronic Constipation"
     description: string;
     icon: string; // Icon name (e.g., "pill", "clock", "image")
