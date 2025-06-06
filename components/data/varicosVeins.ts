@@ -181,19 +181,19 @@ export const varicoseVeins: MedicalCondition = {
       },
     ],
   },
-  types: [
-    {
-      type: "Primary Varicose Veins",
-      description: "Caused by faulty vein valves, most common type.",
-      procedure: "Managed by compression therapy or vein removal techniques.",
-    },
-    {
-      type: "Secondary Varicose Veins",
-      description: "Due to other vein problems like deep vein thrombosis.",
-      procedure:
-        "Requires treatment of underlying cause plus varicose vein management.",
-    },
-  ],
+  // types: [
+  //   {
+  //     type: "Primary Varicose Veins",
+  //     description: "Caused by faulty vein valves, most common type.",
+  //     procedure: "Managed by compression therapy or vein removal techniques.",
+  //   },
+  //   {
+  //     type: "Secondary Varicose Veins",
+  //     description: "Due to other vein problems like deep vein thrombosis.",
+  //     procedure:
+  //       "Requires treatment of underlying cause plus varicose vein management.",
+  //   },
+  // ],
   whyChooseUs: [
     {
       title: "Experienced Vascular Surgeons",
