@@ -165,28 +165,28 @@ export const gynecomastia: MedicalCondition = {
       },
     ],
   },
-  types: [
-    {
-      type: "Physiologic Gynecomastia",
-      description:
-        "Temporary enlargement due to hormonal changes during puberty or aging.",
-      procedure:
-        "Often resolves without treatment; monitoring or lifestyle changes.",
-    },
-    {
-      type: "Pathologic Gynecomastia",
-      description:
-        "Caused by underlying medical conditions, medications, or substance use.",
-      procedure:
-        "Treatment of underlying cause or surgical intervention if persistent.",
-    },
-    {
-      type: "Pseudogynecomastia",
-      description:
-        "Breast enlargement due to excess fat rather than glandular tissue.",
-      procedure: "Liposuction or weight loss to reduce fat tissue.",
-    },
-  ],
+  // types: [
+  //   {
+  //     type: "Physiologic Gynecomastia",
+  //     description:
+  //       "Temporary enlargement due to hormonal changes during puberty or aging.",
+  //     procedure:
+  //       "Often resolves without treatment; monitoring or lifestyle changes.",
+  //   },
+  //   {
+  //     type: "Pathologic Gynecomastia",
+  //     description:
+  //       "Caused by underlying medical conditions, medications, or substance use.",
+  //     procedure:
+  //       "Treatment of underlying cause or surgical intervention if persistent.",
+  //   },
+  //   {
+  //     type: "Pseudogynecomastia",
+  //     description:
+  //       "Breast enlargement due to excess fat rather than glandular tissue.",
+  //     procedure: "Liposuction or weight loss to reduce fat tissue.",
+  //   },
+  // ],
   whyChooseUs: [
     {
       title: "Expert Surgeons",
