@@ -312,7 +312,9 @@ export default async function Content({ slug, data }: Props) {
       </section>
 
       <Diagnosis {...data.diagnosis} slug={slug} />
-      <ConditionTypes name={data.name} types={data.types} />
+      {data.types && data.types.length > 0 && (
+        <ConditionTypes name={data.name} types={data.types} />
+      )}
       <Treatment name={data.name} whyUs={data.whyChooseUs} />
     </div>
   );

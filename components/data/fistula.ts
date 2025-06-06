@@ -243,49 +243,49 @@ export const fistulaTreatment: MedicalCondition = {
       },
     ],
   },
-  types: [
-    {
-      type: "Intersphincteric Fistula",
-      description:
-        "Passes through internal sphincter, exits between internal and external sphincter.",
-      procedure:
-        "Fistulotomy or LIFT depending on tract complexity and continence needs.",
-    },
-    {
-      type: "Trans-sphincteric Fistula",
-      description:
-        "Passes through both internal and external sphincter muscles.",
-      procedure:
-        "Seton placement or LIFT procedure to gradually close and heal tract.",
-    },
-    {
-      type: "Suprasphincteric Fistula",
-      description:
-        "Tract passes above the puborectalis muscle and exits externally.",
-      procedure:
-        "Advanced laser procedure or LIFT for minimal risk to sphincter muscles.",
-    },
-    {
-      type: "Extrasphincteric Fistula",
-      description:
-        "Begins in rectum and passes through levator ani muscles to the skin.",
-      procedure:
-        "Endorectal flap or staged surgical treatment based on tract complexity.",
-    },
-    {
-      type: "Submucosal Fistula",
-      description: "Confined to mucosal layer without muscle involvement.",
-      procedure:
-        "Laser treatment or minor fistulotomy with quick healing time.",
-    },
-    {
-      type: "Complex Fistula",
-      description:
-        "Multiple branches, often in IBD patients or recurrent cases.",
-      procedure:
-        "Combination of imaging, staged surgery, and multidisciplinary care.",
-    },
-  ],
+  // types: [
+  //   {
+  //     type: "Intersphincteric Fistula",
+  //     description:
+  //       "Passes through internal sphincter, exits between internal and external sphincter.",
+  //     procedure:
+  //       "Fistulotomy or LIFT depending on tract complexity and continence needs.",
+  //   },
+  //   {
+  //     type: "Trans-sphincteric Fistula",
+  //     description:
+  //       "Passes through both internal and external sphincter muscles.",
+  //     procedure:
+  //       "Seton placement or LIFT procedure to gradually close and heal tract.",
+  //   },
+  //   {
+  //     type: "Suprasphincteric Fistula",
+  //     description:
+  //       "Tract passes above the puborectalis muscle and exits externally.",
+  //     procedure:
+  //       "Advanced laser procedure or LIFT for minimal risk to sphincter muscles.",
+  //   },
+  //   {
+  //     type: "Extrasphincteric Fistula",
+  //     description:
+  //       "Begins in rectum and passes through levator ani muscles to the skin.",
+  //     procedure:
+  //       "Endorectal flap or staged surgical treatment based on tract complexity.",
+  //   },
+  //   {
+  //     type: "Submucosal Fistula",
+  //     description: "Confined to mucosal layer without muscle involvement.",
+  //     procedure:
+  //       "Laser treatment or minor fistulotomy with quick healing time.",
+  //   },
+  //   {
+  //     type: "Complex Fistula",
+  //     description:
+  //       "Multiple branches, often in IBD patients or recurrent cases.",
+  //     procedure:
+  //       "Combination of imaging, staged surgery, and multidisciplinary care.",
+  //   },
+  // ],
   whyChooseUs: [
     {
       title: "Expert Laser Surgery by Proctology Specialists",
