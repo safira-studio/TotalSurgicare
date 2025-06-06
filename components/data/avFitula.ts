@@ -48,23 +48,23 @@ export const avFistula: MedicalCondition = {
       icon: "pill",
     },
   ],
-  symptoms: [
-    {
-      title: "Visible Pulsating Vein",
-      description: "Strong, rhythmic pulse near the fistula site.",
-      icon: "clock",
-    },
-    {
-      title: "Swelling and Warmth",
-      description: "Around the fistula, indicating blood flow.",
-      icon: "alert-circle",
-    },
-    {
-      title: "Pain or Tenderness",
-      description: "Discomfort near the fistula location.",
-      icon: "arrow-up",
-    },
-  ],
+  // symptoms: [
+  //   {
+  //     title: "Visible Pulsating Vein",
+  //     description: "Strong, rhythmic pulse near the fistula site.",
+  //     icon: "clock",
+  //   },
+  //   {
+  //     title: "Swelling and Warmth",
+  //     description: "Around the fistula, indicating blood flow.",
+  //     icon: "alert-circle",
+  //   },
+  //   {
+  //     title: "Pain or Tenderness",
+  //     description: "Discomfort near the fistula location.",
+  //     icon: "arrow-up",
+  //   },
+  // ],
   riskFactors: [
     {
       title: "Chronic Kidney Disease",
@@ -170,26 +170,26 @@ export const avFistula: MedicalCondition = {
       },
     ],
   },
-  types: [
-    {
-      type: "Radiocephalic Fistula",
-      description:
-        "Connection between radial artery and cephalic vein at the wrist.",
-      procedure: "Common first choice for dialysis access creation.",
-    },
-    {
-      type: "Brachiocephalic Fistula",
-      description:
-        "Connection between brachial artery and cephalic vein at the elbow.",
-      procedure: "Used when wrist vessels are unsuitable.",
-    },
-    {
-      type: "Brachiobasilic Fistula",
-      description:
-        "Connection between brachial artery and basilic vein, requiring vein transposition.",
-      procedure: "Used for deeper veins, requires additional surgical steps.",
-    },
-  ],
+  // types: [
+  //   {
+  //     type: "Radiocephalic Fistula",
+  //     description:
+  //       "Connection between radial artery and cephalic vein at the wrist.",
+  //     procedure: "Common first choice for dialysis access creation.",
+  //   },
+  //   {
+  //     type: "Brachiocephalic Fistula",
+  //     description:
+  //       "Connection between brachial artery and cephalic vein at the elbow.",
+  //     procedure: "Used when wrist vessels are unsuitable.",
+  //   },
+  //   {
+  //     type: "Brachiobasilic Fistula",
+  //     description:
+  //       "Connection between brachial artery and basilic vein, requiring vein transposition.",
+  //     procedure: "Used for deeper veins, requires additional surgical steps.",
+  //   },
+  // ],
   whyChooseUs: [
     {
       title: "Expert Vascular Surgeons",
