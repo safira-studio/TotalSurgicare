@@ -38,7 +38,19 @@ export const staplerCircumcision: MedicalCondition = {
       icon: "syringe",
     },
   ],
-  symptoms: [
+  // symptoms: [
+  //   {
+  //     title: "Tight foreskin",
+  //     description: "Difficulty or pain while retracting the foreskin.",
+  //     icon: "syringe",
+  //   },
+  //   {
+  //     title: "Inflammation",
+  //     description: "Redness, swelling, and discomfort in the foreskin area.",
+  //     icon: "thermometer",
+  //   },
+  // ],
+  indications: [
     {
       title: "Tight foreskin",
       description: "Difficulty or pain while retracting the foreskin.",

@@ -222,34 +222,46 @@ export const kidneyStoneTreatmentRirspcnlursl: MedicalCondition = {
         recoveryTime: "1 week",
         anesthesia: "General",
       },
+      {
+        name: "Percutaneous Nephrolithotomy (PCNL)",
+        description:
+          "A surgical procedure to remove large or complex kidney stones through a small incision in the back using a nephroscope.",
+        benefits: [
+          "Effective for large or multiple kidney stones",
+          "Higher stone clearance rate in one session",
+          "Direct access to kidney for complex cases",
+        ],
+        recoveryTime: "7-10 days",
+        anesthesia: "General",
+      },
     ],
   },
-  types: [
-    {
-      type: "Calcium Stones",
-      description: "Most common type formed from calcium oxalate or phosphate",
-      procedure:
-        "Usually treated with hydration and pain management. Larger stones may require ESWL or ureteroscopy for removal.",
-    },
-    {
-      type: "Struvite Stones",
-      description: "Associated with urinary tract infections",
-      procedure:
-        "Treatment involves antibiotics for infection and removal via ESWL or percutaneous nephrolithotomy (PCNL).",
-    },
-    {
-      type: "Uric Acid Stones",
-      description: "Formed due to high uric acid levels",
-      procedure:
-        "Managed by dietary changes, medication to reduce uric acid, and sometimes ESWL or ureteroscopy for stone removal.",
-    },
-    {
-      type: "Cystine Stones",
-      description: "Rare stones caused by a genetic disorder",
-      procedure:
-        "Require specialized treatment including increased hydration, medications, and sometimes surgical removal via PCNL or ureteroscopy.",
-    },
-  ],
+  // types: [
+  //   {
+  //     type: "Calcium Stones",
+  //     description: "Most common type formed from calcium oxalate or phosphate",
+  //     procedure:
+  //       "Usually treated with hydration and pain management. Larger stones may require ESWL or ureteroscopy for removal.",
+  //   },
+  //   {
+  //     type: "Struvite Stones",
+  //     description: "Associated with urinary tract infections",
+  //     procedure:
+  //       "Treatment involves antibiotics for infection and removal via ESWL or percutaneous nephrolithotomy (PCNL).",
+  //   },
+  //   {
+  //     type: "Uric Acid Stones",
+  //     description: "Formed due to high uric acid levels",
+  //     procedure:
+  //       "Managed by dietary changes, medication to reduce uric acid, and sometimes ESWL or ureteroscopy for stone removal.",
+  //   },
+  //   {
+  //     type: "Cystine Stones",
+  //     description: "Rare stones caused by a genetic disorder",
+  //     procedure:
+  //       "Require specialized treatment including increased hydration, medications, and sometimes surgical removal via PCNL or ureteroscopy.",
+  //   },
+  // ],
 
   whyChooseUs: [
     {

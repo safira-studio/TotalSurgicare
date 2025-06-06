@@ -110,7 +110,9 @@ export default async function Content({ slug, data }: Props) {
       />
 
       {/* Prevention and Non-Surgical Treatment */}
-      {data.treatments.nonSurgical &&
+
+      <Diagnosis {...data.diagnosis} slug={slug} />
+      {/* {data.treatments.nonSurgical &&
         data.treatments.nonSurgical.length > 0 && (
           <div className="mb-16 md:px-10 max-sm:px-3">
             <h2 className="text-3xl text-center font-onest text-gray-800 mb-6">
@@ -147,7 +149,7 @@ export default async function Content({ slug, data }: Props) {
               </div>
             </div>
           </div>
-        )}
+        )} */}
       {/* sugrical treatment */}
 
       <section className="py-12 lg:px-10 bg-white">
@@ -198,7 +200,45 @@ export default async function Content({ slug, data }: Props) {
         </div>
       </section>
 
-      <Diagnosis {...data.diagnosis} slug={slug} />
+      {/* <Diagnosis {...data.diagnosis} slug={slug} /> */}
+      {data.treatments.nonSurgical &&
+        data.treatments.nonSurgical.length > 0 && (
+          <div className="mb-16 md:px-10 max-sm:px-3">
+            <h2 className="text-3xl text-center font-onest text-gray-800 mb-6">
+              Preventive Measures
+            </h2>
+            <div className="bg-blue-50 rounded-2xl md:rounded-3xl p-6 ">
+              <div className="grid md:grid-cols-2 gap-6">
+                {data.treatments.nonSurgical?.map((measure, index) => (
+                  <div key={index} className="flex items-start">
+                    <div className="rounded-full bg-blue-100 p-2 mr-4 mt-1">
+                      <svg
+                        className="w-4 h-4 text-clinic-primary"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M5 13l4 4L19 7"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="2"
+                        />
+                      </svg>
+                    </div>
+                    <div>
+                      <h3 className="font-semibold text-gray-800 mb-1">
+                        {measure.name}
+                      </h3>
+                      <p className="text-gray-600">{measure.description}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        )}
       {data.types && data.types.length > 0 && (
         <ConditionTypes name={data.name} types={data.types} />
       )}
