@@ -58,8 +58,44 @@ export const staplerCircumcision: MedicalCondition = {
   treatments: {
     nonSurgical: [
       {
-        name: "Topical Steroids",
-        description: "Applied to loosen the foreskin in mild cases.",
+        name: "Tight foreskin (Phimosis)",
+        description: "Can't pull back foreskin.",
+      },
+      {
+        name: "Recurrent infections",
+        description: "Balanitis or balanoposthitis.",
+      },
+      {
+        name: "Pain during sex",
+        description: "Due to tight or tearing foreskin.",
+      },
+      {
+        name: "Hygiene issues",
+        description: "Smell or smegma buildup.",
+      },
+      {
+        name: "Paraphimosis",
+        description: "Foreskin stuck behind glans (emergency).",
+      },
+      {
+        name: "Short frenulum",
+        description: "Painful bending during erection.",
+      },
+      {
+        name: "Frequent UTIs",
+        description: "Especially in boys with tight foreskin.",
+      },
+      {
+        name: "White patches or scarring",
+        description: "Lichen sclerosus.",
+      },
+      {
+        name: "Suspicious growths",
+        description: "Pre-cancerous lesions.",
+      },
+      {
+        name: "Urine flow problems in kids",
+        description: "Due to tight foreskin.",
       },
     ],
     surgical: [
@@ -77,21 +113,21 @@ export const staplerCircumcision: MedicalCondition = {
       },
     ],
   },
-  types: [
-    {
-      type: "Stapler Circumcision",
-      description:
-        "Circumcision using a stapler device for efficient foreskin removal.",
-      procedure:
-        "The stapler device is applied to the foreskin, staples are deployed to cut and close simultaneously, reducing bleeding.",
-    },
-    {
-      type: "Conventional Circumcision",
-      description:
-        "Traditional surgical removal of the foreskin with a scalpel.",
-      procedure: "Foreskin is manually excised and sutured.",
-    },
-  ],
+  // types: [
+  //   {
+  //     type: "Stapler Circumcision",
+  //     description:
+  //       "Circumcision using a stapler device for efficient foreskin removal.",
+  //     procedure:
+  //       "The stapler device is applied to the foreskin, staples are deployed to cut and close simultaneously, reducing bleeding.",
+  //   },
+  //   {
+  //     type: "Conventional Circumcision",
+  //     description:
+  //       "Traditional surgical removal of the foreskin with a scalpel.",
+  //     procedure: "Foreskin is manually excised and sutured.",
+  //   },
+  // ],
   whyChooseUs: [
     {
       title: "Advanced Stapler Circumcision Technique",
