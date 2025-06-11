@@ -1,27 +1,511 @@
 import { siteConfig } from "@/config/site";
-
 import { Shield, Lock, Eye, FileText, Users, Globe, Phone } from "lucide-react";
 import { Metadata } from "next";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Privacy Policy",
   description:
-    "Total Surgicare · 0 ... Privacy Policy · Cancellation policy. © 2025 Total Surgicare. Designed by First DigiAdd. WhatsApp us.",
+    "Total Surgicare · Privacy Policy · Learn how we collect, use, and protect your personal information.",
   openGraph: {
-    title: "About Us - Total Surgicare",
+    title: "Privacy Policy - Total Surgicare",
     description:
-      "Learn about Total Surgicare, a leading surgical care provider in Pune specializing in minimally invasive procedures for various conditions.",
-    url: "https://totalsurgicare.com/aboutus",
+      "Learn about Total Surgicare's Privacy Policy, detailing how we collect, use, and protect your personal information.",
+    url: "https://totalsurgicare.com/privacy-policy",
     images: [
       {
         url: "https://totalsurgicare.com/logo.webp",
         width: 800,
         height: 600,
-        alt: "Total Surgicare About Us",
+        alt: "Total Surgicare Privacy Policy",
       },
     ],
   },
 };
+
+// Define the privacy policy content as a structured array with JSX support
+const privacyContent = [
+  {
+    title: "Introduction",
+    icon: Shield,
+    content: [
+      {
+        type: "paragraph",
+        content: (
+          <>
+            <strong>TotalSurgicare</strong> ("we," "our," or "us") is committed
+            to protecting your privacy and personal information. This Privacy
+            Notice explains how and why we might access, collect, store, use,
+            and/or share ("process") your personal information when you use our
+            services, including when you visit our website at{" "}
+            <Link
+              href="https://totalsurgicare.com"
+              className="text-clinic-primary hover:underline font-medium"
+            >
+              https://totalsurgicare.com
+            </Link>{" "}
+            or engage with us in other related ways, including any sales,
+            marketing, or events.
+          </>
+        ),
+      },
+      {
+        type: "paragraph",
+        content: (
+          <>
+            If you have any questions or concerns, please contact us at{" "}
+            <Link
+              href={`mailto:${siteConfig.contact.email.support}`}
+              className="text-clinic-primary hover:underline font-medium"
+            >
+              {siteConfig.contact.email.support}
+            </Link>
+            .
+          </>
+        ),
+      },
+    ],
+  },
+  {
+    title: "What Information Do We Collect?",
+    icon: FileText,
+    content: [
+      {
+        type: "subheading",
+        content: "Personal Information You Disclose to Us",
+      },
+      {
+        type: "paragraph",
+        content: (
+          <>
+            We collect personal information that you{" "}
+            <strong>voluntarily provide</strong> to us when you express an
+            interest in obtaining information about us or our services,
+            participate in activities on our services, or otherwise contact us.
+            The personal information we collect depends on the context of your
+            interactions with us and the services, the choices you make, and the
+            products and features you use.
+          </>
+        ),
+      },
+      {
+        type: "list",
+        items: [
+          <strong key="names">Names</strong>,
+          <strong key="phones">Phone numbers</strong>,
+          <strong key="emails">Email addresses</strong>,
+          <strong key="health">Health concerns</strong>,
+        ],
+      },
+      {
+        type: "subheading",
+        content: "Sensitive Information",
+      },
+      {
+        type: "paragraph",
+        content: (
+          <>
+            When necessary, with your consent or as otherwise permitted by
+            applicable law, we process <strong>sensitive information</strong>{" "}
+            such as health data.
+          </>
+        ),
+      },
+      {
+        type: "paragraph",
+        content: (
+          <>
+            All personal information that you provide to us must be{" "}
+            <strong>true, complete, and accurate</strong>, and you must notify
+            us of any changes to such personal information.
+          </>
+        ),
+      },
+      {
+        type: "subheading",
+        content: "Google API",
+      },
+      {
+        type: "paragraph",
+        content: (
+          <>
+            Our use of information received from Google APIs will adhere to the{" "}
+            <Link
+              href="https://developers.google.com/terms/api-services-user-data-policy"
+              className="text-clinic-primary hover:underline font-medium"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Google API Services User Data Policy
+            </Link>
+            , including the Limited Use requirements.
+          </>
+        ),
+      },
+    ],
+  },
+  {
+    title: "How Do We Process Your Information?",
+    icon: Users,
+    content: [
+      {
+        type: "paragraph",
+        content: (
+          <>
+            We process your personal information to{" "}
+            <strong>provide, improve, and administer</strong> our services,
+            communicate with you, for security and fraud prevention, and to
+            comply with law. We may also process your information for other
+            purposes with your consent.
+          </>
+        ),
+      },
+      {
+        type: "list",
+        items: [
+          <>
+            <strong>
+              To deliver and facilitate delivery of services to the user:
+            </strong>{" "}
+            We may process your information to provide you with the requested
+            service.
+          </>,
+        ],
+      },
+    ],
+  },
+  {
+    title: "When and With Whom Do We Share Your Personal Information?",
+    icon: Globe,
+    content: [
+      {
+        type: "paragraph",
+        content: (
+          <>
+            We may need to share your personal information in the following
+            situations:
+          </>
+        ),
+      },
+      {
+        type: "list",
+        items: [
+          <>
+            <strong>Business Transfers:</strong> We may share or transfer your
+            information in connection with, or during negotiations of, any
+            merger, sale of company assets, financing, or acquisition of all or
+            a portion of our business to another company.
+          </>,
+        ],
+      },
+    ],
+  },
+  {
+    title: "How Long Do We Keep Your Information?",
+    icon: FileText,
+    content: [
+      {
+        type: "paragraph",
+        content: (
+          <>
+            We will only keep your personal information for as long as it is{" "}
+            <strong>necessary for the purposes</strong> set out in this Privacy
+            Notice, unless a longer retention period is required or permitted by
+            law (such as tax, accounting, or other legal requirements). No
+            purpose in this notice will require us to keep your personal
+            information for longer than until the service is provided to the
+            user.
+          </>
+        ),
+      },
+      {
+        type: "paragraph",
+        content: (
+          <>
+            When we have no ongoing legitimate business need to process your
+            personal information, we will either{" "}
+            <strong>delete or anonymize</strong> such information, or, if this
+            is not possible (for example, because your personal information has
+            been stored in backup archives), then we will securely store your
+            personal information and isolate it from any further processing
+            until deletion is possible.
+          </>
+        ),
+      },
+    ],
+  },
+  {
+    title: "How Do We Keep Your Information Safe?",
+    icon: Lock,
+    content: [
+      {
+        type: "paragraph",
+        content: (
+          <>
+            We have implemented{" "}
+            <strong>
+              appropriate and reasonable technical and organizational security
+              measures
+            </strong>{" "}
+            designed to protect the security of any personal information we
+            process. However, despite our safeguards and efforts to secure your
+            information, no electronic transmission over the Internet or
+            information storage technology can be guaranteed to be 100% secure,
+            so we cannot promise or guarantee that hackers, cybercriminals, or
+            other unauthorized third parties will not be able to defeat our
+            security and improperly collect, access, steal, or modify your
+            information. Transmission of personal information to and from our
+            services is at your own risk.
+          </>
+        ),
+      },
+    ],
+  },
+  {
+    title: "What Are Your Privacy Rights?",
+    icon: Eye,
+    content: [
+      {
+        type: "paragraph",
+        content: (
+          <>
+            You may <strong>review, change, or terminate</strong> your account
+            at any time, depending on your country, province, or state of
+            residence. If we are relying on your consent to process your
+            personal information, you have the right to withdraw your consent at
+            any time by contacting us at{" "}
+            <Link
+              href={`mailto:${siteConfig.contact.email.support}`}
+              className="text-clinic-primary hover:underline font-medium"
+            >
+              {siteConfig.contact.email.support}
+            </Link>
+            .
+          </>
+        ),
+      },
+      {
+        type: "paragraph",
+        content: (
+          <>
+            Please note that withdrawing consent will not affect the lawfulness
+            of processing before its withdrawal, nor will it affect the
+            processing of your personal information conducted in reliance on{" "}
+            <strong>lawful processing grounds</strong> other than consent.
+          </>
+        ),
+      },
+    ],
+  },
+  {
+    title: "Controls for Do-Not-Track Features",
+    icon: Shield,
+    content: [
+      {
+        type: "paragraph",
+        content: (
+          <>
+            Most web browsers and some mobile operating systems and mobile
+            applications include a <strong>Do-Not-Track (DNT)</strong> feature
+            or setting you can activate to signal your privacy preference not to
+            have data about your online browsing activities monitored and
+            collected. At this stage, no uniform technology standard for
+            recognizing and implementing DNT signals has been finalized. As
+            such, we do not currently respond to DNT browser signals or any
+            other mechanism that automatically communicates your choice not to
+            be tracked online.
+          </>
+        ),
+      },
+    ],
+  },
+  {
+    title: "Your Rights",
+    icon: Eye,
+    content: [
+      {
+        type: "paragraph",
+        content: (
+          <>
+            Under the{" "}
+            <strong>
+              Health Insurance Portability and Accountability Act (HIPAA)
+            </strong>{" "}
+            and other applicable laws, you have certain rights regarding your
+            protected health information (PHI):
+          </>
+        ),
+      },
+      {
+        type: "list",
+        items: [
+          <>
+            <strong>Right to Access:</strong> You may request access to and
+            obtain copies of your medical records, subject to applicable fees
+            and legal limitations.
+          </>,
+          <>
+            <strong>Right to Amend:</strong> You may request amendments to your
+            PHI if you believe it is inaccurate or incomplete.
+          </>,
+          <>
+            <strong>Right to Restrict:</strong> You may request restrictions on
+            how we use or disclose your PHI for treatment, payment, or
+            healthcare operations.
+          </>,
+          <>
+            <strong>Right to Confidential Communications:</strong> You may
+            request to receive communications about your PHI in a specific way
+            or at a specific location (e.g., via email or at an alternate
+            address).
+          </>,
+          <>
+            <strong>Right to File a Complaint:</strong> If you believe your
+            privacy rights have been violated, you may file a complaint with us
+            by contacting our Privacy Officer at{" "}
+            <Link
+              href={`mailto:${siteConfig.contact.email.support}`}
+              className="text-clinic-primary hover:underline font-medium"
+            >
+              {siteConfig.contact.email.support}
+            </Link>{" "}
+            or{" "}
+            <Link
+              href={`tel:${siteConfig.contact.phone.primary}`}
+              className="text-clinic-primary hover:underline font-medium"
+            >
+              {siteConfig.contact.phone.primary}
+            </Link>
+            . You may also file a complaint with the U.S. Department of Health
+            and Human Services Office for Civil Rights. We will not retaliate
+            against you for filing a complaint.
+          </>,
+        ],
+      },
+    ],
+  },
+  {
+    title: "HIPAA Compliance",
+    icon: Shield,
+    content: [
+      {
+        type: "paragraph",
+        content: (
+          <>
+            <strong>TotalSurgicare</strong> is committed to complying with the{" "}
+            <strong>
+              Health Insurance Portability and Accountability Act (HIPAA)
+            </strong>{" "}
+            to protect the privacy and security of your protected health
+            information.
+          </>
+        ),
+      },
+    ],
+  },
+  {
+    title: "Do We Make Updates to This Notice?",
+    icon: FileText,
+    content: [
+      {
+        type: "paragraph",
+        content: (
+          <>
+            We may update this Privacy Notice from time to time. The updated
+            version will be indicated by an updated{" "}
+            <strong>'Revised' date</strong> at the top of this Privacy Notice.
+            If we make material changes, we may notify you either by prominently
+            posting a notice of such changes or by directly sending you a
+            notification. We encourage you to review this Privacy Notice
+            frequently to be informed of how we are protecting your information.
+          </>
+        ),
+      },
+    ],
+  },
+  {
+    title: "How Can You Contact Us About This Notice?",
+    icon: Phone,
+    content: [
+      {
+        type: "paragraph",
+        content: (
+          <>
+            If you have questions or comments about this notice, you may email
+            us at{" "}
+            <Link
+              href={`mailto:${siteConfig.contact.email.support}`}
+              className="text-clinic-primary hover:underline font-medium"
+            >
+              {siteConfig.contact.email.support}
+            </Link>{" "}
+            or contact us by post at:
+          </>
+        ),
+      },
+      {
+        type: "address",
+        content: (
+          <div className="bg-gray-50 p-4 rounded-lg border-l-4 border-clinic-primary">
+            <div className="font-semibold text-clinic-primary mb-2">
+              TotalSurgicare
+            </div>
+            <div className="space-y-1 text-gray-700">
+              <div>{siteConfig.contact.address.street}</div>
+              <div>
+                {siteConfig.contact.address.city},{" "}
+                {siteConfig.contact.address.state} -{" "}
+                {siteConfig.contact.address.pincode}
+              </div>
+              <div>India</div>
+              <div className="pt-2">
+                <strong>Phone:</strong>{" "}
+                <Link
+                  href={`tel:${siteConfig.contact.phone.primary}`}
+                  className="text-clinic-primary hover:underline font-medium"
+                >
+                  {siteConfig.contact.phone.primary}
+                </Link>
+              </div>
+            </div>
+          </div>
+        ),
+      },
+    ],
+  },
+  {
+    title:
+      "How Can You Review, Update, or Delete the Data We Collect From You?",
+    icon: FileText,
+    content: [
+      {
+        type: "paragraph",
+        content: (
+          <>
+            Based on the applicable laws of your country, you may have the right
+            to <strong>request access</strong> to the personal information we
+            collect from you, details about how we have processed it, correct
+            inaccuracies, or delete your personal information. You may also have
+            the right to withdraw your consent to our processing of your
+            personal information. These rights may be limited in some
+            circumstances by applicable law. To request to review, update, or
+            delete your personal information, please fill out and submit a data
+            subject access request at{" "}
+            <Link
+              href={`mailto:${siteConfig.contact.email.primary}`}
+              className="text-clinic-primary hover:underline font-medium break-all"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {siteConfig.contact.email.primary}
+            </Link>
+            .
+          </>
+        ),
+      },
+    ],
+  },
+];
 
 const PrivacyPolicy = () => {
   return (
@@ -30,12 +514,13 @@ const PrivacyPolicy = () => {
       <section className="py-10 px-4">
         <div className="container mx-auto text-center">
           <Shield className="h-16 w-16 text-clinic-primary mx-auto mb-6" />
-          <h1 className="text-5xl font-bold text-clinic-primary  mb-6">
+          <h1 className="text-xl md:text-4xl font-bold text-clinic-primary mb-6">
             Privacy Policy
           </h1>
-          <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
+          <p className="md:text-lg text-gray-600 mb-8 max-w-3xl mx-auto">
             Your privacy is important to us. This policy explains how we
-            collect, use, and protect your personal information.
+            collect, use, and protect your personal information.{" "}
+            <span className="font-semibold">Last updated June 02, 2025.</span>
           </p>
         </div>
       </section>
@@ -44,222 +529,44 @@ const PrivacyPolicy = () => {
       <section className="py-12 px-4">
         <div className="container mx-auto max-w-4xl">
           <div className="bg-white rounded-lg shadow-lg p-8 space-y-8">
-            {/* Introduction */}
-            <div>
-              <h2 className="text-3xl font-bold text-clinic-primary mb-4">
-                Introduction
-              </h2>
-              <p className="text-gray-600 leading-relaxed">
-                TotalSurgicare (&quot;we,&quot; &quot;our,&quot; or
-                &quot;us&quot;) is committed to protecting your privacy and
-                personal information. This Privacy Policy explains how we
-                collect, use, disclose, and safeguard your information when you
-                visit our website or use our medical services. Please read this
-                privacy policy carefully.
-              </p>
-            </div>
-
-            {/* Information We Collect */}
-            <div>
-              <div className="flex items-center mb-4">
-                <FileText className="h-6 w-6 text-clinic-primary mr-3" />
-                <h2 className="text-3xl font-bold text-clinic-primary">
-                  Information We Collect
-                </h2>
-              </div>
-              <div className="space-y-4">
-                <div>
-                  <h3 className="text-xl font-semibold text-clinic-primary mb-2">
-                    Personal Information
-                  </h3>
-                  <p className="text-gray-600 leading-relaxed">
-                    We may collect personal information that you provide
-                    directly to us, including:
-                  </p>
-                  <ul className="list-disc list-inside text-gray-600 mt-2 space-y-1">
-                    <li>Name, address, phone number, and email address</li>
-                    <li>Date of birth and social security number</li>
-                    <li>Insurance information and payment details</li>
-                    <li>Medical history and health information</li>
-                    <li>Emergency contact information</li>
-                  </ul>
+            {privacyContent.map((section, index) => (
+              <div key={index}>
+                <div className="flex items-center mb-4">
+                  <section.icon className="h-6 w-6 text-clinic-primary mr-3" />
+                  <h2 className="text-xl md:text-2xl font-bold text-clinic-primary">
+                    {index === 0 ? section.title : `${index}. ${section.title}`}
+                  </h2>
                 </div>
-                <div>
-                  <h3 className="text-xl font-semibold text-clinic-primary mb-2">
-                    Medical Information
-                  </h3>
-                  <p className="text-gray-600 leading-relaxed">
-                    As a healthcare provider, we collect and maintain medical
-                    records that may include diagnoses, treatment plans, test
-                    results, and other health-related information necessary for
-                    your care.
-                  </p>
-                </div>
+                {section.content.map((item, idx) => (
+                  <div key={idx} className="space-y-4">
+                    {item.type === "subheading" && (
+                      <h3 className="md:text-lg font-semibold text-clinic-primary mb-2">
+                        {typeof item.content === "string"
+                          ? item.content
+                          : item.content}
+                      </h3>
+                    )}
+                    {item.type === "paragraph" && (
+                      <p className="text-sm md:text-base text-gray-600 leading-relaxed">
+                        {item.content}
+                      </p>
+                    )}
+                    {item.type === "address" && (
+                      <div className="text-sm md:text-base">{item.content}</div>
+                    )}
+                    {item.type === "list" && (
+                      <ul className="list-disc list-inside text-gray-600 space-y-2 text-sm md:text-base">
+                        {item.items?.map((listItem, listIdx) => (
+                          <li key={listIdx} className="leading-relaxed">
+                            {listItem}
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </div>
+                ))}
               </div>
-            </div>
-
-            {/* How We Use Information */}
-            <div>
-              <div className="flex items-center mb-4">
-                <Users className="h-6 w-6 text-clinic-primary mr-3" />
-                <h2 className="text-3xl font-bold text-clinic-primary">
-                  How We Use Your Information
-                </h2>
-              </div>
-              <p className="text-gray-600 leading-relaxed mb-4">
-                We use the information we collect for various purposes,
-                including:
-              </p>
-              <ul className="list-disc list-inside text-gray-600 space-y-2">
-                <li>Providing medical care and treatment services</li>
-                <li>Scheduling appointments and managing your care</li>
-                <li>Processing insurance claims and billing</li>
-                <li>Communicating with you about your health and treatment</li>
-                <li>Complying with legal and regulatory requirements</li>
-                <li>Improving our services and patient experience</li>
-                <li>Coordinating care with other healthcare providers</li>
-              </ul>
-            </div>
-
-            {/* Information Sharing */}
-            <div>
-              <div className="flex items-center mb-4">
-                <Globe className="h-6 w-6 text-clinic-primary mr-3" />
-                <h2 className="text-3xl font-bold text-clinic-primary">
-                  Information Sharing and Disclosure
-                </h2>
-              </div>
-              <p className="text-gray-600 leading-relaxed mb-4">
-                We may share your information in the following circumstances:
-              </p>
-              <ul className="list-disc list-inside text-gray-600 space-y-2">
-                <li>
-                  <strong>Healthcare Operations:</strong> With other healthcare
-                  providers involved in your care
-                </li>
-                <li>
-                  <strong>Payment Processing:</strong> With insurance companies
-                  and billing services
-                </li>
-                <li>
-                  <strong>Legal Requirements:</strong> When required by law or
-                  court order
-                </li>
-                <li>
-                  <strong>Emergency Situations:</strong> To protect your health
-                  and safety
-                </li>
-                <li>
-                  <strong>Business Associates:</strong> With vendors who help us
-                  provide services
-                </li>
-              </ul>
-            </div>
-
-            {/* Data Security */}
-            <div>
-              <div className="flex items-center mb-4">
-                <Lock className="h-6 w-6 text-clinic-primary mr-3" />
-                <h2 className="text-3xl font-bold text-clinic-primary">
-                  Data Security
-                </h2>
-              </div>
-              <p className="text-gray-600 leading-relaxed">
-                We implement appropriate security measures to protect your
-                personal information against unauthorized access, alteration,
-                disclosure, or destruction. These measures include
-                administrative, physical, and technical safeguards. However, no
-                method of transmission over the internet or electronic storage
-                is 100% secure, and we cannot guarantee absolute security.
-              </p>
-            </div>
-
-            {/* Your Rights */}
-            <div>
-              <div className="flex items-center mb-4">
-                <Eye className="h-6 w-6 text-clinic-primary mr-3" />
-                <h2 className="text-3xl font-bold text-clinic-primary">
-                  Your Rights
-                </h2>
-              </div>
-              <p className="text-gray-600 leading-relaxed mb-4">
-                Under HIPAA and other applicable laws, you have certain rights
-                regarding your health information:
-              </p>
-              <ul className="list-disc list-inside text-gray-600 space-y-2">
-                <li>
-                  Right to access and obtain copies of your medical records
-                </li>
-                <li>Right to request amendments to your health information</li>
-                <li>
-                  Right to request restrictions on how we use or disclose your
-                  information
-                </li>
-                <li>Right to request confidential communications</li>
-                <li>
-                  Right to file a complaint if you believe your privacy rights
-                  have been violated
-                </li>
-              </ul>
-            </div>
-
-            {/* HIPAA Compliance */}
-            <div>
-              <h2 className="text-3xl font-bold text-clinic-primary mb-4">
-                HIPAA Compliance
-              </h2>
-              <p className="text-gray-600 leading-relaxed">
-                TotalSurgicare is committed to complying with the Health
-                Insurance Portability and Accountability Act (HIPAA) and
-                protecting the privacy and security of your protected health
-                information (PHI). We have implemented policies and procedures
-                to ensure HIPAA compliance in all aspects of our operations.
-              </p>
-            </div>
-
-            {/* Updates to Policy */}
-            <div>
-              <h2 className="text-3xl font-bold text-clinic-primary mb-4">
-                Changes to This Privacy Policy
-              </h2>
-              <p className="text-gray-600 leading-relaxed">
-                We may update this Privacy Policy from time to time. We will
-                notify you of any changes by posting the new Privacy Policy on
-                this page and updating the &quot;Last Updated&quot; date. You
-                are advised to review this Privacy Policy periodically for any
-                changes.
-              </p>
-            </div>
-
-            {/* Contact Information */}
-            <div className="bg-blue-50 p-6 rounded-lg">
-              <div className="flex items-center mb-4">
-                <Phone className="h-6 w-6 text-clinic-primary mr-3" />
-                <h2 className="text-3xl font-bold text-clinic-primary">
-                  Contact Us
-                </h2>
-              </div>
-              <p className="text-gray-600 leading-relaxed mb-4">
-                If you have any questions about this Privacy Policy or our
-                privacy practices, please contact us:
-              </p>
-              <div className="text-gray-600 space-y-2">
-                <p>
-                  <strong>Phone:</strong>{" "}
-                  {siteConfig.contact.phone.primary}{" "}
-                </p>
-                <p>
-                  <strong>Email:</strong> {siteConfig.contact.email.primary}
-                </p>
-                <p>
-                  <strong> Address: </strong>
-                  {siteConfig.contact.address.street},{" "}
-                  {siteConfig.contact.address.city},{" "}
-                  {siteConfig.contact.address.state} -{" "}
-                  {siteConfig.contact.address.pincode},{" "}
-                </p>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </section>
