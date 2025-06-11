@@ -87,12 +87,12 @@ const MedicalSpecialties = () => {
       link: "varicose-veins",
     },
     {
-      name: "Vaginoplasty",
+      name: "Vagino plasty",
       icon: "/images/specialties/Vaginoplasty.png",
       link: "vaginoplasty",
     },
     {
-      name: "Hymenoplasty",
+      name: "Hymeno plasty",
       icon: "/images/specialties/Hymenoplasty.png",
       link: "hymenoplasty",
     },
