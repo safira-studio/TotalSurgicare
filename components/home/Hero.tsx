@@ -90,6 +90,7 @@ export default function Hero() {
               height={100}
               src="/doctor3.png"
               width={550}
+              priority
             />
 
             <div className="absolute top-40 sm:top-40 lg:top-48 left-4 sm:left-6 lg:left-16 bg-gray-500/20 backdrop-blur-sm px-3 py-1 rounded-full text-xs sm:text-sm text-clinic-accent">
