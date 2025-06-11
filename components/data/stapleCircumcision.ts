@@ -24,20 +24,20 @@ export const staplerCircumcision: MedicalCondition = {
       },
     ],
   },
-  causes: [
-    {
-      title: "Phimosis",
-      description:
-        "A condition where the foreskin cannot be fully retracted over the glans, causing discomfort and hygiene issues.",
-      icon: "arrow-up",
-    },
-    {
-      title: "Recurrent Infections",
-      description:
-        "Repeated infections of the foreskin or glans often necessitate circumcision.",
-      icon: "syringe",
-    },
-  ],
+  // causes: [
+  //   {
+  //     title: "Phimosis",
+  //     description:
+  //       "A condition where the foreskin cannot be fully retracted over the glans, causing discomfort and hygiene issues.",
+  //     icon: "arrow-up",
+  //   },
+  //   {
+  //     title: "Recurrent Infections",
+  //     description:
+  //       "Repeated infections of the foreskin or glans often necessitate circumcision.",
+  //     icon: "syringe",
+  //   },
+  // ],
   // symptoms: [
   //   {
   //     title: "Tight foreskin",
@@ -52,14 +52,54 @@ export const staplerCircumcision: MedicalCondition = {
   // ],
   indications: [
     {
-      title: "Tight foreskin",
-      description: "Difficulty or pain while retracting the foreskin.",
-      icon: "syringe",
+      title: "Tight foreskin (Phimosis)",
+      description: "Can't pull back foreskin.",
+      icon: "alert-circle",
     },
     {
-      title: "Inflammation",
-      description: "Redness, swelling, and discomfort in the foreskin area.",
+      title: "Recurrent infections",
+      description: "Balanitis or balanoposthitis.",
+      icon: "arrow-up",
+    },
+    {
+      title: "Pain during sex",
+      description: "Due to tight or tearing foreskin.",
+      icon: "pill",
+    },
+    {
+      title: "Hygiene issues",
+      description: "Smell or smegma buildup.",
       icon: "thermometer",
+    },
+    {
+      title: "Paraphimosis",
+      description: "Foreskin stuck behind glans (emergency).",
+      icon: "image",
+    },
+    {
+      title: "Short frenulum",
+      description: "Painful bending during erection.",
+      icon: "pill",
+    },
+    {
+      title: "Frequent UTIs",
+      description: "Especially in boys with tight foreskin.",
+      icon: "alert-circle",
+    },
+    {
+      title: "White patches or scarring",
+      description: "Lichen sclerosus.",
+      icon: "thermometer",
+    },
+    {
+      title: "Suspicious growths",
+      description: "Pre-cancerous lesions.",
+      icon: "arrow-up",
+    },
+    {
+      title: "Urine flow problems in kids",
+      description: "Due to tight foreskin.",
+      icon: "pill",
     },
   ],
   diagnosis: {
@@ -68,48 +108,48 @@ export const staplerCircumcision: MedicalCondition = {
     methods: ["Physical examination", "Patient history review"],
   },
   treatments: {
-    nonSurgical: [
-      {
-        name: "Tight foreskin (Phimosis)",
-        description: "Can't pull back foreskin.",
-      },
-      {
-        name: "Recurrent infections",
-        description: "Balanitis or balanoposthitis.",
-      },
-      {
-        name: "Pain during sex",
-        description: "Due to tight or tearing foreskin.",
-      },
-      {
-        name: "Hygiene issues",
-        description: "Smell or smegma buildup.",
-      },
-      {
-        name: "Paraphimosis",
-        description: "Foreskin stuck behind glans (emergency).",
-      },
-      {
-        name: "Short frenulum",
-        description: "Painful bending during erection.",
-      },
-      {
-        name: "Frequent UTIs",
-        description: "Especially in boys with tight foreskin.",
-      },
-      {
-        name: "White patches or scarring",
-        description: "Lichen sclerosus.",
-      },
-      {
-        name: "Suspicious growths",
-        description: "Pre-cancerous lesions.",
-      },
-      {
-        name: "Urine flow problems in kids",
-        description: "Due to tight foreskin.",
-      },
-    ],
+    // nonSurgical: [
+    //   {
+    //     name: "Tight foreskin (Phimosis)",
+    //     description: "Can't pull back foreskin.",
+    //   },
+    //   {
+    //     name: "Recurrent infections",
+    //     description: "Balanitis or balanoposthitis.",
+    //   },
+    //   {
+    //     name: "Pain during sex",
+    //     description: "Due to tight or tearing foreskin.",
+    //   },
+    //   {
+    //     name: "Hygiene issues",
+    //     description: "Smell or smegma buildup.",
+    //   },
+    //   {
+    //     name: "Paraphimosis",
+    //     description: "Foreskin stuck behind glans (emergency).",
+    //   },
+    //   {
+    //     name: "Short frenulum",
+    //     description: "Painful bending during erection.",
+    //   },
+    //   {
+    //     name: "Frequent UTIs",
+    //     description: "Especially in boys with tight foreskin.",
+    //   },
+    //   {
+    //     name: "White patches or scarring",
+    //     description: "Lichen sclerosus.",
+    //   },
+    //   {
+    //     name: "Suspicious growths",
+    //     description: "Pre-cancerous lesions.",
+    //   },
+    //   {
+    //     name: "Urine flow problems in kids",
+    //     description: "Due to tight foreskin.",
+    //   },
+    // ],
     surgical: [
       {
         name: "Stapler Circumcision",
