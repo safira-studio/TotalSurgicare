@@ -78,6 +78,12 @@ const AppointmentBooking = () => {
                         {siteConfig.contact.phone.primary}
                       </span>
                     </p>
+                    <ul className="space-y-2 text-2xl font-extrabold pt-4 text-white/90">
+                      <li className="font-semibold">💰 Budget Friendly</li>
+                      <li className="font-semibold">
+                        🪙 EMI Option Available at 0% Interest
+                      </li>
+                    </ul>
                   </div>
                 </div>
                 <div className="md:col-span-3 ">
