@@ -45,8 +45,9 @@ const termsContent = [
         type: "paragraph",
         content: (
           <>
-            We are <strong>Total Surgicare</strong> ('Company', 'we', 'us', or
-            'our'), a company registered in India at{" "}
+            We are <strong>Total Surgicare</strong> (&quot;Company&quot;,
+            &quot;we&quot;, &quot;us&quot;, or &quot;our&quot;), a company
+            registered in India at{" "}
             <span className="font-medium">
               {siteConfig.contact.address.street},{" "}
               {siteConfig.contact.address.city},{" "}
@@ -68,9 +69,9 @@ const termsContent = [
             >
               https://totalsurgicare.com
             </Link>{" "}
-            (the 'Site'), as well as any other related products and services
-            that refer or link to these legal terms (collectively, the
-            'Services').
+            (the &apos;Site&apos;), as well as any other related products and
+            services that refer or link to these legal terms (collectively, the
+            &apos;Services&apos;).
           </>
         ),
       },
@@ -102,10 +103,10 @@ const termsContent = [
           <>
             These Legal Terms constitute a{" "}
             <strong>legally binding agreement</strong> made between you, whether
-            personally or on behalf of an entity ('you'), and Total Surgicare,
-            concerning your access to and use of the Services. You agree that by
-            accessing the Services, you have read, understood, and agreed to be
-            bound by all of these Legal Terms.{" "}
+            personally or on behalf of an entity (&apos;you&apos;), and Total
+            Surgicare, concerning your access to and use of the Services. You
+            agree that by accessing the Services, you have read, understood, and
+            agreed to be bound by all of these Legal Terms.{" "}
             <strong>
               IF YOU DO NOT AGREE WITH ALL OF THESE LEGAL TERMS, THEN YOU ARE
               PROHIBITED FROM USING THE SERVICES AND YOU MUST DISCONTINUE USE
@@ -123,8 +124,9 @@ const termsContent = [
             herein by reference. We reserve the right, in our sole discretion,
             to make changes or modifications to these Legal Terms at any time
             and for any reason. We will alert you about any changes by updating
-            the <strong>'Last updated'</strong> date of these Legal Terms, and
-            you waive any right to receive specific notice of each such change.
+            the <strong>&apos;Last updated&apos;</strong> date of these Legal
+            Terms, and you waive any right to receive specific notice of each
+            such change.
           </>
         ),
       },
@@ -178,9 +180,9 @@ const termsContent = [
             <strong>intellectual property rights</strong> in our Services,
             including all source code, databases, functionality, software,
             website designs, audio, video, text, photographs, and graphics in
-            the Services (collectively, the 'Content'), as well as the
+            the Services (collectively, the &apos;Content&apos;), as well as the
             trademarks, service marks, and logos contained therein (the
-            'Marks').
+            &apos;Marks&apos;).
           </>
         ),
       },
@@ -200,8 +202,8 @@ const termsContent = [
         content: (
           <>
             The Content and Marks are provided in or through the Services{" "}
-            <strong>'AS IS'</strong> for your personal, non-commercial use or
-            internal business purpose only.
+            <strong>&apos;AS IS&apos;</strong> for your personal, non-commercial
+            use or internal business purpose only.
           </>
         ),
       },
@@ -214,8 +216,8 @@ const termsContent = [
         content: (
           <>
             Subject to your compliance with these Legal Terms, including the{" "}
-            <strong>'Prohibited Activities'</strong> section below, we grant you
-            a non-exclusive, non-transferable, revocable license to:
+            <strong>&apos;Prohibited Activities&apos;</strong> section below, we
+            grant you a non-exclusive, non-transferable, revocable license to:
           </>
         ),
       },
@@ -277,8 +279,8 @@ const termsContent = [
         content: (
           <>
             By directly sending us any question, comment, suggestion, idea,
-            feedback, or other information about the Services ('Submissions'),
-            you agree to{" "}
+            feedback, or other information about the Services
+            (&apos;Submissions&apos;), you agree to{" "}
             <strong>assign to us all intellectual property rights</strong> in
             such Submission. You agree that we shall own this Submission and be
             entitled to its unrestricted use and dissemination for any lawful
@@ -293,12 +295,12 @@ const termsContent = [
           <>
             <strong>You are responsible for what you post or upload:</strong> By
             sending us Submissions through any part of the Services you confirm
-            that you have read and agree with our 'Prohibited Activities' and
-            will not post, send, publish, upload, or transmit through the
-            Services any Submission that is illegal, harassing, hateful,
-            harmful, defamatory, obscene, bullying, abusive, discriminatory,
-            threatening to any person or group, sexually explicit, false,
-            inaccurate, deceitful, or misleading.
+            that you have read and agree with our &apos;Prohibited
+            Activities&apos; and will not post, send, publish, upload, or
+            transmit through the Services any Submission that is illegal,
+            harassing, hateful, harmful, defamatory, obscene, bullying, abusive,
+            discriminatory, threatening to any person or group, sexually
+            explicit, false, inaccurate, deceitful, or misleading.
           </>
         ),
       },
@@ -385,8 +387,8 @@ const termsContent = [
           <>Engage in unauthorized framing of or linking to the Services.</>,
           <>
             Upload or transmit viruses, Trojan horses, or other material that
-            interferes with any party's uninterrupted use and enjoyment of the
-            Services.
+            interferes with any party&apos;s uninterrupted use and enjoyment of
+            the Services.
           </>,
           <>
             Engage in any automated use of the system, such as using scripts to
@@ -406,8 +408,8 @@ const termsContent = [
             or restrict access to the Services, or any portion of the Services.
           </>,
           <>
-            Copy or adapt the Services' software, including but not limited to
-            Flash, PHP, HTML, JavaScript, or other code.
+            Copy or adapt the Services&apos; software, including but not limited
+            to Flash, PHP, HTML, JavaScript, or other code.
           </>,
           <>
             Except as permitted by applicable law, decipher, decompile,
@@ -442,9 +444,9 @@ const termsContent = [
             content and materials to us or on the Services, including but not
             limited to text, writings, video, audio, photographs, graphics,
             comments, suggestions, or personal information or other material
-            (collectively, <strong>'Contributions'</strong>). Contributions may
-            be viewable by other users of the Services and through third-party
-            websites.
+            (collectively, <strong>&apos;Contributions&apos;</strong>).
+            Contributions may be viewable by other users of the Services and
+            through third-party websites.
           </>
         ),
       },
@@ -637,10 +639,11 @@ const termsContent = [
         content: (
           <>
             To expedite resolution and control the cost of any dispute,
-            controversy, or claim related to these Legal Terms (each a 'Dispute'
-            and collectively, the 'Disputes'), the Parties agree to first
-            attempt to <strong>negotiate any Dispute informally</strong> for at
-            least thirty (30) days before initiating arbitration.
+            controversy, or claim related to these Legal Terms (each a
+            &apos;Dispute&apos; and collectively, the &apos;Disputes&apos;), the
+            Parties agree to first attempt to{" "}
+            <strong>negotiate any Dispute informally</strong> for at least
+            thirty (30) days before initiating arbitration.
           </>
         ),
       },
@@ -786,14 +789,14 @@ const termsContent = [
             <strong>defend, indemnify, and hold us harmless</strong>, including
             our subsidiaries, affiliates, and all of our respective officers,
             agents, partners, and employees, from and against any loss, damage,
-            liability, claim, or demand, including reasonable attorneys' fees
-            and expenses, made by any third party due to or arising out of: (1)
-            use of the Services; (2) breach of these Legal Terms; (3) any breach
-            of your representations and warranties set forth in these Legal
-            Terms; (4) your violation of the rights of a third party, including
-            but not limited to intellectual property rights; or (5) any overt
-            harmful act toward any other user of the Services with whom you
-            connected via the Services.
+            liability, claim, or demand, including reasonable attorneys&apos;
+            fees and expenses, made by any third party due to or arising out of:
+            (1) use of the Services; (2) breach of these Legal Terms; (3) any
+            breach of your representations and warranties set forth in these
+            Legal Terms; (4) your violation of the rights of a third party,
+            including but not limited to intellectual property rights; or (5)
+            any overt harmful act toward any other user of the Services with
+            whom you connected via the Services.
           </>
         ),
       },
@@ -926,7 +929,7 @@ const TermsAndConditions = () => {
           </h1>
           <p className="md:text-lg text-gray-600 mb-8 max-w-3xl mx-auto">
             These terms and conditions outline the rules and regulations for the
-            use of Total Surgicare's services.{" "}
+            use of Total Surgicare&apos;s services.{" "}
             <span className="font-semibold">Last updated June 02, 2025.</span>
           </p>
         </div>

@@ -33,11 +33,12 @@ const privacyContent = [
         type: "paragraph",
         content: (
           <>
-            <strong>TotalSurgicare</strong> ("we," "our," or "us") is committed
-            to protecting your privacy and personal information. This Privacy
-            Notice explains how and why we might access, collect, store, use,
-            and/or share ("process") your personal information when you use our
-            services, including when you visit our website at{" "}
+            <strong>TotalSurgicare</strong> (&quot;we,&quot; &quot;our,&quot; or
+            &quot;us&quot;) is committed to protecting your privacy and personal
+            information. This Privacy Notice explains how and why we might
+            access, collect, store, use, and/or share (&quot;process&quot;) your
+            personal information when you use our services, including when you
+            visit our website at{" "}
             <Link
               href="https://totalsurgicare.com"
               className="text-clinic-primary hover:underline font-medium"
@@ -413,10 +414,10 @@ const privacyContent = [
           <>
             We may update this Privacy Notice from time to time. The updated
             version will be indicated by an updated{" "}
-            <strong>'Revised' date</strong> at the top of this Privacy Notice.
-            If we make material changes, we may notify you either by prominently
-            posting a notice of such changes or by directly sending you a
-            notification. We encourage you to review this Privacy Notice
+            <strong>&apos;Revised&apos; date</strong> at the top of this Privacy
+            Notice. If we make material changes, we may notify you either by
+            prominently posting a notice of such changes or by directly sending
+            you a notification. We encourage you to review this Privacy Notice
             frequently to be informed of how we are protecting your information.
           </>
         ),
