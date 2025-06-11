@@ -33,40 +33,72 @@ const CorporateTestingServices = () => {
 
   const packages = [
     {
-      name: "Basic Corporate Package",
-      tests: [
-        "Complete Blood Count",
-        "Blood Sugar",
-        "Blood Pressure",
-        "BMI Assessment",
-        "Full Body Check-up",
-      ],
-      price: "₹899",
-      employees: "Per Employee",
+      name: "Ayaksham-Basic",
+      tests: "CBC, Lipid Profile, Thyroid Profile, LFT, KFT, Glucose (Fasting)",
+      price: "₹799",
+      employees: "74 Parameters",
     },
     {
-      name: "Executive Health Package",
-      tests: [
-        "Comprehensive Blood Panel",
-        "ECG",
-        "Chest X-ray",
-        "Lipid Profile",
-        "Liver Function",
-      ],
-      price: "₹2,499",
-      employees: "Per Employee",
+      name: "Ayaksham-Total",
+      tests:
+        "CBC, Urine Routine, Glucose (Fasting), HbA1c, Vitamin D, Calcium, Vitamin B12, Magnesium, Iron Deficiency Profile (Iron, TIBC, % Saturation), Thyroid Profile, Lipid Profile, LFT (Liver Function Test), Electrolyte, KFT (Kidney Function Test)",
+      price: "₹3549",
+      employees: "78 Parameters",
     },
     {
-      name: "Premium Corporate Package",
-      tests: [
-        "Full Body Check-up",
-        "Echo",
-        "TMT",
-        "Ultrasound",
-        "Advanced Blood Tests",
-      ],
-      price: "₹4,999",
-      employees: "Per Employee",
+      name: "Ayaksham-Diabetes",
+      tests:
+        "CBC, Glucose (Fasting), HbA1c, Cholesterol, Triglycerides, BUN (Blood Urea Nitrogen), Creatinine, Uric Acid",
+      price: "₹699",
+      employees: "30 Parameters",
+    },
+    {
+      name: "Ayaksham-Healthy Heart",
+      tests:
+        "CBC, Glucose (Fasting), HbA1c, Cholesterol, Triglycerides, BUN (Blood Urea Nitrogen), Creatinine, Uric Acid",
+      price: "₹1299",
+      employees: "55 Parameters",
+    },
+    {
+      name: "Ayaksham-Senior Citizen (Male)",
+      tests:
+        "CBC, ESR, Glucose (Fasting), HbA1c, Lipid Profile, SGPT, Urea, Vitamin D, Creatinine, Uric Acid, Calcium, Thyroid Profile, Vitamin B12, PSA Total, Urine Routine",
+      price: "₹1299",
+      employees: "62 Parameters",
+    },
+    {
+      name: "Ayaksham-Senior Citizen (Female)",
+      tests:
+        "CBC, ESR, Glucose (Fasting), HbA1c, Lipid Profile, SGPT, Urea, Vitamin D, Creatinine, Uric Acid, Calcium, Thyroid Profile, Vitamin B12, Urine Routine",
+      price: "₹1599",
+      employees: "62 Parameters",
+    },
+    {
+      name: "Ayaksham-Vitamin & Mineral Check",
+      tests:
+        "CBC, Electrolyte, Magnesium, Calcium, Vitamin D, Phosphorus, Iron, Vitamin B12",
+      price: "₹1499",
+      employees: "32 Parameters",
+    },
+    {
+      name: "Ayaksham-Fever Profile-Advance",
+      tests:
+        "CBC, ESR, MP Antigen, MP SMEAR, Typhidot IgM, SGPT, Blood Culture, Urine Routine",
+      price: "₹1649",
+      employees: "—",
+    },
+    {
+      name: "Ayaksham-Fever Profile-Basic",
+      tests: "CBC, ESR, MP Antigen, Typhidot IgM, Urine Routine",
+      price: "₹599",
+      employees: "—",
+    },
+    {
+      name: "Ayaksham-Bone Health-Basic",
+      tests:
+        "CBC, ESR, Glucose (Fasting), SGOT, SGPT, Urea, Calcium, Creatinine, Uric Acid, Lipid Profile, Vitamin B12, Vitamin D, ALK PO4",
+      price: "₹1599",
+      employees: "41 Parameters",
     },
   ];
 
@@ -115,7 +147,7 @@ const CorporateTestingServices = () => {
             <div className="text-center mb-6">
               <Building className="h-16 w-16 text-clinic-primary mx-auto mb-4" />
               <h3 className="text-xl font-bold text-clinic-primary">
-                Corporate Health Partnership
+                Health Partnership
               </h3>
               <p className="text-gray-600 mt-2">
                 Join 500+ companies that trust us for their employee health
@@ -141,13 +173,13 @@ const CorporateTestingServices = () => {
 
         <div>
           <h3 className="text-2xl font-onest text-clinic-primary text-center mb-8">
-            Corporate Health Packages
+            Health Packages
           </h3>
           <div className="grid md:grid-cols-3 gap-6">
             {packages.map((pkg, index) => (
               <Card
                 key={index}
-                className="border-blue-200 hover:shadow-lg transition-shadow"
+                className="border-blue-200 hover:shadow-lg transition-shadow h-full flex flex-col"
               >
                 <CardHeader className="text-center">
                   <CardTitle className="text-xl text-clinic-primary">
@@ -160,18 +192,8 @@ const CorporateTestingServices = () => {
                     <span className="text-gray-600 ml-2">{pkg.employees}</span>
                   </div>
                 </CardHeader>
-                <CardContent>
-                  <ul className="space-y-2 mb-6">
-                    {pkg.tests.map((test, testIndex) => (
-                      <li
-                        key={testIndex}
-                        className="flex items-center text-sm text-gray-700"
-                      >
-                        <div className="h-2 w-2 bg-clinic-primary rounded-full mr-3" />
-                        {test}
-                      </li>
-                    ))}
-                  </ul>
+                <CardContent className="flex flex-col justify-between h-full">
+                  <p className="text-sm text-gray-700 mb-4">{pkg.tests}</p>
                   <Button className="w-full bg-clinic-primary hover:bg-clinic-dark">
                     Get Quote
                   </Button>
