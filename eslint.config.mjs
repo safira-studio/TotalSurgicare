@@ -92,7 +92,7 @@ export default defineConfig([
     files: ["**/*.ts", "**/*.tsx"],
 
     rules: {
-      "no-console": "warn",
+      "no-console": "off",
       "react/prop-types": "off",
       "react/jsx-uses-react": "error",
       "react/react-in-jsx-scope": "off",
@@ -151,24 +151,7 @@ export default defineConfig([
         },
       ],
 
-      "padding-line-between-statements": [
-        "error",
-        {
-          blankLine: "always",
-          prev: "*",
-          next: "return",
-        },
-        {
-          blankLine: "always",
-          prev: ["const", "let", "var"],
-          next: "*",
-        },
-        {
-          blankLine: "any",
-          prev: ["const", "let", "var"],
-          next: ["const", "let", "var"],
-        },
-      ],
+      "padding-line-between-statements": "off",
     },
   },
 ]);
