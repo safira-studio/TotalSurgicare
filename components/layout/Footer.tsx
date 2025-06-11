@@ -5,6 +5,8 @@ import { Facebook, Instagram, Mail, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import Image from "next/image";
+import { SparklesText } from "@/components/ui/sparkles-text";
+import { AnimatedGradientText } from "@/components/ui/animated-gradient-text";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -191,8 +193,22 @@ const Footer = () => {
         <Separator className="bg-clinic-primary my-6" />
 
         {/* Copyright Section */}
-        <div className="text-center pt-4">
-          <p className="text-gray-400 text-sm">
+        <div className="flex flex-col-reverse md:flex-row pt-4 text-center">
+          <span className="text-gray-400 w-full md:w-1/2 flex text-sm justify-center md:justify-start">
+            Crafted By&nbsp;
+            <SparklesText>
+              <Link
+                href="https://safirastudio.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <AnimatedGradientText className="text-sm font-medium">
+                  Safira Studio
+                </AnimatedGradientText>
+              </Link>
+            </SparklesText>
+          </span>
+          <p className="md:text-right text-gray-400 text-sm md:w-1/2">
             © {currentYear} Total Surgicare. All Rights Reserved.
           </p>
         </div>

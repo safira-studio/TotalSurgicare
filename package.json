@@ -41,7 +41,7 @@
     "googleapis": "^149.0.0",
     "intl-messageformat": "10.7.16",
     "lucide-react": "^0.511.0",
-    "motion": "^12.12.1",
+    "motion": "^12.16.0",
     "next": "15.3.1",
     "next-themes": "0.4.6",
     "openai": "^5.0.1",
