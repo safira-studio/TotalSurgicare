@@ -142,18 +142,6 @@ export const varicoseVeins: MedicalCondition = {
     ],
     surgical: [
       {
-        name: "Vein Stripping",
-        description: "Surgical removal of affected veins.",
-        recoveryTime: "2-4 weeks",
-        anesthesia: "General or Local",
-        benefits: [
-          "Permanent removal of damaged veins",
-          "Relieves pain and swelling",
-          "Improves leg appearance",
-          "Prevents complications like ulcers",
-        ],
-      },
-      {
         name: "Endovenous Laser Therapy (EVLT)",
         description:
           "Minimally invasive laser treatment to close varicose veins.",
