@@ -96,7 +96,10 @@ const ConditionTypes = ({
             disruption to sphincter function.
           </p>
           <Link href={"/contact"}>
-            <button className="bg-clinic-primary hover:bg-clinic-dark text-white font-semibold py-3 px-8 rounded-lg transition-colors text-sm sm:text-base">
+            <button
+              aria-label="Schedule appointment"
+              className="bg-clinic-primary hover:bg-clinic-dark text-white font-semibold py-3 px-8 rounded-lg transition-colors text-sm sm:text-base"
+            >
               Schedule a Consultation
             </button>
           </Link>

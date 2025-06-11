@@ -205,6 +205,7 @@ const CarouselPrevious = React.forwardRef<
 
   return (
     <Button
+      aria-label="Previous slide"
       ref={ref}
       className={cn(
         "absolute  h-8 w-8 rounded-full",
@@ -235,6 +236,7 @@ const CarouselNext = React.forwardRef<
 
   return (
     <Button
+      aria-label="Next slide"
       ref={ref}
       className={cn(
         "absolute h-8 w-8 rounded-full",

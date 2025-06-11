@@ -173,6 +173,7 @@ const BlogSection = () => {
         </div>
         <div className="mt-4 md:mt-0 flex justify-center w-full">
           <Button
+            aria-label="View all articles"
             className="mx-auto  text-clinic-primary hover:bg-clinic-primary hover:text-white"
             variant="outline"
           >
@@ -192,7 +193,10 @@ const BlogSection = () => {
               placeholder="Enter your email"
               type="email"
             />
-            <button className="bg-clinic-primary hover:bg-clinic-dark text-white font-medium px-2 md:px-4 py-2 ml-2  transition-colors">
+            <button
+              aria-label="subscribe"
+              className="bg-clinic-primary hover:bg-clinic-dark text-white font-medium px-2 md:px-4 py-2 ml-2  transition-colors"
+            >
               Subscribe
             </button>
           </div>

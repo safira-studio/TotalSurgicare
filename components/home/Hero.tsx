@@ -21,7 +21,10 @@ export default function Hero() {
               We care <span className="text-gray-400">about each person.</span>
             </div>
             <Link href="/contact">
-              <Button className="rounded-full bg-clinic-secondary hover:bg-clinic-secondaryDark text-primary-foreground px-6 mt-4">
+              <Button
+                aria-label="book appointment"
+                className="rounded-full bg-clinic-secondary hover:bg-clinic-secondaryDark text-primary-foreground px-6 mt-4"
+              >
                 Book Appointment
               </Button>
             </Link>

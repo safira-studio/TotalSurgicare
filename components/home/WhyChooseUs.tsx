@@ -57,7 +57,10 @@ const WhyChooseUs = () => {
                 choose us
               </h2>
               <Link href="/contact">
-                <Button className="bg-background text-black hover:bg-white/90">
+                <Button
+                  aria-label="book appointment"
+                  className="bg-background text-black hover:bg-white/90"
+                >
                   Book Appointment
                 </Button>
               </Link>

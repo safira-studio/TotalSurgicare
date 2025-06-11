@@ -255,6 +255,7 @@ const MedicalSpecialties = () => {
         <div ref={buttonRef} className="text-center mt-8">
           {visibleItems < specialties.length && (
             <Button
+              aria-label="Show More"
               className="text-sm font-medium text-clinic-primary hover:text-clinic-dark transition-colors disabled:opacity-50 hover:bg-transparent"
               disabled={isAnimating}
               variant="ghost"
@@ -265,6 +266,7 @@ const MedicalSpecialties = () => {
           )}
           {visibleItems > initialItems && (
             <Button
+              aria-label="Show Less"
               className="text-sm font-medium text-clinic-primary hover:text-clinic-dark transition-colors ml-4 disabled:opacity-50 hover:bg-transparent"
               disabled={isAnimating}
               variant="ghost"

@@ -25,7 +25,11 @@ const ServiceCard = ({
 
         {/* Centered Button */}
         <div className="flex justify-center">
-          <Button className="text-clinic-primary p-0 h-auto" variant="link">
+          <Button
+            aria-label="book appointment"
+            className="text-clinic-primary p-0 h-auto"
+            variant="link"
+          >
             Make an appointment
           </Button>
         </div>
@@ -115,7 +119,11 @@ const Services = () => {
           We provide a full range of medical services — from consultation to
           diagnosis and treatment.
         </p>
-        <Button className="text-clinic-primary p-0 h-auto" variant="link">
+        <Button
+          aria-label="see all services"
+          className="text-clinic-primary p-0 h-auto"
+          variant="link"
+        >
           See all services
         </Button>
       </div>

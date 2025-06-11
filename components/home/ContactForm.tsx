@@ -178,6 +178,7 @@ const ContactForm = () => {
 
                 <div className="pt-2">
                   <Button
+                    aria-label="Send Message"
                     className="bg-clinic-primary hover:bg-clinic-dark w-full md:w-auto"
                     type="submit"
                   >
