@@ -111,14 +111,15 @@ export default function Contact() {
                   Medical Emergency?
                 </h3>
                 <p className="text-red-700 mb-4">
-                  If you&aposre experiencing a medical emergency, please call
-                  9665551712 immediately or go to your nearest emergency room.
+                  If you&aposre experiencing a medical emergency, please call{" "}
+                  {siteConfig.contact.phone.primary} immediately or go to your
+                  nearest emergency room.
                 </p>
                 <Link
-                  href="tel:9665551711"
-                  className="text-2xl hover:bg-red-400"
+                  href={`tel:${siteConfig.contact.phone.primary}`}
+                  className="text-2xl "
                 >
-                  Call 9665551711
+                  {siteConfig.contact.phone.primary}
                 </Link>
               </CardContent>
             </Card>
