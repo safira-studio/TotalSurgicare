@@ -2,6 +2,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Building, Users, MapPin, FileText } from "lucide-react";
+import Link from "next/link";
 
 const CorporateTestingServices = () => {
   const corporateFeatures = [
@@ -85,13 +86,13 @@ const CorporateTestingServices = () => {
       tests:
         "CBC, ESR, MP Antigen, MP SMEAR, Typhidot IgM, SGPT, Blood Culture, Urine Routine",
       price: "₹1649",
-      employees: "—",
+      employees: "",
     },
     {
       name: "Ayaksham-Fever Profile-Basic",
       tests: "CBC, ESR, MP Antigen, Typhidot IgM, Urine Routine",
       price: "₹599",
-      employees: "—",
+      employees: "",
     },
     {
       name: "Ayaksham-Bone Health-Basic",
@@ -194,9 +195,11 @@ const CorporateTestingServices = () => {
                 </CardHeader>
                 <CardContent className="flex flex-col justify-between h-full">
                   <p className="text-sm text-gray-700 mb-4">{pkg.tests}</p>
-                  <Button className="w-full bg-clinic-primary hover:bg-clinic-dark">
-                    Get Quote
-                  </Button>
+                  <Link href={"/contact"}>
+                    <Button className="w-full bg-clinic-primary hover:bg-clinic-dark">
+                      Get Quote
+                    </Button>
+                  </Link>
                 </CardContent>
               </Card>
             ))}
