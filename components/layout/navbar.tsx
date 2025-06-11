@@ -125,6 +125,7 @@ export const Navbar = () => {
           {siteConfig.navItems.map((item, index) => (
             <div key={`${item.title}-${index}`} className="mb-2">
               <Button
+                aria-label="nav button"
                 className="flex items-center justify-between hover:bg-transparent"
                 variant={"ghost"}
                 onClick={() => handleMobileSectionToggle(item.title)}

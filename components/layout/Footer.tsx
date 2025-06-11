@@ -36,6 +36,7 @@ const Footer = () => {
                 target="_blank"
               >
                 <Button
+                  aria-label="Facebook"
                   className="rounded-full hover:bg-clinic-primary hover:text-white"
                   size="icon"
                   variant="ghost"
@@ -50,6 +51,7 @@ const Footer = () => {
                 target="_blank"
               >
                 <Button
+                  aria-label="Instagram"
                   className="rounded-full hover:bg-clinic-primary hover:text-white"
                   size="icon"
                   variant="ghost"
