@@ -5,7 +5,7 @@ import AppointmentForm from "@/components/AppointmentForm";
 
 const AngiographyService = () => {
   const benefits = [
-    "Non-invasive diagnostic procedure",
+    "Minimal-invasive diagnostic procedure",
     "Real-time visualization of blood vessels",
     "Early detection of blockages",
     "Precise treatment planning",
