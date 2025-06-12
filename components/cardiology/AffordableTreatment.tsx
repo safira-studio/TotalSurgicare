@@ -191,9 +191,9 @@ const AffordableTreatment = () => {
           <Image
             alt="Diagnostic procedure"
             className="rounded-lg shadow-md w-full mx-auto"
-            height={1200} // or any larger value
+            height={1200}
             src="/cardiology-1.webp"
-            width={1200} // match the height for a square image
+            width={1200}
           />
         </div>
       </div>
