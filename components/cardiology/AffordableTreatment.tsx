@@ -12,8 +12,8 @@ const AffordableTreatment = () => {
       icon: "💰",
     },
     {
-      title: "Flexible Payment Plans",
-      description: "Interest-free monthly payment options available",
+      title: "Mahatma Jyotirao Phule Jan Arogya Yojana",
+      description: "Scheme would provide 972 surgeries/therapies/procedures",
       icon: "📅",
     },
     {
@@ -27,8 +27,9 @@ const AffordableTreatment = () => {
       icon: "🛡️",
     },
     {
-      title: "Group Discounts",
-      description: "Special rates for family treatment packages",
+      title: "Ayushman Bharat Yojana",
+      description:
+        "Ayushman Bharat Yojana is a government health insurance scheme in India that provides free medical treatment up to ₹5 lakh per year to eligible low-income families.",
       icon: "👥",
     },
     {
