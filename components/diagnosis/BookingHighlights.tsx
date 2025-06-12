@@ -73,7 +73,15 @@ const BookingHighlights = () => {
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-gray-600 text-sm">{highlight.description}</p>
+                <p className="text-gray-600 text-sm">
+                  {highlight.title === "Quick Report Delivery" ? (
+                    <span className="font-semibold text-orange-700 bg-orange-50 px-2 py-0.5 rounded">
+                      {highlight.description}
+                    </span>
+                  ) : (
+                    highlight.description
+                  )}
+                </p>
               </CardContent>
             </Card>
           ))}

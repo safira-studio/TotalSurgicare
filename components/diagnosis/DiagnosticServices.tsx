@@ -98,7 +98,13 @@ const DiagnosticServices = () => {
                     className="flex items-center text-sm text-gray-700"
                   >
                     <div className="h-2 w-2 bg-green-500 rounded-full mr-3" />
-                    {service}
+                    {["CT Scan", "MRI Imaging"].includes(service) ? (
+                      <span className="font-semibold text-green-700 bg-green-100 px-2 py-0.5 rounded">
+                        {service}
+                      </span>
+                    ) : (
+                      service
+                    )}
                   </li>
                 ))}
               </ul>
