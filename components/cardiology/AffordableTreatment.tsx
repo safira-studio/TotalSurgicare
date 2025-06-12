@@ -102,7 +102,7 @@ const AffordableTreatment = () => {
               with each patient to develop a treatment plan that fits their
               medical needs and budget constraints.
             </p>
-
+            {/* 
             <Card className="border-green-200 bg-green-50">
               <CardHeader>
                 <CardTitle className="text-lg text-blue-900 flex items-center">
@@ -120,7 +120,7 @@ const AffordableTreatment = () => {
                   ))}
                 </ul>
               </CardContent>
-            </Card>
+            </Card> */}
           </div>
 
           <div className="bg-clinic-secondary/10 rounded-2xl p-8">
@@ -137,7 +137,7 @@ const AffordableTreatment = () => {
               </p>
             </div>
 
-            <div className="space-y-4">
+            {/* <div className="space-y-4">
               <div className="bg-white rounded-lg p-4 border border-green-200">
                 <div className="flex justify-between items-center">
                   <span className="font-medium text-gray-700">
@@ -168,7 +168,7 @@ const AffordableTreatment = () => {
                   </span>
                 </div>
               </div>
-            </div>
+            </div> */}
 
             <div className="mt-6 space-y-3">
               <Link href="/contact">
@@ -176,12 +176,12 @@ const AffordableTreatment = () => {
                   Schedule Financial Consultation
                 </Button>
               </Link>
-              <Button
+              {/* <Button
                 className="w-full border-clinic-primary text-clinic-primary hover:bg-clinic-dark/20 hover:text-clinic-primary"
                 variant="outline"
               >
                 Download Pricing Guide
-              </Button>
+              </Button> */}
             </div>
           </div>
         </div>
