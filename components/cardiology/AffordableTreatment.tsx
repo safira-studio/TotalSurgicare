@@ -3,6 +3,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Heart, Circle } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 
 const AffordableTreatment = () => {
   const strategies = [
@@ -185,6 +186,15 @@ const AffordableTreatment = () => {
               </Button> */}
             </div>
           </div>
+        </div>
+        <div>
+          <Image
+            alt="Diagnostic procedure"
+            className="rounded-lg shadow-md w-full mx-auto"
+            height={1200} // or any larger value
+            src="/cardiology-1.webp"
+            width={1200} // match the height for a square image
+          />
         </div>
       </div>
     </section>
