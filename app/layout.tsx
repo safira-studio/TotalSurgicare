@@ -6,6 +6,8 @@ import { fontSans } from "@/config/fonts";
 import { Navbar } from "@/components/layout/navbar";
 import Footer from "@/components/layout/Footer";
 import ChatWidget from "@/components/chatWidget";
+import { GoogleTagManager } from "@next/third-parties/google";
+
 // import ChatBot from "@/components/ChatBot";
 
 export const metadata: Metadata = {
@@ -65,6 +67,9 @@ export default function RootLayout({
           fontSans.variable
         )}
       >
+        <GoogleTagManager
+          gtmId={process.env.NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID as string}
+        />
         <div className="relative h-screen">
           <Navbar />
           <main className="mx-auto max-w-8xl">{children}</main>
