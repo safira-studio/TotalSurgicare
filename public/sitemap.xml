@@ -131,24 +131,6 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://totalsurgicare.com/conditions/hymenoplasty</loc>
-    <lastmod>2025-06-01</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://totalsurgicare.com/conditions/vaginoplasty</loc>
-    <lastmod>2025-06-01</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://totalsurgicare.com/conditions/labiaplasty</loc>
-    <lastmod>2025-06-01</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://totalsurgicare.com/conditions/myomectomy</loc>
     <lastmod>2025-06-01</lastmod>
     <changefreq>monthly</changefreq>
@@ -175,6 +157,12 @@
   </url>
   <url>
     <loc>https://totalsurgicare.com/conditions/breast-lump</loc>
+    <lastmod>2025-06-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://totalsurgicare.com/conditions/gynecomastia</loc>
     <lastmod>2025-06-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>

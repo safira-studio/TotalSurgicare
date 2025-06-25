@@ -17,6 +17,8 @@ export const metadata: Metadata = {
     template: `%s - ${siteConfig.name}`,
   },
   description: siteConfig.description,
+  keywords: "Surgical Treatments in Pune",
+
   icons: {
     icon: "/favicon.ico",
   },
