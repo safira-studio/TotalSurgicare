@@ -8,6 +8,7 @@ import {
 } from "@/components/ui/accordion";
 import { Card } from "@/components/ui/card";
 import { siteConfig } from "@/config/site";
+import Link from "next/link";
 
 interface FAQItem {
   question: string;
@@ -49,7 +50,10 @@ const FAQSection = () => {
   ];
 
   const emergencyContacts = [
-    { label: "Emergency Services", value: "9665551711" },
+    {
+      label: "Emergency Services",
+      value: `${siteConfig.contact.phone.primary}`,
+    },
     {
       label: "Main Clinic Number",
       value: `${siteConfig.contact.phone.primary}`,
@@ -115,19 +119,24 @@ const FAQSection = () => {
                       className="flex justify-between items-center"
                     >
                       <span className="text-white/80">{contact.label}:</span>
-                      <span className="font-semibold">{contact.value}</span>
+                      <Link
+                        href={`tel:${contact.value}`}
+                        className="font-semibold"
+                      >
+                        {contact.value}
+                      </Link>
                     </div>
                   ))}
                 </div>
 
                 <div className="pt-4 mt-4 border-t border-white/20">
                   <h4 className="text-lg font-medium mb-2">Email Support</h4>
-                  <a
+                  <Link
                     className="text-white underline hover:no-underline"
                     href="mailto:info@totalsurgicare.com"
                   >
                     {siteConfig.contact.email.primary}
-                  </a>
+                  </Link>
                 </div>
               </div>
             </Card>
