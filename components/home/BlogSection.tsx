@@ -3,7 +3,6 @@ import { Calendar, User, ArrowRight } from "lucide-react";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import Image from "next/image";
 import {
   Carousel,
   CarouselContent,
@@ -11,38 +10,38 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import Link from "next/link";
 
 interface BlogPostProps {
   title: string;
   excerpt: string;
-  image: string;
+  videoUrl: string;
   date: string;
   author: string;
   category: string;
-  slug: string;
 }
 
 const BlogCard = ({
   title,
   excerpt,
-  image,
+  videoUrl,
   date,
   author,
   category,
-  slug,
 }: BlogPostProps) => {
   return (
     <Card className="overflow-hidden transition-all duration-300 hover:shadow-lg bg-white h-full flex flex-col">
-      <div className="w-full h-48 overflow-hidden">
-        <Image
-          alt={title}
-          className="w-full h-full object-cover transition-transform hover:scale-105"
-          height={100}
-          src={image || "/placeholder.svg"}
-          width={100}
+      <div className="w-full h-48 md:h-56">
+        <iframe
+          src={`https://www.facebook.com/plugins/video.php?href=${encodeURIComponent(
+            videoUrl
+          )}&show_text=false&width=500`}
+          width="100%"
+          height="100%"
+          allowFullScreen
+          className="w-full h-full border-0"
         />
       </div>
+
       <CardContent className="flex-grow p-6">
         <Badge
           className="mb-2 bg-blue-50 text-clinic-primary"
@@ -50,9 +49,7 @@ const BlogCard = ({
         >
           {category}
         </Badge>
-        <h3 className="text-xl font-semibold mb-2 line-clamp-2 hover:text-clinic-primary transition-colors">
-          <a href={`/blog/${slug}`}>{title}</a>
-        </h3>
+        <h3 className="text-xl font-semibold mb-2 line-clamp-2">{title}</h3>
         <p className="text-gray-600 line-clamp-3 mb-4">{excerpt}</p>
         <div className="flex items-center text-sm text-gray-500 space-x-4">
           <div className="flex items-center">
@@ -65,69 +62,61 @@ const BlogCard = ({
           </div>
         </div>
       </CardContent>
+
       <CardFooter className="pt-0 pb-6 px-6">
-        <Link
+        <a
+          href={videoUrl}
           className="text-clinic-primary font-medium flex items-center hover:underline"
-          href={`#`}
+          target="_blank"
+          rel="noopener noreferrer"
         >
-          Read more <ArrowRight className="ml-2" size={16} />
-        </Link>
+          Watch on Facebook <ArrowRight className="ml-2" size={16} />
+        </a>
       </CardFooter>
     </Card>
   );
 };
 
 const BlogSection = () => {
-  const blogPosts = [
+  const blogPosts: BlogPostProps[] = [
     {
-      title: "Maintaining Heart Health: Tips from Cardiologists",
+      title: "Regain Confidence with Expert Circumcision Surgery",
       excerpt:
-        "Learn about the latest recommendations for heart health from our top cardiologists, including diet, exercise, and preventative measures.",
-      image: "/hearthealth.webp",
-      date: "May 15, 2025",
-      author: "Dr. Sarah Johnson",
-      category: "Cardiology",
-      slug: "",
+        "Regain Confidence and Comfort with Expert Circumcision Surgery. Feel free to share your needs, Our experts are here to assist you.",
+      videoUrl:
+        "https://www.facebook.com/TotalSurgicare/videos/678314978209117",
+      date: "June 10, 2025",
+      author: "Total Surgicare",
+      category: "Surgery",
     },
     {
-      title: "Understanding Childhood Vaccinations",
+      title: "Upgrade to Stitchless Circumcision",
       excerpt:
-        "A comprehensive guide to childhood vaccinations, their importance, and addressing common concerns parents might have.",
-      image: "/childvaccine.webp",
-      date: "May 10, 2025",
-      author: "Dr. Emily Davis",
-      category: "Pediatrics",
-      slug: "",
+        "Upgrade to stitchless circumcision – a safer, faster, and more comfortable choice! ✔️ No stitches, no pain ✔️ Quicker recovery ✔️ Less swelling",
+      videoUrl:
+        "https://www.facebook.com/TotalSurgicare/videos/1689671691647697",
+      date: "June 5, 2025",
+      author: "Total Surgicare",
+      category: "Surgery",
     },
     {
-      title: "Mental Health Awareness: Breaking the Stigma",
+      title: "Advanced Surgical Care at Total Surgicare",
       excerpt:
-        "Exploring the importance of mental health awareness and how we can work together to break the stigma surrounding mental health issues.",
-      image: "/mentalhealth.webp",
-      date: "May 5, 2025",
-      author: "Dr. Michael Brown",
-      category: "Mental Health",
-      slug: "",
+        "Total Surgicare – Expertise, Quality & Advanced Surgical Care. At Total Surgicare, we provide expert surgical solutions with advanced techniques.",
+      videoUrl: "https://www.facebook.com/watch/?v=1446353826336310",
+      date: "May 28, 2025",
+      author: "Total Surgicare",
+      category: "Surgery",
     },
     {
-      title: "Nutrition Tips for a Healthy Lifestyle",
+      title: "Piles, Fissures & Fistulas: Common and Treatable",
       excerpt:
-        "Our nutritionists share practical advice on maintaining a balanced diet and making healthier food choices in your daily life.",
-      image: "/healthytips.webp",
-      date: "April 28, 2025",
-      author: "Dr. Jessica Lee",
-      category: "Nutrition",
-      slug: "",
-    },
-    {
-      title: "The Importance of Regular Health Check-ups",
-      excerpt:
-        "Why preventative care matters and how regular health screenings can help detect potential issues before they become serious.",
-      image: "/healthchecup.webp",
-      date: "April 20, 2025",
-      author: "Dr. Robert Wilson",
-      category: "Preventative Care",
-      slug: "",
+        "Piles, Fissures, and Fistulas are more common than you think—and completely treatable. Early diagnosis leads to faster, less painful recovery.",
+      videoUrl:
+        "https://www.facebook.com/TotalSurgicare/videos/piles-fissures-and-fistulas-are-more-common-than-you-thinkand-completely-treatab/1044080111251237",
+      date: "June 20, 2025",
+      author: "Total Surgicare",
+      category: "Proctology",
     },
   ];
 
@@ -171,22 +160,23 @@ const BlogSection = () => {
             </div>
           </Carousel>
         </div>
+
         <div className="mt-4 md:mt-0 flex justify-center w-full">
-          <Button
+          {/* <Button
             aria-label="View all articles"
             className="mx-auto  text-clinic-primary hover:bg-clinic-primary hover:text-white"
             variant="outline"
           >
             View All Articles
-          </Button>
+          </Button> */}
         </div>
-        <div className="text-center mt-10 ">
+
+        <div className="text-center mt-10">
           <p className="text-gray-600">
             Subscribe to our newsletter to receive health tips and updates
             directly to your inbox.
           </p>
 
-          {/* <div className=" mx-auto"> */}
           <div className="bg-white flex justify-center w-fit md:w-3/5 lg:w-2/5 h-fit p-0 overflow-hidden mx-auto rounded-md border border-gray-300  focus-within:ring-2 focus-within:ring-blue-200 transition-all min-w-0">
             <input
               className="w-full min-w-0 px-1 md:px-3 gap-2 text-gray-700 focus:outline-none"
@@ -200,8 +190,6 @@ const BlogSection = () => {
               Subscribe
             </button>
           </div>
-
-          {/* </div> */}
         </div>
       </div>
     </div>
