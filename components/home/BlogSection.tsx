@@ -1,7 +1,6 @@
 "use client";
 import { Calendar, User, ArrowRight } from "lucide-react";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import {
   Carousel,
@@ -37,6 +36,7 @@ const BlogCard = ({
           )}&show_text=false&width=500`}
           width="100%"
           height="100%"
+          title="facebook video"
           allowFullScreen
           className="w-full h-full border-0"
         />
