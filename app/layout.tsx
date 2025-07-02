@@ -7,6 +7,7 @@ import { Navbar } from "@/components/layout/navbar";
 import Footer from "@/components/layout/Footer";
 import ChatWidget from "@/components/chatWidget";
 import { GoogleTagManager } from "@next/third-parties/google";
+// import Script from "next/script";
 import Script from "next/script";
 
 // import ChatBot from "@/components/ChatBot";
@@ -56,7 +57,7 @@ export default function RootLayout({
   return (
     <html suppressHydrationWarning lang="en">
       <head>
-        <Script
+        {/* <Script
           id="gtm-head"
           strategy="afterInteractive"
           dangerouslySetInnerHTML={{
@@ -75,7 +76,21 @@ export default function RootLayout({
             __html: JSON.stringify(schemaOrgData),
           }}
           type="application/ld+json"
+        /> */}
+        {/* Google tag (gtag.js)  */}
+
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=AW-17012043023"
+          strategy="afterInteractive"
         />
+        <Script id="google-ads-init" strategy="afterInteractive">
+          {`
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'AW-17012043023');
+  `}
+        </Script>
       </head>
       <body
         className={clsx(
@@ -108,32 +123,32 @@ export default function RootLayout({
   );
 }
 
-const schemaOrgData = {
-  "@context": "https://schema.org",
-  "@type": "MedicalBusiness",
-  name: "Total Surgicare",
-  description:
-    "Total Surgicare provides expert surgical care in Pune for Piles, Hernia, Kidney Stones, Cataract, Gynecology, IVF, and more.",
-  url: "https://totalsurgicare.com",
-  address: {
-    "@type": "PostalAddress",
-    streetAddress: "B48 /9, Swamivivekanand Road",
-    addressLocality: "Bibwewadi",
-    addressRegion: "Pune, Maharashtra",
-    postalCode: "411047",
-    addressCountry: "IN",
-  },
-  telephone: "+91-9665551711",
-  email: "info@totalsurgicare.com",
-  openingHours: "Mo-Su 00:00-23:59",
-  medicalSpecialty: [
-    "Proctology",
-    "Laparoscopy",
-    "Urology",
-    "Gynaecology",
-    "Aesthetics",
-    "Vascular",
-    "Ophthalmology",
-    "Cardiology",
-  ],
-};
+// const schemaOrgData = {
+//   "@context": "https://schema.org",
+//   "@type": "MedicalBusiness",
+//   name: "Total Surgicare",
+//   description:
+//     "Total Surgicare provides expert surgical care in Pune for Piles, Hernia, Kidney Stones, Cataract, Gynecology, IVF, and more.",
+//   url: "https://totalsurgicare.com",
+//   address: {
+//     "@type": "PostalAddress",
+//     streetAddress: "B48 /9, Swamivivekanand Road",
+//     addressLocality: "Bibwewadi",
+//     addressRegion: "Pune, Maharashtra",
+//     postalCode: "411047",
+//     addressCountry: "IN",
+//   },
+//   telephone: "+91-9665551711",
+//   email: "info@totalsurgicare.com",
+//   openingHours: "Mo-Su 00:00-23:59",
+//   medicalSpecialty: [
+//     "Proctology",
+//     "Laparoscopy",
+//     "Urology",
+//     "Gynaecology",
+//     "Aesthetics",
+//     "Vascular",
+//     "Ophthalmology",
+//     "Cardiology",
+//   ],
+// };
