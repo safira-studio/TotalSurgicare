@@ -44,6 +44,8 @@ const BlogCard = ({
         <Image
           src={thumbnailUrl}
           alt="video thumbnail"
+          width={50}
+          height={50}
           className="w-full h-full object-cover"
         />
         <div className="absolute inset-0 flex items-center justify-center text-white text-3xl font-bold bg-black bg-opacity-40">

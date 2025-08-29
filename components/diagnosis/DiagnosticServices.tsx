@@ -1,6 +1,8 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { TestTube, Activity, Stethoscope } from "lucide-react";
+import { TestTube, Activity, Stethoscope, Scan } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 const DiagnosticServices = () => {
   const pathologyTests = [
@@ -32,6 +34,13 @@ const DiagnosticServices = () => {
     "Holter Monitoring",
   ];
 
+  const petScanTests = [
+    "Thyroid Scan",
+    "Whole Body PET",
+    "Cardiac PET",
+    "Neurology Brain PET",
+  ];
+
   return (
     <section className="py-16 px-4 bg-white">
       <div className="container mx-auto">
@@ -49,8 +58,9 @@ const DiagnosticServices = () => {
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-3 gap-8">
-          <Card className="border-blue-200 hover:shadow-lg transition-shadow">
+        <div className="grid lg:grid-cols-4 gap-8">
+          {/* Pathology Tests */}
+          <Card className="border-blue-200 hover:shadow-lg transition-shadow flex flex-col">
             <CardHeader className="text-center">
               <div className="mx-auto bg-red-100 w-16 h-16 rounded-full flex items-center justify-center mb-4">
                 <TestTube className="h-8 w-8 text-red-600" />
@@ -59,26 +69,36 @@ const DiagnosticServices = () => {
                 Pathology Tests
               </CardTitle>
             </CardHeader>
-            <CardContent>
-              <p className="text-gray-600 mb-4 text-center">
-                Comprehensive blood tests, urine analysis, and laboratory
-                diagnostics
-              </p>
-              <ul className="space-y-2">
-                {pathologyTests.map((test, index) => (
-                  <li
-                    key={index}
-                    className="flex items-center text-sm text-gray-700"
-                  >
-                    <div className="h-2 w-2 bg-red-500 rounded-full mr-3" />
-                    {test}
-                  </li>
-                ))}
-              </ul>
+            <CardContent className="flex-1 flex flex-col justify-between">
+              <div>
+                <p className="text-gray-600 mb-4 text-center">
+                  Comprehensive blood tests, urine analysis, and laboratory
+                  diagnostics
+                </p>
+                <ul className="space-y-2">
+                  {pathologyTests.map((test, index) => (
+                    <li
+                      key={index}
+                      className="flex items-center text-sm text-gray-700"
+                    >
+                      <div className="h-2 w-2 bg-red-500 rounded-full mr-3" />
+                      {test}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div className="mt-6 text-center">
+                <Link href="/contact">
+                  <Button className="bg-clinic-primary text-white hover:bg-clinic-primary/90">
+                    Book Appointment
+                  </Button>
+                </Link>
+              </div>
             </CardContent>
           </Card>
 
-          <Card className="border-blue-200 hover:shadow-lg transition-shadow">
+          {/* Radiology Services */}
+          <Card className="border-blue-200 hover:shadow-lg transition-shadow flex flex-col">
             <CardHeader className="text-center">
               <div className="mx-auto bg-green-100 w-16 h-16 rounded-full flex items-center justify-center mb-4">
                 <Activity className="h-8 w-8 text-green-600" />
@@ -87,31 +107,41 @@ const DiagnosticServices = () => {
                 Radiology Services
               </CardTitle>
             </CardHeader>
-            <CardContent>
-              <p className="text-gray-600 mb-4 text-center">
-                Advanced imaging services with state-of-the-art equipment
-              </p>
-              <ul className="space-y-2">
-                {radiologyServices.map((service, index) => (
-                  <li
-                    key={index}
-                    className="flex items-center text-sm text-gray-700"
-                  >
-                    <div className="h-2 w-2 bg-green-500 rounded-full mr-3" />
-                    {["CT Scan", "MRI Imaging"].includes(service) ? (
-                      <span className="font-semibold text-green-700 bg-green-100 px-2 py-0.5 rounded">
-                        {service}
-                      </span>
-                    ) : (
-                      service
-                    )}
-                  </li>
-                ))}
-              </ul>
+            <CardContent className="flex-1 flex flex-col justify-between">
+              <div>
+                <p className="text-gray-600 mb-4 text-center">
+                  Advanced imaging services with state-of-the-art equipment
+                </p>
+                <ul className="space-y-2">
+                  {radiologyServices.map((service, index) => (
+                    <li
+                      key={index}
+                      className="flex items-center text-sm text-gray-700"
+                    >
+                      <div className="h-2 w-2 bg-green-500 rounded-full mr-3" />
+                      {["CT Scan", "MRI Imaging"].includes(service) ? (
+                        <span className="font-semibold text-green-700 bg-green-100 px-2 py-0.5 rounded">
+                          {service}
+                        </span>
+                      ) : (
+                        service
+                      )}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div className="mt-6 text-center">
+                <Link href="/contact">
+                  <Button className="bg-clinic-primary text-white hover:bg-clinic-primary/90">
+                    Book Appointment
+                  </Button>
+                </Link>
+              </div>
             </CardContent>
           </Card>
 
-          <Card className="border-blue-200 hover:shadow-lg transition-shadow">
+          {/* Specialty Tests */}
+          <Card className="border-blue-200 hover:shadow-lg transition-shadow flex flex-col">
             <CardHeader className="text-center">
               <div className="mx-auto bg-purple-100 w-16 h-16 rounded-full flex items-center justify-center mb-4">
                 <Stethoscope className="h-8 w-8 text-purple-600" />
@@ -120,21 +150,68 @@ const DiagnosticServices = () => {
                 Specialty Tests
               </CardTitle>
             </CardHeader>
-            <CardContent>
-              <p className="text-gray-600 mb-4 text-center">
-                Specialized diagnostic tests for comprehensive health assessment
-              </p>
-              <ul className="space-y-2">
-                {specialtyTests.map((test, index) => (
-                  <li
-                    key={index}
-                    className="flex items-center text-sm text-gray-700"
-                  >
-                    <div className="h-2 w-2 bg-purple-500 rounded-full mr-3" />
-                    {test}
-                  </li>
-                ))}
-              </ul>
+            <CardContent className="flex-1 flex flex-col justify-between">
+              <div>
+                <p className="text-gray-600 mb-4 text-center">
+                  Specialized diagnostic tests for comprehensive health
+                  assessment
+                </p>
+                <ul className="space-y-2">
+                  {specialtyTests.map((test, index) => (
+                    <li
+                      key={index}
+                      className="flex items-center text-sm text-gray-700"
+                    >
+                      <div className="h-2 w-2 bg-purple-500 rounded-full mr-3" />
+                      {test}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div className="mt-6 text-center">
+                <Link href="/contact">
+                  <Button className="bg-clinic-primary text-white hover:bg-clinic-primary/90">
+                    Book Appointment
+                  </Button>
+                </Link>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* PET Scan */}
+          <Card className="border-blue-200 hover:shadow-lg transition-shadow flex flex-col">
+            <CardHeader className="text-center">
+              <div className="mx-auto bg-yellow-100 w-16 h-16 rounded-full flex items-center justify-center mb-4">
+                <Scan className="h-8 w-8 text-yellow-600" />
+              </div>
+              <CardTitle className="text-xl text-clinic-primary">
+                PET Scan
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="flex-1 flex flex-col justify-between">
+              <div>
+                <p className="text-gray-600 mb-4 text-center">
+                  High-precision imaging for advanced disease detection
+                </p>
+                <ul className="space-y-2">
+                  {petScanTests.map((test, index) => (
+                    <li
+                      key={index}
+                      className="flex items-center text-sm text-gray-700"
+                    >
+                      <div className="h-2 w-2 bg-yellow-500 rounded-full mr-3" />
+                      {test}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div className="mt-6 text-center">
+                <Link href="/contact">
+                  <Button className="bg-clinic-primary text-white hover:bg-clinic-primary/90">
+                    Book Appointment
+                  </Button>
+                </Link>
+              </div>
             </CardContent>
           </Card>
         </div>
