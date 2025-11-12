@@ -21,7 +21,7 @@ const Diagnosis = ({
 
           <div className="   p-6 md:p-8">
             <p className="text-gray-600 mb-6">{description}</p>
-            <div className="grid md:grid-cols-2 gap-8 items-center">
+            <div className={`grid ${slug === "coronary-artery-bypass-grafting-cabg" ? "md:grid-cols-1" : "md:grid-cols-2"} gap-8 items-center`}>
               <div className="space-y-4">
                 <h3 className="text-xl font-semibold text-gray-800">
                   Diagnostic Methods
@@ -50,13 +50,15 @@ const Diagnosis = ({
                   ))}
                 </ul>
               </div>
-              <Image
-                alt="Diagnostic procedure"
-                className="rounded-lg shadow-md w-full max-w-md mx-auto"
-                height={500}
-                src={`/conditions/${slug}-2.webp`}
-                width={500}
-              />
+              {slug !== "coronary-artery-bypass-grafting-cabg" && (
+                <Image
+                  alt="Diagnostic procedure"
+                  className="rounded-lg shadow-md w-full max-w-md mx-auto"
+                  height={500}
+                  src={`/conditions/${slug}-2.webp`}
+                  width={500}
+                />
+              )}
             </div>
           </div>
         </div>

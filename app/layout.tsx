@@ -10,8 +10,6 @@ import { GoogleTagManager } from "@next/third-parties/google";
 // import Script from "next/script";
 import Script from "next/script";
 
-// import ChatBot from "@/components/ChatBot";
-
 export const metadata: Metadata = {
   title: {
     default: siteConfig.name,

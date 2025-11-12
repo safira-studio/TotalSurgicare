@@ -65,7 +65,7 @@ export const siteConfig = {
     },
     {
       title: "Cardiology",
-      items: [],
+      items: ["Cardiology", "Coronary Artery Bypass Grafting (CABG)"],
     },
     {
       title: "Diagnostic",
@@ -73,7 +73,7 @@ export const siteConfig = {
     },
     {
       title: "Post Surgery Care",
-      items: [],
+      items: ["Post Surgery Care", "Elderly Care"],
     },
   ],
   contact: {

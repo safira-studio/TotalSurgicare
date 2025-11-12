@@ -92,18 +92,27 @@ export const Navbar = () => {
                   onMouseEnter={() => setOpenDropdown(item.title)}
                   onMouseLeave={() => setOpenDropdown(null)}
                 >
-                  {item.items.map((subItem, subIndex) => (
-                    <NextLink
-                      key={`${subItem}-${subIndex}`}
-                      className="block px-4 py-2 text-sm hover:bg-clinic-accent/10 hover:text-clinic-primary transition-colors duration-200"
-                      href={`/conditions/${subItem
-                        .toLowerCase()
-                        .replace(/\s+/g, "-")
-                        .replace(/[^a-z0-9-]/g, "")}`}
-                    >
-                      {subItem}
-                    </NextLink>
-                  ))}
+                  {item.items.map((subItem, subIndex) => {
+                    // Special routing for non-condition pages
+                    const specialPages = ["Elderly Care", "Cardiology", "Post Surgery Care"];
+                    const isSpecialPage = specialPages.includes(subItem);
+                    const href = isSpecialPage
+                      ? `/${subItem.toLowerCase().replace(/\s+/g, "-")}`
+                      : `/conditions/${subItem
+                          .toLowerCase()
+                          .replace(/\s+/g, "-")
+                          .replace(/[^a-z0-9-]/g, "")}`;
+
+                    return (
+                      <NextLink
+                        key={`${subItem}-${subIndex}`}
+                        className="block px-4 py-2 text-sm hover:bg-clinic-accent/10 hover:text-clinic-primary transition-colors duration-200"
+                        href={href}
+                      >
+                        {subItem}
+                      </NextLink>
+                    );
+                  })}
                 </div>
               )}
             </NavbarItem>
@@ -157,20 +166,29 @@ export const Navbar = () => {
               {/* Mobile Dropdown */}
               {item.items.length > 0 && openMobileSection === item.title && (
                 <div className="ml-4 mt-2 flex flex-col gap-2 border-l-2 border-gray-200 pl-4">
-                  {item.items.map((subItem, subIndex) => (
-                    <NavbarMenuItem key={`${subItem}-${subIndex}`}>
-                      <NextLink
-                        className="text-sm"
-                        href={`/conditions/${subItem
+                  {item.items.map((subItem, subIndex) => {
+                    // Special routing for non-condition pages
+                    const specialPages = ["Elderly Care", "Cardiology", "Post Surgery Care"];
+                    const isSpecialPage = specialPages.includes(subItem);
+                    const href = isSpecialPage
+                      ? `/${subItem.toLowerCase().replace(/\s+/g, "-")}`
+                      : `/conditions/${subItem
                           .toLowerCase()
                           .replace(/\s+/g, "-")
-                          .replace(/[^a-z0-9-]/g, "")}`}
-                        onClick={() => setIsMenuOpen(!isMenuOpen)}
-                      >
-                        {subItem}
-                      </NextLink>
-                    </NavbarMenuItem>
-                  ))}
+                          .replace(/[^a-z0-9-]/g, "")}`;
+
+                    return (
+                      <NavbarMenuItem key={`${subItem}-${subIndex}`}>
+                        <NextLink
+                          className="text-sm"
+                          href={href}
+                          onClick={() => setIsMenuOpen(!isMenuOpen)}
+                        >
+                          {subItem}
+                        </NextLink>
+                      </NavbarMenuItem>
+                    );
+                  })}
                 </div>
               )}
             </div>

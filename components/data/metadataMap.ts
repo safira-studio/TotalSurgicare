@@ -147,4 +147,10 @@ export const metadataMap: Record<
       "Find the best appendicitis treatment in Pune with quick diagnosis, specialist surgery, and rapid recovery at the Total Surgicare.",
     keywords: "Appendicitis Treatment in Pune",
   },
+  "coronary-artery-bypass-grafting-cabg": {
+    title: "Total Surgicare: CABG Heart Surgery in Pune",
+    description:
+      "Expert Coronary Artery Bypass Grafting (CABG) surgery in Pune with experienced cardiac surgeons, advanced facilities, and comprehensive post-operative care at Total Surgicare.",
+    keywords: "CABG Surgery in Pune, Heart Bypass Surgery Pune, Coronary Artery Surgery",
+  },
 };

@@ -2,6 +2,7 @@ import { appendectomy } from "./appendicitis";
 import { avFistula } from "./avFitula";
 import { breastAugmentation } from "./breastAgumentation";
 import { breastLump } from "./breastlump";
+import { coronaryArteryBypassGraftingCabg } from "./cabg";
 import { cataract } from "./catarac";
 import { enlargedProstateSurgery } from "./enlargedProstate";
 import { fissureTreatment } from "./fissure";
@@ -47,6 +48,7 @@ export default {
   varicoseVeins,
   avFistula,
   cataract,
+  coronaryArteryBypassGraftingCabg,
   //   hymenoplasty,
   //   vaginoplasty,
   //   labiaplasty,
