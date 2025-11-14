@@ -34,72 +34,58 @@ const CorporateTestingServices = () => {
 
   const packages = [
     {
-      name: "Ayaksham-Basic",
-      tests: "CBC, Lipid Profile, Thyroid Profile, LFT, KFT, Glucose (Fasting)",
-      price: "₹799",
+      name: "TOTALKAVACH Diabetic Screen",
+      tests: "General Health: Urine Routine, Diabetes: Fasting Blood Sugar, HbA1c, Fasting Urine Glucose",
+      price: "₹340",
+      employees: "21 Parameters",
+    },
+    {
+      name: "TOTALKAVACH Vitamin Check",
+      tests: "Bones: Calcium, Vitamins: Vitamin D (25-OH), Vitamin B12",
+      price: "₹990",
+      employees: "3 Parameters",
+    },
+    {
+      name: "TOTALKAVACH Dahlia",
+      tests: "Heart: Lipid Profile, Liver: LFT Gold, Kidney: KFT Gold, Thyroid: Thyroid Total (T3, T4 & TSH), Diabetes: Fasting Blood Sugar, General Health: Urine Routine, CBC, Bones: Calcium",
+      price: "₹1440",
+      employees: "53 Parameters",
+    },
+    {
+      name: "Fever Panel",
+      tests: "CBC, ESR, CRP, Urine Routine, SGPT, MP Antigen, Dengue IgG & IgM - Rapid, Dengue NS1 Antigen, Rapid Typhidot IgM, Widal",
+      price: "₹1450",
+      employees: "45 Parameters",
+    },
+    {
+      name: "TOTALKAVACH Daisy",
+      tests: "Heart: Lipid Profile, Liver: LFT Gold, Kidney: KFT Gold, Thyroid: Thyroid Total (T3, T4 & TSH), Diabetes: Fasting Blood Sugar, HbA1c, General Health: Urine Routine, CBC, ESR, Bones: Calcium, Phosphorus, Vitamins: Vitamin D (25-OH), Vitamin B12, Anemia: Iron Studies",
+      price: "₹2550",
+      employees: "79 Parameters",
+    },
+    {
+      name: "TOTALKAVACH Lily",
+      tests: "Heart: Lipid Profile, Liver: LFT Gold, Kidney: KFT Gold, Thyroid: Thyroid Total (T3, T4 & TSH), Diabetes: Fasting Blood Sugar, HbA1c, Bones: Calcium, General Health: Urine Routine, CBC, ESR",
+      price: "₹1740",
       employees: "74 Parameters",
     },
     {
-      name: "Ayaksham-Total",
-      tests:
-        "CBC, Urine Routine, Glucose (Fasting), HbA1c, Vitamin D, Calcium, Vitamin B12, Magnesium, Iron Deficiency Profile (Iron, TIBC, % Saturation), Thyroid Profile, Lipid Profile, LFT (Liver Function Test), Electrolyte, KFT (Kidney Function Test)",
-      price: "₹3549",
-      employees: "78 Parameters",
+      name: "TOTALKAVACH Orchid",
+      tests: "Heart: Lipid Profile, HsCRP, Liver: LFT Gold, Kidney: KFT Gold, Thyroid: Thyroid Total (T3, T4 & TSH), Diabetes: Fasting Blood Sugar, HbA1c, General Health: Urine Routine, CBC, ESR, Bones: Calcium, Phosphorus, Vitamins: Vitamin D (25-OH), Vitamin B12, Anemia: Iron Studies, Allergy: Allergy Screen Adult",
+      price: "₹3250",
+      employees: "81 Parameters",
     },
     {
-      name: "Ayaksham-Diabetes",
-      tests:
-        "CBC, Glucose (Fasting), HbA1c, Cholesterol, Triglycerides, BUN (Blood Urea Nitrogen), Creatinine, Uric Acid",
-      price: "₹699",
-      employees: "30 Parameters",
+      name: "TOTALKAVACH Aster (Male)",
+      tests: "Heart: Lipid Profile, HsCRP, CPK, Liver: LFT Gold, Kidney: KFT Gold, Thyroid: Thyroid Total (T3, T4 & TSH), Diabetes: Fasting Blood Sugar, HbA1c, Hormones: Cortisol (Morning Sample), General Health: Urine Routine, CBC, ESR, Allergy: Allergy Screen - Adult, Bones: Calcium, Phosporus, RA-Factor, Vitamins: Vitamin D (25-OH), Vitamin B12, Anaemia: Iron Studies, Pancreas: Amylase, Lipase, Cancer: PSA Total",
+      price: "₹3850",
+      employees: "89 Parameters",
     },
     {
-      name: "Ayaksham-Healthy Heart",
-      tests:
-        "CBC, Glucose (Fasting), HbA1c, Cholesterol, Triglycerides, BUN (Blood Urea Nitrogen), Creatinine, Uric Acid",
-      price: "₹1299",
-      employees: "55 Parameters",
-    },
-    {
-      name: "Ayaksham-Senior Citizen (Male)",
-      tests:
-        "CBC, ESR, Glucose (Fasting), HbA1c, Lipid Profile, SGPT, Urea, Vitamin D, Creatinine, Uric Acid, Calcium, Thyroid Profile, Vitamin B12, PSA Total, Urine Routine",
-      price: "₹1299",
-      employees: "62 Parameters",
-    },
-    {
-      name: "Ayaksham-Senior Citizen (Female)",
-      tests:
-        "CBC, ESR, Glucose (Fasting), HbA1c, Lipid Profile, SGPT, Urea, Vitamin D, Creatinine, Uric Acid, Calcium, Thyroid Profile, Vitamin B12, Urine Routine",
-      price: "₹1599",
-      employees: "62 Parameters",
-    },
-    {
-      name: "Ayaksham-Vitamin & Mineral Check",
-      tests:
-        "CBC, Electrolyte, Magnesium, Calcium, Vitamin D, Phosphorus, Iron, Vitamin B12",
-      price: "₹1499",
-      employees: "32 Parameters",
-    },
-    {
-      name: "Ayaksham-Fever Profile-Advance",
-      tests:
-        "CBC, ESR, MP Antigen, MP SMEAR, Typhidot IgM, SGPT, Blood Culture, Urine Routine",
-      price: "₹1649",
-      employees: "",
-    },
-    {
-      name: "Ayaksham-Fever Profile-Basic",
-      tests: "CBC, ESR, MP Antigen, Typhidot IgM, Urine Routine",
-      price: "₹599",
-      employees: "",
-    },
-    {
-      name: "Ayaksham-Bone Health-Basic",
-      tests:
-        "CBC, ESR, Glucose (Fasting), SGOT, SGPT, Urea, Calcium, Creatinine, Uric Acid, Lipid Profile, Vitamin B12, Vitamin D, ALK PO4",
-      price: "₹1599",
-      employees: "41 Parameters",
+      name: "TOTALKAVACH Lavender (Female)",
+      tests: "Heart: Lipid Profile, HsCRP, CPK, Liver: LFT Gold, Kidney: KFT Gold, Thyroid: Thyroid Total (T3, T4 & TSH), Diabetes: Fasting Blood Sugar, HbA1c, Hormones: Cortisol (Morning Sample), General Health: Urine Routine, CBC, ESR, Allergy: Allergy Screen - Adult, Bones: Calcium, Phosporus, RA-Factor, Vitamins: Vitamin D (25-OH), Vitamin B12, Anaemia: Iron Studies, Pancreas: Amylase, Lipase, Cancer: CA-125, Hormones: FSH",
+      price: "₹3850",
+      employees: "90 Parameters",
     },
   ];
 
@@ -194,7 +180,19 @@ const CorporateTestingServices = () => {
                   </div>
                 </CardHeader>
                 <CardContent className="flex flex-col justify-between h-full">
-                  <p className="text-sm text-gray-700 mb-4">{pkg.tests}</p>
+                  <div className="text-sm text-gray-700 mb-4">
+                    {pkg.tests.split(/(\b[A-Za-z\s]+:)/g).map((part, i) => {
+                      if (part.match(/\b[A-Za-z\s]+:/)) {
+                        return (
+                          <span key={i}>
+                            {i > 0 && <br />}
+                            <strong>{part}</strong>
+                          </span>
+                        );
+                      }
+                      return part;
+                    })}
+                  </div>
                   <Link href={"/contact"}>
                     <Button className="w-full bg-clinic-primary hover:bg-clinic-dark">
                       Get Quote
