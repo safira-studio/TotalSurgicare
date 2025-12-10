@@ -86,13 +86,13 @@ export const siteConfig = {
       support: "support@totalsurgicare.com",
     },
     address: {
-      street: "B48 /9, Swamivivekanand Road",
-      area: "Bibwewadi",
-      city: "Pune",
+      street: "501 B, 5th Floor,Cabin No 2",
+      area: "Kimaya Clinic,Salunke Vihar , ",
+      city: "Wanowarie, Pune",
       state: "Maharashtra",
-      pincode: "411047",
+      pincode: "411040",
       country: "India",
-      full: "Swamivivekanand Road, Bibwewadi, Pune, Maharashtra, 411047, India",
+      full: "501 B, 5th floor, Cabin No2, Kimaya Clinic, Salunke Vihar, Wanowarie, Pune 411040, India",
       coordinates: {
         lat: 18.475050317494727,
         lng: 73.8724136352539,
