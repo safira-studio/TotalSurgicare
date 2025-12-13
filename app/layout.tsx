@@ -89,6 +89,13 @@ export default function RootLayout({
     gtag('config', 'AW-17012043023');
   `}
         </Script>
+        <Script
+          id="schema-org"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(schemaOrgData),
+          }}
+        />
       </head>
       <body
         className={clsx(
@@ -121,32 +128,43 @@ export default function RootLayout({
   );
 }
 
-// const schemaOrgData = {
-//   "@context": "https://schema.org",
-//   "@type": "MedicalBusiness",
-//   name: "Total Surgicare",
-//   description:
-//     "Total Surgicare provides expert surgical care in Pune for Piles, Hernia, Kidney Stones, Cataract, Gynecology, IVF, and more.",
-//   url: "https://totalsurgicare.com",
-//   address: {
-//     "@type": "PostalAddress",
-//     streetAddress: "B48 /9, Swamivivekanand Road",
-//     addressLocality: "Bibwewadi",
-//     addressRegion: "Pune, Maharashtra",
-//     postalCode: "411047",
-//     addressCountry: "IN",
-//   },
-//   telephone: "+91-9665551711",
-//   email: "info@totalsurgicare.com",
-//   openingHours: "Mo-Su 00:00-23:59",
-//   medicalSpecialty: [
-//     "Proctology",
-//     "Laparoscopy",
-//     "Urology",
-//     "Gynaecology",
-//     "Aesthetics",
-//     "Vascular",
-//     "Ophthalmology",
-//     "Cardiology",
-//   ],
-// };
+const schemaOrgData = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  name: "Total Surgicare",
+  image:
+    "https://totalsurgicare.com/_next/image?url=%2Flogo.png&w=256&q=75",
+  "@id": "",
+  url: "https://totalsurgicare.com/",
+  telephone: "9665551712",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress:
+      "501 B, 5th floor, Cabin No 2, Kimaya clinic, One Place Salunke Vihar, Wanowarie, Pune 411040",
+    addressLocality: "pune",
+    postalCode: "411040",
+    addressCountry: "IN",
+  },
+  geo: {
+    "@type": "GeoCoordinates",
+    latitude: 18.4814593,
+    longitude: 73.9033115,
+  },
+  openingHoursSpecification: {
+    "@type": "OpeningHoursSpecification",
+    dayOfWeek: [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+    ],
+    opens: "09:00",
+    closes: "18:00",
+  },
+  sameAs: [
+    "https://www.instagram.com/total_surgicare/",
+    "https://www.facebook.com/TotalSurgicare",
+  ],
+};
