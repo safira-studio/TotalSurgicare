@@ -111,7 +111,7 @@ export default function Contact() {
                   Medical Emergency?
                 </h3>
                 <p className="text-red-700 mb-4">
-                  If you&aposre experiencing a medical emergency, please call{" "}
+                  If you are experiencing a medical emergency, please call{" "}
                   {siteConfig.contact.phone.primary} immediately or go to your
                   nearest emergency room.
                 </p>

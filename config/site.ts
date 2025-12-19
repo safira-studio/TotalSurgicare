@@ -86,16 +86,17 @@ export const siteConfig = {
       support: "support@totalsurgicare.com",
     },
     address: {
-      street: "501 B, 5th Floor,Cabin No 2",
+      street: "One Place, 501 B, 5th Floor,Cabin No 2, Kimaya Clinic",
       area: "Kimaya Clinic,Salunke Vihar , ",
       city: "Wanowarie, Pune",
       state: "Maharashtra",
       pincode: "411040",
       country: "India",
-      full: "501 B, 5th floor, Cabin No2, Kimaya Clinic, Salunke Vihar, Wanowarie, Pune 411040, India",
+      full: "One Place,501 B, 5th floor, Cabin No2, Kimaya Clinic, Salunke Vihar, Wanowarie, Pune 411040, India",
       coordinates: {
         lat: 18.475050317494727,
         lng: 73.8724136352539,
+  
       },
     },
   },
