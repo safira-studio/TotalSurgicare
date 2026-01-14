@@ -25,11 +25,19 @@ export const Navbar = () => {
   );
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+  // Custom nav items for Pune page
+  const puneNavItems = [
+    { title: "Home", items: [] },
+    { title: "About Us", items: [] },
+    { title: "Contact Us", items: [] },
+  ];
+
+  const navItems = pathname?.startsWith("/pune") ? puneNavItems : siteConfig.navItems;
+  const isPunePage = pathname?.startsWith("/pune");
+
   const handleMobileSectionToggle = (title: string) => {
     setOpenMobileSection(openMobileSection === title ? null : title);
   };
-
-  if (pathname === "/pune") return null;
 
   return (
     <HeroUINavbar
@@ -38,7 +46,10 @@ export const Navbar = () => {
       onMenuOpenChange={setIsMenuOpen}
       maxWidth="2xl"
       // position="sticky"
-      className="xl:px-10"
+      className={clsx(
+        "xl:px-10 transition-all duration-300",
+        isPunePage ? "m-3 mx-auto max-w-3xl rounded-full border-2 border-clinic-primary/50 shadow-lg bg-white/90 backdrop-blur-md supports-[backdrop-filter]:bg-white/60" : ""
+      )}
     >
       <NavbarContent
         // className="basis-1/5 sm:basis-1/3 lg:basis-1/5"
@@ -59,10 +70,10 @@ export const Navbar = () => {
 
       <NavbarContent
         className="hidden lg:flex basis-1/5 sm:basis-2/3 lg:basis-4/5"
-        justify="end"
+        justify={isPunePage ? "center" : "end"}
       >
         <ul className="hidden lg:flex justify-end ml-2 gap-3">
-          {siteConfig.navItems.map((item, index) => (
+          {navItems.map((item, index) => (
             <NavbarItem
               key={`${item.title}-${index}`}
               className="relative group"
@@ -71,7 +82,13 @@ export const Navbar = () => {
                 className="flex items-center cursor-pointer py-2"
                 href={
                   item.items.length == 0
-                    ? `/${item.title.toLowerCase().replace(/\s+/g, "-")}`
+                    ? item.title === "Home"
+                      ? "/"
+                      : item.title === "About Us"
+                        ? "/aboutus"
+                        : item.title === "Contact Us"
+                          ? "/contact"
+                          : `/${item.title.toLowerCase().replace(/\s+/g, "-")}`
                     : "#"
                 }
                 onMouseEnter={() => setOpenDropdown(item.title)}
@@ -135,7 +152,7 @@ export const Navbar = () => {
 
       <NavbarMenu>
         <div className="mx-4 mt-2 flex flex-col gap-2">
-          {siteConfig.navItems.map((item, index) => (
+          {navItems.map((item, index) => (
             <div key={`${item.title}-${index}`} className="mb-2">
               <Button
                 aria-label="nav button"
@@ -147,7 +164,13 @@ export const Navbar = () => {
                   <NextLink
                     href={
                       item.items.length == 0
-                        ? `/${item.title.toLowerCase().replace(/\s+/g, "-")}`
+                        ? item.title === "Home"
+                          ? "/"
+                          : item.title === "About Us"
+                            ? "/aboutus"
+                            : item.title === "Contact Us"
+                              ? "/contact"
+                              : `/${item.title.toLowerCase().replace(/\s+/g, "-")}`
                         : "#"
                     }
                     onClick={() => {

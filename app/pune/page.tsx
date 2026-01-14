@@ -1,6 +1,6 @@
 import AppointmentBooking from "@/components/home/AppointmentBooking";
 import Hero from "@/components/home/Hero";
-import Services from "@/components/home/Services";
+import PuneTreatments from "@/components/pune/PuneTreatments";
 import WhyChooseUs from "@/components/home/WhyChooseUs";
 import { Metadata } from "next";
 
@@ -13,7 +13,7 @@ export default function PunePage() {
     return (
         <>
             <Hero />
-            <Services />
+            <PuneTreatments />
             <WhyChooseUs />
             <AppointmentBooking />
         </>
