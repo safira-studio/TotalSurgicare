@@ -1,5 +1,6 @@
 "use client";
 
+import { usePathname } from "next/navigation";
 import {
   Navbar as HeroUINavbar,
   NavbarContent,
@@ -17,6 +18,7 @@ import Image from "next/image";
 import { siteConfig } from "@/config/site";
 
 export const Navbar = () => {
+  const pathname = usePathname();
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const [openMobileSection, setOpenMobileSection] = useState<string | null>(
     null
@@ -26,6 +28,8 @@ export const Navbar = () => {
   const handleMobileSectionToggle = (title: string) => {
     setOpenMobileSection(openMobileSection === title ? null : title);
   };
+
+  if (pathname === "/pune") return null;
 
   return (
     <HeroUINavbar
@@ -98,10 +102,10 @@ export const Navbar = () => {
                     const isSpecialPage = specialPages.includes(subItem);
                     const href = isSpecialPage
                       ? `/${subItem.toLowerCase().replace(/\s+/g, "-")}`
-                      : `/conditions/${subItem
-                          .toLowerCase()
-                          .replace(/\s+/g, "-")
-                          .replace(/[^a-z0-9-]/g, "")}`;
+                      : `/treatment/${subItem
+                        .toLowerCase()
+                        .replace(/\s+/g, "-")
+                        .replace(/[^a-z0-9-]/g, "")}`;
 
                     return (
                       <NextLink
@@ -172,10 +176,10 @@ export const Navbar = () => {
                     const isSpecialPage = specialPages.includes(subItem);
                     const href = isSpecialPage
                       ? `/${subItem.toLowerCase().replace(/\s+/g, "-")}`
-                      : `/conditions/${subItem
-                          .toLowerCase()
-                          .replace(/\s+/g, "-")
-                          .replace(/[^a-z0-9-]/g, "")}`;
+                      : `/treatment/${subItem
+                        .toLowerCase()
+                        .replace(/\s+/g, "-")
+                        .replace(/[^a-z0-9-]/g, "")}`;
 
                     return (
                       <NavbarMenuItem key={`${subItem}-${subIndex}`}>
@@ -215,14 +219,12 @@ const LucideHamburger = ({
     onClick={onToggle}
   >
     <Menu
-      className={`absolute inset-0 transition-all duration-300  ${
-        isOpen ? "rotate-180 opacity-0" : "rotate-0 opacity-100"
-      }`}
+      className={`absolute inset-0 transition-all duration-300  ${isOpen ? "rotate-180 opacity-0" : "rotate-0 opacity-100"
+        }`}
     />
     <X
-      className={`absolute inset-0 transition-all duration-300  ${
-        isOpen ? "rotate-0 opacity-100" : "rotate-180 opacity-0"
-      }`}
+      className={`absolute inset-0 transition-all duration-300  ${isOpen ? "rotate-0 opacity-100" : "rotate-180 opacity-0"
+        }`}
     />
   </button>
 );

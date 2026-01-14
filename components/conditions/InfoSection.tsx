@@ -12,7 +12,7 @@ const InfoSection = ({
 }) => {
   // Determine image extension based on slug
   const imageExtension = slug === "coronary-artery-bypass-grafting-cabg" ? "jpg" : "webp";
-  
+
   return (
     <div className="py-16 px-6 lg:px-12 bg-white">
       <div className="max-w-7xl mx-auto">
@@ -33,7 +33,7 @@ const InfoSection = ({
               alt="Condition illustration"
               className="rounded-xl shadow-md object-cover w-full "
               height={500}
-              src={`/conditions/${slug}-1.${imageExtension}`}
+              src={`/treatment/${slug}-1.${imageExtension}`}
               width={500}
             />
           </div>

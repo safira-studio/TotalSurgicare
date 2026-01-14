@@ -55,7 +55,7 @@ const Diagnosis = ({
                   alt="Diagnostic procedure"
                   className="rounded-lg shadow-md w-full max-w-md mx-auto"
                   height={500}
-                  src={`/conditions/${slug}-2.webp`}
+                  src={`/treatment/${slug}-2.webp`}
                   width={500}
                 />
               )}

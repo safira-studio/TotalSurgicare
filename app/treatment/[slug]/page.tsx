@@ -1,4 +1,4 @@
-// app/conditions/[slug]/page.tsx
+// app/treatment/[slug]/page.tsx
 import { notFound } from "next/navigation";
 import Content from "./content"; // async component with slow data
 import allData from "@/components/data/index";

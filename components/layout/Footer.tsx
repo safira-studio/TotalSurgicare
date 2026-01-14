@@ -117,7 +117,7 @@ const Footer = () => {
                 <li>
                   <Link
                     className="text-gray-300 hover:text-white text-sm transition-colors"
-                    href="/conditions/fissure-treatment"
+                    href="/treatment/fissure-treatment"
                   >
                     Fissure Treatment
                   </Link>
@@ -125,7 +125,7 @@ const Footer = () => {
                 <li>
                   <Link
                     className="text-gray-300 hover:text-white text-sm transition-colors"
-                    href="/conditions/hernia-surgery"
+                    href="/treatment/hernia-surgery"
                   >
                     Hernia Surgery
                   </Link>
@@ -133,7 +133,7 @@ const Footer = () => {
                 <li>
                   <Link
                     className="text-gray-300 hover:text-white text-sm transition-colors"
-                    href="/conditions/piles-treatment"
+                    href="/treatment/piles-treatment"
                   >
                     Piles Treatment
                   </Link>
