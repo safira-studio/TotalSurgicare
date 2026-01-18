@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import Link from "next/link";
-import { ArrowRight, Activity, Layers, Stethoscope, Zap } from "lucide-react";
+import { ArrowRight, Activity, Layers, Stethoscope, Zap, Scissors } from "lucide-react";
 
 interface TreatmentItemProps {
     name: string;
@@ -53,12 +53,20 @@ const PuneTreatments = () => {
             iconBgClass: "bg-white border-blue-50 group-hover:bg-blue-600",
         },
         {
-            name: "Piles & Fissure",
+            name: "Piles",
             link: "/pune/piles-treatment",
-            description: "Laser treatment for piles, fissures, and fistula with minimal downtime.",
+            description: "Laser treatment for piles (hemorrhoids) with minimal pain and quick recovery.",
             icon: <Layers className="w-7 h-7" />,
             colorClass: "bg-gradient-to-br from-orange-100 to-amber-100",
             iconBgClass: "bg-white border-orange-50 group-hover:bg-orange-500",
+        },
+        {
+            name: "Fissure",
+            link: "/pune/fissure-treatment",
+            description: "Advanced laser treatment for anal fissures with minimal downtime.",
+            icon: <Scissors className="w-7 h-7" />,
+            colorClass: "bg-gradient-to-br from-rose-100 to-pink-100",
+            iconBgClass: "bg-white border-rose-50 group-hover:bg-rose-500",
         },
         {
             name: "Kidney Stone",
@@ -93,7 +101,7 @@ const PuneTreatments = () => {
                     </p>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6 lg:gap-8">
                     {treatments.map((treatment, index) => (
                         <TreatmentItem key={index} {...treatment} />
                     ))}
