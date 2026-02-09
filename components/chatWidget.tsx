@@ -1,13 +1,27 @@
 "use client";
 import { useState } from "react";
-import { MessageCircle, Phone, Mail, X } from "lucide-react";
+import { MessageCircle, Phone, Mail, X, IndianRupee } from "lucide-react";
 import { siteConfig } from "@/config/site";
+
+const RAZORPAY_PAYMENT_LINK = "https://rzp.io/rzp/f8o475j";
 
 const ChatWidget = () => {
   const [open, setOpen] = useState(false);
 
   return (
     <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end space-y-2">
+      {/* Razorpay Payment Button - Always Visible */}
+      <a
+        className="bg-gradient-to-r from-clinic-primary to-teal-500 text-white p-4 rounded-full shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300"
+        href={RAZORPAY_PAYMENT_LINK}
+        rel="noopener noreferrer"
+        target="_blank"
+        aria-label="Pay Now"
+        title="Pay Online"
+      >
+        <IndianRupee className="w-6 h-6" />
+      </a>
+
       {open && (
         <>
           <a
@@ -48,9 +62,8 @@ const ChatWidget = () => {
         onClick={() => setOpen(!open)}
       >
         <div
-          className={`transition-transform duration-300 ease-in-out ${
-            open ? "rotate-180" : "rotate-0"
-          }`}
+          className={`transition-transform duration-300 ease-in-out ${open ? "rotate-180" : "rotate-0"
+            }`}
         >
           {open ? (
             <X className="w-6 h-6" />
