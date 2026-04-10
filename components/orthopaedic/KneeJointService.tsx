@@ -97,7 +97,7 @@ const KneeJointService = () => {
                 alt="Knee Joint Replacement Surgery"
                 width={800}
                 height={800}
-                className="rounded-lg w-full h-full object-cover"
+                className="rounded-lg w-3/4 h-3/4 object-contain"
               />
             </div>
             <div className="absolute -bottom-4 -right-4 bg-white rounded-lg shadow-lg p-3 border border-teal-200">

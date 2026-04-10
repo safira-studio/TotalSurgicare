@@ -26,13 +26,20 @@ const HipJointService = () => {
       <div className="container mx-auto">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div className="relative order-2 lg:order-1">
-            <div className="bg-gradient-to-br from-orange-100 to-amber-200 rounded-2xl h-56 lg:h-96 flex items-center justify-center overflow-hidden">
+            <div className="bg-gradient-to-br from-orange-100 to-amber-200 rounded-2xl flex flex-col gap-3 p-4">
+              <Image
+                src="/hip-2.png"
+                alt="Hip Joint Replacement - Implant Components"
+                width={600}
+                height={800}
+                className="rounded-xl w-full object-contain"
+              />
               <Image
                 src="/hip.png"
                 alt="Hip Joint Replacement Surgery"
                 width={800}
                 height={800}
-                className="rounded-lg w-full h-full object-cover"
+                className="rounded-xl w-full object-contain"
               />
             </div>
             <div className="absolute -bottom-4 -right-4 bg-white rounded-lg shadow-lg p-3 border border-clinic-secondary/30">
