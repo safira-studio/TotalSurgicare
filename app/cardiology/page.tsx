@@ -1,6 +1,8 @@
 import AffordableTreatment from "@/components/cardiology/AffordableTreatment";
 import AngiographyService from "@/components/cardiology/AngiographyService";
 import AngioplastyService from "@/components/cardiology/AngioplastyService";
+import EchoService from "@/components/cardiology/EchoService";
+import TMTService from "@/components/cardiology/TMTService";
 import { Button } from "@/components/ui/button";
 import { siteConfig } from "@/config/site";
 import { Metadata } from "next";
@@ -46,6 +48,8 @@ const Cardiac = () => {
       {/* Services Sections */}
       <AngiographyService />
       <AngioplastyService />
+      <EchoService />
+      <TMTService />
       <AffordableTreatment />
 
       {/* CTA Section */}

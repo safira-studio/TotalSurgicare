@@ -10,32 +10,56 @@ const AffordableTreatment = () => {
       title: "Transparent Pricing",
       description: "Clear, upfront costs with no hidden fees",
       icon: "💰",
+      bg: "bg-teal-50",
+      border: "border-clinic-primary",
+      iconBg: "bg-clinic-primary/10",
+      titleColor: "text-clinic-primary",
     },
     {
       title: "Mahatma Jyotirao Phule Jan Arogya Yojana",
       description: "Scheme would provide 972 surgeries/therapies/procedures",
       icon: "📅",
+      bg: "bg-orange-50",
+      border: "border-clinic-secondary",
+      iconBg: "bg-clinic-secondary/10",
+      titleColor: "text-clinic-secondary",
     },
     {
       title: "Insurance Coordination",
       description: "We work directly with your insurance provider",
       icon: "🏥",
+      bg: "bg-blue-50",
+      border: "border-blue-400",
+      iconBg: "bg-blue-100",
+      titleColor: "text-blue-700",
     },
     {
       title: "Preventive Care Programs",
       description: "Early intervention reduces long-term costs",
       icon: "🛡️",
+      bg: "bg-green-50",
+      border: "border-green-400",
+      iconBg: "bg-green-100",
+      titleColor: "text-green-700",
     },
     {
       title: "Ayushman Bharat Yojana",
       description:
         "Ayushman Bharat Yojana is a government health insurance scheme in India that provides free medical treatment up to ₹5 lakh per year to eligible low-income families.",
       icon: "👥",
+      bg: "bg-purple-50",
+      border: "border-purple-400",
+      iconBg: "bg-purple-100",
+      titleColor: "text-purple-700",
     },
     {
       title: "Financial Assistance",
       description: "Need-based assistance programs available",
       icon: "🤝",
+      bg: "bg-amber-50",
+      border: "border-amber-400",
+      iconBg: "bg-amber-100",
+      titleColor: "text-amber-700",
     },
   ];
 
@@ -60,11 +84,13 @@ const AffordableTreatment = () => {
           {strategies.map((strategy, index) => (
             <Card
               key={index}
-              className="border-green-200 hover:shadow-lg transition-shadow"
+              className={`${strategy.bg} ${strategy.border} border-2 hover:shadow-lg transition-shadow`}
             >
               <CardHeader className="text-center">
-                <div className="text-2xl md:text-4xl">{strategy.icon}</div>
-                <CardTitle className="text-base md:text-lg text-clinic-accent">
+                <div className={`mx-auto w-12 h-12 rounded-full flex items-center justify-center text-2xl mb-2 ${strategy.iconBg}`}>
+                  {strategy.icon}
+                </div>
+                <CardTitle className={`text-base md:text-lg ${strategy.titleColor}`}>
                   {strategy.title}
                 </CardTitle>
               </CardHeader>
