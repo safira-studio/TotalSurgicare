@@ -25,6 +25,7 @@ const specialties = [
   "Vascular",
   "Opthalmology",
   "Cardiology",
+  "Orthopaedic",
   "Diagnostic",
   "Post Surgery Care",
 ];
