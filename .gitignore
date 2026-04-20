@@ -19,6 +19,11 @@
 .DS_Store
 *.pem
 
+# macOS resource fork files (generated on external/non-APFS drives)
+._*
+._.DS_Store
+.remember/
+
 # debug
 npm-debug.log*
 yarn-debug.log*
