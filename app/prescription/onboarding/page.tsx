@@ -94,10 +94,11 @@ export default function OnboardingPage() {
         </div>
 
         {/* Drop zone */}
-        <div
+        <button
+          type="button"
           onClick={() => fileInputRef.current?.click()}
           className={cn(
-            "relative flex cursor-pointer flex-col items-center justify-center gap-3 rounded-xl border-2 border-dashed p-8 transition-colors",
+            "relative flex w-full cursor-pointer flex-col items-center justify-center gap-3 rounded-xl border-2 border-dashed p-8 text-left transition-colors",
             preview
               ? "border-blue-300 bg-blue-50"
               : "border-gray-300 bg-gray-50 hover:border-blue-400 hover:bg-blue-50",
@@ -113,33 +114,34 @@ export default function OnboardingPage() {
             />
           ) : (
             <>
-              <div className="flex h-14 w-14 items-center justify-center rounded-full bg-gray-200 text-gray-400">
+              <span className="flex h-14 w-14 items-center justify-center rounded-full bg-gray-200 text-gray-400">
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
                 </svg>
-              </div>
-              <p className="text-sm font-medium text-gray-700">
+              </span>
+              <span className="text-sm font-medium text-gray-700">
                 Click to upload your letterhead
-              </p>
-              <p className="text-xs text-gray-400">PNG or JPG · Max 4 MB · Min 800px wide</p>
+              </span>
+              <span className="text-xs text-gray-400">PNG or JPG · Max 4 MB · Min 800px wide</span>
             </>
           )}
-          <input
-            ref={fileInputRef}
-            type="file"
-            accept="image/png,image/jpeg,image/jpg"
-            className="hidden"
-            onChange={handleFileChange}
-          />
-        </div>
+        </button>
+        <input
+          ref={fileInputRef}
+          type="file"
+          accept="image/png,image/jpeg,image/jpg"
+          className="hidden"
+          onChange={handleFileChange}
+        />
 
         {preview && (
-          <p
-            className="mt-2 cursor-pointer text-center text-xs text-blue-600 hover:underline"
+          <button
+            type="button"
+            className="mt-2 w-full cursor-pointer text-center text-xs text-blue-600 hover:underline"
             onClick={() => fileInputRef.current?.click()}
           >
             Change file
-          </p>
+          </button>
         )}
 
         {validationError && (
