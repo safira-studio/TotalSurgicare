@@ -13,9 +13,10 @@ import { link as linkStyles } from "@heroui/theme";
 import NextLink from "next/link";
 import clsx from "clsx";
 import { useState } from "react";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, Menu, X } from "lucide-react";
 import Image from "next/image";
 import { siteConfig } from "@/config/site";
+import { Button } from "../ui/button";
 
 export const Navbar = () => {
   const pathname = usePathname();
@@ -45,16 +46,12 @@ export const Navbar = () => {
       isMenuOpen={isMenuOpen}
       onMenuOpenChange={setIsMenuOpen}
       maxWidth="2xl"
-      // position="sticky"
       className={clsx(
         "xl:px-10 transition-all duration-300",
         isPunePage ? "m-3 mx-auto max-w-3xl rounded-full border-2 border-clinic-primary/50 shadow-lg bg-white/90 backdrop-blur-md supports-[backdrop-filter]:bg-white/60" : ""
       )}
     >
-      <NavbarContent
-        // className="basis-1/5 sm:basis-1/3 lg:basis-1/5"
-        justify="start"
-      >
+      <NavbarContent justify="start">
         <NavbarBrand as="li" className="gap-3 max-w-fit">
           <NextLink href="/">
             <Image
@@ -66,6 +63,19 @@ export const Navbar = () => {
             />
           </NextLink>
         </NavbarBrand>
+
+        {!isPunePage && (
+          <NavbarItem className="flex">
+            <NextLink href="/prescription">
+              <Button
+                aria-label="Prescription"
+                className="rounded-full bg-clinic-secondary hover:bg-clinic-secondaryDark text-primary-foreground px-4 sm:px-5 h-9 text-xs sm:text-sm font-medium"
+              >
+                Prescription
+              </Button>
+            </NextLink>
+          </NavbarItem>
+        )}
       </NavbarContent>
 
       <NavbarContent
@@ -142,11 +152,9 @@ export const Navbar = () => {
       </NavbarContent>
 
       <NavbarContent className="lg:hidden basis-1 pl-4" justify="end">
-        {/* <NavbarMenuToggle /> */}
-
         <LucideHamburger
-          isOpen={isMenuOpen} // You'll need to track this state
-          onToggle={() => setIsMenuOpen(!isMenuOpen)} // Your toggle function
+          isOpen={isMenuOpen}
+          onToggle={() => setIsMenuOpen(!isMenuOpen)}
         />
       </NavbarContent>
 
@@ -225,9 +233,6 @@ export const Navbar = () => {
     </HeroUINavbar>
   );
 };
-
-import { Menu, X } from "lucide-react";
-import { Button } from "../ui/button";
 
 const LucideHamburger = ({
   isOpen,

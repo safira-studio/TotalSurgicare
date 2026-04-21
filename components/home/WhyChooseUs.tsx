@@ -70,8 +70,8 @@ const WhyChooseUs = () => {
               <div className="">
                 <Image
                   alt="Medical team"
-                  className="transform scale-x-[-1] "
-                  height={250}
+                  className="transform scale-x-[-1]"
+                  height={500}
                   src="/doctor4.png"
                   width={500}
                 />
@@ -92,7 +92,6 @@ const WhyChooseUs = () => {
           </div>
 
           {/* Right side */}
-          {/* <div className=" bg-white rounded-lg "> */}
           <div className="w-full lg:w-1/2 grid grid-cols-2 gap-4 p-8">
             <StatItem
               color="text-clinic-primary"
@@ -146,7 +145,6 @@ const WhyChooseUs = () => {
               }
             />
           </div>
-          {/* </div> */}
         </div>
       </div>
     </div>

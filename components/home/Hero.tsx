@@ -90,7 +90,7 @@ export default function Hero() {
             <Image
               alt="Doctor"
               className="w-[400px] sm:w-[450px] md:w-[500px] lg:w-[550px] h-auto"
-              height={100}
+              height={550}
               src="/doctor3.png"
               width={550}
               priority
@@ -139,9 +139,6 @@ export default function Hero() {
                     We appreciate every feedback, because it helps us to become
                     better.
                   </p>
-                  {/* <div className="flex mt-2">
-                    <AvatarCircles numPeople={99} avatarUrls={avatars} />
-                  </div> */}
                 </div>
               </div>
             </div>
