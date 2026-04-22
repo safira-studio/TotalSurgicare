@@ -21,40 +21,51 @@ export default function PrescriptionHeader({ doctorName, clinicName }: Props) {
   }
 
   return (
-    <header className="border-b bg-white shadow-sm">
+    <header style={{ background: "#1B2A41" }} className="shadow-lg">
       <div className="mx-auto flex max-w-4xl items-center justify-between px-4 py-3">
+        {/* Brand */}
         <div className="flex items-center gap-3">
-          <div className="flex h-9 w-9 items-center justify-center rounded-full bg-blue-600 text-sm font-bold text-white">
+          <div
+            className="flex h-9 w-9 items-center justify-center rounded-xl text-sm font-bold text-white shadow-md"
+            style={{
+              background: "linear-gradient(135deg, #F4A300 0%, #E49501 100%)",
+            }}
+          >
             Rx
           </div>
           <div>
-            <p className="text-sm font-semibold text-gray-900 leading-tight">
+            <p className="text-sm font-semibold leading-tight text-white">
               {clinicName}
             </p>
             {doctorName && (
-              <p className="text-xs text-gray-500">{doctorName}</p>
+              <p className="text-xs" style={{ color: "#99E5EE" }}>
+                {doctorName}
+              </p>
             )}
           </div>
         </div>
 
-        <nav className="flex items-center gap-2">
+        {/* Nav */}
+        <nav className="flex items-center gap-1">
           <Link
             href="/prescription"
-            className="rounded-md px-3 py-1.5 text-sm text-gray-600 hover:bg-gray-100 hover:text-gray-900 transition-colors"
+            className="rounded-lg px-3 py-1.5 text-sm font-medium transition-colors hover:bg-white/10"
+            style={{ color: "rgba(255,255,255,0.75)" }}
           >
-            New Prescription
+            Dashboard
           </Link>
           <Link
-            href="/prescription/history"
-            className="rounded-md px-3 py-1.5 text-sm text-gray-600 hover:bg-gray-100 hover:text-gray-900 transition-colors"
+            href="/prescription/new"
+            className="rounded-lg px-3 py-1.5 text-sm font-medium transition-colors hover:bg-white/10"
+            style={{ color: "rgba(255,255,255,0.75)" }}
           >
-            History
+            New Prescription
           </Link>
           <Button
             variant="outline"
             size="sm"
             onClick={handleLogout}
-            className="text-xs"
+            className="ml-2 rounded-lg border-white/20 bg-transparent text-xs font-medium text-white/70 hover:border-white/40 hover:bg-white/10 hover:text-white"
           >
             Logout
           </Button>

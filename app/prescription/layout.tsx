@@ -49,7 +49,7 @@ export default async function PrescriptionLayout({
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen" style={{ background: "#F0F4F7" }}>
       <PrescriptionHeader
         doctorName={doctor?.full_name ?? undefined}
         clinicName={doctor?.clinic_name ?? "Doctor Portal"}
