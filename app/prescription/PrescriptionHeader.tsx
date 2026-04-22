@@ -54,13 +54,6 @@ export default function PrescriptionHeader({ doctorName, clinicName }: Props) {
           >
             Dashboard
           </Link>
-          <Link
-            href="/prescription/new"
-            className="rounded-lg px-3 py-1.5 text-sm font-medium transition-colors hover:bg-white/10"
-            style={{ color: "rgba(255,255,255,0.75)" }}
-          >
-            New Prescription
-          </Link>
           <Button
             variant="outline"
             size="sm"
