@@ -6,9 +6,6 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { cn } from "@/lib/utils";
 import { getTestsByCategory, getTestLabel } from "@/lib/data/diagnosticTests";
 import { PRESCRIPTION_COORDS } from "@/lib/pdf/coords";
@@ -17,6 +14,20 @@ import {
   type ExtractedFieldsResult,
 } from "@/components/prescription/VoiceRecorder";
 
+// ─── Brand tokens ─────────────────────────────────────────────────────────────
+const B = {
+  navy: "#1B2A41",
+  teal: "#00A9B7",
+  tealDark: "#007D8C",
+  gold: "#F4A300",
+  goldDark: "#E49501",
+  bg: "#F8F9FA",
+  headerGrad: "linear-gradient(135deg, #1B2A41 0%, #00768A 60%, #005F73 100%)",
+  goldGrad: "linear-gradient(135deg, #F4A300 0%, #E49501 100%)",
+  tealGrad: "linear-gradient(135deg, #00A9B7 0%, #007D8C 100%)",
+};
+
+// ─── Schema ───────────────────────────────────────────────────────────────────
 const formSchema = z.object({
   patientName: z.string().min(1, "Patient name is required"),
   patientAge: z
@@ -42,6 +53,7 @@ interface SendResult {
 const TESTS_BY_CATEGORY = getTestsByCategory();
 const CATEGORY_KEYS = Object.keys(TESTS_BY_CATEGORY);
 
+// ─── Page ─────────────────────────────────────────────────────────────────────
 export default function NewPrescriptionPage() {
   const router = useRouter();
   const [step, setStep] = useState<Step>("form");
@@ -52,8 +64,6 @@ export default function NewPrescriptionPage() {
   const [result, setResult] = useState<SendResult | null>(null);
   const [formSnapshot, setFormSnapshot] = useState<FormValues | null>(null);
   const [letterheadUrl, setLetterheadUrl] = useState<string | null>(null);
-  const [voiceFilled, setVoiceFilled] = useState<Set<string>>(new Set());
-  const [voiceTestsCount, setVoiceTestsCount] = useState(0);
 
   const {
     register,
@@ -63,58 +73,26 @@ export default function NewPrescriptionPage() {
   } = useForm<FormValues>({ resolver: zodResolver(formSchema) });
 
   function handleVoiceExtracted(data: ExtractedFieldsResult) {
-    const filled = new Set<string>();
-
-    if (data.patientName) {
-      setValue("patientName", data.patientName, { shouldValidate: true });
-      filled.add("patientName");
-    }
-    if (typeof data.patientAge === "number") {
-      setValue("patientAge", String(data.patientAge), { shouldValidate: true });
-      filled.add("patientAge");
-    }
-    if (data.patientMobile) {
-      setValue("patientMobile", data.patientMobile, { shouldValidate: true });
-      filled.add("patientMobile");
-    }
-    if (data.testIds && data.testIds.length > 0) {
-      setSelectedTests((prev) =>
-        Array.from(new Set([...prev, ...data.testIds])),
-      );
-      setVoiceTestsCount(data.testIds.length);
+    if (data.patientName) setValue("patientName", data.patientName, { shouldValidate: true });
+    if (typeof data.patientAge === "number") setValue("patientAge", String(data.patientAge), { shouldValidate: true });
+    if (data.patientMobile) setValue("patientMobile", data.patientMobile, { shouldValidate: true });
+    if (data.testIds?.length) {
+      setSelectedTests((prev) => Array.from(new Set([...prev, ...data.testIds])));
       setTestError(null);
     }
-
-    setVoiceFilled(filled);
-  }
-
-  function clearVoiceBadge(field: string) {
-    if (!voiceFilled.has(field)) return;
-    setVoiceFilled((prev) => {
-      const next = new Set(prev);
-      next.delete(field);
-      return next;
-    });
   }
 
   useEffect(() => {
     let cancelled = false;
     fetch("/api/prescription/letterhead-url", { cache: "no-store" })
       .then((r) => (r.ok ? r.json() : null))
-      .then((j) => {
-        if (!cancelled && j?.url) setLetterheadUrl(j.url);
-      })
+      .then((j) => { if (!cancelled && j?.url) setLetterheadUrl(j.url); })
       .catch(() => {});
-    return () => {
-      cancelled = true;
-    };
+    return () => { cancelled = true; };
   }, []);
 
   function handleNext(values: FormValues) {
-    if (selectedTests.length === 0) {
-      setTestError("Please select at least one test.");
-      return;
-    }
+    if (selectedTests.length === 0) { setTestError("Please select at least one test."); return; }
     setTestError(null);
     setFormSnapshot(values);
     setStep("preview");
@@ -122,53 +100,39 @@ export default function NewPrescriptionPage() {
 
   function toggleTest(id: string) {
     setTestError(null);
-    setSelectedTests((prev) =>
-      prev.includes(id) ? prev.filter((t) => t !== id) : [...prev, id],
-    );
+    setSelectedTests((prev) => prev.includes(id) ? prev.filter((t) => t !== id) : [...prev, id]);
   }
 
   function toggleAll(category: string) {
     const ids = TESTS_BY_CATEGORY[category].map((t) => t.id);
     const allSelected = ids.every((id) => selectedTests.includes(id));
-    if (allSelected) {
-      setSelectedTests((prev) => prev.filter((id) => !ids.includes(id)));
-    } else {
-      setSelectedTests((prev) => Array.from(new Set([...prev, ...ids])));
-    }
+    setSelectedTests((prev) =>
+      allSelected ? prev.filter((id) => !ids.includes(id)) : Array.from(new Set([...prev, ...ids])),
+    );
   }
 
   async function handleSubmitPrescription() {
     if (!formSnapshot) return;
     setSubmitting(true);
     setServerError(null);
-
     const res = await fetch("/api/prescription/create", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         patientName: formSnapshot.patientName,
-        patientAge: formSnapshot.patientAge
-          ? Number(formSnapshot.patientAge)
-          : null,
+        patientAge: formSnapshot.patientAge ? Number(formSnapshot.patientAge) : null,
         patientMobile: formSnapshot.patientMobile,
         testIds: selectedTests,
       }),
     });
-
     setSubmitting(false);
-
     if (!res.ok) {
       const json = await res.json().catch(() => ({}));
       setServerError(json.error ?? "Something went wrong. Please try again.");
       return;
     }
-
     const json = await res.json();
-    setResult({
-      signedUrl: json.signedUrl,
-      waPatient: json.waPatient,
-      waDoctor: json.waDoctor,
-    });
+    setResult({ signedUrl: json.signedUrl, waPatient: json.waPatient, waDoctor: json.waDoctor });
     setStep("sent");
   }
 
@@ -176,37 +140,31 @@ export default function NewPrescriptionPage() {
   if (step === "sent" && result) {
     const snap = formSnapshot!;
     return (
-      <div className="mx-auto max-w-lg">
-        <div className="rounded-2xl bg-white p-8 shadow text-center">
-          <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-green-100 text-green-600">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-8 w-8"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
+      <div className="mx-auto max-w-md px-4">
+        <div className="overflow-hidden rounded-3xl bg-white shadow-xl">
+          {/* Success header */}
+          <div className="relative flex flex-col items-center px-8 py-10 text-center" style={{ background: B.headerGrad }}>
+            <div
+              className="mb-4 flex h-16 w-16 items-center justify-center rounded-full"
+              style={{ background: "rgba(244,163,0,0.18)", border: "2px solid rgba(244,163,0,0.4)" }}
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M5 13l4 4L19 7"
-              />
-            </svg>
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke={B.gold}>
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
+              </svg>
+            </div>
+            <h2 className="text-xl font-bold text-white">Prescription Ready!</h2>
+            <p className="mt-1 text-sm" style={{ color: "rgba(255,255,255,0.7)" }}>
+              For <span className="font-semibold text-white">{snap.patientName}</span>
+            </p>
           </div>
-          <h2 className="text-xl font-bold text-gray-900 mb-1">
-            Prescription Ready!
-          </h2>
-          <p className="text-sm text-gray-500 mb-6">
-            For <strong>{snap.patientName}</strong>
-          </p>
 
-          <div className="space-y-3">
+          <div className="space-y-3 p-6">
             <a
               href={result.waPatient}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-center gap-2 w-full rounded-xl bg-green-500 px-4 py-3 text-sm font-semibold text-white hover:bg-green-600 transition-colors"
+              className="flex items-center justify-center gap-2 w-full rounded-2xl px-4 py-3.5 text-sm font-semibold text-white shadow-md transition-all hover:shadow-lg active:scale-[0.98]"
+              style={{ background: "linear-gradient(135deg,#25D366 0%,#128C7E 100%)" }}
             >
               <WhatsAppIcon />
               Send to Patient ({snap.patientMobile})
@@ -217,7 +175,8 @@ export default function NewPrescriptionPage() {
                 href={result.waDoctor}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-center gap-2 w-full rounded-xl bg-blue-500 px-4 py-3 text-sm font-semibold text-white hover:bg-blue-600 transition-colors"
+                className="flex items-center justify-center gap-2 w-full rounded-2xl px-4 py-3.5 text-sm font-semibold text-white shadow-md transition-all hover:shadow-lg active:scale-[0.98]"
+                style={{ background: B.tealGrad }}
               >
                 <WhatsAppIcon />
                 Send Copy to Myself
@@ -228,28 +187,27 @@ export default function NewPrescriptionPage() {
               href={result.signedUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-center gap-2 w-full rounded-xl border border-gray-300 bg-white px-4 py-3 text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors"
+              className="flex items-center justify-center gap-2 w-full rounded-2xl border-2 px-4 py-3 text-sm font-semibold transition-all hover:bg-gray-50 active:scale-[0.98]"
+              style={{ borderColor: B.teal, color: B.tealDark }}
             >
               <DownloadIcon />
               Download PDF
             </a>
           </div>
 
-          <p className="mt-5 text-xs text-gray-400">
-            Tap each WhatsApp button, then press Send in the opened chat.
+          <p className="pb-4 text-center text-xs text-gray-400">
+            Tap each button, then press Send in the opened chat.
           </p>
 
-          <div className="mt-6 flex flex-col items-center gap-2">
+          <div className="flex flex-col items-center gap-3 border-t border-gray-100 px-6 py-5">
             <button
               onClick={() => router.push("/prescription/new")}
-              className="text-sm text-blue-600 hover:underline"
+              className="w-full rounded-2xl px-4 py-3 text-sm font-semibold text-white shadow-md transition-all hover:shadow-lg active:scale-[0.98]"
+              style={{ background: B.goldGrad }}
             >
               + New Prescription
             </button>
-            <Link
-              href="/prescription"
-              className="text-sm text-gray-500 hover:underline"
-            >
+            <Link href="/prescription" className="text-sm font-medium" style={{ color: B.tealDark }}>
               ← Back to Dashboard
             </Link>
           </div>
@@ -262,25 +220,23 @@ export default function NewPrescriptionPage() {
   if (step === "preview" && formSnapshot) {
     const snap = formSnapshot;
     const today = new Date().toLocaleDateString("en-IN", {
-      day: "2-digit",
-      month: "short",
-      year: "numeric",
-      timeZone: "Asia/Kolkata",
+      day: "2-digit", month: "short", year: "numeric", timeZone: "Asia/Kolkata",
     });
 
     return (
-      <div className="mx-auto max-w-2xl">
-        <div className="rounded-2xl bg-white shadow overflow-hidden">
-          <div className="bg-blue-600 px-6 py-4 text-white">
-            <h2 className="font-semibold text-lg">Review Prescription</h2>
-            <p className="text-blue-200 text-sm">Check before sending</p>
+      <div className="mx-auto max-w-2xl px-4">
+        <div className="overflow-hidden rounded-3xl bg-white shadow-xl">
+          {/* Header */}
+          <div className="px-7 py-5" style={{ background: B.headerGrad }}>
+            <p className="text-xs font-semibold uppercase tracking-widest" style={{ color: B.gold }}>Step 2 of 2</p>
+            <h2 className="mt-0.5 text-xl font-bold text-white">Review Prescription</h2>
+            <p className="text-sm" style={{ color: "rgba(255,255,255,0.65)" }}>Confirm before sending</p>
           </div>
 
-          <div className="p-6 space-y-4">
+          <div className="space-y-5 p-6">
+            {/* Letterhead preview */}
             <div>
-              <h3 className="text-xs font-semibold uppercase text-gray-400 tracking-wide mb-2">
-                Letterhead Preview
-              </h3>
+              <SectionLabel>Letterhead Preview</SectionLabel>
               <LetterheadPreview
                 letterheadUrl={letterheadUrl}
                 patientName={snap.patientName}
@@ -290,52 +246,49 @@ export default function NewPrescriptionPage() {
                 testIds={selectedTests}
               />
               <p className="mt-2 text-xs text-gray-400">
-                Approximate preview. The final PDF uses the exact same
-                positions.
+                Approximate preview — the final PDF uses exact positions.
               </p>
             </div>
 
-            <div className="rounded-xl border bg-gray-50 p-4 space-y-2">
-              <h3 className="text-xs font-semibold uppercase text-gray-400 tracking-wide">
-                Patient Details
-              </h3>
-              <div className="grid grid-cols-2 gap-2 text-sm">
-                <div>
-                  <span className="text-gray-500">Name: </span>
-                  <span className="font-medium text-gray-900">
-                    {snap.patientName}
-                  </span>
-                </div>
-                <div>
-                  <span className="text-gray-500">Age: </span>
-                  <span className="font-medium text-gray-900">
-                    {snap.patientAge ? `${snap.patientAge} yrs` : "—"}
-                  </span>
-                </div>
-                <div>
-                  <span className="text-gray-500">Mobile: </span>
-                  <span className="font-medium text-gray-900">
-                    {snap.patientMobile}
-                  </span>
-                </div>
-                <div>
-                  <span className="text-gray-500">Date: </span>
-                  <span className="font-medium text-gray-900">{today}</span>
-                </div>
+            {/* Patient details */}
+            <div
+              className="rounded-2xl border p-5 space-y-3"
+              style={{ borderColor: "#E0F3F5", background: "rgba(0,169,183,0.03)" }}
+            >
+              <SectionLabel>Patient Details</SectionLabel>
+              <div className="grid grid-cols-2 gap-3 text-sm">
+                {[
+                  ["Name", snap.patientName],
+                  ["Age", snap.patientAge ? `${snap.patientAge} yrs` : "—"],
+                  ["Mobile", snap.patientMobile],
+                  ["Date", today],
+                ].map(([label, value]) => (
+                  <div key={label}>
+                    <span className="text-xs font-medium uppercase tracking-wide text-gray-400">{label}</span>
+                    <p className="mt-0.5 font-semibold" style={{ color: B.navy }}>{value}</p>
+                  </div>
+                ))}
               </div>
             </div>
 
-            <div className="rounded-xl border bg-gray-50 p-4">
-              <h3 className="text-xs font-semibold uppercase text-gray-400 tracking-wide mb-3">
-                Advised Investigations ({selectedTests.length})
-              </h3>
-              <ul className="space-y-1">
+            {/* Tests list */}
+            <div
+              className="rounded-2xl border p-5"
+              style={{ borderColor: "#E0F3F5", background: "rgba(0,169,183,0.03)" }}
+            >
+              <div className="flex items-center justify-between mb-3">
+                <SectionLabel>Advised Investigations</SectionLabel>
+                <span
+                  className="rounded-full px-2.5 py-0.5 text-xs font-semibold"
+                  style={{ background: "rgba(0,169,183,0.12)", color: B.tealDark }}
+                >
+                  {selectedTests.length} test{selectedTests.length !== 1 ? "s" : ""}
+                </span>
+              </div>
+              <ul className="space-y-1.5">
                 {selectedTests.map((id) => (
-                  <li
-                    key={id}
-                    className="flex items-center gap-2 text-sm text-gray-800"
-                  >
-                    <span className="text-blue-500">•</span>
+                  <li key={id} className="flex items-center gap-2.5 text-sm" style={{ color: B.navy }}>
+                    <span className="h-1.5 w-1.5 shrink-0 rounded-full" style={{ background: B.teal }} />
                     {getTestLabel(id)}
                   </li>
                 ))}
@@ -343,27 +296,36 @@ export default function NewPrescriptionPage() {
             </div>
 
             {serverError && (
-              <div className="rounded-md bg-red-50 px-4 py-3 text-sm text-red-700">
+              <div className="rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
                 {serverError}
               </div>
             )}
 
-            <div className="flex gap-3 pt-2">
-              <Button
-                variant="outline"
-                className="flex-1"
+            <div className="flex gap-3 pt-1">
+              <button
+                type="button"
                 onClick={() => setStep("form")}
                 disabled={submitting}
+                className="flex-1 rounded-2xl border-2 py-3 text-sm font-semibold transition-all hover:bg-gray-50 disabled:opacity-50 active:scale-[0.98]"
+                style={{ borderColor: B.teal, color: B.tealDark }}
               >
                 ← Edit
-              </Button>
-              <Button
-                className="flex-1 bg-blue-600 hover:bg-blue-700"
+              </button>
+              <button
+                type="button"
                 onClick={handleSubmitPrescription}
                 disabled={submitting}
+                className="flex-1 rounded-2xl py-3 text-sm font-semibold text-white shadow-md transition-all hover:shadow-lg disabled:opacity-60 active:scale-[0.98]"
+                style={{ background: B.goldGrad }}
               >
-                {submitting ? "Generating PDF…" : "Submit & Send →"}
-              </Button>
+                {submitting ? (
+                  <span className="flex items-center justify-center gap-2">
+                    <MiniSpinner color="white" /> Generating PDF…
+                  </span>
+                ) : (
+                  "Submit & Send →"
+                )}
+              </button>
             </div>
           </div>
         </div>
@@ -373,139 +335,116 @@ export default function NewPrescriptionPage() {
 
   // ─── FORM ─────────────────────────────────────────────────────────────────
   return (
-    <div className="mx-auto max-w-2xl">
-      <div className="rounded-2xl bg-white shadow overflow-hidden">
-        <div className="bg-blue-600 px-6 py-4 text-white">
-          <h2 className="font-semibold text-lg">New Prescription</h2>
-          <p className="text-blue-200 text-sm">
-            Fill patient details and select tests
-          </p>
+    <div className="mx-auto max-w-2xl px-4">
+      <div className="overflow-hidden rounded-3xl bg-white shadow-xl">
+        {/* Header */}
+        <div className="px-7 py-5" style={{ background: B.headerGrad }}>
+          <p className="text-xs font-semibold uppercase tracking-widest" style={{ color: B.gold }}>New Prescription</p>
+          <h2 className="mt-0.5 text-xl font-bold text-white">Patient Details</h2>
+          <p className="text-sm" style={{ color: "rgba(255,255,255,0.65)" }}>Fill the form or use voice input</p>
         </div>
 
-        <form onSubmit={handleSubmit(handleNext)} className="p-6 space-y-6">
+        <form onSubmit={handleSubmit(handleNext)} className="p-6 space-y-7">
+          {/* Voice recorder */}
           <VoiceRecorder onExtracted={handleVoiceExtracted} />
 
-          <section className="space-y-4">
-            <h3 className="text-sm font-semibold uppercase tracking-wide text-gray-400">
-              Patient Details
-            </h3>
+          {/* Patient fields */}
+          <section className="space-y-5">
+            <SectionLabel>Patient Information</SectionLabel>
 
-            <div className="space-y-1">
-              <div className="flex items-center justify-between">
-                <Label htmlFor="patientName">Patient Name *</Label>
-                {voiceFilled.has("patientName") && <VoiceBadge />}
-              </div>
-              <Input
+            <div className="space-y-1.5">
+              <FieldLabel htmlFor="patientName">Patient Name *</FieldLabel>
+              <BrandInput
                 id="patientName"
                 placeholder="e.g. Rahul Sharma"
-                {...register("patientName", {
-                  onChange: () => clearVoiceBadge("patientName"),
-                })}
+                autoComplete="off"
+                {...register("patientName")}
               />
-              {errors.patientName && (
-                <p className="text-xs text-red-500">
-                  {errors.patientName.message}
-                </p>
-              )}
+              {errors.patientName && <FieldError>{errors.patientName.message}</FieldError>}
             </div>
 
-            <div className="grid grid-cols-2 gap-4">
-              <div className="space-y-1">
-                <div className="flex items-center justify-between">
-                  <Label htmlFor="patientAge">Age (years)</Label>
-                  {voiceFilled.has("patientAge") && <VoiceBadge />}
-                </div>
-                <Input
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+              <div className="space-y-1.5">
+                <FieldLabel htmlFor="patientAge">Age (years)</FieldLabel>
+                <BrandInput
                   id="patientAge"
                   type="number"
                   min="0"
                   max="130"
                   placeholder="e.g. 45"
-                  {...register("patientAge", {
-                    onChange: () => clearVoiceBadge("patientAge"),
-                  })}
+                  {...register("patientAge")}
                 />
-                {errors.patientAge && (
-                  <p className="text-xs text-red-500">
-                    {errors.patientAge.message}
-                  </p>
-                )}
+                {errors.patientAge && <FieldError>{errors.patientAge.message}</FieldError>}
               </div>
 
-              <div className="space-y-1">
-                <div className="flex items-center justify-between">
-                  <Label htmlFor="patientMobile">Mobile (WhatsApp) *</Label>
-                  {voiceFilled.has("patientMobile") && <VoiceBadge />}
-                </div>
-                <Input
+              <div className="space-y-1.5">
+                <FieldLabel htmlFor="patientMobile">Mobile (WhatsApp) *</FieldLabel>
+                <BrandInput
                   id="patientMobile"
                   type="tel"
+                  inputMode="numeric"
                   maxLength={10}
                   placeholder="9876543210"
-                  {...register("patientMobile", {
-                    onChange: () => clearVoiceBadge("patientMobile"),
-                  })}
+                  {...register("patientMobile")}
                 />
-                {errors.patientMobile && (
-                  <p className="text-xs text-red-500">
-                    {errors.patientMobile.message}
-                  </p>
-                )}
+                {errors.patientMobile && <FieldError>{errors.patientMobile.message}</FieldError>}
               </div>
             </div>
           </section>
 
-          <section className="space-y-3">
+          {/* Diagnostic tests */}
+          <section className="space-y-4">
             <div className="flex items-center justify-between">
-              <div className="flex items-center gap-2">
-                <h3 className="text-sm font-semibold uppercase tracking-wide text-gray-400">
-                  Diagnostic Tests
-                </h3>
-                {voiceTestsCount > 0 && (
-                  <VoiceBadge label={`+${voiceTestsCount} by voice`} />
-                )}
-              </div>
+              <SectionLabel>Diagnostic Tests</SectionLabel>
               {selectedTests.length > 0 && (
-                <span className="rounded-full bg-blue-100 px-2.5 py-0.5 text-xs font-semibold text-blue-700">
+                <span
+                  className="rounded-full px-3 py-0.5 text-xs font-semibold"
+                  style={{ background: "rgba(0,169,183,0.12)", color: B.tealDark }}
+                >
                   {selectedTests.length} selected
                 </span>
               )}
             </div>
 
-            {testError && <p className="text-xs text-red-500">{testError}</p>}
+            {testError && <FieldError>{testError}</FieldError>}
 
-            <div className="space-y-4 max-h-[480px] overflow-y-auto pr-1">
+            <div className="space-y-3 max-h-[480px] overflow-y-auto pr-1">
               {CATEGORY_KEYS.map((category) => {
                 const tests = TESTS_BY_CATEGORY[category];
-                const allSelected = tests.every((t) =>
-                  selectedTests.includes(t.id),
-                );
+                const allSelected = tests.every((t) => selectedTests.includes(t.id));
+                const someSelected = tests.some((t) => selectedTests.includes(t.id));
                 return (
                   <div
                     key={category}
-                    className="rounded-xl border bg-gray-50 overflow-hidden"
+                    className="overflow-hidden rounded-2xl border transition-all"
+                    style={{
+                      borderColor: someSelected ? B.teal : "#E5E7EB",
+                      background: someSelected ? "rgba(0,169,183,0.02)" : "white",
+                    }}
                   >
+                    {/* Category header */}
                     <button
                       type="button"
                       onClick={() => toggleAll(category)}
-                      className="flex w-full items-center justify-between px-4 py-2.5 text-left hover:bg-gray-100 transition-colors"
+                      className="flex w-full items-center justify-between px-4 py-3 text-left transition-colors hover:bg-gray-50"
                     >
-                      <span className="text-sm font-semibold text-gray-700">
+                      <span className="text-sm font-semibold" style={{ color: B.navy }}>
                         {category}
                       </span>
                       <span
-                        className={cn(
-                          "rounded-full px-2 py-0.5 text-xs font-medium transition-colors",
+                        className="rounded-full px-2.5 py-0.5 text-xs font-semibold transition-all"
+                        style={
                           allSelected
-                            ? "bg-blue-600 text-white"
-                            : "bg-gray-200 text-gray-600",
-                        )}
+                            ? { background: B.tealGrad, color: "white" }
+                            : { background: "#F3F4F6", color: "#6B7280" }
+                        }
                       >
                         {allSelected ? "Deselect all" : "Select all"}
                       </span>
                     </button>
 
-                    <div className="grid grid-cols-1 gap-0 divide-y divide-gray-100">
+                    {/* Test rows */}
+                    <div className="divide-y divide-gray-100">
                       {tests.map((test) => {
                         const checked = selectedTests.includes(test.id);
                         return (
@@ -513,22 +452,18 @@ export default function NewPrescriptionPage() {
                             key={test.id}
                             className={cn(
                               "flex cursor-pointer items-center gap-3 px-4 py-2.5 transition-colors",
-                              checked ? "bg-blue-50" : "hover:bg-white",
+                              checked ? "bg-[rgba(0,169,183,0.07)]" : "hover:bg-gray-50",
                             )}
                           >
                             <input
                               type="checkbox"
-                              className="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+                              className="h-4 w-4 shrink-0 rounded border-gray-300 accent-[#00A9B7]"
                               checked={checked}
                               onChange={() => toggleTest(test.id)}
                             />
                             <span
-                              className={cn(
-                                "text-sm",
-                                checked
-                                  ? "font-medium text-blue-800"
-                                  : "text-gray-700",
-                              )}
+                              className={cn("text-sm", checked ? "font-semibold" : "text-gray-600")}
+                              style={checked ? { color: B.tealDark } : {}}
                             >
                               {test.label}
                             </span>
@@ -542,69 +477,82 @@ export default function NewPrescriptionPage() {
             </div>
           </section>
 
-          <Button type="submit" className="w-full bg-blue-600 hover:bg-blue-700">
+          {/* Submit */}
+          <button
+            type="submit"
+            className="w-full rounded-2xl py-3.5 text-sm font-bold text-white shadow-md transition-all hover:shadow-xl active:scale-[0.98]"
+            style={{ background: B.goldGrad }}
+          >
             Review Prescription →
-          </Button>
+          </button>
         </form>
       </div>
     </div>
   );
 }
 
+// ─── Small helpers ────────────────────────────────────────────────────────────
+
+function SectionLabel({ children }: { children: React.ReactNode }) {
+  return (
+    <p className="text-xs font-bold uppercase tracking-widest" style={{ color: "#9CA3AF" }}>
+      {children}
+    </p>
+  );
+}
+
+function FieldLabel({ htmlFor, children }: { htmlFor: string; children: React.ReactNode }) {
+  return (
+    <label htmlFor={htmlFor} className="block text-sm font-semibold" style={{ color: "#1B2A41" }}>
+      {children}
+    </label>
+  );
+}
+
+function FieldError({ children }: { children: React.ReactNode }) {
+  return <p className="text-xs font-medium text-red-500">{children}</p>;
+}
+
+const BrandInput = ({
+  className,
+  ...props
+}: React.InputHTMLAttributes<HTMLInputElement>) => (
+  <input
+    className={cn(
+      "w-full rounded-xl border bg-white px-4 py-2.5 text-sm font-medium text-gray-900 placeholder-gray-400 outline-none transition-all",
+      "border-gray-200 focus:border-[#00A9B7] focus:ring-2 focus:ring-[#00A9B7]/20",
+      className,
+    )}
+    {...props}
+  />
+);
+
+function MiniSpinner({ color = "#00A9B7" }: { color?: string }) {
+  return (
+    <svg className="h-4 w-4 animate-spin" fill="none" viewBox="0 0 24 24">
+      <circle className="opacity-25" cx="12" cy="12" r="10" stroke={color} strokeWidth="4" />
+      <path className="opacity-75" fill={color} d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
+    </svg>
+  );
+}
+
 function WhatsAppIcon() {
   return (
-    <svg
-      viewBox="0 0 24 24"
-      className="h-5 w-5 fill-current"
-      xmlns="http://www.w3.org/2000/svg"
-    >
+    <svg viewBox="0 0 24 24" className="h-5 w-5 fill-current" xmlns="http://www.w3.org/2000/svg">
       <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
     </svg>
   );
 }
 
-function VoiceBadge({ label = "Added by voice" }: { label?: string }) {
-  return (
-    <span
-      className="inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide"
-      style={{
-        background: "rgba(0,169,183,0.12)",
-        color: "#007D8C",
-      }}
-    >
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        className="h-2.5 w-2.5"
-        viewBox="0 0 24 24"
-        fill="currentColor"
-      >
-        <path d="M12 14a3 3 0 003-3V5a3 3 0 10-6 0v6a3 3 0 003 3zm5-3a1 1 0 10-2 0 3 3 0 01-6 0 1 1 0 10-2 0 5 5 0 0010 0zm-5 6a1 1 0 011 1v2h2a1 1 0 110 2H9a1 1 0 110-2h2v-2a1 1 0 011-1z" />
-      </svg>
-      {label}
-    </span>
-  );
-}
-
 function DownloadIcon() {
   return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      className="h-5 w-5"
-      fill="none"
-      viewBox="0 0 24 24"
-      stroke="currentColor"
-    >
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth={2}
-        d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
-      />
+    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
     </svg>
   );
 }
 
-// ─── Letterhead Preview ──────────────────────────────────────────────────────
+// ─── Letterhead Preview ───────────────────────────────────────────────────────
 interface LetterheadPreviewProps {
   letterheadUrl: string | null;
   patientName: string;
@@ -627,118 +575,41 @@ function LetterheadPreview({
 
   return (
     <div
-      className="relative w-full overflow-hidden rounded-xl border bg-white shadow-sm"
-      style={{ aspectRatio: "595 / 842", containerType: "size" }}
+      className="relative w-full overflow-hidden rounded-2xl border bg-white shadow-sm"
+      style={{ aspectRatio: "595 / 842", containerType: "size", borderColor: "#E0F3F5" }}
     >
       {letterheadUrl ? (
         // eslint-disable-next-line @next/next/no-img-element
-        <img
-          src={letterheadUrl}
-          alt="Letterhead"
-          className="absolute inset-0 h-full w-full object-fill"
-          draggable={false}
-        />
+        <img src={letterheadUrl} alt="Letterhead" className="absolute inset-0 h-full w-full object-fill" draggable={false} />
       ) : (
         <div className="absolute inset-0 flex items-center justify-center bg-gray-50 text-sm text-gray-400">
           Loading letterhead…
         </div>
       )}
 
-      <div
-        className="absolute inset-0 font-sans text-[#0d0d0d]"
-        style={{ fontFamily: "Helvetica, Arial, sans-serif" }}
-      >
-        <span
-          style={{
-            position: "absolute",
-            left: `${C.name.xFrac * 100}%`,
-            top: `${C.name.yFrac * 100}%`,
-            fontSize: ptToCqh(C.name.size),
-            fontWeight: 700,
-            lineHeight: 1,
-            transform: "translateY(-100%)",
-            whiteSpace: "nowrap",
-          }}
-        >
+      <div className="absolute inset-0 font-sans text-[#0d0d0d]" style={{ fontFamily: "Helvetica, Arial, sans-serif" }}>
+        <span style={{ position: "absolute", left: `${C.name.xFrac * 100}%`, top: `${C.name.yFrac * 100}%`, fontSize: ptToCqh(C.name.size), fontWeight: 700, lineHeight: 1, transform: "translateY(-100%)", whiteSpace: "nowrap" }}>
           {patientName}
         </span>
-
         {patientAge && (
-          <span
-            style={{
-              position: "absolute",
-              left: `${C.age.xFrac * 100}%`,
-              top: `${C.age.yFrac * 100}%`,
-              fontSize: ptToCqh(C.age.size),
-              lineHeight: 1,
-              transform: "translateY(-100%)",
-              whiteSpace: "nowrap",
-            }}
-          >
+          <span style={{ position: "absolute", left: `${C.age.xFrac * 100}%`, top: `${C.age.yFrac * 100}%`, fontSize: ptToCqh(C.age.size), lineHeight: 1, transform: "translateY(-100%)", whiteSpace: "nowrap" }}>
             {patientAge} yrs
           </span>
         )}
-
-        <span
-          style={{
-            position: "absolute",
-            left: `${C.date.xFrac * 100}%`,
-            top: `${C.date.yFrac * 100}%`,
-            fontSize: ptToCqh(C.date.size),
-            lineHeight: 1,
-            transform: "translateY(-100%)",
-            whiteSpace: "nowrap",
-          }}
-        >
+        <span style={{ position: "absolute", left: `${C.date.xFrac * 100}%`, top: `${C.date.yFrac * 100}%`, fontSize: ptToCqh(C.date.size), lineHeight: 1, transform: "translateY(-100%)", whiteSpace: "nowrap" }}>
           {date}
         </span>
-
-        <span
-          style={{
-            position: "absolute",
-            left: `${C.mobile.xFrac * 100}%`,
-            top: `${C.mobile.yFrac * 100}%`,
-            fontSize: ptToCqh(C.mobile.size),
-            lineHeight: 1,
-            transform: "translateY(-100%)",
-            whiteSpace: "nowrap",
-          }}
-        >
+        <span style={{ position: "absolute", left: `${C.mobile.xFrac * 100}%`, top: `${C.mobile.yFrac * 100}%`, fontSize: ptToCqh(C.mobile.size), lineHeight: 1, transform: "translateY(-100%)", whiteSpace: "nowrap" }}>
           Mob: {patientMobile}
         </span>
-
-        <span
-          style={{
-            position: "absolute",
-            left: `${C.testsStart.xFrac * 100}%`,
-            top: `${C.testsStart.yStartFrac * 100}%`,
-            fontSize: ptToCqh(C.testsStart.size + 1),
-            fontWeight: 700,
-            lineHeight: 1,
-            transform: "translateY(-100%)",
-            whiteSpace: "nowrap",
-          }}
-        >
+        <span style={{ position: "absolute", left: `${C.testsStart.xFrac * 100}%`, top: `${C.testsStart.yStartFrac * 100}%`, fontSize: ptToCqh(C.testsStart.size + 1), fontWeight: 700, lineHeight: 1, transform: "translateY(-100%)", whiteSpace: "nowrap" }}>
           Advised Investigations:
         </span>
-
         {testIds.map((id, i) => {
-          const yFrac =
-            C.testsStart.yStartFrac + (i + 1) * C.testsStart.lineFrac;
+          const yFrac = C.testsStart.yStartFrac + (i + 1) * C.testsStart.lineFrac;
           if (yFrac > 0.95) return null;
           return (
-            <span
-              key={id}
-              style={{
-                position: "absolute",
-                left: `${(C.testsStart.xFrac + 0.02) * 100}%`,
-                top: `${yFrac * 100}%`,
-                fontSize: ptToCqh(C.testsStart.size),
-                lineHeight: 1,
-                transform: "translateY(-100%)",
-                whiteSpace: "nowrap",
-              }}
-            >
+            <span key={id} style={{ position: "absolute", left: `${(C.testsStart.xFrac + 0.02) * 100}%`, top: `${yFrac * 100}%`, fontSize: ptToCqh(C.testsStart.size), lineHeight: 1, transform: "translateY(-100%)", whiteSpace: "nowrap" }}>
               • {getTestLabel(id)}
             </span>
           );

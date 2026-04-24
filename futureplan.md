@@ -504,3 +504,133 @@ from the API. Only the server-side implementation changes.
 - [ ] Update `app/api/prescription/transcribe/route.ts` to await new extractor
 - [ ] Add shadow-mode logging for 2 weeks before full cutover
 - [ ] Document cost monitoring in `lib/metrics/` (optional)
+
+---
+
+# Photo Scan → Prescription Form Auto-Fill
+
+## Overview
+
+A doctor writes patient details (name, age, mobile, diagnostic tests) on any
+paper slip, clicks a photo, attaches it on the prescription form, and the
+system reads the handwriting and auto-fills every field — exactly like the
+voice recorder, but triggered by an image.
+
+## Flow
+
+```
+Doctor writes slip
+       │
+       ▼
+"Scan Paper" button on /prescription/new
+       │
+       ├── Mobile → camera opens directly (capture="environment")
+       └── Desktop → file picker opens
+       │
+       ▼
+Client-side compression (Canvas API, no new library)
+  Original photo ~4 MB → 1024px JPEG @0.85 → ~150 KB → base64
+       │
+       ▼
+POST /api/prescription/scan  { imageBase64, mimeType }
+       │
+       ├── Auth guard (same as transcribe route)
+       ├── GPT-4o Vision reads handwriting
+       ├── Returns JSON { patientName, patientAge, patientMobile, testIds, notes }
+       └── Zod validation + filter testIds against DIAGNOSTIC_TESTS catalog
+       │
+       ▼
+form.setValue() auto-fills form fields
+"Scanned" teal badges appear (same pattern as "Added by voice" badges)
+```
+
+## New environment variable
+
+```bash
+# .env.local  +  Netlify environment variables
+OPENAI_API_KEY=sk-proj-...
+```
+
+Also add placeholder to `.env.example`:
+```
+# --- OpenAI (image scan OCR) ---
+OPENAI_API_KEY=
+```
+
+## Files to create
+
+### `app/api/prescription/scan/route.ts`
+
+New auth-guarded API route. Mirrors `app/api/prescription/transcribe/route.ts`
+in structure.
+
+- Accept `{ imageBase64: string, mimeType: string }` in body
+- Strip data URI prefix, validate ≤5 MB
+- Call **GPT-4o Vision** with a structured system prompt containing the full
+  test catalog, requesting JSON output
+- Validate response with Zod, filter `testIds` against `DIAGNOSTIC_TESTS`
+- Return same `ExtractedFieldsResult` shape as the transcribe route
+
+System prompt skeleton:
+```
+You are reading a handwritten doctor's paper slip.
+Extract patient details and advised tests.
+Return JSON only: { patientName, patientAge, patientMobile, testIds, notes }
+Rules:
+- patientMobile: 10 digits, Indian, starts 6-9, or null
+- testIds: use IDs from this catalog only (never invent IDs):
+  - cbc: CBC (Complete Blood Count) ...
+  - lft: LFT (Liver Function Test) ...
+  ... (full catalog injected at runtime)
+```
+
+### `components/prescription/ImageScanner.tsx`
+
+New UI component placed below `VoiceRecorder` on the form.
+
+- Hidden `<input type="file" accept="image/*" capture="environment" />`
+  → phone opens camera; desktop opens file picker
+- On file select: resize to max 1024px via browser Canvas API
+  (`canvas.toDataURL('image/jpeg', 0.85)`) — no new npm package
+- Show image thumbnail preview while scanning
+- Show "Scanning…" spinner, then "Found: Rahul Sharma, age 45, CBC, ECG"
+  on success, or inline error with retry button
+- Same `onExtracted(result: ExtractedFieldsResult)` callback as `VoiceRecorder`
+
+## Files to modify
+
+### `app/prescription/new/page.tsx`
+
+- Import `ImageScanner`
+- Add `scanFilled` state (parallel to `voiceFilled`) and `scanTestsCount` state
+- Add `handleScanExtracted` function — identical to `handleVoiceExtracted`
+  but sets `scanFilled` instead of `voiceFilled`
+- Render `<ImageScanner onExtracted={handleScanExtracted} />` directly below
+  `<VoiceRecorder>` so both input options are visible together
+- Show "Scanned" badge on fields auto-filled from the image (same teal style
+  as the "Added by voice" badge)
+
+### `.env.example`
+
+Add `OPENAI_API_KEY=` under a new OpenAI section.
+
+## What does NOT change
+
+- No database schema changes
+- No new npm packages (Canvas API is built into all browsers)
+- `VoiceRecorder`, `useVoiceRecorder`, and `lib/voice/extract.ts` are untouched
+- Both voice and scan share the same `ExtractedFieldsResult` type and the
+  same form-fill logic in `page.tsx`
+
+## Cost estimate
+
+GPT-4o Vision: a 1024px JPEG costs ~765 image tokens ≈ **$0.002 per scan**
+(≈ Rs 0.17). At 500 scans/month = **Rs 85/month**. Negligible.
+
+## Task Checklist (Phase — Photo Scan)
+
+- [ ] Add `OPENAI_API_KEY=` to `.env.example`
+- [ ] Create `app/api/prescription/scan/route.ts`
+- [ ] Create `components/prescription/ImageScanner.tsx`
+- [ ] Integrate `ImageScanner` into `app/prescription/new/page.tsx`
+- [ ] Add `OPENAI_API_KEY` to Netlify environment variables when deploying
