@@ -64,18 +64,16 @@ export const Navbar = () => {
           </NextLink>
         </NavbarBrand>
 
-        {!isPunePage && (
-          <NavbarItem className="flex">
-            <NextLink href="/prescription">
-              <Button
-                aria-label="Prescription"
-                className="rounded-full bg-clinic-secondary hover:bg-clinic-secondaryDark text-primary-foreground px-4 sm:px-5 h-9 text-xs sm:text-sm font-medium"
-              >
-                Prescription
-              </Button>
-            </NextLink>
-          </NavbarItem>
-        )}
+        <NavbarItem className="flex">
+          <NextLink href="/prescription">
+            <Button
+              aria-label="Prescription"
+              className="rounded-full bg-clinic-secondary hover:bg-clinic-secondaryDark text-primary-foreground px-4 sm:px-5 h-9 text-xs sm:text-sm font-medium"
+            >
+              Prescription
+            </Button>
+          </NextLink>
+        </NavbarItem>
       </NavbarContent>
 
       <NavbarContent
