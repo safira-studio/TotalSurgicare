@@ -3,6 +3,7 @@ import { createClient } from "@/lib/supabase/server";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { normalizeIndianMobile, waUrl } from "@/lib/phone";
 import { formatDateIN } from "@/lib/pdf/prescription";
+import { clinicFooter } from "@/lib/clinic";
 
 const THIRTY_DAYS_SECS = 60 * 60 * 24 * 30;
 
@@ -71,7 +72,8 @@ export async function GET(
   const msg =
     `Namaste ${patientName},\n` +
     `Your prescription from ${doctor?.full_name ?? "Doctor"} (${clinicName}) is ready:\n${signedUrl}\n\n` +
-    `Date: ${date}`;
+    `Date: ${date}` +
+    clinicFooter();
 
   const patientMobile = normalizeIndianMobile(rx.patient_mobile);
   const doctorMobile = doctor?.phone
@@ -82,7 +84,7 @@ export async function GET(
     signedUrl,
     waPatient: patientMobile.ok ? waUrl(patientMobile.digits, msg) : null,
     waDoctor: doctorMobile.ok
-      ? waUrl(doctorMobile.digits, `[Doctor copy] ${msg}`)
+      ? waUrl(doctorMobile.digits, msg)
       : null,
   });
 }

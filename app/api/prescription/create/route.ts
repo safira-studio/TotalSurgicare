@@ -8,6 +8,7 @@ import {
   formatDateIN,
 } from "@/lib/pdf/prescription";
 import { normalizeIndianMobile, waUrl } from "@/lib/phone";
+import { clinicFooter } from "@/lib/clinic";
 
 const bodySchema = z.object({
   patientName: z.string().min(1, "Patient name is required"),
@@ -173,12 +174,13 @@ export async function POST(req: Request) {
   const msg =
     `Namaste ${patientName},\n` +
     `Your prescription from ${doctor.full_name} (${clinicName}) is ready:\n${signedUrl}\n\n` +
-    `Date: ${date}`;
+    `Date: ${date}` +
+    clinicFooter();
 
   const doctorMobile = normalizeIndianMobile(doctor.phone);
   const waPatient = waUrl(mobileResult.digits, msg);
   const waDoctor = doctorMobile.ok
-    ? waUrl(doctorMobile.digits, `[Doctor copy] ${msg}`)
+    ? waUrl(doctorMobile.digits, msg)
     : null;
 
   return NextResponse.json({
