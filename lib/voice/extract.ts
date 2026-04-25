@@ -248,9 +248,25 @@ function extractAge(text: string): number | undefined {
  * the form's Zod validation will flag it so the doctor can correct.
  */
 function extractMobile(text: string): string | undefined {
+  // Prefer extracting from the "mobile/phone/number ..." portion of the transcript
+  // so we don't accidentally pick up unrelated numbers (age, dates, etc).
+  const mobileTailMatch = text.match(
+    /\b(?:mobile|phone)\s*(?:number|no|num)?\b[\s:,-]*([\s\S]*)/i,
+  );
+  const candidateText = mobileTailMatch?.[1]?.trim() ? mobileTailMatch[1] : text;
+
   // Convert spoken digit words before stripping non-digits
-  const expanded = wordDigitsToNumbers(text);
-  const digitsOnly = expanded.replace(/[^\d]/g, "");
+  // In mobile context we also convert *single* digit-words (e.g. "eight, double six...")
+  // because dictation commonly starts with a single digit.
+  const expanded = wordDigitsToNumbers(candidateText);
+  const expandedWithSingles = mobileTailMatch
+    ? expanded.replace(
+        /\b(zero|oh|one|two|three|four|five|six|seven|eight|nine)\b/gi,
+        (m) => WORD_TO_DIGIT[m.toLowerCase()] ?? m,
+      )
+    : expanded;
+
+  const digitsOnly = expandedWithSingles.replace(/[^\d]/g, "");
 
   // +91 / 91 prefix followed by 10 digits
   const withCountryCode = digitsOnly.match(/91([6-9]\d{9})/);
