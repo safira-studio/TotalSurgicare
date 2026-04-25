@@ -33,8 +33,11 @@ const TEST_KEYWORDS: Array<{ phrase: string; id: string }> = [
   { phrase: "random blood sugar", id: "rbs" },
   { phrase: "r b s", id: "rbs" },
   { phrase: "rbs", id: "rbs" },
+  { phrase: "blood sugar", id: "rbs" },
+  { phrase: "sugar test", id: "rbs" },
   { phrase: "fasting blood sugar", id: "fbs" },
   { phrase: "fasting sugar", id: "fbs" },
+  { phrase: "fasting glucose", id: "fbs" },
   { phrase: "f b s", id: "fbs" },
   { phrase: "fbs", id: "fbs" },
   { phrase: "post prandial", id: "pp_sugar" },
@@ -49,9 +52,14 @@ const TEST_KEYWORDS: Array<{ phrase: string; id: string }> = [
 
   // Liver & Kidney
   { phrase: "liver function test", id: "lft" },
+  { phrase: "liver test", id: "lft" },
+  { phrase: "liver function", id: "lft" },
   { phrase: "l f t", id: "lft" },
   { phrase: "lft", id: "lft" },
   { phrase: "kidney function test", id: "kft" },
+  { phrase: "kidney test", id: "kft" },
+  { phrase: "kidney function", id: "kft" },
+  { phrase: "renal function test", id: "kft" },
   { phrase: "k f t", id: "kft" },
   { phrase: "kft", id: "kft" },
   { phrase: "uric acid", id: "uric_acid" },
@@ -61,6 +69,8 @@ const TEST_KEYWORDS: Array<{ phrase: string; id: string }> = [
 
   // Lipid & Heart
   { phrase: "lipid profile", id: "lipid" },
+  { phrase: "lipid test", id: "lipid" },
+  { phrase: "cholesterol test", id: "lipid" },
   { phrase: "lipid", id: "lipid" },
   { phrase: "troponin", id: "trop_i" },
   { phrase: "trop i", id: "trop_i" },
@@ -69,14 +79,17 @@ const TEST_KEYWORDS: Array<{ phrase: string; id: string }> = [
   { phrase: "ecg", id: "ecg" },
   { phrase: "2d echo", id: "echo" },
   { phrase: "two d echo", id: "echo" },
+  { phrase: "echo test", id: "echo" },
   { phrase: "echocardiogram", id: "echo" },
-  { phrase: "echo", id: "echo" },
+  // NOTE: bare "echo" intentionally omitted — too short, false-positives in normal speech
   { phrase: "treadmill test", id: "tmt" },
   { phrase: "t m t", id: "tmt" },
   { phrase: "tmt", id: "tmt" },
 
   // Thyroid & Hormones
   { phrase: "thyroid stimulating hormone", id: "tsh" },
+  { phrase: "thyroid test", id: "tsh" },
+  { phrase: "thyroid function test", id: "tsh" },
   { phrase: "t s h", id: "tsh" },
   { phrase: "tsh", id: "tsh" },
   { phrase: "thyroid panel", id: "t3_t4" },
@@ -88,10 +101,14 @@ const TEST_KEYWORDS: Array<{ phrase: string; id: string }> = [
   { phrase: "urine routine", id: "urine_re" },
   { phrase: "urine r e", id: "urine_re" },
   { phrase: "urine microscopy", id: "urine_re" },
+  { phrase: "urine test", id: "urine_re" },
+  { phrase: "urine analysis", id: "urine_re" },
+  { phrase: "urinalysis", id: "urine_re" },
   { phrase: "urine culture", id: "urine_culture" },
   { phrase: "urine sensitivity", id: "urine_culture" },
   { phrase: "stool routine", id: "stool_re" },
   { phrase: "stool microscopy", id: "stool_re" },
+  { phrase: "stool test", id: "stool_re" },
 
   // Imaging
   { phrase: "x ray chest", id: "xray_chest" },
@@ -143,6 +160,58 @@ function normalize(text: string): string {
 }
 
 /**
+ * Convert spoken digit-word sequences to numeric strings so the mobile regex
+ * can match even when AssemblyAI's format_text doesn't convert them.
+ *   "nine eight seven six five four three two one zero" → "9876543210"
+ *   "nine-eight-seven"                                 → "987"
+ * Only converts runs of 2+ consecutive digit words to avoid changing
+ * regular words like "one" appearing in unrelated sentences.
+ */
+const WORD_TO_DIGIT: Record<string, string> = {
+  zero: "0",
+  oh: "0",
+  one: "1",
+  two: "2",
+  three: "3",
+  four: "4",
+  five: "5",
+  six: "6",
+  seven: "7",
+  eight: "8",
+  nine: "9",
+};
+
+function wordDigitsToNumbers(text: string): string {
+  // Step 1: Expand multiplier phrases — "double nine" → "99", "triple eight" → "888"
+  const multiplierExpanded = text
+    .replace(
+      /\bdouble\s+(zero|oh|one|two|three|four|five|six|seven|eight|nine|\d)\b/gi,
+      (_, d) => {
+        const ch = WORD_TO_DIGIT[d.toLowerCase()] ?? d;
+        return ch + ch;
+      },
+    )
+    .replace(
+      /\btriple\s+(zero|oh|one|two|three|four|five|six|seven|eight|nine|\d)\b/gi,
+      (_, d) => {
+        const ch = WORD_TO_DIGIT[d.toLowerCase()] ?? d;
+        return ch + ch + ch;
+      },
+    );
+
+  // Step 2: Convert remaining spoken digit-word sequences to numeric strings
+  return multiplierExpanded.replace(
+    /\b(?:zero|oh|one|two|three|four|five|six|seven|eight|nine)(?:[\s-]+(?:zero|oh|one|two|three|four|five|six|seven|eight|nine))+\b/gi,
+    (match) =>
+      match
+        .toLowerCase()
+        .split(/[\s-]+/)
+        .map((w) => WORD_TO_DIGIT[w] ?? w)
+        .join(""),
+  );
+}
+
+/**
  * Extract patient age from transcript. Matches patterns like:
  *   "age 45", "aged 45", "45 years", "45 year old", "45 yrs", "45-year-old"
  */
@@ -167,18 +236,28 @@ function extractAge(text: string): number | undefined {
 
 /**
  * Extract a 10-digit Indian mobile number from transcript.
- * Handles spaces, hyphens, and optional +91/91 prefix.
+ * Handles spaces, hyphens, optional +91/91 prefix, and digit words
+ * ("nine eight seven..." → "987...") when format_text didn't convert them.
+ * Falls back to 9-digit sequences in case transcription drops a digit —
+ * the form's Zod validation will flag it so the doctor can correct.
  */
 function extractMobile(text: string): string | undefined {
-  // Strip common separators to find continuous digit sequences
-  const digitsOnly = text.replace(/[^\d]/g, "");
+  // Convert spoken digit words before stripping non-digits
+  const expanded = wordDigitsToNumbers(text);
+  const digitsOnly = expanded.replace(/[^\d]/g, "");
 
-  // Look for +91 followed by 10 digits, or a standalone 10-digit sequence starting with 6-9
+  // +91 / 91 prefix followed by 10 digits
   const withCountryCode = digitsOnly.match(/91([6-9]\d{9})/);
   if (withCountryCode) return withCountryCode[1];
 
-  const standalone = digitsOnly.match(/([6-9]\d{9})/);
-  if (standalone) return standalone[1];
+  // Standalone 10-digit Indian mobile (starts with 6-9)
+  const exact = digitsOnly.match(/([6-9]\d{9})/);
+  if (exact) return exact[1];
+
+  // Lenient: 9-digit starting with 6-9 (transcription may drop one digit)
+  // Prefills the field so doctor only needs a one-digit correction
+  const nearMiss = digitsOnly.match(/([6-9]\d{8})/);
+  if (nearMiss) return nearMiss[1];
 
   return undefined;
 }

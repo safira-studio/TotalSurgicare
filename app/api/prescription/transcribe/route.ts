@@ -82,6 +82,7 @@ export async function POST(req: Request) {
     const transcript = await client.transcripts.transcribe({
       audio: audioBuffer,
       speech_models: ["universal-2"],
+      language_code: "en",
       entity_detection: true,
       punctuate: true,
       format_text: true,

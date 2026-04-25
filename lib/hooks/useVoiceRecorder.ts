@@ -143,7 +143,9 @@ export function useVoiceRecorder(options: UseVoiceRecorderOptions = {}) {
 
       recorderRef.current = recorder;
       startedAtRef.current = Date.now();
-      recorder.start();
+      // 1-second timeslice: ensures ondataavailable fires regularly on iOS Safari
+      // instead of only on stop(), which can produce an empty blob on some devices.
+      recorder.start(1000);
       setStatus("recording");
 
       tickRef.current = setInterval(() => {

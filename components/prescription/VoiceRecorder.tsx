@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useVoiceRecorder } from "@/lib/hooks/useVoiceRecorder";
 
 export interface ExtractedFieldsResult {
@@ -30,6 +30,8 @@ export function VoiceRecorder({ onExtracted, disabled = false }: VoiceRecorderPr
   const [transcribing, setTranscribing] = useState(false);
   const [transcript, setTranscript] = useState<string | null>(null);
   const [apiError, setApiError] = useState<string | null>(null);
+  const [nothingFound, setNothingFound] = useState(false);
+  const abortRef = useRef<AbortController | null>(null);
 
   const isRecording = status === "recording";
   const isRequesting = status === "requesting";
@@ -38,18 +40,29 @@ export function VoiceRecorder({ onExtracted, disabled = false }: VoiceRecorderPr
   async function handleStart() {
     setApiError(null);
     setTranscript(null);
+    setNothingFound(false);
     await start();
   }
 
   async function handleStop() {
     setApiError(null);
+    setNothingFound(false);
     try {
       const result = await stop();
+
+      // Guard: reject recordings under 1 second — too short to contain useful speech
+      if (result.durationMs < 1000) {
+        setApiError("Recording too short. Please hold the button and speak clearly.");
+        return;
+      }
+
       setTranscribing(true);
+      abortRef.current = new AbortController();
 
       const res = await fetch("/api/prescription/transcribe", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
+        signal: abortRef.current.signal,
         body: JSON.stringify({
           audioBase64: result.base64,
           mimeType: result.mimeType,
@@ -65,12 +78,26 @@ export function VoiceRecorder({ onExtracted, disabled = false }: VoiceRecorderPr
 
       const json = (await res.json()) as ExtractedFieldsResult;
       setTranscript(json.transcript ?? "");
-      onExtracted(json);
+
+      // If nothing was extracted, tell the doctor clearly instead of silently doing nothing
+      const hasData =
+        json.patientName ||
+        json.patientAge != null ||
+        json.patientMobile ||
+        (json.testIds?.length ?? 0) > 0;
+
+      if (!hasData) {
+        setNothingFound(true);
+      } else {
+        onExtracted(json);
+      }
     } catch (e: unknown) {
+      if (e instanceof Error && e.name === "AbortError") return;
       const msg = e instanceof Error ? e.message : "Recording failed";
       setApiError(msg);
     } finally {
       setTranscribing(false);
+      abortRef.current = null;
     }
   }
 
@@ -86,8 +113,12 @@ export function VoiceRecorder({ onExtracted, disabled = false }: VoiceRecorderPr
     <div
       className="rounded-2xl border p-4"
       style={{
-        borderColor: isRecording ? "#00A9B7" : "#E0F3F5",
-        background: isRecording ? "rgba(0,169,183,0.04)" : "rgba(0,169,183,0.02)",
+        borderColor: isRecording ? "#00A9B7" : nothingFound ? "#FCA5A5" : "#E0F3F5",
+        background: isRecording
+          ? "rgba(0,169,183,0.04)"
+          : nothingFound
+            ? "rgba(254,202,202,0.15)"
+            : "rgba(0,169,183,0.02)",
       }}
     >
       <div className="flex items-start gap-3">
@@ -125,33 +156,35 @@ export function VoiceRecorder({ onExtracted, disabled = false }: VoiceRecorderPr
         </button>
 
         <div className="min-w-0 flex-1">
-          <div className="flex items-center justify-between gap-2">
-            <p className="text-sm font-semibold" style={{ color: "#1B2A41" }}>
-              {transcribing
-                ? "Transcribing…"
-                : isRecording
-                  ? "Listening…"
-                  : isRequesting
-                    ? "Requesting mic…"
+          <p className="text-sm font-semibold" style={{ color: "#1B2A41" }}>
+            {transcribing
+              ? "Transcribing…"
+              : isRecording
+                ? "Listening…"
+                : isRequesting
+                  ? "Requesting mic…"
+                  : nothingFound
+                    ? "Nothing recognized"
                     : "Dictate patient details"}
-            </p>
             {isRecording && (
-              <span
-                className="font-mono text-xs font-semibold"
-                style={{ color: "#E53935" }}
-              >
+              <span className="ml-2 font-mono text-xs" style={{ color: "#E53935" }}>
                 ● {formatDuration(elapsedMs)}
               </span>
             )}
-          </div>
+          </p>
 
-          <p className="mt-0.5 text-xs text-gray-500">
+          <p className="mt-0.5 text-xs" style={{ color: nothingFound ? "#DC2626" : "#6B7280" }}>
             {isRecording ? (
               <>
-                Say: <em>“Patient name Rahul Sharma, age 45, mobile 9876543210, advise CBC, lipid profile, and ECG”</em>
+                Say:{" "}
+                <em>
+                  &quot;Patient Rahul Sharma, age 45, mobile 9876543210, advise CBC, lipid profile, ECG&quot;
+                </em>
               </>
             ) : transcribing ? (
               "Analyzing your voice note…"
+            ) : nothingFound ? (
+              "Couldn't recognize any details. Try again — speak clearly and include name, age, mobile, and tests."
             ) : transcript ? (
               "Details filled below. Review and edit as needed."
             ) : (
@@ -181,9 +214,7 @@ export function VoiceRecorder({ onExtracted, disabled = false }: VoiceRecorderPr
           )}
 
           {(apiError || error) && (
-            <p className="mt-2 text-xs font-medium text-red-600">
-              {apiError ?? error}
-            </p>
+            <p className="mt-2 text-xs font-medium text-red-600">{apiError ?? error}</p>
           )}
         </div>
       </div>
