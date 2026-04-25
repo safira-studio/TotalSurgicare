@@ -25,6 +25,7 @@ export default function HistoryPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [loadingLinks, setLoadingLinks] = useState<string | null>(null);
+  const [deletingId, setDeletingId] = useState<string | null>(null);
   const [activeLinks, setActiveLinks] = useState<Record<string, SendLinks>>({});
 
   const fetchHistory = useCallback(async () => {
@@ -60,6 +61,33 @@ export default function HistoryPage() {
         waDoctor: json.waDoctor,
       },
     }));
+  }
+
+  async function deletePrescription(id: string) {
+    if (
+      !window.confirm(
+        "Delete this prescription permanently? The PDF will be removed and cannot be recovered.",
+      )
+    ) {
+      return;
+    }
+    setDeletingId(id);
+    try {
+      const res = await fetch(`/api/prescription/${id}`, { method: "DELETE" });
+      if (!res.ok) {
+        const json = await res.json().catch(() => ({}));
+        alert(json.error ?? "Could not delete. Please try again.");
+        return;
+      }
+      setPrescriptions((prev) => prev.filter((p) => p.id !== id));
+      setActiveLinks((prev) => {
+        const next = { ...prev };
+        delete next[id];
+        return next;
+      });
+    } finally {
+      setDeletingId(null);
+    }
   }
 
   if (loading) {
@@ -100,6 +128,7 @@ export default function HistoryPage() {
           {prescriptions.map((rx) => {
             const links = activeLinks[rx.id];
             const isLoadingThis = loadingLinks === rx.id;
+            const isDeletingThis = deletingId === rx.id;
             const date = new Date(rx.created_at).toLocaleDateString("en-IN", {
               day: "2-digit",
               month: "short",
@@ -136,18 +165,36 @@ export default function HistoryPage() {
                     )}
                   </div>
 
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    onClick={() => getLinks(rx.id)}
-                    disabled={isLoadingThis}
-                    className={cn(
-                      "shrink-0 text-xs",
-                      links ? "text-blue-600 border-blue-300" : "",
-                    )}
-                  >
-                    {isLoadingThis ? "Loading…" : links ? "Links Ready ✓" : "Get Links"}
-                  </Button>
+                  <div className="flex shrink-0 items-center gap-1.5">
+                    <Button
+                      type="button"
+                      variant="outline"
+                      size="icon"
+                      className="h-8 w-8 text-gray-400 hover:border-red-200 hover:bg-red-50 hover:text-red-600"
+                      onClick={() => deletePrescription(rx.id)}
+                      disabled={isDeletingThis || isLoadingThis}
+                      aria-label="Delete prescription"
+                      title="Delete prescription"
+                    >
+                      {isDeletingThis ? (
+                        <span className="text-xs">…</span>
+                      ) : (
+                        <TrashIcon />
+                      )}
+                    </Button>
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={() => getLinks(rx.id)}
+                      disabled={isLoadingThis || isDeletingThis}
+                      className={cn(
+                        "shrink-0 text-xs",
+                        links ? "text-blue-600 border-blue-300" : "",
+                      )}
+                    >
+                      {isLoadingThis ? "Loading…" : links ? "Links Ready ✓" : "Get Links"}
+                    </Button>
+                  </div>
                 </div>
 
                 {/* Expanded links */}
@@ -191,6 +238,26 @@ export default function HistoryPage() {
         </div>
       )}
     </div>
+  );
+}
+
+function TrashIcon() {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      className="h-4 w-4"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+      strokeWidth={2}
+      aria-hidden
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+      />
+    </svg>
   );
 }
 
