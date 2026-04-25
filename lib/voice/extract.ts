@@ -182,8 +182,14 @@ const WORD_TO_DIGIT: Record<string, string> = {
 };
 
 function wordDigitsToNumbers(text: string): string {
-  // Step 1: Expand multiplier phrases — "double nine" → "99", "triple eight" → "888"
+  // Step 1: Expand multiplier phrases
+  // - "double nine" → "99", "triple eight" → "888"
+  // - "double 846751" → "8846751" (duplicate only the first digit of the chunk)
   const multiplierExpanded = text
+    .replace(/\bdouble\s+(\d{2,})\b/gi, (_match, chunk: string) => {
+      const first = chunk.charAt(0);
+      return `${first}${chunk}`;
+    })
     .replace(
       /\bdouble\s+(zero|oh|one|two|three|four|five|six|seven|eight|nine|\d)\b/gi,
       (_, d) => {
