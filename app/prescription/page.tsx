@@ -3,6 +3,7 @@
 import { useEffect, useState, useCallback } from "react";
 import Link from "next/link";
 import { getTestLabel } from "@/lib/data/diagnosticTests";
+import { summarizeMedicineLine } from "@/lib/data/medicineTiming";
 import { cn } from "@/lib/utils";
 
 interface Prescription {
@@ -20,6 +21,26 @@ interface SendLinks {
   waDoctor: string | null;
 }
 
+interface MedRxRow {
+  id: string;
+  created_at: string;
+  lines: Record<string, unknown>[];
+  patient: {
+    public_code: string;
+    full_name: string;
+    age: number;
+    mobile: string | null;
+  } | null;
+}
+
+interface RecentVisit {
+  id: string;
+  public_code: string;
+  full_name: string;
+  age: number;
+  created_at: string;
+}
+
 export default function DashboardPage() {
   const [prescriptions, setPrescriptions] = useState<Prescription[]>([]);
   const [loading, setLoading] = useState(true);
@@ -27,6 +48,15 @@ export default function DashboardPage() {
   const [loadingLinks, setLoadingLinks] = useState<string | null>(null);
   const [deletingId, setDeletingId] = useState<string | null>(null);
   const [activeLinks, setActiveLinks] = useState<Record<string, SendLinks>>({});
+
+  const [medRx, setMedRx] = useState<MedRxRow[]>([]);
+  const [medRxLoading, setMedRxLoading] = useState(true);
+  const [medRxError, setMedRxError] = useState<string | null>(null);
+  const [medRxLinksLoading, setMedRxLinksLoading] = useState<string | null>(null);
+  const [medRxDeleting, setMedRxDeleting] = useState<string | null>(null);
+  const [medRxLinks, setMedRxLinks] = useState<Record<string, SendLinks>>({});
+
+  const [recentVisits, setRecentVisits] = useState<RecentVisit[]>([]);
 
   const fetchHistory = useCallback(async () => {
     setLoading(true);
@@ -45,6 +75,42 @@ export default function DashboardPage() {
   useEffect(() => {
     fetchHistory();
   }, [fetchHistory]);
+
+  useEffect(() => {
+    let cancelled = false;
+    (async () => {
+      setMedRxLoading(true);
+      setMedRxError(null);
+      const res = await fetch("/api/medicine-rx/history");
+      if (cancelled) return;
+      if (!res.ok) {
+        setMedRx([]);
+        setMedRxError(
+          "OPD prescription history is unavailable. If you have not run supabase/medicine_rx_setup.sql yet, run it in Supabase.",
+        );
+      } else {
+        const json = await res.json();
+        setMedRx(json.prescriptions ?? []);
+      }
+      setMedRxLoading(false);
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  useEffect(() => {
+    let cancelled = false;
+    (async () => {
+      const res = await fetch("/api/clinic-patient/recent");
+      if (cancelled || !res.ok) return;
+      const json = await res.json();
+      setRecentVisits(json.patients ?? []);
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   async function getLinks(id: string) {
     if (activeLinks[id]) return;
@@ -90,10 +156,54 @@ export default function DashboardPage() {
     }
   }
 
+  async function getMedRxLinks(id: string) {
+    if (medRxLinks[id]) return;
+    setMedRxLinksLoading(id);
+    const res = await fetch(`/api/medicine-rx/sign/${id}`);
+    setMedRxLinksLoading(null);
+    if (!res.ok) return;
+    const json = await res.json();
+    setMedRxLinks((prev) => ({
+      ...prev,
+      [id]: {
+        signedUrl: json.signedUrl,
+        waPatient: json.waPatient,
+        waDoctor: json.waDoctor,
+      },
+    }));
+  }
+
+  async function deleteMedRx(id: string) {
+    if (
+      !window.confirm(
+        "Delete this OPD prescription permanently? The PDF will be removed.",
+      )
+    ) {
+      return;
+    }
+    setMedRxDeleting(id);
+    try {
+      const res = await fetch(`/api/medicine-rx/${id}`, { method: "DELETE" });
+      if (!res.ok) {
+        const json = await res.json().catch(() => ({}));
+        alert(json.error ?? "Could not delete.");
+        return;
+      }
+      setMedRx((prev) => prev.filter((p) => p.id !== id));
+      setMedRxLinks((prev) => {
+        const next = { ...prev };
+        delete next[id];
+        return next;
+      });
+    } finally {
+      setMedRxDeleting(null);
+    }
+  }
+
   return (
     <div className="space-y-6">
       {/* Header row */}
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
         <div>
           <h1
             className="text-2xl font-bold tracking-tight"
@@ -103,15 +213,16 @@ export default function DashboardPage() {
           </h1>
           {!loading && !error && (
             <p className="mt-0.5 text-sm font-medium" style={{ color: "#00A9B7" }}>
-              {prescriptions.length} prescription
+              {prescriptions.length} investigation prescription
               {prescriptions.length !== 1 ? "s" : ""} issued
             </p>
           )}
         </div>
 
-        <Link href="/prescription/new">
-          <button
-            className="flex items-center gap-2 rounded-xl px-5 py-2.5 text-sm font-semibold text-white shadow-md transition-all hover:shadow-lg active:scale-95"
+        <div className="flex flex-wrap items-center gap-2">
+          <Link
+            href="/prescription/new"
+            className="inline-flex items-center gap-2 rounded-xl px-4 py-2.5 text-sm font-semibold text-white shadow-md transition-all hover:shadow-lg active:scale-95"
             style={{
               background: "linear-gradient(135deg, #F4A300 0%, #E49501 100%)",
             }}
@@ -130,10 +241,42 @@ export default function DashboardPage() {
                 d="M12 4v16m8-8H4"
               />
             </svg>
-            New Prescription
-          </button>
-        </Link>
+            New investigation Rx
+          </Link>
+          <Link
+            href="/prescription/reception"
+            className="inline-flex items-center justify-center rounded-xl border-2 border-[#00A9B7] bg-white px-4 py-2.5 text-sm font-semibold text-[#007D8C] shadow-sm transition-all hover:bg-cyan-50 active:scale-95"
+          >
+            Reception
+          </Link>
+          <Link
+            href="/prescription/opd-prescribing"
+            className="inline-flex items-center justify-center rounded-xl border-2 border-[#1B2A41] bg-white px-4 py-2.5 text-sm font-semibold text-[#1B2A41] shadow-sm transition-all hover:bg-stone-50 active:scale-95"
+          >
+            OPD prescribing
+          </Link>
+        </div>
       </div>
+
+      {recentVisits.length > 0 && (
+        <section className="rounded-2xl border border-cyan-100 bg-white p-4 shadow-sm">
+          <h2 className="text-sm font-bold text-gray-800">Recent walk-ins you registered</h2>
+          <p className="text-xs text-gray-500 mt-0.5">
+            Share the OPD visit ID with the physician for prescribing.
+          </p>
+          <ul className="mt-3 flex flex-wrap gap-2">
+            {recentVisits.map((v) => (
+              <li
+                key={v.id}
+                className="rounded-lg bg-gray-50 px-3 py-1.5 text-xs border border-gray-100"
+              >
+                <span className="font-mono font-semibold text-[#007D8C]">{v.public_code}</span>
+                <span className="text-gray-600"> · {v.full_name}</span>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
 
       {/* Error */}
       {error && (
@@ -198,16 +341,15 @@ export default function DashboardPage() {
           <p className="mt-1 text-sm text-gray-400">
             Create your first prescription to see it here.
           </p>
-          <Link href="/prescription/new" className="mt-6 inline-block">
-            <button
-              className="rounded-xl px-6 py-2.5 text-sm font-semibold text-white shadow-md transition-all hover:shadow-lg"
-              style={{
-                background:
-                  "linear-gradient(135deg, #F4A300 0%, #E49501 100%)",
-              }}
-            >
-              + New Prescription
-            </button>
+          <Link
+            href="/prescription/new"
+            className="mt-6 inline-block rounded-xl px-6 py-2.5 text-sm font-semibold text-white shadow-md transition-all hover:shadow-lg"
+            style={{
+              background:
+                "linear-gradient(135deg, #F4A300 0%, #E49501 100%)",
+            }}
+          >
+            + New investigation Rx
           </Link>
         </div>
       )}
@@ -355,6 +497,143 @@ export default function DashboardPage() {
           })}
         </div>
       )}
+
+      <section className="space-y-3 border-t border-gray-200 pt-4">
+        <h2 className="text-lg font-bold" style={{ color: "#1B2A41" }}>
+          OPD prescriptions
+        </h2>
+        {medRxError && (
+          <div className="rounded-xl bg-amber-50 px-4 py-3 text-sm text-amber-900">{medRxError}</div>
+        )}
+        {medRxLoading && (
+          <p className="text-sm text-gray-500">Loading OPD prescriptions…</p>
+        )}
+        {!medRxLoading && !medRxError && medRx.length === 0 && (
+          <p className="text-sm text-gray-500">No OPD prescriptions yet.</p>
+        )}
+        {!medRxLoading && medRx.length > 0 && (
+          <div className="space-y-3">
+            {medRx.map((rx) => {
+              const links = medRxLinks[rx.id];
+              const isLoadingThis = medRxLinksLoading === rx.id;
+              const isDeletingThis = medRxDeleting === rx.id;
+              const date = new Date(rx.created_at).toLocaleDateString("en-IN", {
+                day: "2-digit",
+                month: "short",
+                year: "numeric",
+                timeZone: "Asia/Kolkata",
+              });
+              const pt = rx.patient;
+              return (
+                <div
+                  key={rx.id}
+                  className="rounded-2xl border border-transparent bg-white p-5 shadow-sm transition-shadow hover:shadow-md"
+                  style={{ borderLeftWidth: 4, borderLeftColor: "#1B2A41" }}
+                >
+                  <div className="flex items-start justify-between gap-4">
+                    <div className="min-w-0 flex-1">
+                      <p className="font-semibold" style={{ color: "#1B2A41" }}>
+                        {pt?.full_name ?? "Patient"}
+                      </p>
+                      <p className="mt-0.5 text-sm text-gray-400">
+                        {pt?.public_code && (
+                          <span className="font-mono text-gray-600">{pt.public_code}</span>
+                        )}
+                        {pt?.public_code && " · "}
+                        {date}
+                        {pt?.mobile && ` · ${pt.mobile}`}
+                      </p>
+                      {rx.lines?.length > 0 && (
+                        <p className="mt-1.5 text-xs text-gray-500 line-clamp-2">
+                          {rx.lines
+                            .slice(0, 5)
+                            .map((l) => `${String(l.name ?? "")} (${summarizeMedicineLine(l)})`)
+                            .join(" · ")}
+                          {rx.lines.length > 5 && ` +${rx.lines.length - 5} more`}
+                        </p>
+                      )}
+                    </div>
+                    <div className="flex shrink-0 items-center gap-1.5">
+                      <button
+                        type="button"
+                        onClick={() => deleteMedRx(rx.id)}
+                        disabled={isDeletingThis || isLoadingThis}
+                        className="flex h-9 w-9 items-center justify-center rounded-xl border border-gray-200 text-gray-400 transition-all hover:border-red-200 hover:bg-red-50 hover:text-red-600 disabled:cursor-not-allowed disabled:opacity-50"
+                        aria-label="Delete OPD prescription"
+                        title="Delete"
+                      >
+                        {isDeletingThis ? <MiniSpinner /> : <TrashIcon />}
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => getMedRxLinks(rx.id)}
+                        disabled={isLoadingThis || isDeletingThis}
+                        className={cn(
+                          "rounded-xl border px-3 py-1.5 text-xs font-semibold transition-all disabled:opacity-60",
+                          links
+                            ? "border-transparent text-white"
+                            : "border-gray-200 bg-white text-gray-600 hover:border-[#1B2A41] hover:text-[#1B2A41]",
+                        )}
+                        style={
+                          links
+                            ? { background: "linear-gradient(135deg, #1B2A41 0%, #00768A 100%)" }
+                            : {}
+                        }
+                      >
+                        {isLoadingThis ? (
+                          <span className="flex items-center gap-1.5">
+                            <MiniSpinner />
+                            Loading…
+                          </span>
+                        ) : links ? (
+                          "Links ready ✓"
+                        ) : (
+                          "Get links"
+                        )}
+                      </button>
+                    </div>
+                  </div>
+                  {links && (
+                    <div className="mt-4 flex flex-wrap gap-2 border-t border-gray-100 pt-4">
+                      {links.waPatient && (
+                        <a
+                          href={links.waPatient}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center gap-1.5 rounded-lg bg-green-500 px-3 py-1.5 text-xs font-semibold text-white hover:bg-green-600 transition-colors"
+                        >
+                          <WhatsAppIcon />
+                          Send to patient
+                        </a>
+                      )}
+                      {links.waDoctor && (
+                        <a
+                          href={links.waDoctor}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-semibold text-white transition-colors hover:opacity-90"
+                          style={{ background: "#1B2A41" }}
+                        >
+                          <WhatsAppIcon />
+                          Send to myself
+                        </a>
+                      )}
+                      <a
+                        href={links.signedUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-1.5 rounded-lg border border-gray-200 bg-white px-3 py-1.5 text-xs font-medium text-gray-600 hover:bg-gray-50 transition-colors"
+                      >
+                        Download PDF
+                      </a>
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+        )}
+      </section>
     </div>
   );
 }

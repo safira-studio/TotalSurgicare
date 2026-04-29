@@ -1,6 +1,7 @@
 -- =============================================================================
 -- TotalSurgicare — Prescription Module: Supabase Setup SQL
 -- Run this in the Supabase Dashboard → SQL Editor (or via supabase CLI)
+-- Safe to re-run: policies are dropped before recreate.
 -- =============================================================================
 
 -- -----------------------------------------------------------------------
@@ -46,20 +47,24 @@ alter table public.doctors enable row level security;
 alter table public.prescriptions enable row level security;
 
 -- doctors: each doctor can read/update only their own row
+drop policy if exists "doctors_select_own" on public.doctors;
 create policy "doctors_select_own"
   on public.doctors for select
   using (id = auth.uid());
 
+drop policy if exists "doctors_update_own" on public.doctors;
 create policy "doctors_update_own"
   on public.doctors for update
   using (id = auth.uid())
   with check (id = auth.uid());
 
 -- prescriptions: each doctor can insert and read only their own rows
+drop policy if exists "prescriptions_select_own" on public.prescriptions;
 create policy "prescriptions_select_own"
   on public.prescriptions for select
   using (doctor_id = auth.uid());
 
+drop policy if exists "prescriptions_insert_own" on public.prescriptions;
 create policy "prescriptions_insert_own"
   on public.prescriptions for insert
   with check (doctor_id = auth.uid());

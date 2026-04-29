@@ -6,6 +6,8 @@ import PrescriptionHeader from "./PrescriptionHeader";
 // Routes that should NOT trigger the letterhead gate
 const ONBOARDING_PATHS = ["/prescription/onboarding"];
 const AUTH_PATHS = ["/prescription/login", "/prescription/signup"];
+/** Reception can register patients before letterhead exists */
+const LETTERHEAD_OPTIONAL_PATHS = ["/prescription/reception"];
 
 export default async function PrescriptionLayout({
   children,
@@ -42,18 +44,25 @@ export default async function PrescriptionLayout({
   const isOnboardingPage = ONBOARDING_PATHS.some((p) =>
     pathname.startsWith(p),
   );
+  const letterheadOptional = LETTERHEAD_OPTIONAL_PATHS.some((p) =>
+    pathname.startsWith(p),
+  );
 
   // Redirect to onboarding if letterhead not yet uploaded
-  if (!doctor?.letterhead_path && !isOnboardingPage) {
+  if (!doctor?.letterhead_path && !isOnboardingPage && !letterheadOptional) {
     redirect("/prescription/onboarding");
   }
 
+  const showChrome = doctor?.letterhead_path || letterheadOptional;
+
   return (
-    <div className="min-h-screen" style={{ background: "#F0F4F7" }}>
-      <PrescriptionHeader
-        doctorName={doctor?.full_name ?? undefined}
-        clinicName={doctor?.clinic_name ?? "Doctor Portal"}
-      />
+    <div className="min-h-screen" style={{ background: "#F4F1EC" }}>
+      {showChrome && (
+        <PrescriptionHeader
+          doctorName={doctor?.full_name ?? undefined}
+          clinicName={doctor?.clinic_name ?? "Doctor Portal"}
+        />
+      )}
       <main className="mx-auto max-w-4xl px-4 py-8">{children}</main>
     </div>
   );

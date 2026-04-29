@@ -21,8 +21,13 @@ export default function PrescriptionHeader({ doctorName, clinicName }: Props) {
   }
 
   return (
-    <header style={{ background: "#1B2A41" }} className="shadow-lg">
-      <div className="mx-auto flex max-w-4xl items-center justify-between px-4 py-3">
+    <header
+      className="shadow-[0_12px_40px_-12px_rgba(11,18,32,0.35)]"
+      style={{
+        background: "linear-gradient(180deg, #121C2E 0%, #0F1729 55%, #0B1220 100%)",
+      }}
+    >
+      <div className="mx-auto flex max-w-4xl items-center justify-between border-b border-white/[0.06] px-4 py-3.5">
         {/* Brand */}
         <div className="flex items-center gap-3">
           <div
@@ -46,13 +51,27 @@ export default function PrescriptionHeader({ doctorName, clinicName }: Props) {
         </div>
 
         {/* Nav */}
-        <nav className="flex items-center gap-1">
+        <nav className="flex flex-wrap items-center justify-end gap-1 sm:gap-2">
           <Link
             href="/prescription"
             className="rounded-lg px-3 py-1.5 text-sm font-medium transition-colors hover:bg-white/10"
             style={{ color: "rgba(255,255,255,0.75)" }}
           >
             Dashboard
+          </Link>
+          <Link
+            href="/prescription/reception"
+            className="rounded-lg px-3 py-1.5 text-sm font-medium transition-colors hover:bg-white/10"
+            style={{ color: "rgba(255,255,255,0.75)" }}
+          >
+            Reception
+          </Link>
+          <Link
+            href="/prescription/opd-prescribing"
+            className="rounded-lg px-3 py-1.5 text-sm font-medium transition-colors hover:bg-white/10"
+            style={{ color: "rgba(255,255,255,0.75)" }}
+          >
+            OPD prescribing
           </Link>
           <Button
             variant="outline"
