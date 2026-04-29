@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState, type ReactNode } from "react";
 import {
   MEDICINE_TIMING_OPTIONS,
   DEFAULT_LINE_TIMINGS,
@@ -10,6 +10,16 @@ import {
   type MedicineTimingFlagId,
 } from "@/lib/data/medicineTiming";
 import { Lux, lux } from "@/lib/prescriptionLuxury";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Separator } from "@/components/ui/separator";
+import { Textarea } from "@/components/ui/textarea";
+import { cn } from "@/lib/utils";
 
 interface ClinicPatient {
   id: string;
@@ -38,7 +48,51 @@ interface MedicineRow {
   name: string;
 }
 
+interface DiagnosisRow {
+  diagnosisId: string;
+  name: string;
+}
+
 type Step = "edit" | "preview" | "sent";
+
+const opdCardClass =
+  "relative overflow-hidden rounded-2xl border border-[#E6DFD4] bg-[#FFFCF9] text-[#0B1220] shadow-[0_16px_40px_-20px_rgba(11,18,32,0.12)]";
+
+/** Light teal surface using brand accent (Lux.teal) for selected queue row & chart medicines */
+const brandPastelSurface =
+  "border-[#00A9B7]/40 bg-gradient-to-b from-[#eefcfb] to-[#e3f8f6] ring-1 ring-[#00A9B7]/15 shadow-[0_4px_20px_-10px_rgba(0,169,183,0.18)]";
+
+/** Tap to fill search — common OPD wording */
+const DX_SEARCH_EXAMPLES = [
+  "Acute gastroenteritis",
+  "Essential hypertension",
+  "Migraine",
+  "Type 2 diabetes mellitus",
+  "URTI",
+  "Acute pharyngitis",
+] as const;
+
+function StepBadge({
+  children,
+  className,
+}: {
+  children: ReactNode;
+  className?: string;
+}) {
+  return (
+    <span
+      className={cn(
+        "flex h-9 w-9 shrink-0 items-center justify-center rounded-xl text-sm font-bold text-white shadow-md",
+        className,
+      )}
+      style={{
+        background: `linear-gradient(135deg, ${Lux.teal} 0%, ${Lux.tealDeep} 100%)`,
+      }}
+    >
+      {children}
+    </span>
+  );
+}
 
 interface SendResult {
   signedUrl: string;
@@ -69,6 +123,32 @@ export default function OpdPrescribingPage() {
   const [queueDate, setQueueDate] = useState<string>("");
   const [queueLoading, setQueueLoading] = useState(true);
   const [queueError, setQueueError] = useState<string | null>(null);
+
+  const [complaints, setComplaints] = useState("");
+  const [voiceBusy, setVoiceBusy] = useState(false);
+  const [voiceError, setVoiceError] = useState<string | null>(null);
+  const [recording, setRecording] = useState(false);
+  const mediaRecorderRef = useRef<MediaRecorder | null>(null);
+  const mediaChunksRef = useRef<BlobPart[]>([]);
+  const mediaStreamRef = useRef<MediaStream | null>(null);
+
+  const [dxSearch, setDxSearch] = useState("");
+  const [dxResults, setDxResults] = useState<MedicineRow[]>([]);
+  const [dxLoading, setDxLoading] = useState(false);
+  const [newDxName, setNewDxName] = useState("");
+  const [dxBusy, setDxBusy] = useState(false);
+  const [dxLines, setDxLines] = useState<DiagnosisRow[]>([]);
+
+  function resetChartFields() {
+    setComplaints("");
+    setVoiceError(null);
+    setDxSearch("");
+    setNewDxName("");
+    setDxLines([]);
+    // Do not clear dxResults here: dxSearch is often still "" after load, so the debounced
+    // diagnoses fetch effect does not re-run (same deps) and the list would stay empty.
+    // Shared catalog results are not patient-specific.
+  }
 
   const fetchQueue = useCallback(async () => {
     setQueueLoading(true);
@@ -105,6 +185,7 @@ export default function OpdPrescribingPage() {
     });
     setVisitCodeInput(p.public_code);
     setLines([]);
+    resetChartFields();
     setStep("edit");
   }
 
@@ -128,6 +209,7 @@ export default function OpdPrescribingPage() {
       }
       setPatient(json.patient as ClinicPatient);
       setLines([]);
+      resetChartFields();
       setStep("edit");
     } finally {
       setLookupLoading(false);
@@ -158,6 +240,171 @@ export default function OpdPrescribingPage() {
     const t = setTimeout(runSearch, 280);
     return () => clearTimeout(t);
   }, [runSearch]);
+
+  const runDxSearch = useCallback(async () => {
+    const q = dxSearch.trim();
+    setDxLoading(true);
+    try {
+      const url =
+        q.length === 0
+          ? "/api/diagnoses"
+          : `/api/diagnoses?q=${encodeURIComponent(q)}`;
+      const res = await fetch(url);
+      const json = await res.json().catch(() => ({}));
+      if (!res.ok) {
+        setDxResults([]);
+        return;
+      }
+      setDxResults((json.diagnoses ?? []) as MedicineRow[]);
+    } finally {
+      setDxLoading(false);
+    }
+  }, [dxSearch]);
+
+  useEffect(() => {
+    const t = setTimeout(runDxSearch, 280);
+    return () => clearTimeout(t);
+  }, [runDxSearch]);
+
+  useEffect(() => {
+    return () => {
+      const mr = mediaRecorderRef.current;
+      const stream = mediaStreamRef.current;
+      if (mr && mr.state !== "inactive") {
+        mr.onstop = null;
+        mr.stop();
+      }
+      stream?.getTracks().forEach((t) => t.stop());
+      mediaRecorderRef.current = null;
+      mediaStreamRef.current = null;
+    };
+  }, []);
+
+  function addDxLine(row: MedicineRow) {
+    setLineError(null);
+    if (dxLines.some((d) => d.diagnosisId === row.id)) return;
+    setDxLines((prev) => [...prev, { diagnosisId: row.id, name: row.name }]);
+  }
+
+  function removeDxLine(diagnosisId: string) {
+    setDxLines((prev) => prev.filter((d) => d.diagnosisId !== diagnosisId));
+  }
+
+  async function addNewDiagnosis() {
+    const name = newDxName.trim();
+    if (!name) return;
+    setDxBusy(true);
+    setLineError(null);
+    try {
+      const res = await fetch("/api/diagnoses", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name }),
+      });
+      const json = await res.json().catch(() => ({}));
+      if (!res.ok) {
+        setLineError(json.error ?? "Could not add diagnosis.");
+        return;
+      }
+      const row = json.diagnosis as MedicineRow;
+      setNewDxName("");
+      addDxLine(row);
+      void runDxSearch();
+    } finally {
+      setDxBusy(false);
+    }
+  }
+
+  async function startComplaintRecording() {
+    setVoiceError(null);
+    if (recording || voiceBusy) return;
+    if (!navigator.mediaDevices?.getUserMedia) {
+      setVoiceError("Recording is not supported in this browser.");
+      return;
+    }
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      mediaStreamRef.current = stream;
+      mediaChunksRef.current = [];
+      const mime =
+        typeof MediaRecorder !== "undefined" && MediaRecorder.isTypeSupported("audio/webm")
+          ? "audio/webm"
+          : typeof MediaRecorder !== "undefined" &&
+              MediaRecorder.isTypeSupported("audio/mp4")
+            ? "audio/mp4"
+            : "";
+      const mr = mime
+        ? new MediaRecorder(stream, { mimeType: mime })
+        : new MediaRecorder(stream);
+      mr.ondataavailable = (e) => {
+        if (e.data.size > 0) mediaChunksRef.current.push(e.data);
+      };
+      mr.onerror = () => {
+        setVoiceError("Recorder error.");
+        setRecording(false);
+      };
+      mr.onstop = () => {
+        stream.getTracks().forEach((t) => t.stop());
+        mediaStreamRef.current = null;
+        mediaRecorderRef.current = null;
+        setRecording(false);
+        void transcribeComplaintBlob(
+          new Blob(mediaChunksRef.current, { type: mr.mimeType || mime || "audio/webm" }),
+          mr.mimeType || mime || "audio/webm",
+        );
+      };
+      mediaRecorderRef.current = mr;
+      mr.start(200);
+      setRecording(true);
+    } catch {
+      setVoiceError("Microphone permission denied or unavailable.");
+      setRecording(false);
+    }
+  }
+
+  function stopComplaintRecording() {
+    mediaRecorderRef.current?.stop();
+  }
+
+  async function transcribeComplaintBlob(blob: Blob, mimeType: string) {
+    setVoiceBusy(true);
+    setVoiceError(null);
+    try {
+      const base64 = await new Promise<string>((resolve, reject) => {
+        const r = new FileReader();
+        r.onloadend = () => resolve(typeof r.result === "string" ? r.result : "");
+        r.onerror = () => reject(new Error("read failed"));
+        r.readAsDataURL(blob);
+      });
+      const res = await fetch("/api/prescription/transcribe", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ audioBase64: base64, mimeType }),
+      });
+      const json = await res.json().catch(() => ({}));
+      if (!res.ok) {
+        setVoiceError(
+          typeof json.error === "string"
+            ? json.error
+            : "Transcription failed. Check ASSEMBLYAI_API_KEY on the server.",
+        );
+        return;
+      }
+      const text = typeof json.transcript === "string" ? json.transcript.trim() : "";
+      if (!text) {
+        setVoiceError("No speech detected. Try again closer to the microphone.");
+        return;
+      }
+      setComplaints((prev) => {
+        const p = prev.trim();
+        return p ? `${p}\n${text}` : text;
+      });
+    } catch {
+      setVoiceError("Could not transcribe audio.");
+    } finally {
+      setVoiceBusy(false);
+    }
+  }
 
   function addLine(m: MedicineRow) {
     setLineError(null);
@@ -220,7 +467,7 @@ export default function OpdPrescribingPage() {
     const missing = lines.find((l) => !hasAnyTimingSelected(l.timings));
     if (missing) {
       setLineError(
-        `Select at least one timing for: ${missing.name} (before/after food, morning, or evening).`,
+        `Select at least one direction for: ${missing.name} (time, food, or spoon dose).`,
       );
       return;
     }
@@ -238,12 +485,20 @@ export default function OpdPrescribingPage() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           visitCode: patient.public_code,
+          complaints: complaints.trim() || undefined,
+          diagnoses: dxLines.map((d) => ({
+            diagnosisId: d.diagnosisId,
+            name: d.name,
+          })),
           lines: lines.map((l) => ({
             medicineId: l.medicineId,
             before_food: l.timings.before_food,
             after_food: l.timings.after_food,
             morning: l.timings.morning,
+            afternoon: l.timings.afternoon,
             evening: l.timings.evening,
+            one_spoon: l.timings.one_spoon,
+            two_spoons: l.timings.two_spoons,
           })),
         }),
       });
@@ -335,6 +590,7 @@ export default function OpdPrescribingPage() {
                 setPatient(null);
                 setVisitCodeInput("");
                 setLines([]);
+                resetChartFields();
                 setServerError(null);
                 void fetchQueue();
               }}
@@ -349,7 +605,7 @@ export default function OpdPrescribingPage() {
 
   if (step === "preview" && patient) {
     return (
-      <div className={`${lux.shell} max-w-xl`}>
+      <div className={cn(lux.shell, "max-w-2xl")}>
         <div className="flex items-center justify-between gap-4">
           <h1 className="font-serif text-2xl font-light tracking-tight" style={{ color: Lux.ink }}>
             Review prescription
@@ -385,6 +641,42 @@ export default function OpdPrescribingPage() {
             </p>
           )}
           <p className="font-mono text-xs text-stone-500">Visit ID · {patient.public_code}</p>
+        </div>
+
+        <div className="space-y-4">
+          <Card className={cn(opdCardClass, "text-sm")}>
+            <CardHeader className="pb-2">
+              <CardTitle className="font-serif text-base font-light tracking-tight text-[#0B1220]">
+                Diagnoses
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              {dxLines.length > 0 ? (
+                <ul className="list-disc space-y-1 pl-5 text-stone-800">
+                  {dxLines.map((d) => (
+                    <li key={d.diagnosisId}>{d.name}</li>
+                  ))}
+                </ul>
+              ) : (
+                <p className="text-sm italic text-stone-500">No diagnoses added.</p>
+              )}
+            </CardContent>
+          </Card>
+
+          <Card className={cn(opdCardClass, "text-sm")}>
+            <CardHeader className="pb-2">
+              <CardTitle className="font-serif text-base font-light tracking-tight text-[#0B1220]">
+                Complaints
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              {complaints.trim() ? (
+                <p className="whitespace-pre-wrap text-stone-800">{complaints.trim()}</p>
+              ) : (
+                <p className="text-sm italic text-stone-500">No complaints recorded.</p>
+              )}
+            </CardContent>
+          </Card>
         </div>
 
         <div className={lux.card}>
@@ -424,128 +716,367 @@ export default function OpdPrescribingPage() {
 
   return (
     <div
-      className={lux.shell}
+      className={cn(lux.shell, "max-w-full")}
       style={{
         background:
           "radial-gradient(120% 80% at 50% -10%, rgba(212,168,83,0.08) 0%, transparent 50%), linear-gradient(180deg, #F6F3EE 0%, #EDE8E0 100%)",
       }}
     >
-      <div className="rounded-3xl border border-[#E6DFD4]/80 bg-[#FFFCF9]/90 px-6 py-8 shadow-[0_32px_64px_-28px_rgba(11,18,32,0.15)] backdrop-blur-sm sm:px-10 sm:py-10">
+      <div className="rounded-3xl border border-[#E6DFD4]/80 bg-[#FFFCF9]/90 px-4 py-7 text-center shadow-[0_32px_64px_-28px_rgba(11,18,32,0.15)] backdrop-blur-sm sm:px-6 sm:py-8 lg:px-8">
         <p className={lux.eyebrow}>Physician</p>
         <h1 className={lux.title}>OPD prescribing</h1>
-        <p className={lux.subtitle}>
-          Select from <strong className="font-medium text-stone-700">today’s queue</strong>{" "}
-          (India calendar) or enter an OPD visit ID for a returning patient. Build the chart, set
-          timings, then review and issue the PDF. Completed visits leave today’s queue until
-          tomorrow’s new registrations.
-        </p>
       </div>
 
-      <section className={`${lux.cardLift} relative max-w-2xl space-y-3`}>
-        <div className={lux.cardAccentTop} aria-hidden />
-        <h2 className="text-[11px] font-semibold uppercase tracking-[0.14em] text-stone-500">
-          Today’s queue — pending charts
-        </h2>
-        <p className="text-xs leading-relaxed text-stone-600">
-          <span className="font-mono text-[11px] font-medium text-stone-800">{queueDate || "…"}</span>
-          <span className="text-stone-400"> · </span>
-          Reception registers walk-ins. A visit leaves this list after you issue that patient’s
-          prescription PDF.
-        </p>
-        {queueLoading && <p className="text-sm text-gray-500">Loading list…</p>}
-        {queueError && (
-          <p className="rounded-lg bg-amber-50 px-3 py-2 text-sm text-amber-900">{queueError}</p>
-        )}
-        {!queueLoading && !queueError && queue.length === 0 && (
-          <p className="text-sm text-stone-600">
-            No patients in queue — enter an OPD visit ID below for a return visit, or ask reception
-            to register new walk-ins.
-          </p>
-        )}
-        {!queueLoading && queue.length > 0 && (
-          <ul className="flex flex-col gap-3">
-            {queue.map((p) => (
-              <li key={p.id}>
+      <div className="w-full">
+        <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-10 lg:items-start">
+          {/* Left: visit ID (1) above, today’s queue (2) below */}
+          <div className="flex min-h-0 flex-col gap-8">
+            <section className={`${lux.card} relative max-w-none space-y-4`}>
+              <div className={lux.cardAccentTop} aria-hidden />
+              <div className="mb-4 grid grid-cols-[auto,minmax(0,1fr)] gap-x-3 gap-y-1">
+                <div className="row-span-2 flex items-start pt-0.5">
+                  <StepBadge>1</StepBadge>
+                </div>
+                <h2 className="font-serif text-lg font-light leading-snug tracking-tight text-[#0B1220]">
+                  Load patient by visit ID
+                </h2>
+                <p className="text-xs leading-relaxed text-stone-500">
+                  Optional if you already opened a chart from the queue. Use the OPD number for
+                  return visits.
+                </p>
+              </div>
+              <Separator className="bg-[#E6DFD4]/70" />
+              <div className="flex flex-wrap gap-2 pt-2">
+                <label htmlFor="visit-code-input" className="sr-only">
+                  Visit ID
+                </label>
+                <input
+                  id="visit-code-input"
+                  className={`min-w-[200px] flex-1 font-mono ${lux.input}`}
+                  placeholder="e.g. OPD-0001"
+                  value={visitCodeInput}
+                  onChange={(e) => setVisitCodeInput(e.target.value.replace(/\s+/g, ""))}
+                />
                 <button
                   type="button"
-                  onClick={() => selectPatientFromQueue(p)}
-                  className={lux.queueRow}
+                  onClick={loadPatient}
+                  disabled={lookupLoading}
+                  className="rounded-xl px-5 py-3 text-sm font-semibold text-white shadow-md transition hover:opacity-95 disabled:opacity-60"
+                  style={{
+                    background: `linear-gradient(135deg, ${Lux.teal} 0%, ${Lux.tealDeep} 100%)`,
+                  }}
                 >
-                  <span>
-                    <span className="font-semibold text-stone-900">{p.full_name}</span>
-                    <span className="ml-2 font-mono text-xs" style={{ color: Lux.tealDeep }}>
-                      {p.public_code}
-                    </span>
-                    <span className="mt-0.5 block text-xs text-stone-500">
-                      Age {p.age}
-                      {p.bp ? ` · BP ${p.bp}` : ""}
-                      {p.mobile ? ` · ${p.mobile}` : ""}
-                    </span>
-                  </span>
-                  <span
-                    className="shrink-0 rounded-lg px-2 py-1 text-xs font-semibold text-white"
-                    style={{
-                      background: `linear-gradient(135deg, ${Lux.teal} 0%, ${Lux.tealDeep} 100%)`,
-                    }}
-                  >
-                    Open chart
-                  </span>
+                  {lookupLoading ? "…" : "Load Patient"}
                 </button>
-              </li>
-            ))}
-          </ul>
-        )}
-      </section>
+              </div>
+              {lookupError && <p className="text-sm text-red-600">{lookupError}</p>}
+              {patient && (
+                <div className="space-y-1 rounded-xl border border-stone-200/80 bg-stone-50/80 p-4 text-sm">
+                  <p className="font-semibold text-stone-900">{patient.full_name}</p>
+                  <p className="text-stone-600">
+                    Age {patient.age}
+                    {patient.bp ? ` · BP ${patient.bp}` : ""}
+                    {patient.mobile ? ` · Mob ${patient.mobile}` : ""}
+                  </p>
+                  {patient.allergies && (
+                    <p className="text-xs text-amber-900">Allergies: {patient.allergies}</p>
+                  )}
+                  <p className="font-mono text-xs text-stone-500">Visit · {patient.public_code}</p>
+                </div>
+              )}
+            </section>
 
-      <section className={`${lux.card} relative max-w-xl space-y-4`}>
-        <div className={lux.cardAccentTop} aria-hidden />
-        <h2 className={lux.label}>Load patient by visit ID</h2>
-        <p className="text-xs text-stone-500">
-          Optional if you opened a chart from the queue. Use OPD number for return visits.
-        </p>
-        <div className="flex flex-wrap gap-2">
-          <label htmlFor="visit-code-input" className="sr-only">
-            Visit ID
-          </label>
-          <input
-            id="visit-code-input"
-            className={`min-w-[200px] flex-1 font-mono ${lux.input}`}
-            placeholder="e.g. OPD-0001"
-            value={visitCodeInput}
-            onChange={(e) => setVisitCodeInput(e.target.value.replace(/\s+/g, ""))}
-          />
-          <button
-            type="button"
-            onClick={loadPatient}
-            disabled={lookupLoading}
-            className="rounded-xl px-5 py-3 text-sm font-semibold text-white shadow-md transition hover:opacity-95 disabled:opacity-60"
-            style={{
-              background: `linear-gradient(135deg, ${Lux.teal} 0%, ${Lux.tealDeep} 100%)`,
-            }}
-          >
-            {lookupLoading ? "…" : "Load chart"}
-          </button>
+            <section className={`${lux.cardLift} relative space-y-3`}>
+              <div className={lux.cardAccentTop} aria-hidden />
+              <div className="mb-4 grid grid-cols-[auto,minmax(0,1fr)] gap-x-3 gap-y-1">
+                <div className="row-span-2 flex items-start pt-0.5">
+                  <StepBadge>2</StepBadge>
+                </div>
+                <h2 className="font-serif text-lg font-light leading-snug tracking-tight text-[#0B1220]">
+                  Today&apos;s queue
+                </h2>
+                <p className="text-xs leading-relaxed text-stone-600">
+                  <span className="font-mono text-[11px] font-medium text-stone-800">
+                    {queueDate || "…"}
+                  </span>
+                  <span className="text-stone-400"> · </span>
+                  Reception registers walk-ins. A visit leaves this list after you issue that
+                  patient&apos;s prescription PDF.
+                </p>
+              </div>
+              {queueLoading && <p className="text-sm text-gray-500">Loading list…</p>}
+              {queueError && (
+                <p className="rounded-lg bg-amber-50 px-3 py-2 text-sm text-amber-900">
+                  {queueError}
+                </p>
+              )}
+              {!queueLoading && !queueError && queue.length === 0 && (
+                <p className="text-sm text-stone-600">
+                  No patients in queue — use visit ID above for a return visit, or ask reception to
+                  register new walk-ins.
+                </p>
+              )}
+              {!queueLoading && queue.length > 0 && (
+                <ul className="flex flex-col gap-3">
+                  {queue.map((p) => (
+                    <li key={p.id}>
+                      <button
+                        type="button"
+                        onClick={() => selectPatientFromQueue(p)}
+                        className={cn(
+                          lux.queueRow,
+                          patient?.id === p.id && brandPastelSurface,
+                        )}
+                      >
+                        <span>
+                          <span className="font-semibold text-stone-900">{p.full_name}</span>
+                          <span className="ml-2 font-mono text-xs" style={{ color: Lux.tealDeep }}>
+                            {p.public_code}
+                          </span>
+                          <span className="mt-0.5 block text-xs text-stone-500">
+                            Age {p.age}
+                            {p.bp ? ` · BP ${p.bp}` : ""}
+                            {p.mobile ? ` · ${p.mobile}` : ""}
+                          </span>
+                        </span>
+                        <span
+                          className="shrink-0 rounded-lg px-2 py-1 text-xs font-semibold text-white"
+                          style={{
+                            background: `linear-gradient(135deg, ${Lux.teal} 0%, ${Lux.tealDeep} 100%)`,
+                          }}
+                        >
+                          Open chart
+                        </span>
+                      </button>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </section>
+          </div>
+
+          {/* Right: clinical (3) above, medications (4) below */}
+          <div className="flex min-h-0 flex-col gap-8">
+      <div className="space-y-6">
+        <div className="grid grid-cols-[auto,minmax(0,1fr)] gap-x-3 gap-y-1 px-0.5">
+          <div className="row-span-2 flex items-start pt-0.5">
+            <StepBadge>3</StepBadge>
+          </div>
+          <h2 className="font-serif text-xl font-light leading-snug tracking-tight text-[#0B1220]">
+            Clinical documentation
+          </h2>
+          <p className="text-sm leading-relaxed text-stone-600">
+            Diagnoses first, then chief complaints. Both are included on the PDF for the active
+            chart.
+          </p>
         </div>
-        {lookupError && <p className="text-sm text-red-600">{lookupError}</p>}
-        {patient && (
-          <div className="space-y-1 rounded-xl border border-stone-200/80 bg-stone-50/80 p-4 text-sm">
-            <p className="font-semibold text-stone-900">{patient.full_name}</p>
-            <p className="text-stone-600">
-              Age {patient.age}
-              {patient.bp ? ` · BP ${patient.bp}` : ""}
-              {patient.mobile ? ` · Mob ${patient.mobile}` : ""}
-            </p>
-            {patient.allergies && (
-              <p className="text-xs text-amber-900">Allergies: {patient.allergies}</p>
-            )}
-            <p className="font-mono text-xs text-stone-500">Visit · {patient.public_code}</p>
+
+        {!patient && (
+          <div
+            role="status"
+            className="rounded-xl border border-amber-200/90 bg-amber-50/95 px-4 py-3 text-xs text-amber-950"
+          >
+            Select or load a patient on the left (visit ID or queue) before issuing — complaints and
+            diagnoses attach to that visit&apos;s PDF.
           </div>
         )}
-      </section>
 
-      <section className={`${lux.card} relative max-w-2xl space-y-5`}>
+        <Card className={cn(opdCardClass)}>
+          <div className={lux.cardAccentTop} aria-hidden />
+          <CardHeader className="space-y-1 pb-2">
+            <CardTitle className="font-serif text-lg font-light tracking-tight text-[#0B1220]">
+              Diagnoses
+            </CardTitle>
+            <CardDescription className="text-stone-600">
+              Search the shared list and tap <strong className="font-medium text-stone-700">Add</strong>{" "}
+              for each diagnosis (same as medicines). Each one appears in{" "}
+              <strong className="font-medium text-stone-700">Selected diagnoses</strong> below.
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-5">
+            <div>
+              <label htmlFor="dx-search" className={lux.label}>
+                Search diagnoses
+              </label>
+              <input
+                id="dx-search"
+                className={`mt-2 ${lux.input}`}
+                placeholder="e.g. stroke, GERD, URTI, hypertension, viral fever…"
+                value={dxSearch}
+                onChange={(e) => setDxSearch(e.target.value)}
+              />
+              <div className="mt-2 flex flex-wrap items-center gap-1.5">
+                <span className="text-[10px] font-semibold uppercase tracking-wide text-stone-400">
+                  Examples
+                </span>
+                {DX_SEARCH_EXAMPLES.map((label) => (
+                  <button
+                    key={label}
+                    type="button"
+                    onClick={() => setDxSearch(label)}
+                    className="rounded-full border border-[#00A9B7]/25 bg-[#f4fdfb] px-2.5 py-1 text-left text-xs text-[#0a5c66] transition hover:border-[#00A9B7]/45 hover:bg-[#e8faf8]"
+                  >
+                    {label}
+                  </button>
+                ))}
+              </div>
+              <div className="mt-2 max-h-40 overflow-y-auto rounded-xl border border-stone-200/80 bg-[#FAF8F5]">
+                {dxLoading && <p className="p-2 text-xs text-gray-500">Loading…</p>}
+                {!dxLoading &&
+                  dxResults
+                    .filter((d) => !dxLines.some((l) => l.diagnosisId === d.id))
+                    .map((d) => (
+                      <button
+                        key={d.id}
+                        type="button"
+                        onClick={() => addDxLine(d)}
+                        className="flex w-full items-center justify-between border-b border-stone-100 px-3 py-2.5 text-left text-sm last:border-0 hover:bg-white"
+                      >
+                        <span>{d.name}</span>
+                        <span className="text-xs text-gray-400">Add</span>
+                      </button>
+                    ))}
+                {!dxLoading &&
+                  dxResults.filter((d) => !dxLines.some((l) => l.diagnosisId === d.id)).length ===
+                    0 && (
+                    <p className="p-2 text-xs text-gray-500">
+                      {dxResults.length > 0
+                        ? "Every diagnosis in this list is already on the chart — try another search or add new below."
+                        : "No matches — add a new diagnosis below."}
+                    </p>
+                  )}
+              </div>
+            </div>
+
+            <div className="flex flex-wrap items-end gap-2">
+              <div className="min-w-[180px] flex-1">
+                <label htmlFor="new-dx-name" className={lux.label}>
+                  New diagnosis (shared list)
+                </label>
+                <input
+                  id="new-dx-name"
+                  className={`mt-2 ${lux.input}`}
+                  placeholder="e.g. Iron deficiency anemia, Osteoarthritis knee…"
+                  value={newDxName}
+                  onChange={(e) => setNewDxName(e.target.value)}
+                />
+              </div>
+              <button
+                type="button"
+                onClick={addNewDiagnosis}
+                disabled={dxBusy || !newDxName.trim()}
+                className="rounded-xl px-5 py-3 text-sm font-semibold text-white shadow-md transition hover:opacity-95 disabled:opacity-50"
+                style={{
+                  background: `linear-gradient(135deg, ${Lux.navySoft} 0%, ${Lux.ink} 100%)`,
+                }}
+              >
+                {dxBusy ? "…" : "Add to list & chart"}
+              </button>
+            </div>
+
+            <div className="space-y-3 border-t border-stone-200/80 pt-5">
+              <p className={lux.label}>Selected diagnoses</p>
+              {dxLines.length > 0 ? (
+                <>
+                  <p className="text-xs text-gray-500">
+                    On this chart — tap Remove to drop one (same idea as medicine lines below).
+                  </p>
+                  {dxLines.map((d) => (
+                    <div
+                      key={d.diagnosisId}
+                      className={cn(
+                        "rounded-xl border p-4 text-sm transition",
+                        brandPastelSurface,
+                      )}
+                    >
+                      <div className="flex flex-wrap items-start justify-between gap-2">
+                        <p className="font-medium text-gray-900 pr-2">{d.name}</p>
+                        <button
+                          type="button"
+                          className="shrink-0 text-xs font-medium text-red-600 hover:underline"
+                          onClick={() => removeDxLine(d.diagnosisId)}
+                        >
+                          Remove
+                        </button>
+                      </div>
+                    </div>
+                  ))}
+                </>
+              ) : (
+                <p className="rounded-xl border border-dashed border-stone-200/90 bg-stone-50/60 px-4 py-6 text-center text-sm text-stone-500">
+                  No diagnoses on this chart yet. Use <strong className="text-stone-700">Add</strong>{" "}
+                  in the search list above for each one — you can add as many as you need.
+                </p>
+              )}
+            </div>
+          </CardContent>
+        </Card>
+
+        <Card className={cn(opdCardClass)}>
+          <div className={lux.cardAccentTop} aria-hidden />
+          <CardHeader className="space-y-1 pb-2">
+            <CardTitle className="font-serif text-lg font-light tracking-tight text-[#0B1220]">
+              Complaints
+            </CardTitle>
+            <CardDescription className="text-stone-600">
+              Type chief complaints or dictate — transcribed text is appended after each recording.
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <Textarea
+              className={cn(lux.input, "min-h-[120px] resize-y")}
+              placeholder="e.g. Epigastric pain 3 days, nausea…"
+              value={complaints}
+              onChange={(e) => setComplaints(e.target.value)}
+              maxLength={8000}
+            />
+            <div className="flex flex-wrap items-center gap-2">
+              {!recording ? (
+                <button
+                  type="button"
+                  disabled={voiceBusy}
+                  onClick={startComplaintRecording}
+                  className="rounded-xl px-5 py-2.5 text-sm font-semibold text-white shadow-md transition hover:opacity-95 disabled:opacity-50"
+                  style={{
+                    background: `linear-gradient(135deg, ${Lux.teal} 0%, ${Lux.tealDeep} 100%)`,
+                  }}
+                >
+                  {voiceBusy ? "Transcribing…" : "Record voice"}
+                </button>
+              ) : (
+                <button
+                  type="button"
+                  onClick={stopComplaintRecording}
+                  className="rounded-xl border-2 border-red-500 bg-red-50 px-5 py-2.5 text-sm font-semibold text-red-700"
+                >
+                  Stop & transcribe
+                </button>
+              )}
+              {recording && (
+                <span className="text-xs font-medium text-red-600">Recording…</span>
+              )}
+            </div>
+            {voiceError && <p className="text-sm text-red-600">{voiceError}</p>}
+          </CardContent>
+        </Card>
+      </div>
+
+      <Card className={cn(opdCardClass)}>
         <div className={lux.cardAccentTop} aria-hidden />
-        <h2 className={lux.label}>Medications & directions</h2>
+        <CardHeader className="space-y-0 pb-4">
+          <div className="grid grid-cols-[auto,minmax(0,1fr)] gap-x-3 gap-y-1">
+            <div className="row-span-2 flex items-start pt-0.5">
+              <StepBadge>4</StepBadge>
+            </div>
+            <CardTitle className="font-serif text-xl font-light leading-snug tracking-tight text-[#0B1220]">
+              Medications & directions
+            </CardTitle>
+            <CardDescription className="text-stone-600">
+              Search the formulary, add lines, set directions, then review and issue.
+            </CardDescription>
+          </div>
+        </CardHeader>
+        <CardContent className="space-y-5">
         <div>
           <label htmlFor="med-search" className={lux.label}>
             Formulary search
@@ -608,12 +1139,15 @@ export default function OpdPrescribingPage() {
         {lines.length > 0 && (
           <div className="space-y-3">
             <p className="text-xs text-gray-500">
-              Tick all that apply — e.g. before food and after food, or morning and evening together.
+              Tick all that apply — time of day, with meals, or spoon dose (1 Spoon / 2 Spoon).
             </p>
             {lines.map((l) => (
               <div
                 key={l.medicineId}
-                className="rounded-xl border border-stone-200/90 bg-gradient-to-b from-white to-stone-50/50 p-4 text-sm shadow-sm"
+                className={cn(
+                  "rounded-xl border p-4 text-sm transition",
+                  brandPastelSurface,
+                )}
               >
                 <div className="flex flex-wrap items-start justify-between gap-2">
                   <p className="font-medium text-gray-900 pr-2">{l.name}</p>
@@ -660,7 +1194,11 @@ export default function OpdPrescribingPage() {
         >
           Review & issue PDF
         </button>
-      </section>
+        </CardContent>
+      </Card>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

@@ -16,7 +16,7 @@ export async function GET() {
   const admin = createAdminClient();
   const { data: rxs, error } = await admin
     .from("medicine_prescriptions")
-    .select("id, created_at, lines, clinic_patient_id")
+    .select("id, created_at, lines, complaints, diagnoses_lines, clinic_patient_id")
     .eq("doctor_id", user.id)
     .order("created_at", { ascending: false })
     .limit(50);
@@ -48,6 +48,8 @@ export async function GET() {
     id: row.id,
     created_at: row.created_at,
     lines: row.lines,
+    complaints: row.complaints ?? null,
+    diagnoses_lines: row.diagnoses_lines ?? [],
     patient: patientMap.get(row.clinic_patient_id) ?? null,
   }));
 

@@ -81,7 +81,7 @@ export default function ReceptionPage() {
           Register walk-in patients. The next <strong className="font-medium text-stone-700">OPD</strong>{" "}
           number is assigned automatically (e.g. OPD-0001). The physician opens the chart in{" "}
           <Link
-            href="/prescription/opd-prescribing"
+            href="/opd-prescribing"
             className="font-semibold underline decoration-[#00A9B7]/40 underline-offset-2 transition hover:decoration-[#00A9B7]"
             style={{ color: Lux.tealDeep }}
           >

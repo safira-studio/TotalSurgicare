@@ -63,7 +63,9 @@ export default async function PrescriptionLayout({
           clinicName={doctor?.clinic_name ?? "Doctor Portal"}
         />
       )}
-      <main className="mx-auto max-w-4xl px-4 py-8">{children}</main>
+      <main className="mx-auto w-full max-w-7xl px-3 py-8 sm:px-5 lg:px-6">
+        {children}
+      </main>
     </div>
   );
 }

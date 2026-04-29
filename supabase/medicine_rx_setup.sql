@@ -110,6 +110,21 @@ comment on table public.medicines is
   'Shared medicine dictionary for the clinic; visible to all authenticated doctors.';
 
 -- ---------------------------------------------------------------------------
+-- 2b. Diagnoses catalog (shared, like medicines)
+-- ---------------------------------------------------------------------------
+create table if not exists public.diagnoses (
+  id          uuid primary key default gen_random_uuid(),
+  name        text not null,
+  created_at  timestamptz not null default now()
+);
+
+create unique index if not exists diagnoses_name_lower_key
+  on public.diagnoses (lower(trim(name)));
+
+comment on table public.diagnoses is
+  'Shared diagnosis labels for OPD prescribing; searchable by all authenticated doctors.';
+
+-- ---------------------------------------------------------------------------
 -- 3. Medicine prescriptions (PDF + lines jsonb)
 -- ---------------------------------------------------------------------------
 create table if not exists public.medicine_prescriptions (
@@ -117,15 +132,31 @@ create table if not exists public.medicine_prescriptions (
   doctor_id          uuid not null references public.doctors(id) on delete cascade,
   clinic_patient_id  uuid not null references public.clinic_patients(id) on delete restrict,
   lines              jsonb not null default '[]'::jsonb,
+  complaints         text,
+  diagnoses_lines    jsonb not null default '[]'::jsonb,
   pdf_path           text,
   created_at         timestamptz not null default now()
 );
 
 -- lines: [{
 --   "medicine_id", "name",
---   "before_food": bool, "after_food": bool, "morning": bool, "evening": bool
+--   "before_food", "after_food", "morning", "afternoon", "evening",
+--   "one_spoon", "two_spoons": bool
 -- }]
 -- Legacy rows may still have "timing": "before_food" only.
+-- diagnoses_lines: [{ "diagnosis_id": uuid, "name": "..." }]
+
+alter table public.medicine_prescriptions
+  add column if not exists complaints text;
+
+alter table public.medicine_prescriptions
+  add column if not exists diagnoses_lines jsonb not null default '[]'::jsonb;
+
+comment on column public.medicine_prescriptions.complaints is
+  'Chief complaints / narrative (typed or transcribed).';
+
+comment on column public.medicine_prescriptions.diagnoses_lines is
+  'Selected diagnoses for this prescription.';
 
 create index if not exists medicine_prescriptions_doctor_created_idx
   on public.medicine_prescriptions (doctor_id, created_at desc);
@@ -138,6 +169,7 @@ comment on table public.medicine_prescriptions is
 -- ---------------------------------------------------------------------------
 alter table public.clinic_patients enable row level security;
 alter table public.medicines enable row level security;
+alter table public.diagnoses enable row level security;
 alter table public.medicine_prescriptions enable row level security;
 
 drop policy if exists "clinic_patients_select_own_registrations" on public.clinic_patients;
@@ -158,6 +190,16 @@ create policy "medicines_select_authenticated"
 drop policy if exists "medicines_insert_authenticated" on public.medicines;
 create policy "medicines_insert_authenticated"
   on public.medicines for insert to authenticated
+  with check (true);
+
+drop policy if exists "diagnoses_select_authenticated" on public.diagnoses;
+create policy "diagnoses_select_authenticated"
+  on public.diagnoses for select to authenticated
+  using (true);
+
+drop policy if exists "diagnoses_insert_authenticated" on public.diagnoses;
+create policy "diagnoses_insert_authenticated"
+  on public.diagnoses for insert to authenticated
   with check (true);
 
 drop policy if exists "medicine_rx_select_own" on public.medicine_prescriptions;

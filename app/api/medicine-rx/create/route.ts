@@ -16,11 +16,21 @@ const lineSchema = z.object({
   before_food: z.boolean(),
   after_food: z.boolean(),
   morning: z.boolean(),
+  afternoon: z.boolean(),
   evening: z.boolean(),
+  one_spoon: z.boolean(),
+  two_spoons: z.boolean(),
+});
+
+const diagnosisLineSchema = z.object({
+  diagnosisId: z.string().uuid(),
+  name: z.string().min(1).max(200),
 });
 
 const bodySchema = z.object({
   visitCode: z.string().min(3).max(32),
+  complaints: z.string().max(8000).optional().default(""),
+  diagnoses: z.array(diagnosisLineSchema).optional().default([]),
   lines: z.array(lineSchema).min(1, "Add at least one medicine"),
 });
 
@@ -50,13 +60,16 @@ export async function POST(req: Request) {
     );
   }
 
-  const { visitCode, lines } = parsed.data;
+  const { visitCode, lines, complaints, diagnoses } = parsed.data;
   const code = visitCode.trim().replace(/\s+/g, "").toUpperCase();
 
   for (const line of lines) {
     if (!hasAnyTimingSelected(line)) {
       return NextResponse.json(
-        { error: "Each medicine needs at least one timing checked (before/after food, morning, or evening)." },
+        {
+          error:
+            "Each medicine needs at least one direction checked (time of day, before/after food, or spoon dose).",
+        },
         { status: 400 },
       );
     }
@@ -123,8 +136,43 @@ export async function POST(req: Request) {
     before_food: l.before_food,
     after_food: l.after_food,
     morning: l.morning,
+    afternoon: l.afternoon,
     evening: l.evening,
+    one_spoon: l.one_spoon,
+    two_spoons: l.two_spoons,
   }));
+
+  const diagnosesUnique = Array.from(
+    new Map(diagnoses.map((d) => [d.diagnosisId, d])).values(),
+  );
+  const diagnosisIds = diagnosesUnique.map((d) => d.diagnosisId);
+  let resolvedDiagnoses: { diagnosis_id: string; name: string }[] = [];
+
+  if (diagnosisIds.length > 0) {
+    const { data: dxRows, error: dxErr } = await admin
+      .from("diagnoses")
+      .select("id, name")
+      .in("id", diagnosisIds);
+
+    if (dxErr || !dxRows?.length || dxRows.length !== diagnosisIds.length) {
+      return NextResponse.json(
+        {
+          error:
+            "One or more diagnoses are invalid. Run supabase/medicine_rx_complaints_diagnoses.sql if the diagnoses table is missing.",
+        },
+        { status: 400 },
+      );
+    }
+
+    const dxMap = new Map(dxRows.map((r) => [r.id, r.name]));
+    resolvedDiagnoses = diagnosesUnique.map((d) => ({
+      diagnosis_id: d.diagnosisId,
+      name: dxMap.get(d.diagnosisId)!,
+    }));
+  }
+
+  const complaintsTrimmed = complaints.trim();
+  const diagnosisNames = resolvedDiagnoses.map((d) => d.name);
 
   const { data: letterheadData, error: letterheadError } = await admin.storage
     .from("letterheads")
@@ -159,12 +207,17 @@ export async function POST(req: Request) {
       patientMobile: patient.mobile,
       allergies: patient.allergies,
       visitCode: patient.public_code,
+      complaints: complaintsTrimmed || null,
+      diagnosisNames,
       lines: resolvedLines.map((r) => ({
         name: r.name,
         before_food: r.before_food,
         after_food: r.after_food,
         morning: r.morning,
+        afternoon: r.afternoon,
         evening: r.evening,
+        one_spoon: r.one_spoon,
+        two_spoons: r.two_spoons,
       })),
       date,
       doctorName: doctor.full_name,
@@ -213,6 +266,8 @@ export async function POST(req: Request) {
     doctor_id: user.id,
     clinic_patient_id: patient.id,
     lines: resolvedLines,
+    complaints: complaintsTrimmed || null,
+    diagnoses_lines: resolvedDiagnoses,
     pdf_path: pdfPath,
   });
 

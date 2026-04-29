@@ -25,6 +25,8 @@ interface MedRxRow {
   id: string;
   created_at: string;
   lines: Record<string, unknown>[];
+  complaints?: string | null;
+  diagnoses_lines?: { diagnosis_id: string; name: string }[];
   patient: {
     public_code: string;
     full_name: string;
@@ -242,18 +244,6 @@ export default function DashboardPage() {
               />
             </svg>
             New investigation Rx
-          </Link>
-          <Link
-            href="/prescription/reception"
-            className="inline-flex items-center justify-center rounded-xl border-2 border-[#00A9B7] bg-white px-4 py-2.5 text-sm font-semibold text-[#007D8C] shadow-sm transition-all hover:bg-cyan-50 active:scale-95"
-          >
-            Reception
-          </Link>
-          <Link
-            href="/prescription/opd-prescribing"
-            className="inline-flex items-center justify-center rounded-xl border-2 border-[#1B2A41] bg-white px-4 py-2.5 text-sm font-semibold text-[#1B2A41] shadow-sm transition-all hover:bg-stone-50 active:scale-95"
-          >
-            OPD prescribing
           </Link>
         </div>
       </div>
@@ -543,6 +533,28 @@ export default function DashboardPage() {
                         {date}
                         {pt?.mobile && ` · ${pt.mobile}`}
                       </p>
+                      {(typeof rx.complaints === "string" && rx.complaints.trim()) ||
+                      (Array.isArray(rx.diagnoses_lines) && rx.diagnoses_lines.length > 0) ? (
+                        <p className="mt-1.5 text-xs text-gray-600 line-clamp-2">
+                          {typeof rx.complaints === "string" && rx.complaints.trim() && (
+                            <span>
+                              <span className="font-medium text-gray-700">Complaints:</span>{" "}
+                              {rx.complaints.trim()}
+                            </span>
+                          )}
+                          {Array.isArray(rx.diagnoses_lines) && rx.diagnoses_lines.length > 0 && (
+                            <span>
+                              {(typeof rx.complaints === "string" && rx.complaints.trim()) &&
+                                " · "}
+                              <span className="font-medium text-gray-700">Dx:</span>{" "}
+                              {rx.diagnoses_lines
+                                .map((d) => d.name)
+                                .filter(Boolean)
+                                .join(", ")}
+                            </span>
+                          )}
+                        </p>
+                      ) : null}
                       {rx.lines?.length > 0 && (
                         <p className="mt-1.5 text-xs text-gray-500 line-clamp-2">
                           {rx.lines

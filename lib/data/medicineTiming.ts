@@ -3,7 +3,10 @@ export const MEDICINE_TIMING_OPTIONS = [
   { id: "before_food", label: "Before food" },
   { id: "after_food", label: "After food" },
   { id: "morning", label: "Morning" },
+  { id: "afternoon", label: "Afternoon" },
   { id: "evening", label: "Evening" },
+  { id: "one_spoon", label: "1 Spoon" },
+  { id: "two_spoons", label: "2 Spoon" },
 ] as const;
 
 export type MedicineTimingFlagId = (typeof MEDICINE_TIMING_OPTIONS)[number]["id"];
@@ -14,20 +17,22 @@ export const DEFAULT_LINE_TIMINGS: MedicineLineTimings = {
   before_food: true,
   after_food: false,
   morning: false,
+  afternoon: false,
   evening: false,
+  one_spoon: false,
+  two_spoons: false,
 };
 
 export function formatTimingSummary(t: Partial<MedicineLineTimings>): string {
   const parts: string[] = [];
-  if (t.before_food) parts.push("Before food");
-  if (t.after_food) parts.push("After food");
-  if (t.morning) parts.push("Morning");
-  if (t.evening) parts.push("Evening");
+  for (const opt of MEDICINE_TIMING_OPTIONS) {
+    if (t[opt.id]) parts.push(opt.label);
+  }
   return parts.join(", ") || "—";
 }
 
 export function hasAnyTimingSelected(t: Partial<MedicineLineTimings>): boolean {
-  return !!(t.before_food || t.after_food || t.morning || t.evening);
+  return MEDICINE_TIMING_OPTIONS.some((opt) => !!t[opt.id]);
 }
 
 /** Legacy single-select rows stored as `{ timing: "before_food" }`. */
@@ -42,12 +47,10 @@ export function summarizeMedicineLine(line: unknown): string {
     if (typeof o.timing === "string" && o.timing.length > 0) {
       return timingLabel(o.timing);
     }
-    return formatTimingSummary({
-      before_food: !!o.before_food,
-      after_food: !!o.after_food,
-      morning: !!o.morning,
-      evening: !!o.evening,
-    });
+    const flags = Object.fromEntries(
+      MEDICINE_TIMING_OPTIONS.map((opt) => [opt.id, !!o[opt.id]]),
+    ) as MedicineLineTimings;
+    return formatTimingSummary(flags);
   }
   return "—";
 }

@@ -70,5 +70,5 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/prescription/:path*", "/api/prescription/:path*"],
+  matcher: ["/prescription/:path*", "/api/prescription/:path*", "/opd-prescribing"],
 };
