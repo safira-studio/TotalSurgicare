@@ -32,6 +32,8 @@ const bodySchema = z.object({
   complaints: z.string().max(8000).optional().default(""),
   diagnoses: z.array(diagnosisLineSchema).optional().default([]),
   lines: z.array(lineSchema).min(1, "Add at least one medicine"),
+  referralName: z.string().max(120).optional().default(""),
+  referralMobile: z.string().max(20).optional().default(""),
 });
 
 export async function POST(req: Request) {
@@ -60,7 +62,7 @@ export async function POST(req: Request) {
     );
   }
 
-  const { visitCode, lines, complaints, diagnoses } = parsed.data;
+  const { visitCode, lines, complaints, diagnoses, referralName, referralMobile } = parsed.data;
   const code = visitCode.trim().replace(/\s+/g, "").toUpperCase();
 
   for (const line of lines) {
@@ -221,6 +223,8 @@ export async function POST(req: Request) {
       })),
       date,
       doctorName: doctor.full_name,
+      referralName: referralName || null,
+      referralMobile: referralMobile || null,
     });
   } catch (e: unknown) {
     const msg = e instanceof Error ? e.message : "PDF generation failed";
@@ -283,7 +287,13 @@ export async function POST(req: Request) {
     }
   }
 
-  const clinicName = doctor.clinic_name ?? "Clinic";
+  const rawClinicName = (doctor.clinic_name ?? "").trim();
+  const clinicName = rawClinicName
+    ? /clinic$/i.test(rawClinicName)
+      ? rawClinicName
+      : `${rawClinicName} Clinic`
+    : "Clinic";
+
   const mobileOk = patient.mobile
     ? normalizeIndianMobile(patient.mobile)
     : { ok: false as const, error: "" };
@@ -291,7 +301,7 @@ export async function POST(req: Request) {
   const msg =
     `Namaste ${patient.full_name},\n` +
     `Your medicine prescription from ${doctor.full_name} (${clinicName}) is ready:\n${signedUrl}\n\n` +
-    `Visit ID: ${patient.public_code}\n` +
+    `*Visit ID: ${patient.public_code}*\n` +
     `Date: ${date}` +
     clinicFooter();
 

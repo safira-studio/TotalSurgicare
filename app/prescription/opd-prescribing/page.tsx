@@ -21,6 +21,7 @@ import {
 import { Separator } from "@/components/ui/separator";
 import { Textarea } from "@/components/ui/textarea";
 import { cn } from "@/lib/utils";
+import { MEDICINE_RX_COORDS } from "@/lib/pdf/medicineRxCoords";
 
 interface ClinicPatient {
   id: string;
@@ -744,6 +745,195 @@ interface SendResult {
   referralName: string | null;
 }
 
+/** Word-wrap helper mirroring the PDF builder logic for browser preview. */
+function wrapText(text: string, maxChars: number, maxLines: number): string[] {
+  const words = text.trim().split(/\s+/).filter(Boolean);
+  if (words.length === 0) return ["—"];
+  const out: string[] = [];
+  let cur = "";
+  for (const w of words) {
+    if (out.length >= maxLines) break;
+    const next = cur ? `${cur} ${w}` : w;
+    if (next.length <= maxChars) {
+      cur = next;
+    } else {
+      if (cur) {
+        out.push(cur);
+        cur = w.length > maxChars ? `${w.slice(0, Math.max(1, maxChars - 1))}…` : w;
+      } else {
+        out.push(w.slice(0, maxChars));
+        cur = "";
+      }
+    }
+  }
+  if (cur && out.length < maxLines) out.push(cur);
+  return out.length > 0 ? out : ["—"];
+}
+
+/**
+ * Browser-side letterhead preview for OPD medicine prescriptions.
+ * Mirrors the coordinate logic in buildMedicineRxPdf so the preview
+ * closely matches the generated PDF.
+ */
+function MedicineRxLetterheadPreview({
+  letterheadUrl,
+  patient,
+  dxLines,
+  complaints,
+  lines,
+  referralName,
+  referralMobile,
+}: {
+  letterheadUrl: string | null;
+  patient: ClinicPatient;
+  dxLines: DiagnosisRow[];
+  complaints: string;
+  lines: RxLine[];
+  referralName: string;
+  referralMobile: string;
+}) {
+  const C = MEDICINE_RX_COORDS;
+  const ptToCqh = (pt: number) => `${(pt / 842) * 130}cqh`;
+
+  type TextItem = { x: number; y: number; text: string; bold?: boolean; size: number };
+  const items: TextItem[] = [];
+
+  const lineH = C.medsStart.lineFrac * 0.92;
+  let yFrac = C.medsStart.yStartFrac - 0.02;
+  const bodySize = C.medsStart.size - 1;
+
+  items.push({ x: C.medsStart.xFrac, y: yFrac, text: "Complaints:", bold: true, size: bodySize + 1 });
+  yFrac += lineH;
+  const complaintWrapped = wrapText(complaints.trim() || "—", 88, 8);
+  for (const cl of complaintWrapped) {
+    items.push({ x: C.medsStart.xFrac + 0.02, y: yFrac, text: cl, size: bodySize });
+    yFrac += lineH * 0.9;
+  }
+  yFrac += lineH * 0.35;
+
+  items.push({ x: C.medsStart.xFrac, y: yFrac, text: "Diagnoses:", bold: true, size: bodySize + 1 });
+  yFrac += lineH;
+  const dxList = dxLines.length > 0 ? dxLines.map((d) => d.name) : ["—"];
+  for (const dx of dxList.slice(0, 14)) {
+    if (yFrac > 0.94) break;
+    const label = dx.length > 92 ? `${dx.slice(0, 90)}…` : dx;
+    items.push({ x: C.medsStart.xFrac + 0.02, y: yFrac, text: `• ${label}`, size: bodySize });
+    yFrac += lineH * 0.92;
+  }
+  yFrac += lineH * 0.45;
+
+  items.push({ x: C.medsStart.xFrac, y: yFrac, text: "Medicines:", bold: true, size: bodySize + 1 });
+  yFrac += lineH;
+  for (const l of lines) {
+    if (yFrac > 0.94) break;
+    const timing = formatTimingSummary(l.timings);
+    items.push({ x: C.medsStart.xFrac + 0.02, y: yFrac, text: `• ${l.name} — ${timing}`, size: bodySize });
+    yFrac += C.medsStart.lineFrac;
+  }
+
+  const cleanReferralMobile = referralMobile.trim().replace(/[\s\-().]/g, "");
+  if (referralName.trim() && cleanReferralMobile.length >= 7) {
+    yFrac += lineH * 0.5;
+    items.push({
+      x: C.medsStart.xFrac,
+      y: yFrac,
+      text: `Refer to: Dr. ${referralName.trim()} (${referralMobile.trim()})`,
+      bold: true,
+      size: bodySize,
+    });
+  }
+
+  const today = new Date().toLocaleDateString("en-IN", {
+    day: "2-digit", month: "short", year: "numeric", timeZone: "Asia/Kolkata",
+  });
+
+  const spanStyle = (item: TextItem): React.CSSProperties => ({
+    position: "absolute",
+    left: `${item.x * 100}%`,
+    top: `${item.y * 100}%`,
+    fontSize: ptToCqh(item.size),
+    fontWeight: item.bold ? 700 : 400,
+    lineHeight: 1,
+    transform: "translateY(-100%)",
+    whiteSpace: "nowrap",
+    color: "#0d0d0d",
+  });
+
+  return (
+    <div
+      className="relative w-full overflow-hidden rounded-2xl border bg-white shadow-sm"
+      style={{ aspectRatio: "595 / 842", containerType: "size", borderColor: "#E0F3F5" }}
+    >
+      {letterheadUrl ? (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img
+          src={letterheadUrl}
+          alt="Letterhead"
+          className="absolute inset-0 h-full w-full object-fill"
+          draggable={false}
+        />
+      ) : (
+        <div className="absolute inset-0 flex items-center justify-center bg-gray-50 text-sm text-gray-400">
+          Loading letterhead…
+        </div>
+      )}
+
+      <div
+        className="absolute inset-0"
+        style={{ fontFamily: "Helvetica, Arial, sans-serif" }}
+      >
+        {/* Patient name */}
+        <span style={{ position: "absolute", left: `${C.name.xFrac * 100}%`, top: `${C.name.yFrac * 100}%`, fontSize: ptToCqh(C.name.size), fontWeight: 700, lineHeight: 1, transform: "translateY(-100%)", whiteSpace: "nowrap", color: "#0d0d0d" }}>
+          {patient.full_name}
+        </span>
+
+        {/* Age */}
+        <span style={{ position: "absolute", left: `${C.age.xFrac * 100}%`, top: `${C.age.yFrac * 100}%`, fontSize: ptToCqh(C.age.size), lineHeight: 1, transform: "translateY(-100%)", whiteSpace: "nowrap", color: "#0d0d0d" }}>
+          {patient.age} yrs
+        </span>
+
+        {/* BP */}
+        {patient.bp && (
+          <span style={{ position: "absolute", left: `${C.bp.xFrac * 100}%`, top: `${C.bp.yFrac * 100}%`, fontSize: ptToCqh(C.bp.size), lineHeight: 1, transform: "translateY(-100%)", whiteSpace: "nowrap", color: "#0d0d0d" }}>
+            {patient.bp}
+          </span>
+        )}
+
+        {/* Date */}
+        <span style={{ position: "absolute", left: `${C.date.xFrac * 100}%`, top: `${C.date.yFrac * 100}%`, fontSize: ptToCqh(C.date.size), lineHeight: 1, transform: "translateY(-100%)", whiteSpace: "nowrap", color: "#0d0d0d" }}>
+          {today}
+        </span>
+
+        {/* Mobile */}
+        {patient.mobile && (
+          <span style={{ position: "absolute", left: `${C.mobile.xFrac * 100}%`, top: `${C.mobile.yFrac * 100}%`, fontSize: ptToCqh(C.mobile.size), lineHeight: 1, transform: "translateY(-100%)", whiteSpace: "nowrap", color: "#0d0d0d" }}>
+            Mob: {patient.mobile}
+          </span>
+        )}
+
+        {/* Visit ID */}
+        <span style={{ position: "absolute", left: `${C.visitId.xFrac * 100}%`, top: `${C.visitId.yFrac * 100}%`, fontSize: ptToCqh(C.visitId.size), lineHeight: 1, transform: "translateY(-100%)", whiteSpace: "nowrap", color: "#0d0d0d" }}>
+          Visit ID: {patient.public_code}
+        </span>
+
+        {/* Allergies */}
+        {patient.allergies && (
+          <span style={{ position: "absolute", left: `${C.allergies.xFrac * 100}%`, top: `${C.allergies.yFrac * 100}%`, fontSize: ptToCqh(C.allergies.size), lineHeight: 1, transform: "translateY(-100%)", whiteSpace: "nowrap", color: "#0d0d0d" }}>
+            Allergies: {patient.allergies.length > 90 ? `${patient.allergies.slice(0, 90)}…` : patient.allergies}
+          </span>
+        )}
+
+        {/* Body: complaints, diagnoses, medicines */}
+        {items.map((item, i) => (
+          <span key={i} style={spanStyle(item)}>
+            {item.text}
+          </span>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 export default function OpdPrescribingPage() {
   const [visitCodeInput, setVisitCodeInput] = useState("");
   const [lookupLoading, setLookupLoading] = useState(false);
@@ -785,6 +975,16 @@ export default function OpdPrescribingPage() {
 
   const [referralName, setReferralName] = useState("");
   const [referralMobile, setReferralMobile] = useState("");
+
+  const [letterheadUrl, setLetterheadUrl] = useState<string | null>(null);
+  useEffect(() => {
+    let cancelled = false;
+    fetch("/api/prescription/letterhead-url", { cache: "no-store" })
+      .then((r) => (r.ok ? r.json() : null))
+      .then((j) => { if (!cancelled && j?.url) setLetterheadUrl(j.url); })
+      .catch(() => {});
+    return () => { cancelled = true; };
+  }, []);
 
   function resetChartFields() {
     setComplaints("");
@@ -1149,6 +1349,8 @@ export default function OpdPrescribingPage() {
             one_spoon: l.timings.one_spoon,
             two_spoons: l.timings.two_spoons,
           })),
+          referralName: referralName.trim() || undefined,
+          referralMobile: referralMobile.trim() || undefined,
         }),
       });
       const json = await res.json().catch(() => ({}));
@@ -1160,7 +1362,7 @@ export default function OpdPrescribingPage() {
       const hasReferral = cleanMobile.length >= 7 && referralName.trim();
       const referralMessage = hasReferral
         ? encodeURIComponent(
-            `Dear Dr. ${referralName.trim()},\n\nI am referring *${patient.full_name}* (${patient.public_code}) to you.\n\nPlease find the prescription PDF here:\n${json.signedUrl}`,
+            `Dear Dr. ${referralName.trim()},\n\nI am referring *${patient.full_name}* to you.\n\nPlease find the prescription PDF here:\n${json.signedUrl}`,
           )
         : null;
       const waReferral =
@@ -1297,6 +1499,22 @@ export default function OpdPrescribingPage() {
           >
             ← Edit chart
           </button>
+        </div>
+
+        {/* Letterhead preview */}
+        <div>
+          <MedicineRxLetterheadPreview
+            letterheadUrl={letterheadUrl}
+            patient={patient}
+            dxLines={dxLines}
+            complaints={complaints}
+            lines={lines}
+            referralName={referralName}
+            referralMobile={referralMobile}
+          />
+          <p className="mt-2 text-xs text-stone-400">
+            Approximate preview — the final PDF uses exact positions.
+          </p>
         </div>
 
         <div className={`${lux.card} space-y-3 text-sm`}>
@@ -1870,17 +2088,6 @@ export default function OpdPrescribingPage() {
         {lineError && (
           <p className="text-sm text-red-600">{lineError}</p>
         )}
-
-        <button
-          type="button"
-          onClick={goPreview}
-          className="rounded-xl px-6 py-3.5 text-sm font-semibold text-white shadow-lg transition hover:opacity-95"
-          style={{
-            background: `linear-gradient(135deg, ${Lux.teal} 0%, ${Lux.tealDeep} 100%)`,
-          }}
-        >
-          Review & issue PDF
-        </button>
         </CardContent>
       </Card>
 
@@ -1960,6 +2167,17 @@ export default function OpdPrescribingPage() {
           )}
         </CardContent>
       </Card>
+
+      <button
+        type="button"
+        onClick={goPreview}
+        className="w-full rounded-xl px-6 py-3.5 text-sm font-semibold text-white shadow-lg transition hover:opacity-95"
+        style={{
+          background: `linear-gradient(135deg, ${Lux.teal} 0%, ${Lux.tealDeep} 100%)`,
+        }}
+      >
+        Review & issue PDF
+      </button>
           </div>
         </div>
       </div>

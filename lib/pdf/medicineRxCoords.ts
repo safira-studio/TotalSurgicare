@@ -1,8 +1,23 @@
 /**
  * Fractional coordinates for medicine (drug) Rx overlays on the same A4 letterhead
- * as investigation prescriptions. Keep in sync with browser preview if added later.
+ * as investigation prescriptions. Per-doctor overrides come from
+ * doctors.letterhead_coords (detected once at onboarding) and are merged over
+ * these defaults inside the PDF builder.
  */
-export const MEDICINE_RX_COORDS = {
+import type { CoordPoint, BodyStartCoord } from "./coords";
+
+export interface MedicineRxCoords {
+  name: CoordPoint;
+  age: CoordPoint;
+  bp: CoordPoint;
+  date: CoordPoint;
+  mobile: CoordPoint;
+  visitId: CoordPoint;
+  allergies: CoordPoint;
+  medsStart: BodyStartCoord;
+}
+
+export const MEDICINE_RX_COORDS: MedicineRxCoords = {
   name: { xFrac: 0.18, yFrac: 0.245, size: 11 },
   age: { xFrac: 0.14, yFrac: 0.28, size: 11 },
   bp: { xFrac: 0.38, yFrac: 0.28, size: 11 },
@@ -16,4 +31,4 @@ export const MEDICINE_RX_COORDS = {
     lineFrac: 0.028,
     size: 10,
   },
-} as const;
+};

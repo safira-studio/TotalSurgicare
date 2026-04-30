@@ -6,9 +6,35 @@
  * xFrac = fraction of page width  (0 = left, 1 = right)
  * yFrac = fraction of page height (0 = top,  1 = bottom)
  *
- * Tuned to the Shifa Clinic A4 letterhead.
+ * Tuned to the Shifa Clinic A4 letterhead. Per-doctor overrides come from
+ * doctors.letterhead_coords (detected once at onboarding) and are merged
+ * over these defaults inside the PDF builders.
  */
-export const PRESCRIPTION_COORDS = {
+
+export interface CoordPoint {
+  xFrac: number;
+  yFrac: number;
+  size: number;
+}
+
+export interface BodyStartCoord {
+  xFrac: number;
+  yStartFrac: number;
+  lineFrac: number;
+  size: number;
+}
+
+export interface PrescriptionCoords {
+  name: CoordPoint;
+  age: CoordPoint;
+  weight: CoordPoint;
+  bp: CoordPoint;
+  date: CoordPoint;
+  mobile: CoordPoint;
+  testsStart: BodyStartCoord;
+}
+
+export const PRESCRIPTION_COORDS: PrescriptionCoords = {
   name:   { xFrac: 0.18, yFrac: 0.245, size: 11 },
   age:    { xFrac: 0.14, yFrac: 0.280, size: 11 },
   weight: { xFrac: 0.38, yFrac: 0.280, size: 11 },
@@ -21,6 +47,4 @@ export const PRESCRIPTION_COORDS = {
     lineFrac: 0.030,
     size: 11,
   },
-} as const;
-
-export type PrescriptionCoords = typeof PRESCRIPTION_COORDS;
+};

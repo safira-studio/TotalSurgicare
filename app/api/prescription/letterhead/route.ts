@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { createClient } from "@/lib/supabase/server";
 import { createAdminClient } from "@/lib/supabase/admin";
+import { detectLetterheadFields } from "@/lib/letterhead/detect";
 
 const MAX_SIZE_BYTES = 4 * 1024 * 1024; // 4 MB
 const ACCEPTED_MIMES = ["image/png", "image/jpeg", "image/jpg"];
@@ -66,10 +67,16 @@ export async function POST(req: Request) {
     );
   }
 
-  // Update doctor's letterhead_path
+  // Run AI coordinate detection (best-effort; null if key missing or model fails)
+  const mimeType = file.type === "image/png" ? "image/png" : "image/jpeg";
+  const detectedCoords = await detectLetterheadFields(buffer, mimeType);
+
   const { error: dbError } = await admin
     .from("doctors")
-    .update({ letterhead_path: storagePath })
+    .update({
+      letterhead_path: storagePath,
+      letterhead_coords: detectedCoords ?? null,
+    })
     .eq("id", user.id);
 
   if (dbError) {
@@ -80,5 +87,9 @@ export async function POST(req: Request) {
     );
   }
 
-  return NextResponse.json({ ok: true, path: storagePath });
+  return NextResponse.json({
+    ok: true,
+    path: storagePath,
+    coordsDetected: detectedCoords !== null,
+  });
 }

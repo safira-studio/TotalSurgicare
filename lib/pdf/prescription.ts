@@ -1,6 +1,8 @@
 import { PDFDocument, StandardFonts, rgb } from "pdf-lib";
 import { getTestLabel } from "@/lib/data/diagnosticTests";
-import { PRESCRIPTION_COORDS as COORDS } from "./coords";
+import { PRESCRIPTION_COORDS } from "./coords";
+import { mergePrescriptionCoords } from "@/lib/letterhead/mergeCoords";
+import type { DetectedCoords } from "@/lib/letterhead/types";
 
 export interface PrescriptionInput {
   letterheadBytes: Uint8Array;
@@ -11,6 +13,8 @@ export interface PrescriptionInput {
   testIds: string[];
   date: string; // e.g. "20 Apr 2026"
   doctorName: string;
+  /** Per-doctor coordinates detected at onboarding; falls back to defaults if null. */
+  coords?: DetectedCoords | null;
 }
 
 /**
@@ -29,6 +33,8 @@ export async function buildPrescriptionPdf(
     testIds,
     date,
   } = input;
+
+  const COORDS = mergePrescriptionCoords(input.coords, PRESCRIPTION_COORDS);
 
   const doc = await PDFDocument.create();
   const page = doc.addPage([595, 842]); // A4 portrait in points

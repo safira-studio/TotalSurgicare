@@ -1,7 +1,9 @@
 import { PDFDocument, StandardFonts, rgb } from "pdf-lib";
 import { detectImageMime, formatDateIN } from "@/lib/pdf/prescription";
 import { formatTimingSummary, type MedicineLineTimings } from "@/lib/data/medicineTiming";
-import { MEDICINE_RX_COORDS as COORDS } from "./medicineRxCoords";
+import { MEDICINE_RX_COORDS } from "./medicineRxCoords";
+import { mergeMedicineRxCoords } from "@/lib/letterhead/mergeCoords";
+import type { DetectedCoords } from "@/lib/letterhead/types";
 
 export type MedicineRxLine = { name: string } & MedicineLineTimings;
 
@@ -21,6 +23,11 @@ export interface MedicineRxPdfInput {
   lines: MedicineRxLine[];
   date: string;
   doctorName: string;
+  /** Refer-to-specialist details; rendered at the bottom if both are provided. */
+  referralName?: string | null;
+  referralMobile?: string | null;
+  /** Per-doctor coordinates detected at onboarding; falls back to defaults if null. */
+  coords?: DetectedCoords | null;
 }
 
 /** Word-wrap for PDF single-column body text. */
@@ -65,7 +72,11 @@ export async function buildMedicineRxPdf(
     lines,
     date,
     doctorName,
+    referralName,
+    referralMobile,
   } = input;
+
+  const COORDS = mergeMedicineRxCoords(input.coords, MEDICINE_RX_COORDS);
 
   const doc = await PDFDocument.create();
   const page = doc.addPage([595, 842]);
@@ -240,6 +251,22 @@ export async function buildMedicineRxPdf(
       color: ink,
     });
     lineIndex++;
+  }
+
+  // --- Referral ---
+  const cleanRefMobile = referralMobile?.trim().replace(/[\s\-().]/g, "") ?? "";
+  if (referralName?.trim() && cleanRefMobile.length >= 7) {
+    lineIndex++;
+    const refYPos = py(yStartFrac + lineIndex * lineFrac);
+    if (refYPos >= 48) {
+      page.drawText(`Refer to: Dr. ${referralName.trim()} (${referralMobile?.trim()})`, {
+        x: px(xFrac),
+        y: refYPos,
+        font: fontBold,
+        size,
+        color: ink,
+      });
+    }
   }
 
   return doc.save();
