@@ -27,6 +27,15 @@ export default function ReceptionPage() {
       setError("Enter a valid age (0–130).");
       return;
     }
+    const cleanMobile = mobile.trim().replace(/[\s\-().+]/g, "");
+    if (!cleanMobile) {
+      setError("Mobile number is required — needed to send the prescription PDF via WhatsApp.");
+      return;
+    }
+    if (!/^\d{10,15}$/.test(cleanMobile)) {
+      setError("Enter a valid mobile number (10–15 digits, no letters).");
+      return;
+    }
 
     setSubmitting(true);
     try {
@@ -163,15 +172,22 @@ export default function ReceptionPage() {
         </div>
         <div>
           <label htmlFor="rx-mobile" className={lux.label}>
-            Mobile (optional)
+            Mobile *
           </label>
           <input
             id="rx-mobile"
             className={`mt-2 ${lux.input}`}
-            placeholder="10-digit Indian mobile"
+            placeholder="e.g. 98765 43210"
+            type="tel"
+            inputMode="numeric"
+            autoComplete="tel"
             value={mobile}
             onChange={(e) => setMobile(e.target.value)}
+            required
           />
+          <p className="mt-1.5 text-[11px] text-stone-500">
+            Used to send the prescription PDF via WhatsApp after the visit.
+          </p>
         </div>
         <div>
           <label htmlFor="rx-allergies" className={lux.label}>
