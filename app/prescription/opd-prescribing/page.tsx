@@ -552,7 +552,9 @@ function LiveRxPreview({
       }}
     >
       {/* Backdrop */}
-      <div
+      <button
+        type="button"
+        aria-label="Close preview"
         onClick={closeSheet}
         style={{
           position: "absolute",
@@ -561,6 +563,9 @@ function LiveRxPreview({
           backdropFilter: "blur(2px)",
           opacity: sheetVisible ? 1 : 0,
           transition: "opacity 0.3s",
+          border: "none",
+          cursor: "default",
+          padding: 0,
         }}
       />
       {/* Sheet */}
