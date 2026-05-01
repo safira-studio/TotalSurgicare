@@ -4,6 +4,19 @@ import { PRESCRIPTION_COORDS } from "./coords";
 import { mergePrescriptionCoords } from "@/lib/letterhead/mergeCoords";
 import type { DetectedCoords } from "@/lib/letterhead/types";
 
+/** Doctor contact block rendered on PDFs when the letterhead is a plain design. */
+export interface DoctorHeaderInfo {
+  name: string;
+  clinicName?: string | null;
+  phone?: string | null;
+  regNo?: string | null;
+  email?: string | null;
+  /** Horizontal position as a 0–1 fraction of page width (default 0.50). */
+  xFrac?: number | null;
+  /** Vertical position as a 0–1 fraction of page height from the top (default 0.04). */
+  yFrac?: number | null;
+}
+
 export interface PrescriptionInput {
   letterheadBytes: Uint8Array;
   letterheadMime: "image/png" | "image/jpeg";
@@ -13,6 +26,11 @@ export interface PrescriptionInput {
   testIds: string[];
   date: string; // e.g. "20 Apr 2026"
   doctorName: string;
+  /**
+   * When provided the doctor's info block is printed in the PDF header
+   * (used when the uploaded letterhead is a plain/blank design with no info printed on it).
+   */
+  doctorHeaderInfo?: DoctorHeaderInfo | null;
   /** Per-doctor coordinates detected at onboarding; falls back to defaults if null. */
   coords?: DetectedCoords | null;
 }
@@ -32,6 +50,7 @@ export async function buildPrescriptionPdf(
     patientMobile,
     testIds,
     date,
+    doctorHeaderInfo,
   } = input;
 
   const COORDS = mergePrescriptionCoords(input.coords, PRESCRIPTION_COORDS);
@@ -66,6 +85,68 @@ export async function buildPrescriptionPdf(
   function py(yFrac: number) {
     return height - yFrac * height;
   }
+
+  // ── Doctor header block ────────────────────────────────────────────────────
+  // Rendered when the letterhead is a plain design with no doctor info printed.
+  if (doctorHeaderInfo) {
+    const hx = px(doctorHeaderInfo.xFrac ?? 0.50);
+    let hy = py(doctorHeaderInfo.yFrac ?? 0.042);
+    const lineStep = 19;
+
+    const normalName = doctorHeaderInfo.name.replace(/^(dr\.?\s*)+/i, "").trim();
+    page.drawText(`Dr. ${normalName}`, {
+      x: hx,
+      y: hy,
+      font: fontBold,
+      size: 13,
+      color: rgb(0.04, 0.04, 0.04),
+    });
+    hy -= lineStep;
+
+    if (doctorHeaderInfo.clinicName?.trim()) {
+      page.drawText(doctorHeaderInfo.clinicName.trim(), {
+        x: hx,
+        y: hy,
+        font: fontNormal,
+        size: 10,
+        color: ink,
+      });
+      hy -= lineStep - 3;
+    }
+
+    if (doctorHeaderInfo.phone?.trim()) {
+      page.drawText(`Mob: ${doctorHeaderInfo.phone.trim()}`, {
+        x: hx,
+        y: hy,
+        font: fontNormal,
+        size: 9,
+        color: ink,
+      });
+      hy -= lineStep - 3;
+    }
+
+    if (doctorHeaderInfo.regNo?.trim()) {
+      page.drawText(`Reg. No.: ${doctorHeaderInfo.regNo.trim()}`, {
+        x: hx,
+        y: hy,
+        font: fontNormal,
+        size: 9,
+        color: ink,
+      });
+      hy -= lineStep - 3;
+    }
+
+    if (doctorHeaderInfo.email?.trim()) {
+      page.drawText(doctorHeaderInfo.email.trim(), {
+        x: hx,
+        y: hy,
+        font: fontNormal,
+        size: 9,
+        color: ink,
+      });
+    }
+  }
+  // ──────────────────────────────────────────────────────────────────────────
 
   // --- Name ---
   page.drawText(patientName, {

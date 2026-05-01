@@ -6,10 +6,12 @@ import Link from "next/link";
 import { ChevronDown, LayoutDashboard, UserPlus, Stethoscope, LogOut } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
 import { cn } from "@/lib/utils";
+import ProfileDrawer from "./ProfileDrawer";
 
 interface Props {
   doctorName?: string;
   clinicName: string;
+  onProfileSaved?: () => void;
 }
 
 const NAV_ITEMS = [
@@ -24,11 +26,12 @@ function isActive(pathname: string, href: string) {
   return pathname === href || pathname.startsWith(`${href}/`);
 }
 
-export default function PrescriptionHeader({ doctorName, clinicName }: Props) {
+export default function PrescriptionHeader({ doctorName, clinicName, onProfileSaved }: Props) {
   const router = useRouter();
   const pathname = usePathname() ?? "";
   const [open, setOpen] = useState(false);
   const [loggingOut, setLoggingOut] = useState(false);
+  const [profileOpen, setProfileOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   const activeItem = NAV_ITEMS.find((item) => isActive(pathname, item.href));
@@ -59,30 +62,57 @@ export default function PrescriptionHeader({ doctorName, clinicName }: Props) {
     router.refresh();
   }
 
+  // Compute initials from doctorName for the avatar
+  const initials = (doctorName ?? "")
+    .split(" ")
+    .slice(0, 2)
+    .map((w) => w[0]?.toUpperCase() ?? "")
+    .join("") || "Dr";
+
   return (
-    <header
-      className="sticky top-0 z-50"
-      style={{
-        background: "linear-gradient(180deg,#121C2E 0%,#0F1729 55%,#0B1220 100%)",
-        boxShadow: "0 8px 32px -8px rgba(11,18,32,0.45)",
-      }}
-    >
+    <>
+      <ProfileDrawer open={profileOpen} onClose={() => setProfileOpen(false)} onProfileSaved={onProfileSaved} />
+
+      <header
+        className="sticky top-0 z-50"
+        style={{
+          background: "linear-gradient(180deg,#121C2E 0%,#0F1729 55%,#0B1220 100%)",
+          boxShadow: "0 8px 32px -8px rgba(11,18,32,0.45)",
+        }}
+      >
       <div className="mx-auto flex w-full max-w-7xl items-center justify-between gap-3 border-b border-white/[0.06] px-4 py-3 sm:px-5 lg:px-6">
 
-        {/* ── Brand ─────────────────────────────────────────────── */}
+        {/* ── Brand + Profile button ────────────────────────────── */}
         <div className="flex min-w-0 flex-1 items-center gap-3">
-          <div
-            className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl text-sm font-bold text-white shadow-md"
+          {/* Clickable avatar — opens profile drawer */}
+          <button
+            type="button"
+            onClick={() => setProfileOpen(true)}
+            title="View / edit your profile"
+            aria-label="Open profile"
+            className="group relative flex h-9 w-9 shrink-0 items-center justify-center rounded-xl text-sm font-bold text-white shadow-md transition-all hover:scale-105 hover:shadow-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-[#7FD9E6]"
             style={{ background: "linear-gradient(135deg,#F4A300 0%,#E49501 100%)" }}
           >
-            Rx
-          </div>
+            {initials}
+            {/* Subtle edit indicator on hover */}
+            <span className="absolute -bottom-0.5 -right-0.5 flex h-3.5 w-3.5 items-center justify-center rounded-full bg-[#00A9B7] opacity-0 shadow transition-opacity group-hover:opacity-100">
+              <svg className="h-2 w-2 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M15.232 5.232l3.536 3.536M9 13l6.768-6.768a2 2 0 112.828 2.828L11.828 15.828A2 2 0 0110 16.414H8v-2a2 2 0 01.586-1.414z" />
+              </svg>
+            </span>
+          </button>
+
           <div className="min-w-0">
             <p className="truncate text-sm font-bold leading-tight text-white">{clinicName}</p>
             {doctorName && (
-              <p className="truncate text-xs font-medium" style={{ color: "#7FD9E6" }}>
+              <button
+                type="button"
+                onClick={() => setProfileOpen(true)}
+                className="truncate text-xs font-medium transition-colors hover:text-white/90 focus:outline-none"
+                style={{ color: "#7FD9E6" }}
+              >
                 {doctorName}
-              </p>
+              </button>
             )}
           </div>
         </div>
@@ -200,5 +230,6 @@ export default function PrescriptionHeader({ doctorName, clinicName }: Props) {
 
       </div>
     </header>
+    </>
   );
 }

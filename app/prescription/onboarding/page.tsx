@@ -4,6 +4,8 @@ import { useState, useRef } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { Label } from "@/components/ui/label";
 import { cn } from "@/lib/utils";
 
 const MAX_SIZE_MB = 4;
@@ -19,6 +21,9 @@ export default function OnboardingPage() {
   const [validationError, setValidationError] = useState<string | null>(null);
   const [uploading, setUploading] = useState(false);
   const [serverError, setServerError] = useState<string | null>(null);
+  // True = letterhead already has doctor name/clinic/contact printed on it.
+  // False (default) = blank design; the PDF builder will overlay doctor info.
+  const [letterheadHasDoctorInfo, setLetterheadHasDoctorInfo] = useState(false);
 
   function handleFileChange(e: React.ChangeEvent<HTMLInputElement>) {
     setValidationError(null);
@@ -59,6 +64,7 @@ export default function OnboardingPage() {
 
     const formData = new FormData();
     formData.append("file", selectedFile);
+    formData.append("letterhead_has_doctor_info", String(letterheadHasDoctorInfo));
 
     const res = await fetch("/api/prescription/letterhead", {
       method: "POST",
@@ -154,6 +160,43 @@ export default function OnboardingPage() {
             {serverError}
           </div>
         )}
+
+        {/* Letterhead type selector */}
+        <div className="mt-5 rounded-xl border border-gray-200 bg-gray-50 px-4 py-4">
+          <p className="mb-3 text-sm font-medium text-gray-700">
+            Does your letterhead already have your info printed on it?
+          </p>
+          <RadioGroup
+            value={letterheadHasDoctorInfo ? "yes" : "no"}
+            onValueChange={(v) => setLetterheadHasDoctorInfo(v === "yes")}
+            className="space-y-2"
+          >
+            <div className="flex items-start gap-3">
+              <RadioGroupItem value="no" id="has-info-no" className="mt-0.5" />
+              <Label htmlFor="has-info-no" className="cursor-pointer">
+                <span className="text-sm font-medium text-gray-800">
+                  No — it&apos;s a blank / design-only letterhead
+                </span>
+                <p className="text-xs text-gray-500">
+                  Your name, clinic, mobile, registration no. and email will be
+                  automatically added to every prescription PDF.
+                </p>
+              </Label>
+            </div>
+            <div className="flex items-start gap-3">
+              <RadioGroupItem value="yes" id="has-info-yes" className="mt-0.5" />
+              <Label htmlFor="has-info-yes" className="cursor-pointer">
+                <span className="text-sm font-medium text-gray-800">
+                  Yes — my name &amp; clinic info are already printed on it
+                </span>
+                <p className="text-xs text-gray-500">
+                  The PDF will use your letterhead as-is without adding any extra
+                  header text.
+                </p>
+              </Label>
+            </div>
+          </RadioGroup>
+        </div>
 
         <Button
           className="mt-6 w-full"

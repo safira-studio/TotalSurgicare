@@ -8,14 +8,29 @@
 -- 1. doctors table (profile row per auth.users entry)
 -- -----------------------------------------------------------------------
 create table if not exists public.doctors (
-  id            uuid primary key references auth.users(id) on delete cascade,
-  full_name     text not null,
-  clinic_name   text,
-  phone         text not null,          -- WhatsApp number (10 digits)
-  reg_no        text,
-  letterhead_path text,                 -- Storage path inside 'letterheads' bucket
-  created_at    timestamptz default now()
+  id                        uuid primary key references auth.users(id) on delete cascade,
+  full_name                 text not null,
+  clinic_name               text,
+  phone                     text not null,          -- WhatsApp number (10 digits)
+  reg_no                    text,
+  letterhead_path           text,                   -- Storage path inside 'letterheads' bucket
+  letterhead_has_doctor_info boolean not null default false,  -- true = letterhead already has name/clinic/contact printed; false = PDF overlay adds it
+  created_at                timestamptz default now()
 );
+
+-- Migration for existing deployments (safe to run on an already-created table):
+alter table if exists public.doctors
+  add column if not exists letterhead_has_doctor_info boolean not null default false;
+
+-- Horizontal offset (0–1 fraction of page width) for the doctor info block on
+-- blank letterheads. Default 0.50 puts it right of centre, safely past most logos.
+alter table if exists public.doctors
+  add column if not exists doctor_header_xfrac float not null default 0.50;
+
+-- Vertical offset (0–1 fraction of page height from top) for the doctor info block.
+-- Default 0.04 = 4% from the top, sitting in the letterhead header band.
+alter table if exists public.doctors
+  add column if not exists doctor_header_yfrac float not null default 0.04;
 
 comment on table public.doctors is
   'One row per registered doctor; mirrors auth.users via id FK.';

@@ -59,11 +59,27 @@ export async function POST(req: Request) {
   const admin = createAdminClient();
 
   // --- Fetch doctor profile ---
-  const { data: doctor, error: doctorError } = await admin
+  let { data: doctor, error: doctorError } = await admin
     .from("doctors")
-    .select("full_name, clinic_name, phone, letterhead_path")
+    .select("full_name, clinic_name, phone, reg_no, letterhead_path, letterhead_has_doctor_info, doctor_header_xfrac")
     .eq("id", user.id)
     .single();
+
+  // Graceful fallback if new position columns not yet migrated
+  if (doctorError?.code === "PGRST204") {
+    ({ data: doctor, error: doctorError } = await admin
+      .from("doctors")
+      .select("full_name, clinic_name, phone, reg_no, letterhead_path, letterhead_has_doctor_info, doctor_header_xfrac")
+      .eq("id", user.id)
+      .single());
+  }
+  if (doctorError?.code === "PGRST204") {
+    ({ data: doctor, error: doctorError } = await admin
+      .from("doctors")
+      .select("full_name, clinic_name, phone, reg_no, letterhead_path, letterhead_has_doctor_info")
+      .eq("id", user.id)
+      .single());
+  }
 
   if (doctorError || !doctor) {
     return NextResponse.json({ error: "Doctor profile not found" }, { status: 404 });
@@ -99,6 +115,21 @@ export async function POST(req: Request) {
   }
 
   // --- Generate PDF ---
+  // When the letterhead is a plain/blank design (no doctor info printed on it),
+  // pass doctor details so the PDF builder can overlay them in the header.
+  const showDoctorHeader = !doctor.letterhead_has_doctor_info;
+  const doctorHeaderInfo = showDoctorHeader
+    ? {
+        name: doctor.full_name,
+        clinicName: doctor.clinic_name ?? null,
+        phone: doctor.phone ?? null,
+        regNo: doctor.reg_no ?? null,
+        email: user.email ?? null,
+        xFrac: (doctor as Record<string, unknown>).doctor_header_xfrac as number ?? 0.50,
+        yFrac: (doctor as Record<string, unknown>).doctor_header_yfrac as number ?? 0.04,
+      }
+    : null;
+
   const date = formatDateIN();
   let pdfBytes: Uint8Array;
   try {
@@ -111,6 +142,7 @@ export async function POST(req: Request) {
       testIds,
       date,
       doctorName: doctor.full_name,
+      doctorHeaderInfo,
     });
   } catch (e: unknown) {
     const msg = e instanceof Error ? e.message : "PDF generation failed";

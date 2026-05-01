@@ -30,6 +30,11 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "No file provided" }, { status: 400 });
   }
 
+  // "true" means the letterhead already has the doctor's name/clinic/contact
+  // info printed on it, so the PDF builder should NOT add an overlay.
+  const letterheadHasDoctorInfo =
+    (formData.get("letterhead_has_doctor_info") as string | null) === "true";
+
   if (!ACCEPTED_MIMES.includes(file.type)) {
     return NextResponse.json(
       { error: "Only PNG and JPG files are accepted." },
@@ -71,25 +76,55 @@ export async function POST(req: Request) {
   const mimeType = file.type === "image/png" ? "image/png" : "image/jpeg";
   const detectedCoords = await detectLetterheadFields(buffer, mimeType);
 
-  const { error: dbError } = await admin
+  // Try to save all fields including the new letterhead_has_doctor_info column.
+  // If the column doesn't exist yet in the DB (schema not migrated), fall back
+  // to saving only the core fields so the upload never fails for that reason.
+  const fullUpdate = await admin
     .from("doctors")
     .update({
       letterhead_path: storagePath,
       letterhead_coords: detectedCoords ?? null,
+      letterhead_has_doctor_info: letterheadHasDoctorInfo,
     })
     .eq("id", user.id);
 
-  if (dbError) {
-    console.error("DB update error:", dbError);
-    return NextResponse.json(
-      { error: "Failed to save letterhead reference." },
-      { status: 500 },
-    );
+  if (fullUpdate.error) {
+    // PGRST204 = column not found in schema cache → column not yet migrated.
+    if (fullUpdate.error.code === "PGRST204") {
+      console.warn(
+        "letterhead_has_doctor_info column missing – falling back to core-fields update. " +
+        "Run the migration: ALTER TABLE public.doctors ADD COLUMN IF NOT EXISTS letterhead_has_doctor_info boolean NOT NULL DEFAULT false;",
+      );
+
+      const fallbackUpdate = await admin
+        .from("doctors")
+        .update({
+          letterhead_path: storagePath,
+          letterhead_coords: detectedCoords ?? null,
+        })
+        .eq("id", user.id);
+
+      if (fallbackUpdate.error) {
+        console.error("DB update error (fallback):", fallbackUpdate.error);
+        return NextResponse.json(
+          { error: "Failed to save letterhead reference." },
+          { status: 500 },
+        );
+      }
+    } else {
+      console.error("DB update error:", fullUpdate.error);
+      return NextResponse.json(
+        { error: "Failed to save letterhead reference." },
+        { status: 500 },
+      );
+    }
   }
 
   return NextResponse.json({
     ok: true,
     path: storagePath,
     coordsDetected: detectedCoords !== null,
+    // Let the client know whether the flag was actually persisted
+    doctorInfoFlagSaved: fullUpdate.error === null,
   });
 }

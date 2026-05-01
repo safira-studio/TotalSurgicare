@@ -55,6 +55,19 @@ interface DiagnosisRow {
   name: string;
 }
 
+/** Doctor profile fetched once on mount; drives blank-letterhead preview. */
+interface DoctorPreviewInfo {
+  fullName: string;
+  clinicName: string;
+  phone: string;
+  regNo: string;
+  email: string;
+  letterheadUrl: string | null;
+  letterheadHasDoctorInfo: boolean;
+  doctorHeaderXFrac: number;
+  doctorHeaderYFrac: number;
+}
+
 type Step = "edit" | "preview" | "sent";
 
 const MOBILE_NOTE_W = 156;
@@ -774,6 +787,9 @@ function wrapText(text: string, maxChars: number, maxLines: number): string[] {
  * Browser-side letterhead preview for OPD medicine prescriptions.
  * Mirrors the coordinate logic in buildMedicineRxPdf so the preview
  * closely matches the generated PDF.
+ * When doctorInfo.letterheadHasDoctorInfo === false (blank letterhead) the
+ * preview renders a fully-labelled doctor + patient header instead of using
+ * the coordinate-based approach designed for pre-printed forms.
  */
 function MedicineRxLetterheadPreview({
   letterheadUrl,
@@ -783,6 +799,7 @@ function MedicineRxLetterheadPreview({
   lines,
   referralName,
   referralMobile,
+  doctorInfo,
 }: {
   letterheadUrl: string | null;
   patient: ClinicPatient;
@@ -791,50 +808,65 @@ function MedicineRxLetterheadPreview({
   lines: RxLine[];
   referralName: string;
   referralMobile: string;
+  doctorInfo: DoctorPreviewInfo | null;
 }) {
   const C = MEDICINE_RX_COORDS;
   const ptToCqh = (pt: number) => `${(pt / 842) * 130}cqh`;
+  const isBlank = doctorInfo !== null && !doctorInfo.letterheadHasDoctorInfo;
 
-  type TextItem = { x: number; y: number; text: string; bold?: boolean; size: number };
-  const items: TextItem[] = [];
+  const today = new Date().toLocaleDateString("en-IN", {
+    day: "2-digit", month: "short", year: "numeric", timeZone: "Asia/Kolkata",
+  });
+
+  // ── Shared body items (complaints / diagnoses / medicines / referral) ──────
+  type TextItem = { x: number; y: number; text: string; bold?: boolean; size: number; color?: string };
+  const bodyItems: TextItem[] = [];
 
   const lineH = C.medsStart.lineFrac * 0.92;
-  let yFrac = C.medsStart.yStartFrac - 0.02;
   const bodySize = C.medsStart.size - 1;
 
-  items.push({ x: C.medsStart.xFrac, y: yFrac, text: "Complaints:", bold: true, size: bodySize + 1 });
+  // For blank letterheads the body starts higher because we draw the patient
+  // header ourselves; for pre-printed we use the default yStartFrac.
+  const hasAllergies = !!patient.allergies?.trim();
+  const bodyStartYFrac = isBlank
+    ? (hasAllergies ? 0.357 : 0.331)
+    : C.medsStart.yStartFrac - 0.02;
+
+  let yFrac = bodyStartYFrac;
+
+  bodyItems.push({ x: C.medsStart.xFrac, y: yFrac, text: "Complaints:", bold: true, size: bodySize + 1 });
   yFrac += lineH;
   const complaintWrapped = wrapText(complaints.trim() || "—", 88, 8);
   for (const cl of complaintWrapped) {
-    items.push({ x: C.medsStart.xFrac + 0.02, y: yFrac, text: cl, size: bodySize });
+    bodyItems.push({ x: C.medsStart.xFrac + 0.02, y: yFrac, text: cl, size: bodySize });
     yFrac += lineH * 0.9;
   }
   yFrac += lineH * 0.35;
 
-  items.push({ x: C.medsStart.xFrac, y: yFrac, text: "Diagnoses:", bold: true, size: bodySize + 1 });
+  bodyItems.push({ x: C.medsStart.xFrac, y: yFrac, text: "Diagnoses:", bold: true, size: bodySize + 1 });
   yFrac += lineH;
   const dxList = dxLines.length > 0 ? dxLines.map((d) => d.name) : ["—"];
   for (const dx of dxList.slice(0, 14)) {
     if (yFrac > 0.94) break;
-    const label = dx.length > 92 ? `${dx.slice(0, 90)}…` : dx;
-    items.push({ x: C.medsStart.xFrac + 0.02, y: yFrac, text: `• ${label}`, size: bodySize });
+    const lbl = dx.length > 92 ? `${dx.slice(0, 90)}…` : dx;
+    bodyItems.push({ x: C.medsStart.xFrac + 0.02, y: yFrac, text: `• ${lbl}`, size: bodySize });
     yFrac += lineH * 0.92;
   }
   yFrac += lineH * 0.45;
 
-  items.push({ x: C.medsStart.xFrac, y: yFrac, text: "Medicines:", bold: true, size: bodySize + 1 });
+  bodyItems.push({ x: C.medsStart.xFrac, y: yFrac, text: "Medicines:", bold: true, size: bodySize + 1 });
   yFrac += lineH;
   for (const l of lines) {
     if (yFrac > 0.94) break;
     const timing = formatTimingSummary(l.timings);
-    items.push({ x: C.medsStart.xFrac + 0.02, y: yFrac, text: `• ${l.name} — ${timing}`, size: bodySize });
+    bodyItems.push({ x: C.medsStart.xFrac + 0.02, y: yFrac, text: `• ${l.name} — ${timing}`, size: bodySize });
     yFrac += C.medsStart.lineFrac;
   }
 
   const cleanReferralMobile = referralMobile.trim().replace(/[\s\-().]/g, "");
   if (referralName.trim() && cleanReferralMobile.length >= 7) {
     yFrac += lineH * 0.5;
-    items.push({
+    bodyItems.push({
       x: C.medsStart.xFrac,
       y: yFrac,
       text: `Refer to: Dr. ${referralName.trim()} (${referralMobile.trim()})`,
@@ -842,10 +874,6 @@ function MedicineRxLetterheadPreview({
       size: bodySize,
     });
   }
-
-  const today = new Date().toLocaleDateString("en-IN", {
-    day: "2-digit", month: "short", year: "numeric", timeZone: "Asia/Kolkata",
-  });
 
   const spanStyle = (item: TextItem): React.CSSProperties => ({
     position: "absolute",
@@ -856,8 +884,16 @@ function MedicineRxLetterheadPreview({
     lineHeight: 1,
     transform: "translateY(-100%)",
     whiteSpace: "nowrap",
-    color: "#0d0d0d",
+    color: item.color ?? "#0d0d0d",
   });
+
+  // ── Helper: a grey label + bold dark value side-by-side ───────────────────
+  const LV = ({ label, value, style }: { label: string; value: string; style: React.CSSProperties }) => (
+    <span style={{ ...style, position: "absolute", lineHeight: 1, whiteSpace: "nowrap", transform: "translateY(-100%)" }}>
+      <span style={{ color: "#6b6b6b", fontWeight: 400 }}>{label}</span>
+      <span style={{ color: "#0d0d0d", fontWeight: 700 }}>{value}</span>
+    </span>
+  );
 
   return (
     <div
@@ -878,53 +914,106 @@ function MedicineRxLetterheadPreview({
         </div>
       )}
 
-      <div
-        className="absolute inset-0"
-        style={{ fontFamily: "Helvetica, Arial, sans-serif" }}
-      >
-        {/* Patient name */}
-        <span style={{ position: "absolute", left: `${C.name.xFrac * 100}%`, top: `${C.name.yFrac * 100}%`, fontSize: ptToCqh(C.name.size), fontWeight: 700, lineHeight: 1, transform: "translateY(-100%)", whiteSpace: "nowrap", color: "#0d0d0d" }}>
-          {patient.full_name}
-        </span>
+      <div className="absolute inset-0" style={{ fontFamily: "Helvetica, Arial, sans-serif" }}>
 
-        {/* Age */}
-        <span style={{ position: "absolute", left: `${C.age.xFrac * 100}%`, top: `${C.age.yFrac * 100}%`, fontSize: ptToCqh(C.age.size), lineHeight: 1, transform: "translateY(-100%)", whiteSpace: "nowrap", color: "#0d0d0d" }}>
-          {patient.age} yrs
-        </span>
+        {isBlank && doctorInfo ? (
+          // ── BLANK LETTERHEAD: structured doctor + patient header ───────────
+          <>
+            {/* Doctor block — same math as PDF: lineStep = 13pt, then 12pt, then 12pt on A4 (842pt) */}
+            {(() => {
+              const xPct = `${(doctorInfo.doctorHeaderXFrac ?? 0.50) * 100}%`;
+              const yBase = (doctorInfo.doctorHeaderYFrac ?? 0.04) * 100;
+              // Line offsets in % of A4 height (842pt) — matches PDF: 19pt / 16pt / 16pt
+              const l1 = yBase + (19 / 842) * 100;
+              const l2 = l1 + (16 / 842) * 100;
+              const l3 = l2 + (16 / 842) * 100;
+              return (
+                <>
+                  <span style={{ position: "absolute", left: xPct, top: `${yBase}%`, fontSize: ptToCqh(13), fontWeight: 700, lineHeight: 1, whiteSpace: "nowrap", color: "#0d0d0d" }}>
+                    Dr. {doctorInfo.fullName.replace(/^(dr\.?\s*)+/i, "").trim()}
+                  </span>
+                  {doctorInfo.clinicName && (
+                    <span style={{ position: "absolute", left: xPct, top: `${l1}%`, fontSize: ptToCqh(10), lineHeight: 1, whiteSpace: "nowrap", color: "#222" }}>
+                      {doctorInfo.clinicName}
+                    </span>
+                  )}
+                  <span style={{ position: "absolute", left: xPct, top: `${l2}%`, fontSize: ptToCqh(9), lineHeight: 1, whiteSpace: "nowrap", color: "#444" }}>
+                    {[doctorInfo.phone && `Mob: ${doctorInfo.phone}`, doctorInfo.regNo && `Reg. No.: ${doctorInfo.regNo}`].filter(Boolean).join("   |   ")}
+                  </span>
+                  {doctorInfo.email && (
+                    <span style={{ position: "absolute", left: xPct, top: `${l3}%`, fontSize: ptToCqh(9), lineHeight: 1, whiteSpace: "nowrap", color: "#444" }}>
+                      {doctorInfo.email}
+                    </span>
+                  )}
+                </>
+              );
+            })()}
 
-        {/* BP */}
-        {patient.bp && (
-          <span style={{ position: "absolute", left: `${C.bp.xFrac * 100}%`, top: `${C.bp.yFrac * 100}%`, fontSize: ptToCqh(C.bp.size), lineHeight: 1, transform: "translateY(-100%)", whiteSpace: "nowrap", color: "#0d0d0d" }}>
-            {patient.bp}
-          </span>
+            {/* Divider 1 — below logo/doctor area */}
+            <div style={{ position: "absolute", left: "6%", right: "6%", top: "20.5%", height: "0.5px", background: "#bbb" }} />
+
+            {/* Patient info strip — labelled fields */}
+            {/* Row 1: Patient Name | Age | Date */}
+            <LV label="Patient Name: " value={patient.full_name}  style={{ left: "7%",  top: "23.3%", fontSize: ptToCqh(10) }} />
+            <LV label="Age: "          value={`${patient.age} yrs`} style={{ left: "40%", top: "23.3%", fontSize: ptToCqh(10) }} />
+            <LV label="Date: "         value={today}               style={{ left: "72%", top: "23.3%", fontSize: ptToCqh(10) }} />
+
+            {/* Row 2: Mobile | Visit ID | BP */}
+            {patient.mobile && (
+              <LV label="Mobile: " value={patient.mobile} style={{ left: "7%", top: "26.3%", fontSize: ptToCqh(10) }} />
+            )}
+            <LV label="Visit ID: " value={patient.public_code} style={{ left: "40%", top: "26.3%", fontSize: ptToCqh(10) }} />
+            {patient.bp && (
+              <LV label="BP: " value={patient.bp} style={{ left: "72%", top: "26.3%", fontSize: ptToCqh(10) }} />
+            )}
+
+            {/* Row 3: Allergies (if present) */}
+            {patient.allergies && (
+              <LV
+                label="Allergies: "
+                value={patient.allergies.length > 60 ? `${patient.allergies.slice(0, 58)}…` : patient.allergies}
+                style={{ left: "7%", top: "29.3%", fontSize: ptToCqh(10) }}
+              />
+            )}
+
+            {/* Divider 2 — before body */}
+            <div style={{ position: "absolute", left: "6%", right: "6%", top: hasAllergies ? "31.6%" : "29%", height: "0.5px", background: "#bbb" }} />
+          </>
+        ) : (
+          // ── PRE-PRINTED LETTERHEAD: coordinate-based patient header ────────
+          <>
+            <span style={{ position: "absolute", left: `${C.name.xFrac * 100}%`, top: `${C.name.yFrac * 100}%`, fontSize: ptToCqh(C.name.size), fontWeight: 700, lineHeight: 1, transform: "translateY(-100%)", whiteSpace: "nowrap", color: "#0d0d0d" }}>
+              {patient.full_name}
+            </span>
+            <span style={{ position: "absolute", left: `${C.age.xFrac * 100}%`, top: `${C.age.yFrac * 100}%`, fontSize: ptToCqh(C.age.size), lineHeight: 1, transform: "translateY(-100%)", whiteSpace: "nowrap", color: "#0d0d0d" }}>
+              {patient.age} yrs
+            </span>
+            {patient.bp && (
+              <span style={{ position: "absolute", left: `${C.bp.xFrac * 100}%`, top: `${C.bp.yFrac * 100}%`, fontSize: ptToCqh(C.bp.size), lineHeight: 1, transform: "translateY(-100%)", whiteSpace: "nowrap", color: "#0d0d0d" }}>
+                {patient.bp}
+              </span>
+            )}
+            <span style={{ position: "absolute", left: `${C.date.xFrac * 100}%`, top: `${C.date.yFrac * 100}%`, fontSize: ptToCqh(C.date.size), lineHeight: 1, transform: "translateY(-100%)", whiteSpace: "nowrap", color: "#0d0d0d" }}>
+              {today}
+            </span>
+            {patient.mobile && (
+              <span style={{ position: "absolute", left: `${C.mobile.xFrac * 100}%`, top: `${C.mobile.yFrac * 100}%`, fontSize: ptToCqh(C.mobile.size), lineHeight: 1, transform: "translateY(-100%)", whiteSpace: "nowrap", color: "#0d0d0d" }}>
+                Mob: {patient.mobile}
+              </span>
+            )}
+            <span style={{ position: "absolute", left: `${C.visitId.xFrac * 100}%`, top: `${C.visitId.yFrac * 100}%`, fontSize: ptToCqh(C.visitId.size), lineHeight: 1, transform: "translateY(-100%)", whiteSpace: "nowrap", color: "#0d0d0d" }}>
+              Visit ID: {patient.public_code}
+            </span>
+            {patient.allergies && (
+              <span style={{ position: "absolute", left: `${C.allergies.xFrac * 100}%`, top: `${C.allergies.yFrac * 100}%`, fontSize: ptToCqh(C.allergies.size), lineHeight: 1, transform: "translateY(-100%)", whiteSpace: "nowrap", color: "#0d0d0d" }}>
+                Allergies: {patient.allergies.length > 90 ? `${patient.allergies.slice(0, 90)}…` : patient.allergies}
+              </span>
+            )}
+          </>
         )}
 
-        {/* Date */}
-        <span style={{ position: "absolute", left: `${C.date.xFrac * 100}%`, top: `${C.date.yFrac * 100}%`, fontSize: ptToCqh(C.date.size), lineHeight: 1, transform: "translateY(-100%)", whiteSpace: "nowrap", color: "#0d0d0d" }}>
-          {today}
-        </span>
-
-        {/* Mobile */}
-        {patient.mobile && (
-          <span style={{ position: "absolute", left: `${C.mobile.xFrac * 100}%`, top: `${C.mobile.yFrac * 100}%`, fontSize: ptToCqh(C.mobile.size), lineHeight: 1, transform: "translateY(-100%)", whiteSpace: "nowrap", color: "#0d0d0d" }}>
-            Mob: {patient.mobile}
-          </span>
-        )}
-
-        {/* Visit ID */}
-        <span style={{ position: "absolute", left: `${C.visitId.xFrac * 100}%`, top: `${C.visitId.yFrac * 100}%`, fontSize: ptToCqh(C.visitId.size), lineHeight: 1, transform: "translateY(-100%)", whiteSpace: "nowrap", color: "#0d0d0d" }}>
-          Visit ID: {patient.public_code}
-        </span>
-
-        {/* Allergies */}
-        {patient.allergies && (
-          <span style={{ position: "absolute", left: `${C.allergies.xFrac * 100}%`, top: `${C.allergies.yFrac * 100}%`, fontSize: ptToCqh(C.allergies.size), lineHeight: 1, transform: "translateY(-100%)", whiteSpace: "nowrap", color: "#0d0d0d" }}>
-            Allergies: {patient.allergies.length > 90 ? `${patient.allergies.slice(0, 90)}…` : patient.allergies}
-          </span>
-        )}
-
-        {/* Body: complaints, diagnoses, medicines */}
-        {items.map((item, i) => (
+        {/* Body: complaints, diagnoses, medicines (both modes) */}
+        {bodyItems.map((item, i) => (
           <span key={i} style={spanStyle(item)}>
             {item.text}
           </span>
@@ -976,14 +1065,24 @@ export default function OpdPrescribingPage() {
   const [referralName, setReferralName] = useState("");
   const [referralMobile, setReferralMobile] = useState("");
 
-  const [letterheadUrl, setLetterheadUrl] = useState<string | null>(null);
-  useEffect(() => {
-    let cancelled = false;
-    fetch("/api/prescription/letterhead-url", { cache: "no-store" })
+  const [doctorInfo, setDoctorInfo] = useState<DoctorPreviewInfo | null>(null);
+  // Convenience alias so existing code that references letterheadUrl still compiles
+  const letterheadUrl = doctorInfo?.letterheadUrl ?? null;
+
+  function fetchDoctorProfile() {
+    fetch("/api/doctor/profile", { cache: "no-store" })
       .then((r) => (r.ok ? r.json() : null))
-      .then((j) => { if (!cancelled && j?.url) setLetterheadUrl(j.url); })
+      .then((j: DoctorPreviewInfo | null) => {
+        if (j && !("error" in (j as object))) setDoctorInfo(j);
+      })
       .catch(() => {});
-    return () => { cancelled = true; };
+  }
+
+  useEffect(() => {
+    fetchDoctorProfile();
+    // Re-fetch whenever the doctor saves their profile in the drawer
+    window.addEventListener("doctor-profile-saved", fetchDoctorProfile);
+    return () => window.removeEventListener("doctor-profile-saved", fetchDoctorProfile);
   }, []);
 
   function resetChartFields() {
@@ -1511,6 +1610,7 @@ export default function OpdPrescribingPage() {
             lines={lines}
             referralName={referralName}
             referralMobile={referralMobile}
+            doctorInfo={doctorInfo}
           />
           <p className="mt-2 text-xs text-stone-400">
             Approximate preview — the final PDF uses exact positions.
