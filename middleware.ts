@@ -9,6 +9,10 @@ const PUBLIC_PRESCRIPTION_PATHS = [
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
+  if (pathname === "/settlements" || pathname === "/settlements/") {
+    return NextResponse.redirect(new URL("/prescription/settlements", request.url));
+  }
+
   // Build request headers that include x-pathname so server components
   // (layouts/pages) can read the current path via headers().get("x-pathname").
   const requestHeaders = new Headers(request.headers);
@@ -70,5 +74,5 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/prescription/:path*", "/api/prescription/:path*", "/opd-prescribing"],
+  matcher: ["/settlements", "/settlements/", "/prescription/:path*", "/api/prescription/:path*", "/opd-prescribing"],
 };

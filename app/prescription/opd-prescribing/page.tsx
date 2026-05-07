@@ -1615,7 +1615,7 @@ export default function OpdPrescribingPage() {
               </a>
             )}
             {result.referralPublicCode && (
-              <p className="rounded-xl border border-stone-200 bg-stone-50 px-3 py-2 text-left text-xs text-stone-800">
+              <div className="rounded-xl border border-stone-200 bg-stone-50 px-3 py-2 text-left text-xs text-stone-800">
                 <span className="font-semibold text-stone-900">Referral ID:</span>{" "}
                 <span className="font-mono tracking-wide">{result.referralPublicCode}</span>
                 {result.referralCompleteUrl && (
@@ -1651,7 +1651,7 @@ export default function OpdPrescribingPage() {
                     </div>
                   </>
                 )}
-              </p>
+              </div>
             )}
             <a
               href={result.signedUrl}

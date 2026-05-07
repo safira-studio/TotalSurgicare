@@ -88,21 +88,17 @@ export default function ReferralsPage() {
     }
   }
 
-  useEffect(() => {
-    void loadOutbound();
-  }, [loadOutbound]);
-
-  async function searchInbound(e?: React.FormEvent) {
-    e?.preventDefault();
+  const fetchInboundFiltered = useCallback(async (code: string, phone: string) => {
     setInLoading(true);
     setInError(null);
     try {
       const params = new URLSearchParams();
-      const c = codeQ.trim();
-      const p = phoneQ.trim();
+      const c = code.trim();
+      const p = phone.trim();
       if (c) params.set("code", c);
       if (!c && p) params.set("phone", p);
-      const res = await fetch(`/api/referrals/inbound?${params.toString()}`);
+      const qs = params.toString();
+      const res = await fetch(qs ? `/api/referrals/inbound?${qs}` : `/api/referrals/inbound`);
       const json = await res.json().catch(() => ({}));
       if (!res.ok) {
         setInError(json.error ?? "Lookup failed.");
@@ -113,6 +109,22 @@ export default function ReferralsPage() {
     } finally {
       setInLoading(false);
     }
+  }, []);
+
+  useEffect(() => {
+    void loadOutbound();
+  }, [loadOutbound]);
+
+  useEffect(() => {
+    if (tab !== "in") return;
+    setCodeQ("");
+    setPhoneQ("");
+    void fetchInboundFiltered("", "");
+  }, [tab, fetchInboundFiltered]);
+
+  async function searchInbound(e?: React.FormEvent) {
+    e?.preventDefault();
+    await fetchInboundFiltered(codeQ, phoneQ);
   }
 
   async function markInboundComplete(referralId: string) {
@@ -132,7 +144,7 @@ export default function ReferralsPage() {
         setInError(json.error ?? "Could not update.");
         return;
       }
-      await searchInbound();
+      await fetchInboundFiltered("", "");
       await loadOutbound();
     } finally {
       setCompleteBusy(null);
@@ -147,17 +159,27 @@ export default function ReferralsPage() {
             Referrals
           </h1>
           <p className="mt-1 text-sm text-stone-600">
-            Track referrals you send and confirm patients referred to your hospital (incoming list uses the
-            receiving hospital you chose when issuing the Rx, or your default site for older referrals).
+            Track referrals you send and confirm patients referred to your hospital (incoming list shows
+            referrals where <span className="font-medium">receiving hospital</span> is yours — open the Incoming tab
+            to load pending items automatically).
           </p>
         </div>
-        <Link
-          href="/prescription"
-          className="text-sm font-semibold underline decoration-teal-600/40 underline-offset-2"
-          style={{ color: Lux.tealDeep }}
-        >
-          ← Dashboard
-        </Link>
+        <div className="flex flex-wrap items-center gap-3">
+          <Link
+            href="/prescription/settlements"
+            className="text-sm font-semibold underline decoration-teal-600/40 underline-offset-2"
+            style={{ color: Lux.tealDeep }}
+          >
+            Settlements →
+          </Link>
+          <Link
+            href="/prescription"
+            className="text-sm font-semibold underline decoration-teal-600/40 underline-offset-2"
+            style={{ color: Lux.tealDeep }}
+          >
+            ← Dashboard
+          </Link>
+        </div>
       </div>
 
       <div className="mb-6 flex gap-2 rounded-xl bg-stone-100/80 p-1">
@@ -295,7 +317,7 @@ export default function ReferralsPage() {
               onClick={() => {
                 setCodeQ("");
                 setPhoneQ("");
-                void searchInbound();
+                void fetchInboundFiltered("", "");
               }}
               className="rounded-xl border border-stone-300 px-4 py-2.5 text-sm font-semibold text-stone-700"
             >
@@ -309,8 +331,11 @@ export default function ReferralsPage() {
           )}
           {inbound.length === 0 && !inLoading && !inError && (
             <p className="text-sm text-stone-500">
-              No pending referrals match this search. Try another ID or tap &quot;Show all pending&quot; for
-              everything addressed to your clinic mobile.
+              No pending referrals for <span className="font-medium">your hospital</span> right now. On the
+              referring account, check <span className="font-medium">I referred out</span> — if nothing appears,
+              the Rx may not have included a valid referral (specialist name + mobile + receiving hospital). If you
+              see a row there but not here, confirm this login&apos;s hospital is the <span className="font-medium">receiving</span>{" "}
+              hospital on that referral.
             </p>
           )}
           {inbound.map((r) => (

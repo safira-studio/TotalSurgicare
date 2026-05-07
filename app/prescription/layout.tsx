@@ -7,7 +7,11 @@ import PrescriptionHeader from "./PrescriptionHeader";
 const ONBOARDING_PATHS = ["/prescription/onboarding"];
 const AUTH_PATHS = ["/prescription/login", "/prescription/signup"];
 /** Reception can register patients before letterhead exists */
-const LETTERHEAD_OPTIONAL_PATHS = ["/prescription/reception", "/prescription/referrals"];
+const LETTERHEAD_OPTIONAL_PATHS = [
+  "/prescription/reception",
+  "/prescription/referrals",
+  "/prescription/settlements",
+];
 
 export default async function PrescriptionLayout({
   children,
