@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import Link from "next/link";
-import { ChevronDown, LayoutDashboard, UserPlus, Stethoscope, LogOut } from "lucide-react";
+import { ChevronDown, LayoutDashboard, UserPlus, Stethoscope, LogOut, GitBranch } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
 import { cn } from "@/lib/utils";
 import ProfileDrawer from "./ProfileDrawer";
@@ -17,12 +17,14 @@ interface Props {
 const NAV_ITEMS = [
   { href: "/prescription", label: "Dashboard", icon: LayoutDashboard },
   { href: "/prescription/reception", label: "Reception", icon: UserPlus },
+  { href: "/prescription/referrals", label: "Referrals", icon: GitBranch },
   { href: "/opd-prescribing", label: "OPD prescribing", icon: Stethoscope },
 ] as const;
 
 function isActive(pathname: string, href: string) {
   if (href === "/prescription") return pathname === "/prescription" || pathname === "/prescription/";
   if (href === "/opd-prescribing") return pathname.includes("opd-prescribing");
+  if (href === "/prescription/referrals") return pathname.startsWith("/prescription/referrals");
   return pathname === href || pathname.startsWith(`${href}/`);
 }
 

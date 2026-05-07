@@ -10,6 +10,20 @@ import {
 import { normalizeIndianMobile, waUrl } from "@/lib/phone";
 import { clinicFooter } from "@/lib/clinic";
 import { hasAnyTimingSelected } from "@/lib/data/medicineTiming";
+import { getAppOrigin } from "@/lib/referralOrigin";
+import { randomReferralPublicCode } from "@/lib/referralCodes";
+import { requireDoctorHospitalId } from "@/lib/doctorHospital";
+
+async function mintUniquePublicCode(
+  admin: ReturnType<typeof createAdminClient>,
+): Promise<string> {
+  for (let attempt = 0; attempt < 14; attempt++) {
+    const code = randomReferralPublicCode();
+    const { data } = await admin.from("referrals").select("id").eq("public_code", code).maybeSingle();
+    if (!data) return code;
+  }
+  throw new Error("Could not allocate a unique referral ID");
+}
 
 const lineSchema = z.object({
   medicineId: z.string().uuid(),
@@ -34,6 +48,8 @@ const bodySchema = z.object({
   lines: z.array(lineSchema).min(1, "Add at least one medicine"),
   referralName: z.string().max(120).optional().default(""),
   referralMobile: z.string().max(20).optional().default(""),
+  /** Required when referral name + mobile are set — receiving hospital (onboarded site). */
+  toHospitalId: z.string().uuid().optional(),
 });
 
 export async function POST(req: Request) {
@@ -62,7 +78,8 @@ export async function POST(req: Request) {
     );
   }
 
-  const { visitCode, lines, complaints, diagnoses, referralName, referralMobile } = parsed.data;
+  const { visitCode, lines, complaints, diagnoses, referralName, referralMobile, toHospitalId } =
+    parsed.data;
   const code = visitCode.trim().replace(/\s+/g, "").toUpperCase();
 
   for (const line of lines) {
@@ -78,6 +95,11 @@ export async function POST(req: Request) {
   }
 
   const admin = createAdminClient();
+
+  const hid = await requireDoctorHospitalId(admin, user.id);
+  if (!hid.ok) {
+    return NextResponse.json({ error: hid.error }, { status: hid.status });
+  }
 
   let { data: doctor, error: doctorError } = await admin
     .from("doctors")
@@ -116,6 +138,7 @@ export async function POST(req: Request) {
     .from("clinic_patients")
     .select("id, public_code, full_name, age, bp, mobile, allergies")
     .eq("public_code", code)
+    .eq("hospital_id", hid.hospitalId)
     .maybeSingle();
 
   if (pErr || !patient) {
@@ -192,6 +215,65 @@ export async function POST(req: Request) {
   const complaintsTrimmed = complaints.trim();
   const diagnosisNames = resolvedDiagnoses.map((d) => d.name);
 
+  const refNameTrim = referralName.trim();
+  const targetMobileNorm = refNameTrim
+    ? normalizeIndianMobile(referralMobile.trim())
+    : { ok: false as const };
+  const hasReferralLine = refNameTrim.length > 0 && targetMobileNorm.ok;
+  const hasReferralTracking = hasReferralLine;
+
+  if (hasReferralTracking) {
+    if (!toHospitalId) {
+      return NextResponse.json(
+        { error: "Choose the receiving hospital for this referral (onboarded site)." },
+        { status: 400 },
+      );
+    }
+    const { data: destHospital, error: hErr } = await admin
+      .from("hospitals")
+      .select("id")
+      .eq("id", toHospitalId)
+      .eq("active", true)
+      .maybeSingle();
+    if (hErr || !destHospital) {
+      return NextResponse.json(
+        { error: "Receiving hospital is invalid or inactive." },
+        { status: 400 },
+      );
+    }
+  }
+
+  const patientMobileNorm = patient.mobile
+    ? normalizeIndianMobile(String(patient.mobile))
+    : { ok: false as const };
+
+  let referralPublicCode: string | null = null;
+  let referralCompleteUrl: string | null = null;
+  let completionToken: string | null = null;
+  let referralTracking:
+    | { publicCode: string }
+    | null = null;
+
+  if (hasReferralTracking) {
+    try {
+      referralPublicCode = await mintUniquePublicCode(admin);
+      completionToken = crypto.randomUUID();
+      const compactToken = completionToken.replace(/-/g, "");
+      const origin = getAppOrigin(req);
+      // Use compact token in URLs so PDF viewers don't truncate wrapped lines.
+      referralCompleteUrl = `${origin}/referral/complete?t=${compactToken}`;
+      referralTracking = {
+        publicCode: referralPublicCode,
+      };
+    } catch (e) {
+      console.error("referral mint:", e);
+      referralPublicCode = null;
+      referralCompleteUrl = null;
+      completionToken = null;
+      referralTracking = null;
+    }
+  }
+
   const { data: letterheadData, error: letterheadError } = await admin.storage
     .from("letterheads")
     .download(doctor.letterhead_path);
@@ -257,6 +339,7 @@ export async function POST(req: Request) {
       doctorHeaderInfo,
       referralName: referralName || null,
       referralMobile: referralMobile || null,
+      referralTracking,
     });
   } catch (e: unknown) {
     const msg = e instanceof Error ? e.message : "PDF generation failed";
@@ -300,11 +383,14 @@ export async function POST(req: Request) {
   const { error: dbError } = await admin.from("medicine_prescriptions").insert({
     id: rxId,
     doctor_id: user.id,
+    hospital_id: hid.hospitalId,
     clinic_patient_id: patient.id,
     lines: resolvedLines,
     complaints: complaintsTrimmed || null,
     diagnoses_lines: resolvedDiagnoses,
     pdf_path: pdfPath,
+    referral_name: hasReferralLine ? refNameTrim : null,
+    referral_mobile: targetMobileNorm?.ok ? targetMobileNorm.digits : null,
   });
 
   if (dbError) {
@@ -316,6 +402,34 @@ export async function POST(req: Request) {
       .eq("id", patient.id);
     if (doneErr) {
       console.error("clinic_patients medicine_rx_done_at update:", doneErr);
+    }
+
+    if (
+      hasReferralTracking &&
+      referralPublicCode &&
+      completionToken &&
+      targetMobileNorm?.ok &&
+      toHospitalId
+    ) {
+      const { error: refErr } = await admin.from("referrals").insert({
+        medicine_prescription_id: rxId,
+        referring_doctor_id: user.id,
+        from_hospital_id: hid.hospitalId,
+        to_hospital_id: toHospitalId,
+        referring_doctor_name: doctor.full_name,
+        referring_clinic_name: doctor.clinic_name ?? null,
+        patient_name: patient.full_name,
+        patient_mobile: patientMobileNorm.ok ? patientMobileNorm.digits : null,
+        target_doctor_name: refNameTrim,
+        target_doctor_mobile: targetMobileNorm.digits,
+        diagnoses_summary: diagnosisNames.join(", ").slice(0, 2000),
+        complaints_snippet: complaintsTrimmed ? complaintsTrimmed.slice(0, 800) : null,
+        public_code: referralPublicCode,
+        completion_token: completionToken,
+      });
+      if (refErr) {
+        console.error("referrals insert:", refErr);
+      }
     }
   }
 
@@ -330,11 +444,18 @@ export async function POST(req: Request) {
     ? normalizeIndianMobile(patient.mobile)
     : { ok: false as const, error: "" };
 
+  const referralExtra =
+    referralPublicCode && referralCompleteUrl
+      ? `\n\n*Referral ID: ${referralPublicCode}*\n` +
+        `Show this ID at the referred doctor's reception. After the visit is done, they can confirm here:\n${referralCompleteUrl}`
+      : "";
+
   const msg =
     `Namaste ${patient.full_name},\n` +
     `Your medicine prescription from ${doctor.full_name} (${clinicName}) is ready:\n${signedUrl}\n\n` +
     `*Visit ID: ${patient.public_code}*\n` +
     `Date: ${date}` +
+    referralExtra +
     clinicFooter();
 
   const waPatient =
@@ -347,5 +468,9 @@ export async function POST(req: Request) {
     signedUrl,
     waPatient,
     waDoctor,
+    referral:
+      referralPublicCode && referralCompleteUrl
+        ? { publicCode: referralPublicCode, completeUrl: referralCompleteUrl }
+        : null,
   });
 }

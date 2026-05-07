@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { z } from "zod";
 import { createClient } from "@/lib/supabase/server";
 import { createAdminClient } from "@/lib/supabase/admin";
+import { requireDoctorHospitalId } from "@/lib/doctorHospital";
 import {
   buildPrescriptionPdf,
   detectImageMime,
@@ -57,6 +58,11 @@ export async function POST(req: Request) {
   }
 
   const admin = createAdminClient();
+
+  const hid = await requireDoctorHospitalId(admin, user.id);
+  if (!hid.ok) {
+    return NextResponse.json({ error: hid.error }, { status: hid.status });
+  }
 
   // --- Fetch doctor profile ---
   let { data: doctor, error: doctorError } = await admin
@@ -189,6 +195,7 @@ export async function POST(req: Request) {
   const { error: dbError } = await admin.from("prescriptions").insert({
     id: prescriptionId,
     doctor_id: user.id,
+    hospital_id: hid.hospitalId,
     patient_name: patientName,
     patient_age: patientAge,
     patient_mobile: mobileResult.digits,

@@ -11,6 +11,11 @@ export type NormalizeResult =
   | { ok: true; digits: string }
   | { ok: false; error: string };
 
+/** Strip to digits only (no validation). */
+export function stripToDigits(input: string): string {
+  return input.replace(/\D/g, "");
+}
+
 /**
  * Strips formatting, removes country code / leading zero,
  * validates that the result is a 10-digit Indian mobile starting with 6–9.

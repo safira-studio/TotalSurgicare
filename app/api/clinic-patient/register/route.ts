@@ -3,6 +3,7 @@ import { z } from "zod";
 import { createClient } from "@/lib/supabase/server";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { normalizeIndianMobile } from "@/lib/phone";
+import { requireDoctorHospitalId } from "@/lib/doctorHospital";
 
 const bodySchema = z.object({
   fullName: z.string().min(1, "Name is required").max(120),
@@ -54,6 +55,11 @@ export async function POST(req: Request) {
 
   const admin = createAdminClient();
 
+  const hid = await requireDoctorHospitalId(admin, user.id);
+  if (!hid.ok) {
+    return NextResponse.json({ error: hid.error }, { status: hid.status });
+  }
+
   const { data: nextCode, error: rpcErr } = await admin.rpc("next_clinic_opd_code");
   if (rpcErr || typeof nextCode !== "string" || !nextCode) {
     console.error("next_clinic_opd_code:", rpcErr);
@@ -76,6 +82,7 @@ export async function POST(req: Request) {
       mobile: mobileDigits,
       allergies: allergies?.trim() || null,
       registered_by: user.id,
+      hospital_id: hid.hospitalId,
     })
     .select("id, public_code")
     .single();

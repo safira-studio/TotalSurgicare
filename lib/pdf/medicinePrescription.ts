@@ -44,6 +44,8 @@ export interface MedicineRxPdfInput {
   /** Refer-to-specialist details; rendered at the bottom if both are provided. */
   referralName?: string | null;
   referralMobile?: string | null;
+  /** Shown under referral line: human-readable ID for receiving clinic desk. */
+  referralTracking?: { publicCode: string } | null;
   /** Per-doctor coordinates detected at onboarding; falls back to defaults if null. */
   coords?: DetectedCoords | null;
 }
@@ -93,6 +95,7 @@ export async function buildMedicineRxPdf(
     doctorHeaderInfo,
     referralName,
     referralMobile,
+    referralTracking,
   } = input;
 
   const COORDS = mergeMedicineRxCoords(input.coords, MEDICINE_RX_COORDS);
@@ -392,6 +395,20 @@ export async function buildMedicineRxPdf(
         size,
         color: ink,
       });
+    }
+    if (referralTracking?.publicCode) {
+      const trackSize = Math.max(7, size - 2);
+      lineIndex++;
+      let yPos = py(yStartFrac + lineIndex * lineFrac);
+      if (yPos >= 48) {
+        page.drawText(`Referral ID: ${referralTracking.publicCode}`, {
+          x: px(xFrac),
+          y: yPos,
+          font: fontNormal,
+          size: trackSize,
+          color: rgb(0.15, 0.35, 0.45),
+        });
+      }
     }
   }
 

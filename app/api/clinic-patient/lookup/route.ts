@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { createClient } from "@/lib/supabase/server";
 import { createAdminClient } from "@/lib/supabase/admin";
+import { requireDoctorHospitalId } from "@/lib/doctorHospital";
 
 export async function GET(req: Request) {
   const supabase = await createClient();
@@ -25,12 +26,18 @@ export async function GET(req: Request) {
   }
 
   const admin = createAdminClient();
+  const hid = await requireDoctorHospitalId(admin, user.id);
+  if (!hid.ok) {
+    return NextResponse.json({ error: hid.error }, { status: hid.status });
+  }
+
   const { data, error } = await admin
     .from("clinic_patients")
     .select(
       "id, public_code, full_name, age, bp, mobile, allergies, created_at",
     )
     .eq("public_code", code)
+    .eq("hospital_id", hid.hospitalId)
     .maybeSingle();
 
   if (error) {

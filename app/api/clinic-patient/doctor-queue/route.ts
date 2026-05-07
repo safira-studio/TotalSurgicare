@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { createClient } from "@/lib/supabase/server";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { kolkataDateString, utcBoundsForKolkataDate } from "@/lib/kolkataDay";
+import { requireDoctorHospitalId } from "@/lib/doctorHospital";
 
 /**
  * GET /api/clinic-patient/doctor-queue
@@ -29,11 +30,17 @@ export async function GET(req: Request) {
   const { startIso, endIso } = utcBoundsForKolkataDate(ymd);
 
   const admin = createAdminClient();
+  const hid = await requireDoctorHospitalId(admin, user.id);
+  if (!hid.ok) {
+    return NextResponse.json({ error: hid.error }, { status: hid.status });
+  }
+
   const { data, error } = await admin
     .from("clinic_patients")
     .select(
       "id, public_code, full_name, age, bp, mobile, allergies, created_at, medicine_rx_done_at",
     )
+    .eq("hospital_id", hid.hospitalId)
     .is("medicine_rx_done_at", null)
     .gte("created_at", startIso)
     .lte("created_at", endIso)

@@ -27,6 +27,13 @@ interface MedRxRow {
   lines: Record<string, unknown>[];
   complaints?: string | null;
   diagnoses_lines?: { diagnosis_id: string; name: string }[];
+  referral_name?: string | null;
+  referral_mobile?: string | null;
+  referral_tracking?: {
+    public_code: string;
+    status: string;
+    completed_at: string | null;
+  } | null;
   patient: {
     public_code: string;
     full_name: string;
@@ -59,6 +66,7 @@ export default function DashboardPage() {
   const [medRxLinks, setMedRxLinks] = useState<Record<string, SendLinks>>({});
 
   const [recentVisits, setRecentVisits] = useState<RecentVisit[]>([]);
+  const [referralNotifUnread, setReferralNotifUnread] = useState(0);
 
   const fetchHistory = useCallback(async () => {
     setLoading(true);
@@ -108,6 +116,19 @@ export default function DashboardPage() {
       if (cancelled || !res.ok) return;
       const json = await res.json();
       setRecentVisits(json.patients ?? []);
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  useEffect(() => {
+    let cancelled = false;
+    (async () => {
+      const res = await fetch("/api/referrals/notifications");
+      if (cancelled || !res.ok) return;
+      const json = await res.json().catch(() => ({}));
+      setReferralNotifUnread(typeof json.unread === "number" ? json.unread : 0);
     })();
     return () => {
       cancelled = true;
@@ -247,6 +268,16 @@ export default function DashboardPage() {
           </Link>
         </div>
       </div>
+
+      {referralNotifUnread > 0 && (
+        <Link
+          href="/prescription/referrals"
+          className="block rounded-2xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-emerald-950 shadow-sm transition hover:bg-emerald-100"
+        >
+          <span className="font-semibold">{referralNotifUnread} referral update(s)</span>
+          <span className="text-emerald-800"> — patients marked complete at the receiving clinic. Open Referrals to review.</span>
+        </Link>
+      )}
 
       {recentVisits.length > 0 && (
         <section className="rounded-2xl border border-cyan-100 bg-white p-4 shadow-sm">
@@ -562,6 +593,19 @@ export default function DashboardPage() {
                             .map((l) => `${String(l.name ?? "")} (${summarizeMedicineLine(l)})`)
                             .join(" · ")}
                           {rx.lines.length > 5 && ` +${rx.lines.length - 5} more`}
+                        </p>
+                      )}
+                      {(rx.referral_name || rx.referral_tracking) && (
+                        <p className="mt-2 text-xs font-medium text-violet-900">
+                          Referral
+                          {rx.referral_name && ` → Dr. ${rx.referral_name}`}
+                          {rx.referral_tracking && (
+                            <span className="font-mono font-normal text-violet-800">
+                              {" "}
+                              · {rx.referral_tracking.public_code} ·{" "}
+                              <span className="capitalize">{rx.referral_tracking.status}</span>
+                            </span>
+                          )}
                         </p>
                       )}
                     </div>

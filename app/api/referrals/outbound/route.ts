@@ -3,6 +3,7 @@ import { createClient } from "@/lib/supabase/server";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { requireDoctorHospitalId } from "@/lib/doctorHospital";
 
+/** Referring doctor: list referrals you created. */
 export async function GET() {
   const supabase = await createClient();
   const {
@@ -20,18 +21,20 @@ export async function GET() {
     return NextResponse.json({ error: hid.error }, { status: hid.status });
   }
 
-  const { data, error } = await admin
-    .from("prescriptions")
-    .select("id, patient_name, patient_age, patient_mobile, tests, created_at")
-    .eq("doctor_id", user.id)
-    .eq("hospital_id", hid.hospitalId)
+  const { data: rows, error } = await admin
+    .from("referrals")
+    .select(
+      "id, status, public_code, patient_name, patient_mobile, target_doctor_name, diagnoses_summary, completed_at, created_at, medicine_prescription_id",
+    )
+    .eq("referring_doctor_id", user.id)
+    .eq("from_hospital_id", hid.hospitalId)
     .order("created_at", { ascending: false })
-    .limit(50);
+    .limit(80);
 
   if (error) {
-    console.error("History fetch error:", error);
-    return NextResponse.json({ error: "Failed to load history." }, { status: 500 });
+    console.error("referrals outbound:", error);
+    return NextResponse.json({ error: "Failed to load referrals." }, { status: 500 });
   }
 
-  return NextResponse.json({ prescriptions: data ?? [] });
+  return NextResponse.json({ referrals: rows ?? [] });
 }

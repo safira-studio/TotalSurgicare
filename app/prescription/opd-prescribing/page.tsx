@@ -756,6 +756,8 @@ interface SendResult {
   waDoctor: string | null;
   waReferral: string | null;
   referralName: string | null;
+  referralPublicCode: string | null;
+  referralCompleteUrl: string | null;
 }
 
 /** Word-wrap helper mirroring the PDF builder logic for browser preview. */
@@ -1064,6 +1066,9 @@ export default function OpdPrescribingPage() {
 
   const [referralName, setReferralName] = useState("");
   const [referralMobile, setReferralMobile] = useState("");
+  const [hospitals, setHospitals] = useState<{ id: string; name: string; slug: string }[]>([]);
+  const [hospitalsError, setHospitalsError] = useState<string | null>(null);
+  const [toHospitalId, setToHospitalId] = useState("");
 
   const [doctorInfo, setDoctorInfo] = useState<DoctorPreviewInfo | null>(null);
   // Convenience alias so existing code that references letterheadUrl still compiles
@@ -1085,6 +1090,40 @@ export default function OpdPrescribingPage() {
     return () => window.removeEventListener("doctor-profile-saved", fetchDoctorProfile);
   }, []);
 
+  useEffect(() => {
+    let cancelled = false;
+    void (async () => {
+      try {
+        const res = await fetch("/api/hospitals", { cache: "no-store" });
+        const json = (await res.json().catch(() => ({}))) as {
+          hospitals?: { id: string; name: string; slug: string }[];
+          error?: string;
+        };
+        if (cancelled) return;
+        if (!res.ok) {
+          setHospitals([]);
+          setHospitalsError(json.error ?? "Could not load hospital list.");
+          setToHospitalId("");
+          return;
+        }
+        const list = json.hospitals ?? [];
+        setHospitals(list);
+        setHospitalsError(null);
+        if (list.length === 1) {
+          setToHospitalId(list[0].id);
+        }
+      } catch {
+        if (!cancelled) {
+          setHospitalsError("Could not load hospital list.");
+          setHospitals([]);
+        }
+      }
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
   function resetChartFields() {
     setComplaints("");
     setVoiceError(null);
@@ -1093,6 +1132,7 @@ export default function OpdPrescribingPage() {
     setDxLines([]);
     setReferralName("");
     setReferralMobile("");
+    setToHospitalId(hospitals.length === 1 ? hospitals[0].id : "");
     // Do not clear dxResults here: dxSearch is often still "" after load, so the debounced
     // diagnoses fetch effect does not re-run (same deps) and the list would stay empty.
     // Shared catalog results are not patient-specific.
@@ -1419,6 +1459,21 @@ export default function OpdPrescribingPage() {
       );
       return;
     }
+    const cleanRefMob = referralMobile.trim().replace(/[\s\-().]/g, "");
+    const wantsReferral = referralName.trim().length > 0 && cleanRefMob.length >= 7;
+    if (wantsReferral) {
+      if (hospitals.length === 0) {
+        setLineError(
+          hospitalsError ??
+            "Hospital list is not available. Run multi-tenant SQL migration or try again.",
+        );
+        return;
+      }
+      if (!toHospitalId) {
+        setLineError("Choose the receiving hospital for this referral.");
+        return;
+      }
+    }
     setServerError(null);
     setStep("preview");
   }
@@ -1450,6 +1505,7 @@ export default function OpdPrescribingPage() {
           })),
           referralName: referralName.trim() || undefined,
           referralMobile: referralMobile.trim() || undefined,
+          toHospitalId: toHospitalId || undefined,
         }),
       });
       const json = await res.json().catch(() => ({}));
@@ -1459,9 +1515,17 @@ export default function OpdPrescribingPage() {
       }
       const cleanMobile = referralMobile.trim().replace(/[\s\-().]/g, "");
       const hasReferral = cleanMobile.length >= 7 && referralName.trim();
+      const refPayload = json.referral as
+        | { publicCode?: string; completeUrl?: string }
+        | null
+        | undefined;
+      const referralTrackBlock =
+        refPayload?.publicCode && refPayload?.completeUrl
+          ? `\n\n*Referral ID: ${refPayload.publicCode}*\nAfter the visit and billing, confirm completion here:\n${refPayload.completeUrl}`
+          : "";
       const referralMessage = hasReferral
         ? encodeURIComponent(
-            `Dear Dr. ${referralName.trim()},\n\nI am referring *${patient.full_name}* to you.\n\nPlease find the prescription PDF here:\n${json.signedUrl}`,
+            `Dear Dr. ${referralName.trim()},\n\nI am referring *${patient.full_name}* to you.\n\nPlease find the prescription PDF here:\n${json.signedUrl}${referralTrackBlock}`,
           )
         : null;
       const waReferral =
@@ -1475,6 +1539,8 @@ export default function OpdPrescribingPage() {
         waDoctor: json.waDoctor,
         waReferral,
         referralName: referralName.trim() || null,
+        referralPublicCode: refPayload?.publicCode ?? null,
+        referralCompleteUrl: refPayload?.completeUrl ?? null,
       });
       setStep("sent");
     } finally {
@@ -1547,6 +1613,45 @@ export default function OpdPrescribingPage() {
                 </svg>
                 Refer to Dr. {result.referralName} (WhatsApp)
               </a>
+            )}
+            {result.referralPublicCode && (
+              <p className="rounded-xl border border-stone-200 bg-stone-50 px-3 py-2 text-left text-xs text-stone-800">
+                <span className="font-semibold text-stone-900">Referral ID:</span>{" "}
+                <span className="font-mono tracking-wide">{result.referralPublicCode}</span>
+                {result.referralCompleteUrl && (
+                  <>
+                    <br />
+                    <span className="mt-1 inline-block text-stone-600">Completion link (receiving clinic):</span>
+                    <br />
+                    <span className="break-all font-mono text-[11px] text-stone-700">
+                      {result.referralCompleteUrl}
+                    </span>
+                    <div className="mt-2 flex flex-wrap gap-2">
+                      <a
+                        href={result.referralCompleteUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="rounded-lg bg-emerald-700 px-3 py-1.5 text-xs font-semibold text-white shadow-sm hover:bg-emerald-800"
+                      >
+                        Open completion page
+                      </a>
+                      <button
+                        type="button"
+                        className="rounded-lg border border-stone-300 bg-white px-3 py-1.5 text-xs font-semibold text-stone-800 hover:bg-stone-50"
+                        onClick={async () => {
+                          try {
+                            await navigator.clipboard.writeText(result.referralCompleteUrl!);
+                          } catch {
+                            /* ignore */
+                          }
+                        }}
+                      >
+                        Copy link
+                      </button>
+                    </div>
+                  </>
+                )}
+              </p>
             )}
             <a
               href={result.signedUrl}
@@ -2206,7 +2311,8 @@ export default function OpdPrescribingPage() {
               </span>
             </CardTitle>
             <CardDescription className="text-stone-600">
-              Add the specialist&apos;s name and mobile. When you issue the PDF, a WhatsApp
+              Add the specialist&apos;s name and mobile, and choose which onboarded hospital
+              should receive this referral at their desk. When you issue the PDF, a WhatsApp
               message with the prescription link will be ready to send directly to them.
             </CardDescription>
           </div>
@@ -2218,6 +2324,34 @@ export default function OpdPrescribingPage() {
               className="rounded-xl border border-amber-200/90 bg-amber-50/95 px-4 py-3 text-xs text-amber-950"
             >
               Load a patient first — the referral message will include their name and visit ID.
+            </div>
+          )}
+          {hospitalsError && (
+            <div
+              role="alert"
+              className="rounded-xl border border-amber-200/90 bg-amber-50/95 px-4 py-3 text-xs text-amber-950"
+            >
+              {hospitalsError}
+            </div>
+          )}
+          {hospitals.length > 1 && (
+            <div>
+              <label htmlFor="referral-hospital" className={lux.label}>
+                Receiving hospital
+              </label>
+              <select
+                id="referral-hospital"
+                className={`mt-2 w-full ${lux.input}`}
+                value={toHospitalId}
+                onChange={(e) => setToHospitalId(e.target.value)}
+              >
+                <option value="">Select hospital…</option>
+                {hospitals.map((h) => (
+                  <option key={h.id} value={h.id}>
+                    {h.name}
+                  </option>
+                ))}
+              </select>
             </div>
           )}
           <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
