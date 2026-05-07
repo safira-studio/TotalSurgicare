@@ -259,8 +259,9 @@ export default function ReferralsPage() {
         <div className="space-y-4">
           <form onSubmit={searchInbound} className="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-end">
             <div className="flex-1 min-w-[140px]">
-              <label className="block text-xs font-semibold uppercase text-stone-500">Referral ID</label>
+              <label htmlFor="referral-id-q" className="block text-xs font-semibold uppercase text-stone-500">Referral ID</label>
               <input
+                id="referral-id-q"
                 value={codeQ}
                 onChange={(e) => {
                   setCodeQ(e.target.value);
@@ -270,8 +271,9 @@ export default function ReferralsPage() {
               />
             </div>
             <div className="flex-1 min-w-[140px]">
-              <label className="block text-xs font-semibold uppercase text-stone-500">Patient mobile</label>
+              <label htmlFor="referral-phone-q" className="block text-xs font-semibold uppercase text-stone-500">Patient mobile</label>
               <input
+                id="referral-phone-q"
                 value={phoneQ}
                 onChange={(e) => {
                   setPhoneQ(e.target.value);
