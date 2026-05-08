@@ -6,12 +6,17 @@
 -- =============================================================================
 
 insert into public.hospitals (name, slug, active)
-select 'Mock Hospital B (testing)', 'mock-hospital-b', true
+select 'Doctor''s Hospital', 'mock-hospital-b', true
 where not exists (
   select 1 from public.hospitals h where lower(trim(h.slug)) = 'mock-hospital-b'
 );
 
--- Optional: tie a second doctor account to Mock Hospital B so you can log in as “the other site”.
+-- Idempotent display-name refresh for databases seeded before rename.
+update public.hospitals
+set name = 'Doctor''s Hospital'
+where lower(trim(slug)) = 'mock-hospital-b';
+
+-- Optional: tie a second doctor account to Doctor's Hospital (slug mock-hospital-b) so you can log in as “the other site”.
 -- 1) Create/sign up the second user in the app (or Auth → Users).
 -- 2) Replace <USER_UUID> with auth.users.id and run:
 --

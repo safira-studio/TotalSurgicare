@@ -21,10 +21,15 @@ comment on table public.hospitals is
   'Onboarded hospital / clinic site; tenant key for RLS-scoped patient and referral data.';
 
 insert into public.hospitals (name, slug, active)
-select 'Default hospital', 'default', true
+select 'Totalsurgicare Hospital', 'default', true
 where not exists (
   select 1 from public.hospitals h where lower(trim(h.slug)) = 'default'
 );
+
+-- Idempotent display-name refresh for databases seeded before rename.
+update public.hospitals
+set name = 'Totalsurgicare Hospital'
+where lower(trim(slug)) = 'default';
 
 -- ---------------------------------------------------------------------------
 -- 2. Tenant column on doctors
