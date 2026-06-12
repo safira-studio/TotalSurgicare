@@ -7,6 +7,7 @@ import { cataract } from "./catarac";
 import { enlargedProstateSurgery } from "./enlargedProstate";
 import { fissureTreatment } from "./fissure";
 import { fistulaTreatment } from "./fistula";
+import { gallBladderSurgery } from "./gallBladder";
 import { gallstoneSurgery } from "./gallstone";
 import { gynecomastia } from "./gynecomastia";
 import { herniaSurgery } from "./hernia";
@@ -32,6 +33,7 @@ export default {
   rectalProlapse,
   herniaSurgery,
   gallstoneSurgery,
+  gallBladderSurgery,
   appendectomy,
   inguinalHerniaSurgery,
   umbillicalHerniaSurgery,

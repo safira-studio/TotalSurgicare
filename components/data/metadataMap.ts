@@ -3,6 +3,12 @@ export const metadataMap: Record<
   string,
   { title: string; description: string; keywords: string }
 > = {
+  "gall-bladder-surgery": {
+    title: "Total Surgicare: Gall Bladder Surgery in Pune",
+    description:
+      "Advanced laparoscopic gall bladder removal surgery in Pune by experienced surgeons. Minimally invasive cholecystectomy with quick recovery at Total Surgicare.",
+    keywords: "Gall Bladder Surgery in Pune",
+  },
   lipoma: {
     title: "Total Surgicare: Lipoma Treatment in Pune",
     description:

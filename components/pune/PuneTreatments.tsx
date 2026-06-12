@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import Link from "next/link";
-import { ArrowRight, Activity, Layers, Stethoscope, Zap, Scissors } from "lucide-react";
+import { ArrowRight, Activity, Layers, Stethoscope, Zap, Scissors, CircleDot, Droplets } from "lucide-react";
 
 interface TreatmentItemProps {
     name: string;
@@ -83,6 +83,22 @@ const PuneTreatments = () => {
             icon: <Stethoscope className="w-7 h-7" />,
             colorClass: "bg-gradient-to-br from-emerald-100 to-teal-100",
             iconBgClass: "bg-white border-emerald-50 group-hover:bg-emerald-600",
+        },
+        {
+            name: "Lipoma",
+            link: "/pune/lipoma",
+            description: "Painless surgical removal of lipoma (fatty lumps) with minimal scarring.",
+            icon: <CircleDot className="w-7 h-7" />,
+            colorClass: "bg-gradient-to-br from-cyan-100 to-sky-100",
+            iconBgClass: "bg-white border-cyan-50 group-hover:bg-cyan-600",
+        },
+        {
+            name: "Gall Bladder",
+            link: "/pune/gall-bladder-surgery",
+            description: "Advanced laparoscopic gall bladder removal surgery with quick recovery.",
+            icon: <Droplets className="w-7 h-7" />,
+            colorClass: "bg-gradient-to-br from-lime-100 to-green-100",
+            iconBgClass: "bg-white border-lime-50 group-hover:bg-lime-600",
         },
     ];
 
