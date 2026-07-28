@@ -26,15 +26,15 @@ export const Navbar = () => {
   );
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  // Custom nav items for Pune page
-  const puneNavItems = [
+  // Custom nav items for city landing pages (Pune, Mumbai)
+  const cityNavItems = [
     { title: "Home", items: [] },
     { title: "About Us", items: [] },
     { title: "Contact Us", items: [] },
   ];
 
-  const navItems = pathname?.startsWith("/pune") ? puneNavItems : siteConfig.navItems;
-  const isPunePage = pathname?.startsWith("/pune");
+  const isCityPage = pathname?.startsWith("/pune") || pathname?.startsWith("/mumbai");
+  const navItems = isCityPage ? cityNavItems : siteConfig.navItems;
 
   const handleMobileSectionToggle = (title: string) => {
     setOpenMobileSection(openMobileSection === title ? null : title);
@@ -48,7 +48,7 @@ export const Navbar = () => {
       maxWidth="2xl"
       className={clsx(
         "xl:px-10 transition-all duration-300",
-        isPunePage ? "m-3 mx-auto max-w-3xl rounded-full border-2 border-clinic-primary/50 shadow-lg bg-white/90 backdrop-blur-md supports-[backdrop-filter]:bg-white/60" : ""
+        isCityPage ? "m-3 mx-auto max-w-3xl rounded-full border-2 border-clinic-primary/50 shadow-lg bg-white/90 backdrop-blur-md supports-[backdrop-filter]:bg-white/60" : ""
       )}
     >
       <NavbarContent justify="start">
@@ -78,7 +78,7 @@ export const Navbar = () => {
 
       <NavbarContent
         className="hidden lg:flex basis-1/5 sm:basis-2/3 lg:basis-4/5"
-        justify={isPunePage ? "center" : "end"}
+        justify={isCityPage ? "center" : "end"}
       >
         <ul className="hidden lg:flex justify-end ml-2 gap-3">
           {navItems.map((item, index) => (

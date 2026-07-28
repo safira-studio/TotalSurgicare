@@ -1,5 +1,6 @@
 import { MetadataRoute } from 'next'
 import { metadataMap } from '@/components/data/metadataMap'
+import { mumbaiMetadataMap } from '@/components/data/mumbaiMetadataMap'
 
 export default function sitemap(): MetadataRoute.Sitemap {
     const baseUrl = 'https://totalsurgicare.com'
@@ -16,6 +17,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
         '/terms-conditions',
         '/elderly-care',
         '/pune',
+        '/mumbai',
     ].map((route) => ({
         url: `${baseUrl}${route}`,
         lastModified: new Date(),
@@ -37,5 +39,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
         priority: 0.8,
     }))
 
-    return [...routes, ...treatmentRoutes, ...puneRoutes]
+    const mumbaiRoutes = Object.keys(mumbaiMetadataMap).map((slug) => ({
+        url: `${baseUrl}/mumbai/${slug}`,
+        lastModified: new Date(),
+        changeFrequency: 'weekly' as const,
+        priority: 0.8,
+    }))
+
+    return [...routes, ...treatmentRoutes, ...puneRoutes, ...mumbaiRoutes]
 }
