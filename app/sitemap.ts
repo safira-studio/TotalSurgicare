@@ -1,6 +1,6 @@
 import { MetadataRoute } from 'next'
 import { metadataMap } from '@/components/data/metadataMap'
-import { mumbaiMetadataMap } from '@/components/data/mumbaiMetadataMap'
+import { cities, toCitySlug, type CityKey } from '@/components/data/cities'
 
 export default function sitemap(): MetadataRoute.Sitemap {
     const baseUrl = 'https://totalsurgicare.com'
@@ -32,19 +32,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
         priority: 0.8,
     }))
 
-    const puneRoutes = Object.keys(metadataMap).map((slug) => ({
-        url: `${baseUrl}/pune/${slug}`,
-        lastModified: new Date(),
-        changeFrequency: 'weekly' as const,
-        priority: 0.8,
-    }))
+    // City treatment pages: only the treatments actually curated for each city.
+    // Previously this listed every metadataMap key under /pune, publishing ~19
+    // URLs that nothing linked to.
+    const cityRoutes = (Object.keys(cities) as CityKey[]).flatMap((city) =>
+        cities[city].treatments.map((baseSlug) => ({
+            url: `${baseUrl}/${city}/treatment/${toCitySlug(baseSlug, city)}`,
+            lastModified: new Date(),
+            changeFrequency: 'weekly' as const,
+            priority: 0.8,
+        }))
+    )
 
-    const mumbaiRoutes = Object.keys(mumbaiMetadataMap).map((slug) => ({
-        url: `${baseUrl}/mumbai/${slug}`,
-        lastModified: new Date(),
-        changeFrequency: 'weekly' as const,
-        priority: 0.8,
-    }))
-
-    return [...routes, ...treatmentRoutes, ...puneRoutes, ...mumbaiRoutes]
+    return [...routes, ...treatmentRoutes, ...cityRoutes]
 }

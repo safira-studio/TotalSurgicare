@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import Link from "next/link";
+import { cityTreatmentPath } from "@/components/data/cities";
 import { ArrowRight, Activity, Layers, Stethoscope, Zap, Scissors, CircleDot, Droplets } from "lucide-react";
 
 interface TreatmentItemProps {
@@ -46,7 +47,7 @@ const PuneTreatments = () => {
     const treatments = [
         {
             name: "Circumcision",
-            link: "/pune/stapler-circumcision",
+            link: cityTreatmentPath("stapler-circumcision", "pune"),
             description: "Advanced ZSR stapler surgery for painless and quick recovery.",
             icon: <Activity className="w-7 h-7" />,
             colorClass: "bg-gradient-to-br from-blue-100 to-indigo-100",
@@ -54,7 +55,7 @@ const PuneTreatments = () => {
         },
         {
             name: "Piles",
-            link: "/pune/piles-treatment",
+            link: cityTreatmentPath("piles-treatment", "pune"),
             description: "Laser treatment for piles (hemorrhoids) with minimal pain and quick recovery.",
             icon: <Layers className="w-7 h-7" />,
             colorClass: "bg-gradient-to-br from-orange-100 to-amber-100",
@@ -62,7 +63,7 @@ const PuneTreatments = () => {
         },
         {
             name: "Fissure",
-            link: "/pune/fissure-treatment",
+            link: cityTreatmentPath("fissure-treatment", "pune"),
             description: "Advanced laser treatment for anal fissures with minimal downtime.",
             icon: <Scissors className="w-7 h-7" />,
             colorClass: "bg-gradient-to-br from-rose-100 to-pink-100",
@@ -70,7 +71,7 @@ const PuneTreatments = () => {
         },
         {
             name: "Kidney Stone",
-            link: "/pune/kidney-stone-treatment-rirspcnlursl",
+            link: cityTreatmentPath("kidney-stone-treatment-rirspcnlursl", "pune"),
             description: "Modern laser lithotripsy (RIRS/URSL) for kidney stone removal.",
             icon: <Zap className="w-7 h-7" />,
             colorClass: "bg-gradient-to-br from-purple-100 to-fuchsia-100",
@@ -78,7 +79,7 @@ const PuneTreatments = () => {
         },
         {
             name: "Gall Stone",
-            link: "/pune/gallstone-surgery",
+            link: cityTreatmentPath("gallstone-surgery", "pune"),
             description: "Laparoscopic cholecystectomy for safe gall bladder stone removal.",
             icon: <Stethoscope className="w-7 h-7" />,
             colorClass: "bg-gradient-to-br from-emerald-100 to-teal-100",
@@ -86,7 +87,7 @@ const PuneTreatments = () => {
         },
         {
             name: "Lipoma",
-            link: "/pune/lipoma",
+            link: cityTreatmentPath("lipoma", "pune"),
             description: "Painless surgical removal of lipoma (fatty lumps) with minimal scarring.",
             icon: <CircleDot className="w-7 h-7" />,
             colorClass: "bg-gradient-to-br from-cyan-100 to-sky-100",
@@ -94,7 +95,7 @@ const PuneTreatments = () => {
         },
         {
             name: "Gall Bladder",
-            link: "/pune/gall-bladder-surgery",
+            link: cityTreatmentPath("gall-bladder-surgery", "pune"),
             description: "Advanced laparoscopic gall bladder removal surgery with quick recovery.",
             icon: <Droplets className="w-7 h-7" />,
             colorClass: "bg-gradient-to-br from-lime-100 to-green-100",

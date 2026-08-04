@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import Link from "next/link";
+import { cityTreatmentPath } from "@/components/data/cities";
 import { ArrowRight, Activity, Layers, Scissors, Zap, Stethoscope, GitBranch } from "lucide-react";
 
 interface TreatmentItemProps {
@@ -46,7 +47,7 @@ const MumbaiTreatments = () => {
     const treatments = [
         {
             name: "Circumcision",
-            link: "/mumbai/stapler-circumcision",
+            link: cityTreatmentPath("stapler-circumcision", "mumbai"),
             description: "Advanced ZSR stapler surgery for painless and quick recovery.",
             icon: <Activity className="w-7 h-7" />,
             colorClass: "bg-gradient-to-br from-blue-100 to-indigo-100",
@@ -54,7 +55,7 @@ const MumbaiTreatments = () => {
         },
         {
             name: "Gallstone",
-            link: "/mumbai/gallstone-surgery",
+            link: cityTreatmentPath("gallstone-surgery", "mumbai"),
             description: "Laparoscopic gallbladder surgery for safe gallstone removal.",
             icon: <Stethoscope className="w-7 h-7" />,
             colorClass: "bg-gradient-to-br from-emerald-100 to-teal-100",
@@ -62,7 +63,7 @@ const MumbaiTreatments = () => {
         },
         {
             name: "Kidney Stone",
-            link: "/mumbai/kidney-stone-treatment-rirspcnlursl",
+            link: cityTreatmentPath("kidney-stone-treatment-rirspcnlursl", "mumbai"),
             description: "Modern laser lithotripsy (RIRS/URSL) for kidney stone removal.",
             icon: <Zap className="w-7 h-7" />,
             colorClass: "bg-gradient-to-br from-purple-100 to-fuchsia-100",
@@ -70,7 +71,7 @@ const MumbaiTreatments = () => {
         },
         {
             name: "Piles",
-            link: "/mumbai/piles-treatment",
+            link: cityTreatmentPath("piles-treatment", "mumbai"),
             description: "Laser treatment for piles (hemorrhoids) with minimal pain and quick recovery.",
             icon: <Layers className="w-7 h-7" />,
             colorClass: "bg-gradient-to-br from-orange-100 to-amber-100",
@@ -78,7 +79,7 @@ const MumbaiTreatments = () => {
         },
         {
             name: "Fissure",
-            link: "/mumbai/fissure-treatment",
+            link: cityTreatmentPath("fissure-treatment", "mumbai"),
             description: "Advanced laser treatment for anal fissures with minimal downtime.",
             icon: <Scissors className="w-7 h-7" />,
             colorClass: "bg-gradient-to-br from-rose-100 to-pink-100",
@@ -86,7 +87,7 @@ const MumbaiTreatments = () => {
         },
         {
             name: "Fistula",
-            link: "/mumbai/fistula-treatment",
+            link: cityTreatmentPath("fistula-treatment", "mumbai"),
             description: "Laser fistula treatment ensuring faster healing and no recurrence.",
             icon: <GitBranch className="w-7 h-7" />,
             colorClass: "bg-gradient-to-br from-cyan-100 to-sky-100",
