@@ -1,12 +1,15 @@
 import React from "react";
 import { siteConfig } from "@/config/site";
 import { Separator } from "@/components/ui/separator";
-import { Facebook, Instagram, Mail, Phone } from "lucide-react";
+import { Facebook, Instagram, Mail, Phone, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import Image from "next/image";
 import { SparklesText } from "@/components/ui/sparkles-text";
 import { AnimatedGradientText } from "@/components/ui/animated-gradient-text";
+import { cities, type CityKey } from "@/components/data/cities";
+
+const cityKeys = Object.keys(cities) as CityKey[];
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -15,7 +18,7 @@ const Footer = () => {
     <footer className="w-full bg-clinic-accent/90 text-white">
       <div className="container mx-auto px-4 py-12">
         {/* Top Section with Logo and Contact */}
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 mb-8">
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 mb-8">
           {/* Logo and Description */}
           <div className="space-y-4 w-2/3 lg:w-full">
             <Image
@@ -62,9 +65,9 @@ const Footer = () => {
             </div>
           </div>
 
-          <div className="lg:col-span-2 flex justify-center items-center gap-8">
+          <div className="lg:col-span-3 grid grid-cols-1 sm:grid-cols-3 gap-8">
             {/* Quick Links */}
-            <div className="space-y-4 w-1/2 self-center">
+            <div className="space-y-4">
               <h3 className="text-lg font-onest text-white">Quick Links</h3>
               <ul className="space-y-2">
                 <li>
@@ -111,7 +114,7 @@ const Footer = () => {
             </div>
 
             {/* Our Services */}
-            <div className="space-y-4 w-1/2">
+            <div className="space-y-4">
               <h3 className="text-lg font-onest text-white">Our Services</h3>
               <ul className="space-y-2">
                 <li>
@@ -154,6 +157,24 @@ const Footer = () => {
                     Diagnostic
                   </Link>
                 </li>
+              </ul>
+            </div>
+
+            {/* Our Branches */}
+            <div className="space-y-4">
+              <h3 className="text-lg font-onest text-white">Our Branches</h3>
+              <ul className="space-y-2">
+                {cityKeys.map((city) => (
+                  <li key={city}>
+                    <Link
+                      className="flex items-center gap-1.5 text-gray-300 hover:text-white text-sm transition-colors"
+                      href={`/${city}`}
+                    >
+                      <MapPin className="h-3.5 w-3.5 shrink-0" />
+                      {cities[city].name}
+                    </Link>
+                  </li>
+                ))}
               </ul>
             </div>
           </div>

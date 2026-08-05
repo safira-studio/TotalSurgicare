@@ -17,6 +17,7 @@ import { ChevronDown, Menu, X } from "lucide-react";
 import Image from "next/image";
 import { siteConfig } from "@/config/site";
 import { Button } from "../ui/button";
+import { CitySelect } from "./city-select";
 
 export const Navbar = () => {
   const pathname = usePathname();
@@ -56,7 +57,7 @@ export const Navbar = () => {
           <NextLink href="/">
             <Image
               alt="Logo"
-              className="min-w-24"
+              className="min-w-16 sm:min-w-24"
               height={90}
               src={"/logo.png"}
               width={90}
@@ -68,11 +69,15 @@ export const Navbar = () => {
           <NextLink href="/prescription">
             <Button
               aria-label="Prescription"
-              className="rounded-full bg-clinic-secondary hover:bg-clinic-secondaryDark text-primary-foreground px-4 sm:px-5 h-9 text-xs sm:text-sm font-medium"
+              className="rounded-full bg-clinic-secondary hover:bg-clinic-secondaryDark text-primary-foreground px-3 sm:px-5 h-9 text-xs sm:text-sm font-medium"
             >
               Prescription
             </Button>
           </NextLink>
+        </NavbarItem>
+
+        <NavbarItem className="flex">
+          <CitySelect />
         </NavbarItem>
       </NavbarContent>
 
@@ -149,7 +154,7 @@ export const Navbar = () => {
         </ul>
       </NavbarContent>
 
-      <NavbarContent className="lg:hidden basis-1 pl-4" justify="end">
+      <NavbarContent className="lg:hidden basis-1 pl-2 sm:pl-4" justify="end">
         <LucideHamburger
           isOpen={isMenuOpen}
           onToggle={() => setIsMenuOpen(!isMenuOpen)}
