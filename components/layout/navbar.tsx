@@ -27,15 +27,11 @@ export const Navbar = () => {
   );
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  // Custom nav items for city landing pages (Pune, Mumbai)
-  const cityNavItems = [
-    { title: "Home", items: [] },
-    { title: "About Us", items: [] },
-    { title: "Contact Us", items: [] },
-  ];
-
-  const isCityPage = pathname?.startsWith("/pune") || pathname?.startsWith("/mumbai");
-  const navItems = isCityPage ? cityNavItems : siteConfig.navItems;
+  // City landing pages share the main site's service navigation; the only
+  // difference is the Book Appointment CTA they add on the right.
+  const isCityPage =
+    pathname?.startsWith("/pune") || pathname?.startsWith("/mumbai");
+  const navItems = siteConfig.navItems;
 
   const handleMobileSectionToggle = (title: string) => {
     setOpenMobileSection(openMobileSection === title ? null : title);
@@ -47,10 +43,7 @@ export const Navbar = () => {
       isMenuOpen={isMenuOpen}
       onMenuOpenChange={setIsMenuOpen}
       maxWidth="2xl"
-      className={clsx(
-        "xl:px-10 transition-all duration-300",
-        isCityPage ? "m-3 mx-auto max-w-3xl rounded-full border-2 border-clinic-primary/50 shadow-lg bg-white/90 backdrop-blur-md supports-[backdrop-filter]:bg-white/60" : ""
-      )}
+      className="xl:px-10 transition-all duration-300"
     >
       <NavbarContent justify="start">
         <NavbarBrand as="li" className="gap-3 max-w-fit">
@@ -83,7 +76,7 @@ export const Navbar = () => {
 
       <NavbarContent
         className="hidden lg:flex basis-1/5 sm:basis-2/3 lg:basis-4/5"
-        justify={isCityPage ? "center" : "end"}
+        justify="end"
       >
         <ul className="hidden lg:flex justify-end ml-2 gap-3">
           {navItems.map((item, index) => (
@@ -152,6 +145,19 @@ export const Navbar = () => {
             </NavbarItem>
           ))}
         </ul>
+
+        {isCityPage && (
+          <NavbarItem className="hidden xl:flex">
+            <NextLink href="/contact">
+              <Button
+                aria-label="Book Appointment"
+                className="rounded-full bg-clinic-primary hover:bg-clinic-dark text-white px-5 h-9 text-sm font-medium whitespace-nowrap"
+              >
+                Book Appointment
+              </Button>
+            </NextLink>
+          </NavbarItem>
+        )}
       </NavbarContent>
 
       <NavbarContent className="lg:hidden basis-1 pl-2 sm:pl-4" justify="end">
@@ -163,6 +169,18 @@ export const Navbar = () => {
 
       <NavbarMenu>
         <div className="mx-4 mt-2 flex flex-col gap-2">
+          {isCityPage && (
+            <NavbarMenuItem className="mb-2">
+              <NextLink href="/contact" onClick={() => setIsMenuOpen(false)}>
+                <Button
+                  aria-label="Book Appointment"
+                  className="w-full rounded-full bg-clinic-primary hover:bg-clinic-dark text-white h-10 text-sm font-medium"
+                >
+                  Book Appointment
+                </Button>
+              </NextLink>
+            </NavbarMenuItem>
+          )}
           {navItems.map((item, index) => (
             <div key={`${item.title}-${index}`} className="mb-2">
               <Button

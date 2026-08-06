@@ -111,7 +111,7 @@ const PuneTreatments = () => {
                         Our Specialties
                     </span>
                     <h2 className="text-4xl md:text-5xl font-onest font-bold text-gray-900 mb-6">
-                        TotalSurgicare
+                        Total Surgicare
                     </h2>
                     <p className="text-gray-500 text-lg max-w-2xl mx-auto leading-relaxed">
                         Experience world-class surgical care with our specialized treatments designed for your comfort and rapid recovery.

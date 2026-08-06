@@ -2,8 +2,16 @@ import { Button } from "@/components/ui/button";
 import { NumberTicker } from "@/components/ui/number-ticker";
 import Image from "next/image";
 import Link from "next/link";
+import clsx from "clsx";
 
-export default function Hero() {
+interface HeroProps {
+  /** Overrides the default "Total Surgicare" H1. Landing pages pass a keyword-led heading. */
+  title?: React.ReactNode;
+  /** Replaces the short brand tagline with a descriptive intro paragraph. */
+  description?: string;
+}
+
+export default function Hero({ title, description }: HeroProps) {
   return (
     <div className="w-full overflow-hidden">
       {/* Desktop View */}
@@ -11,15 +19,32 @@ export default function Hero() {
         <div className="w-full relative flex flex-col lg:flex-row">
           {/* left side title */}
           <div className="w-full lg:w-1/2 p-5 lg:py-12 max-lg:text-center">
-            <h1 className="text-5xl md:text-7xl font-onest mt-2 sm:mt-3 md:mt-7 lg:mt-10 text-clinic-accent ">
-              Total <br />
-              Surgicare
+            <h1
+              className={clsx(
+                "font-onest mt-2 sm:mt-3 md:mt-7 lg:mt-10 text-clinic-accent",
+                title
+                  ? "text-3xl md:text-4xl xl:text-5xl leading-tight max-w-xl max-lg:mx-auto"
+                  : "text-5xl md:text-7xl"
+              )}
+            >
+              {title ?? (
+                <>
+                  Total <br />
+                  Surgicare
+                </>
+              )}
             </h1>
-            <div className="text-sm ml-2 my-4 text-clinic-accent max-lg:hidden">
-              We treat <span className="text-gray-400">not only symptoms</span>{" "}
-              -<br />
-              We care <span className="text-gray-400">about each person.</span>
-            </div>
+            {description ? (
+              <p className="text-sm md:text-base ml-2 my-4 text-gray-600 leading-relaxed max-w-xl max-lg:mx-auto">
+                {description}
+              </p>
+            ) : (
+              <div className="text-sm ml-2 my-4 text-clinic-accent max-lg:hidden">
+                We treat{" "}
+                <span className="text-gray-400">not only symptoms</span> -<br />
+                We care <span className="text-gray-400">about each person.</span>
+              </div>
+            )}
             <Link href="/contact">
               <Button
                 aria-label="book appointment"
@@ -96,7 +121,16 @@ export default function Hero() {
               priority
             />
 
-            <div className="absolute top-40 sm:top-40 lg:top-48 left-4 sm:left-6 lg:left-16 bg-gray-500/20 backdrop-blur-sm px-3 py-1 rounded-full text-xs sm:text-sm text-clinic-accent">
+            {/* Sits lower on landing pages, where the longer intro paragraph
+                reaches into the default badge position. */}
+            <div
+              className={clsx(
+                "absolute left-4 sm:left-6 lg:left-16 bg-gray-500/20 backdrop-blur-sm px-3 py-1 rounded-full text-xs sm:text-sm text-clinic-accent",
+                description
+                  ? "top-56 sm:top-56 lg:top-72"
+                  : "top-40 sm:top-40 lg:top-48"
+              )}
+            >
               Reliability
             </div>
 

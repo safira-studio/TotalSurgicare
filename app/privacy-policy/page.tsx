@@ -33,7 +33,7 @@ const privacyContent = [
         type: "paragraph",
         content: (
           <>
-            <strong>TotalSurgicare</strong> (&quot;we,&quot; &quot;our,&quot; or
+            <strong>Total Surgicare</strong> (&quot;we,&quot; &quot;our,&quot; or
             &quot;us&quot;) is committed to protecting your privacy and personal
             information. This Privacy Notice explains how and why we might
             access, collect, store, use, and/or share (&quot;process&quot;) your
@@ -393,7 +393,7 @@ const privacyContent = [
         type: "paragraph",
         content: (
           <>
-            <strong>TotalSurgicare</strong> is committed to complying with the{" "}
+            <strong>Total Surgicare</strong> is committed to complying with the{" "}
             <strong>
               Health Insurance Portability and Accountability Act (HIPAA)
             </strong>{" "}
@@ -449,7 +449,7 @@ const privacyContent = [
         content: (
           <div className="bg-gray-50 p-4 rounded-lg border-l-4 border-clinic-primary">
             <div className="font-semibold text-clinic-primary mb-2">
-              TotalSurgicare
+              Total Surgicare
             </div>
             <div className="space-y-1 text-gray-700">
               <div>{siteConfig.contact.address.street}</div>

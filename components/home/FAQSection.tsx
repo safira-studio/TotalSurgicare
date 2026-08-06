@@ -10,13 +10,27 @@ import { Card } from "@/components/ui/card";
 import { siteConfig } from "@/config/site";
 import Link from "next/link";
 
-interface FAQItem {
+export interface FAQItem {
   question: string;
   answer: string;
 }
 
-const FAQSection = () => {
-  const faqs: FAQItem[] = [
+interface FAQSectionProps {
+  /** Small uppercase label above the heading. */
+  eyebrow?: string;
+  heading?: string;
+  description?: string;
+  /** Landing pages pass their own question set; defaults to the site-wide FAQs. */
+  faqs?: FAQItem[];
+}
+
+const FAQSection = ({
+  eyebrow = "FREQUENTLY ASKED QUESTIONS",
+  heading = "Common Questions",
+  description = "Find answers to the most common questions about our services and medical care.",
+  faqs: faqsProp,
+}: FAQSectionProps) => {
+  const defaultFaqs: FAQItem[] = [
     {
       question: "What insurance plans do you accept?",
       answer:
@@ -49,6 +63,8 @@ const FAQSection = () => {
     },
   ];
 
+  const faqs = faqsProp ?? defaultFaqs;
+
   const emergencyContacts = [
     {
       label: "Emergency Services",
@@ -65,13 +81,10 @@ const FAQSection = () => {
       <div className="container mx-auto px-4 md:px-10">
         <div className="text-center mb-10">
           <p className="text-sm font-medium text-clinic-primary mb-2">
-            FREQUENTLY ASKED QUESTIONS
+            {eyebrow}
           </p>
-          <h2 className="text-3xl font-onest">Common Questions</h2>
-          <p className="text-gray-500 mt-2 max-w-lg mx-auto">
-            Find answers to the most common questions about our services and
-            medical care.
-          </p>
+          <h2 className="text-3xl font-onest">{heading}</h2>
+          <p className="text-gray-500 mt-2 max-w-lg mx-auto">{description}</p>
         </div>
 
         <div className="flex flex-col lg:flex-row gap-4 lg:gap-8">

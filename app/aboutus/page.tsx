@@ -31,7 +31,7 @@ const About = () => {
       <section className="py-20 px-4">
         <div className="container mx-auto text-center">
           <h1 className="text-5xl font-onest text-white mb-6 max-sm:text-4xl">
-            About TotalSurgicare
+            About Total Surgicare
           </h1>
           <p className="text-xl text-white mb-8 max-w-3xl mx-auto  max-sm:text-md">
             Dedicated to providing exceptional healthcare services with
@@ -147,7 +147,7 @@ const About = () => {
             <div className="prose prose-lg max-w-none text-gray-600">
               <p className="text-lg leading-relaxed mb-6">
                 Founded with a vision to transform healthcare delivery,
-                TotalSurgicare began as a small practice with a big dream: to
+                Total Surgicare began as a small practice with a big dream: to
                 provide world-class medical care that puts patients first. Over
                 the years, we have grown from a single clinic to a comprehensive
                 healthcare facility, but our core values remain unchanged.
@@ -161,7 +161,7 @@ const About = () => {
                 post-surgical support.
               </p>
               <p className="text-lg leading-relaxed">
-                Today, TotalSurgicare stands as a testament to what healthcare
+                Today, Total Surgicare stands as a testament to what healthcare
                 can be when expertise meets compassion. We continue to expand
                 our services and capabilities, always guided by our commitment
                 to improving the health and well-being of the communities we
@@ -176,7 +176,7 @@ const About = () => {
       <section className="py-16 px-4 bg-blue-50">
         <div className="container mx-auto">
           <h2 className="text-3xl font-bold text-center text-clinic-primary mb-12">
-            Why Choose TotalSurgicare?
+            Why Choose Total Surgicare?
           </h2>
           <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-8 px-4">
             <div className="text-center">
