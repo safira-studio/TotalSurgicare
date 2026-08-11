@@ -14,6 +14,7 @@ import {
 } from "@/components/ui/carousel";
 import { MedicalCondition } from "@/types";
 import Insights from "@/components/conditions/insights";
+import FAQSection from "@/components/home/FAQSection";
 
 type Props = {
   slug: string;
@@ -212,6 +213,15 @@ export default async function Content({ slug, data }: Props) {
         <ConditionTypes name={data.name} types={data.types} />
       )}
       <Treatment name={data.name} whyUs={data.whyChooseUs} />
+
+      {data.faq && data.faq.length > 0 && (
+        <FAQSection
+          description={`Answers to common questions about ${data.name.toLowerCase()} at Total Surgicare.`}
+          eyebrow="FAQS"
+          faqs={data.faq}
+          heading={`Frequently Asked Questions — ${data.name}`}
+        />
+      )}
     </div>
   );
 }

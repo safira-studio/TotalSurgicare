@@ -16,9 +16,20 @@ interface Heroprops {
     language: string;
     name: string;
   }[];
+  badges?: { title: string; description: string }[];
 }
 
-const Hero = ({ title, brief, alternateNames }: Heroprops) => {
+const defaultBadgeIcons = [Check, ImageIcon, Info, Calendar];
+
+const defaultBadges = [
+  { title: "Minimally Invasive", description: "Advanced techniques with minimal pain" },
+  { title: "Modern Technology", description: "State-of-the-art equipment" },
+  { title: "Expert Doctors", description: "Specialized in treatment" },
+  { title: "Quick Recovery", description: "Return to normal activities fast" },
+];
+
+const Hero = ({ title, brief, alternateNames, badges }: Heroprops) => {
+  const heroBadges = badges && badges.length > 0 ? badges : defaultBadges;
   return (
     <section className="relative min-h-screen overflow-hidden">
       {/* <div
@@ -51,26 +62,19 @@ const Hero = ({ title, brief, alternateNames }: Heroprops) => {
             </p>
 
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 lg:gap-4 mb-6">
-              <InfoIcon
-                description="Advanced techniques with minimal pain"
-                icon={<Check className="h-5 w-5 lg:h-6 lg:w-6" />}
-                title="Minimally Invasive"
-              />
-              <InfoIcon
-                description="State-of-the-art equipment"
-                icon={<ImageIcon className="h-5 w-5 lg:h-6 lg:w-6" />}
-                title="Modern Technology"
-              />
-              <InfoIcon
-                description="Specialized in treatment"
-                icon={<Info className="h-5 w-5 lg:h-6 lg:w-6" />}
-                title="Expert Doctors"
-              />
-              <InfoIcon
-                description="Return to normal activities fast"
-                icon={<Calendar className="h-5 w-5 lg:h-6 lg:w-6" />}
-                title="Quick Recovery"
-              />
+              {heroBadges.map((badge, index) => {
+                const BadgeIcon =
+                  defaultBadgeIcons[index % defaultBadgeIcons.length];
+
+                return (
+                  <InfoIcon
+                    key={badge.title}
+                    description={badge.description}
+                    icon={<BadgeIcon className="h-5 w-5 lg:h-6 lg:w-6" />}
+                    title={badge.title}
+                  />
+                );
+              })}
             </div>
 
             {alternateNames && alternateNames.length > 0 && (

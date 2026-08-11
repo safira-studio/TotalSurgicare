@@ -2,9 +2,11 @@
 // client components can import the link helpers without pulling the whole
 // treatment catalogue into the browser bundle.
 import allData from "./index";
-import { metadataMap } from "./metadataMap";
 import { mumbaiMetadataMap } from "./mumbaiMetadataMap";
+import { puneMetadataMap } from "./puneMetadataMap";
+import puneTreatmentContent from "@/components/pune/treatments";
 import { SITE_URL, toBaseSlug, type CityKey } from "./cities";
+import type { MedicalCondition } from "@/types";
 
 type TreatmentMetadata = {
   title: string;
@@ -14,8 +16,14 @@ type TreatmentMetadata = {
 
 // Both maps are keyed by BASE slug, so no rekeying was needed for the new URLs.
 const cityMetadata: Record<CityKey, Record<string, TreatmentMetadata>> = {
-  pune: metadataMap,
+  pune: puneMetadataMap,
   mumbai: mumbaiMetadataMap,
+};
+
+// City-specific content overrides. Only Pune has rewritten copy so far;
+// mumbai and the generic /treatment pages keep reading from `allData`.
+const cityContentOverrides: Partial<Record<CityKey, Record<string, MedicalCondition>>> = {
+  pune: puneTreatmentContent,
 };
 
 /**
@@ -31,7 +39,8 @@ export function resolveCityTreatment(city: CityKey, citySlug: string) {
   const dataKey = baseSlug.replace(/-([a-z])/g, (_, letter: string) =>
     letter.toUpperCase()
   );
-  const data = allData[dataKey as keyof typeof allData];
+  const data =
+    cityContentOverrides[city]?.[baseSlug] ?? allData[dataKey as keyof typeof allData];
 
   if (!data) return null;
 

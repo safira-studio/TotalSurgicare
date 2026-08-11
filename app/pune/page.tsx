@@ -91,15 +91,13 @@ const schema = {
 export default function PunePage() {
     return (
         <>
-            <script
-                type="application/ld+json"
-                // Static, developer-authored object — no user input reaches this string.
-                dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
-            />
+            {/* Rendered as a text child (not dangerouslySetInnerHTML) since `schema` is
+                a static, developer-authored object — never user input. */}
+            <script type="application/ld+json">{JSON.stringify(schema)}</script>
 
             <Hero
                 title="Advanced Multispeciality Surgical Care in Pune with Expert Surgeons"
-                description="Advanced surgical treatment from experienced specialists at Total Surgicare, a trusted multispeciality hospital in Pune general surgery, laparoscopic and minimally invasive procedures, modern diagnostics and complete post-surgical care under one roof."
+                description="Advanced surgical treatment from experienced specialists at Total Surgicare, a trusted multispeciality hospital in Pune — general surgery, laparoscopic and minimally invasive procedures, modern diagnostics and complete post-surgical care under one roof."
             />
             <PuneTreatments />
             <PuneWhyChooseUs />

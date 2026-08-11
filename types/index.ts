@@ -16,6 +16,9 @@ export interface MedicalCondition {
       language: string; // e.g., "Hindi", "Tamil"
       name: string; // e.g., "पाइलोनिडल साइनस" for Pilonidal Sinus in Hindi
     }[];
+    // Overrides Hero's 4 default badges (Minimally Invasive / Modern Technology /
+    // Expert Doctors / Quick Recovery) with treatment-specific ones when present.
+    badges?: { title: string; description: string }[];
   };
   aboutCondition: {
     title: string; // e.g., "What are Piles?"
@@ -55,4 +58,5 @@ export interface MedicalCondition {
     title: string; // e.g., "Advanced Treatment Through Laser Surgery"
     description: string;
   }[];
+  faq?: { question: string; answer: string }[];
 }
