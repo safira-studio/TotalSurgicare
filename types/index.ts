@@ -45,6 +45,11 @@ export interface MedicalCondition {
       name: string; // e.g., "Dietary Changes", "Sitz Baths"
       description: string;
     }[];
+    /**
+     * Heading for the nonSurgical block. Defaults to "Preventive Measures";
+     * set it when the list is something else (e.g. "Post-Treatment Care").
+     */
+    nonSurgicalTitle?: string;
     surgical: {
       name: string; // e.g., "Laser Surgery", "Laparoscopic Surgery"
       description: string;

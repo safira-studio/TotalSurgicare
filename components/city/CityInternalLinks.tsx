@@ -1,18 +1,19 @@
 import React from "react";
 import Link from "next/link";
 import { MapPin } from "lucide-react";
-import { metadataMap } from "@/components/data/metadataMap";
-import { cities, cityTreatmentPath, type CityKey } from "@/components/data/cities";
 
-const PUNE: CityKey = "pune";
+import { metadataMap } from "@/components/data/metadataMap";
+import {
+  cities,
+  cityTreatmentPath,
+  type CityKey,
+} from "@/components/data/cities";
+
+import type { CityConfig } from "./types";
 
 /** First keyword phrase doubles as the anchor text — already written for search. */
 const labelFor = (slug: string) =>
   metadataMap[slug]?.keywords.split(",")[0].trim() ?? slug;
-
-const otherCities = (Object.keys(cities) as CityKey[]).filter(
-  (city) => city !== PUNE
-);
 
 const sitePages = [
   { href: "/aboutus", label: "About Us" },
@@ -44,8 +45,11 @@ const LinkList = ({
 const listItemClass =
   "text-sm text-gray-500 hover:text-clinic-primary transition-colors";
 
-const PuneInternalLinks = () => {
+const CityInternalLinks = ({ city }: { city: CityConfig }) => {
   const allTreatmentSlugs = Object.keys(metadataMap);
+  const otherCities = (Object.keys(cities) as CityKey[]).filter(
+    (key) => key !== city.key
+  );
 
   return (
     <section
@@ -54,19 +58,19 @@ const PuneInternalLinks = () => {
     >
       <div className="container mx-auto px-4 max-w-6xl">
         <h2
-          id="explore-heading"
           className="text-2xl md:text-3xl font-onest font-bold text-gray-900 mb-10"
+          id="explore-heading"
         >
           Explore Total Surgicare
         </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
-          <LinkList heading="Treatments in Pune">
-            {cities[PUNE].treatments.map((slug) => (
+          <LinkList heading={`Treatments in ${city.name}`}>
+            {cities[city.key].treatments.map((slug) => (
               <li key={slug}>
                 <Link
                   className={listItemClass}
-                  href={cityTreatmentPath(slug, PUNE)}
+                  href={cityTreatmentPath(slug, city.key)}
                 >
                   {labelFor(slug)}
                 </Link>
@@ -101,14 +105,14 @@ const PuneInternalLinks = () => {
             </LinkList>
 
             <LinkList heading="Other Locations">
-              {otherCities.map((city) => (
-                <li key={city}>
+              {otherCities.map((key) => (
+                <li key={key}>
                   <Link
                     className={`flex items-center gap-1.5 ${listItemClass}`}
-                    href={`/${city}`}
+                    href={`/${key}`}
                   >
-                    <MapPin className="h-3.5 w-3.5 shrink-0" />
-                    Total Surgicare {cities[city].name}
+                    <MapPin aria-hidden="true" className="h-3.5 w-3.5 shrink-0" />
+                    Total Surgicare {cities[key].name}
                   </Link>
                 </li>
               ))}
@@ -120,4 +124,4 @@ const PuneInternalLinks = () => {
   );
 };
 
-export default PuneInternalLinks;
+export default CityInternalLinks;

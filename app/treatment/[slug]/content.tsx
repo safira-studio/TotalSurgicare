@@ -175,7 +175,7 @@ export default async function Content({ slug, data }: Props) {
         data.treatments.nonSurgical.length > 0 && (
           <div className="mb-16 md:px-10 max-sm:px-3">
             <h2 className="text-3xl text-center font-onest text-gray-800 mb-6">
-              Preventive Measures
+              {data.treatments.nonSurgicalTitle ?? "Preventive Measures"}
             </h2>
             <div className="bg-blue-50 rounded-2xl md:rounded-3xl p-6 ">
               <div className="grid md:grid-cols-2 gap-6">

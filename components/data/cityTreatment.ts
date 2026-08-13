@@ -4,6 +4,7 @@
 import allData from "./index";
 import { mumbaiMetadataMap } from "./mumbaiMetadataMap";
 import { puneMetadataMap } from "./puneMetadataMap";
+import mumbaiTreatmentContent from "@/components/mumbai/treatments";
 import puneTreatmentContent from "@/components/pune/treatments";
 import { SITE_URL, toBaseSlug, type CityKey } from "./cities";
 import type { MedicalCondition } from "@/types";
@@ -20,10 +21,11 @@ const cityMetadata: Record<CityKey, Record<string, TreatmentMetadata>> = {
   mumbai: mumbaiMetadataMap,
 };
 
-// City-specific content overrides. Only Pune has rewritten copy so far;
-// mumbai and the generic /treatment pages keep reading from `allData`.
+// City-specific content overrides. Pune and Mumbai both have rewritten copy;
+// the generic /treatment pages keep reading from `allData`.
 const cityContentOverrides: Partial<Record<CityKey, Record<string, MedicalCondition>>> = {
   pune: puneTreatmentContent,
+  mumbai: mumbaiTreatmentContent,
 };
 
 /**

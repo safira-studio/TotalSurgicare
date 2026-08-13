@@ -1,7 +1,10 @@
 import React from "react";
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
 import { UserRound, Cpu, IndianRupee, Hospital } from "lucide-react";
+
+import { Button } from "@/components/ui/button";
+
+import type { CityConfig } from "./types";
 
 interface ReasonProps {
   index: number;
@@ -14,6 +17,7 @@ interface ReasonProps {
 const Reason = ({ index, title, body, icon, accentClass }: ReasonProps) => (
   <article className="relative bg-white border border-gray-100 rounded-3xl p-8 h-full transition-all duration-300 ease-out hover:shadow-xl hover:-translate-y-1 overflow-hidden">
     <div
+      aria-hidden="true"
       className={`absolute -top-10 -right-10 w-32 h-32 rounded-full opacity-60 ${accentClass}`}
     />
 
@@ -35,6 +39,7 @@ const Reason = ({ index, title, body, icon, accentClass }: ReasonProps) => (
   </article>
 );
 
+/** Identical across cities — only the intro paragraph names the city. */
 const reasons: Omit<ReasonProps, "index">[] = [
   {
     title: "Experienced Surgical Specialists & Personalized Care",
@@ -62,7 +67,7 @@ const reasons: Omit<ReasonProps, "index">[] = [
   },
 ];
 
-const PuneWhyChooseUs = () => {
+const CityWhyChooseUs = ({ city }: { city: CityConfig }) => {
   return (
     <section
       aria-labelledby="why-choose-heading"
@@ -74,14 +79,13 @@ const PuneWhyChooseUs = () => {
             Why Choose Us
           </span>
           <h2
-            id="why-choose-heading"
             className="text-4xl md:text-5xl font-onest font-bold text-gray-900 mb-5"
+            id="why-choose-heading"
           >
             Why Choose Total Surgicare
           </h2>
           <p className="text-gray-500 text-lg leading-relaxed">
-            Four reasons patients across Pune trust us with their surgery — from
-            the first consultation right through to recovery.
+            {city.whyChooseUsIntro}
           </p>
         </div>
 
@@ -112,4 +116,4 @@ const PuneWhyChooseUs = () => {
   );
 };
 
-export default PuneWhyChooseUs;
+export default CityWhyChooseUs;

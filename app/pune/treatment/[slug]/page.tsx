@@ -5,7 +5,7 @@ import { Metadata } from "next";
 import { siteConfig } from "@/config/site";
 import { cities, toCitySlug } from "@/components/data/cities";
 import { resolveCityTreatment } from "@/components/data/cityTreatment";
-import { buildTreatmentSchema } from "@/components/pune/treatments/treatmentSchema";
+import { buildTreatmentSchema } from "@/components/city/schema";
 
 const CITY = "pune" as const;
 
@@ -53,6 +53,7 @@ export default async function PuneTreatmentPage({ params }: Props) {
     }
 
     const schema = buildTreatmentSchema({
+        cityKey: CITY,
         citySlug: slug,
         treatmentName: resolved.data.name,
         pageTitle: resolved.meta?.title ?? resolved.data.overview.title,

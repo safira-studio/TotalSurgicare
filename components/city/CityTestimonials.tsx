@@ -1,16 +1,11 @@
 import React from "react";
 import { Star, ExternalLink } from "lucide-react";
+
 import { Card, CardContent } from "@/components/ui/card";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-import { GOOGLE_REVIEWS, GOOGLE_PROFILE_URL } from "./puneLocationData";
 
-interface ReviewProps {
-  author: string;
-  rating: number;
-  /** Procedure the patient was treated for. Omitted when not on record. */
-  treatment?: string;
-  content: string;
-}
+import { googleMapsUrls } from "./index";
+import type { CityConfig, CityReview } from "./types";
 
 const Stars = ({ rating }: { rating: number }) => (
   <div
@@ -31,7 +26,7 @@ const Stars = ({ rating }: { rating: number }) => (
   </div>
 );
 
-const ReviewCard = ({ author, rating, treatment, content }: ReviewProps) => (
+const ReviewCard = ({ author, rating, treatment, content }: CityReview) => (
   <Card className="h-full bg-white rounded-3xl border border-gray-100 shadow-sm hover:shadow-xl transition-shadow duration-300">
     <CardContent className="p-7 flex flex-col h-full gap-4">
       <div className="flex items-start justify-between gap-3">
@@ -63,7 +58,14 @@ const ReviewCard = ({ author, rating, treatment, content }: ReviewProps) => (
   </Card>
 );
 
-const PuneTestimonials = () => {
+const CityTestimonials = ({ city }: { city: CityConfig }) => {
+  // The "read more on Google" CTA needs a real profile to point at. Cities
+  // without a published address have no Business Profile yet, so the link is
+  // omitted rather than sending patients to an empty Maps search.
+  const profileUrl = city.address
+    ? googleMapsUrls(city.address).profile
+    : null;
+
   return (
     <section
       aria-labelledby="testimonials-heading"
@@ -75,38 +77,38 @@ const PuneTestimonials = () => {
             Testimonials
           </span>
           <h2
-            id="testimonials-heading"
             className="text-4xl md:text-5xl font-onest font-bold text-gray-900 mb-5"
+            id="testimonials-heading"
           >
             What Our Patients Say
           </h2>
           <p className="text-gray-500 text-lg max-w-3xl mx-auto leading-relaxed">
-            Read genuine feedback from patients who trusted Total Surgicare for
-            advanced surgical treatment, compassionate care, and successful
-            recovery across multiple specialties.
+            {city.testimonialsIntro}
           </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {GOOGLE_REVIEWS.map((review) => (
+          {city.reviews.map((review) => (
             <ReviewCard key={review.author} {...review} />
           ))}
         </div>
 
-        <div className="mt-12 flex justify-center">
-          <a
-            className="inline-flex items-center gap-2 rounded-full border border-gray-200 bg-white px-6 h-11 text-sm font-semibold text-clinic-primary shadow-sm transition-all hover:shadow-md hover:border-clinic-primary/40"
-            href={GOOGLE_PROFILE_URL}
-            rel="noopener noreferrer"
-            target="_blank"
-          >
-            View More Reviews on Google
-            <ExternalLink className="w-4 h-4" />
-          </a>
-        </div>
+        {profileUrl && (
+          <div className="mt-12 flex justify-center">
+            <a
+              className="inline-flex items-center gap-2 rounded-full border border-gray-200 bg-white px-6 h-11 text-sm font-semibold text-clinic-primary shadow-sm transition-all hover:shadow-md hover:border-clinic-primary/40"
+              href={profileUrl}
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              View More Reviews on Google
+              <ExternalLink aria-hidden="true" className="w-4 h-4" />
+            </a>
+          </div>
+        )}
       </div>
     </section>
   );
 };
 
-export default PuneTestimonials;
+export default CityTestimonials;
