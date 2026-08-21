@@ -65,7 +65,7 @@ const termsContent = [
             We operate the website{" "}
             <Link
               href="https://totalsurgicare.com"
-              className="text-clinic-primary hover:underline font-medium"
+              className="text-clinic-dark hover:underline font-medium"
             >
               https://totalsurgicare.com
             </Link>{" "}
@@ -82,14 +82,14 @@ const termsContent = [
             You can contact us by phone at{" "}
             <Link
               href={`tel:${siteConfig.contact.phone.primary}`}
-              className="text-clinic-primary hover:underline font-medium"
+              className="text-clinic-dark hover:underline font-medium"
             >
               {siteConfig.contact.phone.primary}
             </Link>
             , email at{" "}
             <Link
               href={`mailto:${siteConfig.contact.email.primary}`}
-              className="text-clinic-primary hover:underline font-medium"
+              className="text-clinic-dark hover:underline font-medium"
             >
               {siteConfig.contact.email.primary}
             </Link>
@@ -262,7 +262,7 @@ const termsContent = [
             please address your request to:{" "}
             <Link
               href={`mailto:${siteConfig.contact.email.primary}`}
-              className="text-clinic-primary hover:underline font-medium"
+              className="text-clinic-dark hover:underline font-medium"
             >
               {siteConfig.contact.email.primary}
             </Link>
@@ -538,7 +538,7 @@ const termsContent = [
             Policy:{" "}
             <Link
               href="/privacy-policy"
-              className="text-clinic-primary hover:underline font-medium"
+              className="text-clinic-dark hover:underline font-medium"
             >
               https://totalsurgicare.com/privacy-policy
             </Link>
@@ -878,7 +878,7 @@ const termsContent = [
         type: "address",
         content: (
           <div className="bg-gray-50 p-4 rounded-lg border-l-4 border-clinic-primary">
-            <div className="font-semibold text-clinic-primary mb-2">
+            <div className="font-semibold text-clinic-dark mb-2">
               Total Surgicare
             </div>
             <div className="space-y-1 text-gray-700">
@@ -894,7 +894,7 @@ const termsContent = [
                   <strong>Phone:</strong>{" "}
                   <Link
                     href={`tel:${siteConfig.contact.phone.primary}`}
-                    className="text-clinic-primary hover:underline font-medium"
+                    className="text-clinic-dark hover:underline font-medium"
                   >
                     {siteConfig.contact.phone.primary}
                   </Link>
@@ -903,7 +903,7 @@ const termsContent = [
                   <strong>Email:</strong>{" "}
                   <Link
                     href={`mailto:${siteConfig.contact.email.primary}`}
-                    className="text-clinic-primary hover:underline font-medium"
+                    className="text-clinic-dark hover:underline font-medium"
                   >
                     {siteConfig.contact.email.primary}
                   </Link>
@@ -923,8 +923,8 @@ const TermsAndConditions = () => {
       {/* Hero Section */}
       <section className="py-10 px-4">
         <div className="container mx-auto text-center">
-          <Scale className="h-16 w-16 text-clinic-primary mx-auto mb-6" />
-          <h1 className="text-xl md:text-4xl font-bold text-clinic-primary mb-6">
+          <Scale className="h-16 w-16 text-clinic-dark mx-auto mb-6" />
+          <h1 className="text-xl md:text-4xl font-bold text-clinic-dark mb-6">
             Terms and Conditions
           </h1>
           <p className="md:text-lg text-gray-600 mb-8 max-w-3xl mx-auto">
@@ -942,15 +942,15 @@ const TermsAndConditions = () => {
             {termsContent.map((section, index) => (
               <div key={index}>
                 <div className="flex items-center mb-4">
-                  <section.icon className="h-6 w-6 text-clinic-primary mr-3" />
-                  <h2 className="text-xl md:text-2xl font-bold text-clinic-primary">
+                  <section.icon className="h-6 w-6 text-clinic-dark mr-3" />
+                  <h2 className="text-xl md:text-2xl font-bold text-clinic-dark">
                     {index + 1}. {section.title}
                   </h2>
                 </div>
                 {section.content.map((item, idx) => (
                   <div key={idx} className="space-y-4">
                     {item.type === "subheading" && (
-                      <h3 className="md:text-lg font-semibold text-clinic-primary mb-2">
+                      <h3 className="md:text-lg font-semibold text-clinic-dark mb-2">
                         {typeof item.content === "string"
                           ? item.content
                           : item.content}

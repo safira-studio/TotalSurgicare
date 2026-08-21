@@ -1,7 +1,17 @@
+import type { Metadata } from "next";
 import { redirect } from "next/navigation";
 import { headers } from "next/headers";
 import { createClient } from "@/lib/supabase/server";
 import PrescriptionHeader from "./PrescriptionHeader";
+
+// The doctor portal is a private staff tool. It was inheriting the homepage's
+// title and description and was fully crawlable; noindex keeps it out of search
+// entirely, which also removes the duplicate-metadata problem.
+export const metadata: Metadata = {
+  title: { absolute: "Doctor Portal | Total Surgicare" },
+  description: "Private portal for Total Surgicare clinicians.",
+  robots: { index: false, follow: false },
+};
 
 // Routes that should NOT trigger the letterhead gate
 const ONBOARDING_PATHS = ["/prescription/onboarding"];

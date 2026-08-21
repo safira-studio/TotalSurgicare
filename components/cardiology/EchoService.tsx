@@ -28,7 +28,7 @@ const EchoService = () => {
             <Badge className="bg-cyan-100 text-cyan-700 mb-4">
               Cardiac Imaging
             </Badge>
-            <h2 className="text-2xl md:text-3xl lg:text-4xl font-onest text-clinic-primary mb-6">
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-onest text-clinic-dark mb-6">
               2D Echocardiography – See Your Heart in Action
             </h2>
             <p className="text-lg text-gray-600 mb-6">
@@ -48,7 +48,7 @@ const EchoService = () => {
             <div className="grid sm:grid-cols-2 gap-6">
               <Card className="border-cyan-200 bg-cyan-50">
                 <CardHeader>
-                  <CardTitle className="text-lg text-clinic-primary flex items-center">
+                  <CardTitle className="text-lg text-clinic-dark flex items-center">
                     <ScanHeart className="h-5 w-5 mr-2 text-cyan-600" />
                     Key Benefits
                   </CardTitle>
@@ -57,7 +57,7 @@ const EchoService = () => {
                   <ul className="space-y-2">
                     {benefits.map((benefit, index) => (
                       <li key={index} className="flex items-start gap-2">
-                        <Circle className="h-2 w-2 mt-2 text-clinic-primary fill-current shrink-0" />
+                        <Circle className="h-2 w-2 mt-2 text-clinic-dark fill-current shrink-0" />
                         <span className="text-sm text-gray-600">{benefit}</span>
                       </li>
                     ))}
@@ -67,7 +67,7 @@ const EchoService = () => {
 
               <Card className="border-cyan-200 bg-cyan-50">
                 <CardHeader>
-                  <CardTitle className="text-lg text-clinic-primary">
+                  <CardTitle className="text-lg text-clinic-dark">
                     When Is It Needed
                   </CardTitle>
                 </CardHeader>
@@ -75,7 +75,7 @@ const EchoService = () => {
                   <ul className="space-y-2">
                     {useCases.map((useCase, index) => (
                       <li key={index} className="flex items-start gap-2">
-                        <Circle className="h-2 w-2 mt-2 text-clinic-primary fill-current shrink-0" />
+                        <Circle className="h-2 w-2 mt-2 text-clinic-dark fill-current shrink-0" />
                         <span className="text-sm text-gray-600">{useCase}</span>
                       </li>
                     ))}

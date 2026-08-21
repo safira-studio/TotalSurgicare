@@ -23,7 +23,7 @@ const Reason = ({ index, title, body, icon, accentClass }: ReasonProps) => (
 
     <div className="relative z-10">
       <div className="flex items-center gap-4 mb-5">
-        <span className="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-clinic-primary/10 text-clinic-primary shrink-0">
+        <span className="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-clinic-primary/10 text-clinic-dark shrink-0">
           {icon}
         </span>
         <span className="text-4xl font-onest font-bold text-gray-200 leading-none">
@@ -75,7 +75,7 @@ const CityWhyChooseUs = ({ city }: { city: CityConfig }) => {
     >
       <div className="container mx-auto px-4 max-w-6xl">
         <div className="max-w-3xl mb-14">
-          <span className="inline-block py-1 px-3 rounded-full bg-blue-50 text-clinic-primary text-xs font-bold tracking-wider uppercase mb-4">
+          <span className="inline-block py-1 px-3 rounded-full bg-blue-50 text-clinic-dark text-xs font-bold tracking-wider uppercase mb-4">
             Why Choose Us
           </span>
           <h2
@@ -105,7 +105,7 @@ const CityWhyChooseUs = ({ city }: { city: CityConfig }) => {
             </Button>
           </Link>
           <Link
-            className="text-sm font-semibold text-clinic-primary hover:underline"
+            className="text-sm font-semibold text-clinic-dark hover:underline"
             href="/aboutus"
           >
             Learn more about Total Surgicare

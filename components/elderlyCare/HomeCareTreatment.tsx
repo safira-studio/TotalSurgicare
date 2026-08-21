@@ -33,7 +33,7 @@ const HomeCareTreatment = () => {
     <section className="py-16 px-4 bg-white overflow-x-hidden">
       <div className="container mx-auto">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-onest text-clinic-primary mb-4">
+          <h2 className="text-3xl md:text-4xl font-onest text-clinic-dark mb-4">
             Home Treatment Services
           </h2>
           <p className="text-gray-600 max-w-3xl mx-auto">
@@ -53,7 +53,7 @@ const HomeCareTreatment = () => {
               >
                 <CardContent className="p-6">
                   <div className="bg-clinic-primary/10 w-14 h-14 rounded-full flex items-center justify-center mb-4">
-                    <Icon className="w-7 h-7 text-clinic-primary" />
+                    <Icon className="w-7 h-7 text-clinic-dark" />
                   </div>
                   <h3 className="text-xl font-semibold text-gray-800 mb-3">
                     {service.title}
@@ -66,7 +66,7 @@ const HomeCareTreatment = () => {
         </div>
 
         <div className="mt-12 bg-blue-50 rounded-2xl p-8">
-          <h3 className="text-2xl font-semibold text-clinic-primary mb-6 text-center">
+          <h3 className="text-2xl font-semibold text-clinic-dark mb-6 text-center">
             Treatment Procedures Available at Home
           </h3>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">

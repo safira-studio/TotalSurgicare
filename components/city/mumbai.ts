@@ -17,10 +17,8 @@ export const mumbaiConfig: CityConfig = {
 
   meta: {
     title: `${PAGE_TITLE} | Total Surgicare`,
-    // Trimmed from the longer hero paragraph to stay inside the ~160 character
-    // budget Google renders for a description.
     description:
-      "Receive advanced surgical treatment from experienced specialists at Total Surgicare, a trusted multispeciality hospital in Mumbai. General surgery, laparoscopic surgery, modern diagnostics, minimally invasive procedures and complete post-surgical care under one roof.",
+      "Advanced surgical care in Mumbai from experienced specialists — general, laparoscopic and minimally invasive surgery, diagnostics and post-op care.",
     keywords: "Multispeciality Surgical Care in Mumbai",
   },
 

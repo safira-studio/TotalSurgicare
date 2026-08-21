@@ -43,7 +43,7 @@ const ConditionTypes = ({
 
                 return (
                   <tr key={index} className="hover:bg-gray-50">
-                    <td className="font-medium text-clinic-primary px-4 py-3 whitespace-nowrap">
+                    <td className="font-medium text-clinic-dark px-4 py-3 whitespace-nowrap">
                       {item.type}
                     </td>
                     <td className="text-gray-600  px-4 py-3">
@@ -70,7 +70,7 @@ const ConditionTypes = ({
                 key={index}
                 className="bg-white border border-gray-200 rounded-lg p-4 shadow-sm"
               >
-                <h3 className="font-medium text-clinic-primary mb-2">
+                <h3 className="font-medium text-clinic-dark mb-2">
                   {item.type}
                 </h3>
                 <p className="text-gray-600 mb-2">

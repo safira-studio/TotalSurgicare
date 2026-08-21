@@ -49,10 +49,10 @@ const HowItWorks = () => {
     <section className="py-16 px-4 bg-gray-50">
       <div className="container mx-auto">
         <div className="text-center mb-12">
-          <Badge className="bg-blue-100 hover:bg-white text-clinic-primary mb-4">
+          <Badge className="bg-blue-100 hover:bg-white text-clinic-dark mb-4">
             Simple Process
           </Badge>
-          <h2 className="text-4xl font-onest text-clinic-primary mb-6">
+          <h2 className="text-4xl font-onest text-clinic-dark mb-6">
             How It Works
           </h2>
           <p className="text-lg text-gray-600 max-w-3xl mx-auto">
@@ -77,7 +77,7 @@ const HowItWorks = () => {
                       {step.step}
                     </div>
                   </div>
-                  <h3 className="text-xl font-bold text-clinic-primary mb-3">
+                  <h3 className="text-xl font-bold text-clinic-dark mb-3">
                     {step.title}
                   </h3>
                   <p className="text-gray-600 text-sm leading-relaxed">
@@ -98,17 +98,17 @@ const HowItWorks = () => {
 
         <section className="py-16 px-4 bg-white">
           <div className="container mx-auto text-center">
-            <h3 className="text-3xl font-onest text-clinic-primary mb-6">
+            <h3 className="text-3xl font-onest text-clinic-dark mb-6">
               Ready to Take Care of Your Heart?
             </h3>
-            <p className="text-clinic-primary mb-8 text-lg max-w-2xl mx-auto">
+            <p className="text-clinic-dark mb-8 text-lg max-w-2xl mx-auto">
               Do&apos;t wait when it comes to your heart health. Schedule a
               consultation with our cardiac specialists today.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href={"/contact"}>
                 <Button
-                  className="bg-white text-clinic-primary hover:bg-clinic-dark border-clinic-primary border-2 hover:text-white px-8 py-3"
+                  className="bg-white text-clinic-dark hover:bg-clinic-dark border-clinic-primary border-2 hover:text-white px-8 py-3"
                   size="lg"
                 >
                   Schedule Consultation
@@ -116,7 +116,7 @@ const HowItWorks = () => {
               </Link>
               <Link href={`tel:${siteConfig.contact.phone.primary}`}>
                 <Button
-                  className=" text-clinic-primary hover:bg-white border-clinic-primary border-2 hover:text-clinic-dark px-8 py-3"
+                  className=" text-clinic-dark hover:bg-white border-clinic-primary border-2 hover:text-clinic-dark px-8 py-3"
                   size="lg"
                   variant="outline"
                 >

@@ -24,7 +24,7 @@ const Footer = () => {
             <Image
               alt="Logo"
               className="min-w-24"
-              height={100}
+              height={95}
               src={"/logo.png"}
               width={200}
             />
@@ -36,6 +36,7 @@ const Footer = () => {
               <Link
                 href="https://www.facebook.com/TotalSurgicare?mibextid=ZbWKwL"
                 aria-label="Facebook"
+                rel="noopener noreferrer"
                 target="_blank"
               >
                 <Button
@@ -51,6 +52,7 @@ const Footer = () => {
               <Link
                 href="https://www.instagram.com/total_surgicare?igsh=aXVwNTVlM2NpdWs1"
                 aria-label="Instagram"
+                rel="noopener noreferrer"
                 target="_blank"
               >
                 <Button

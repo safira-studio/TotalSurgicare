@@ -17,7 +17,7 @@ const ServiceCard = ({
       <CardContent className="p-2 md:p-5 lg:p-7">
         {/* Icon + Title centered and side-by-side */}
         <div className="flex items-center justify-center gap-2 mt-4 mb-2">
-          <div className="text-clinic-primary">{icon}</div>
+          <div className="text-clinic-dark">{icon}</div>
           <h3 className="font-medium">{title}</h3>
         </div>
 
@@ -26,8 +26,7 @@ const ServiceCard = ({
         {/* Centered Button */}
         <div className="flex justify-center">
           <Button
-            aria-label="book appointment"
-            className="text-clinic-primary p-0 h-auto"
+            className="text-clinic-dark p-0 h-auto"
             variant="link"
           >
             Make an appointment
@@ -121,7 +120,7 @@ const Services = () => {
         </p>
         <Button
           aria-label="see all services"
-          className="text-clinic-primary p-0 h-auto"
+          className="text-clinic-dark p-0 h-auto"
           variant="link"
         >
           See all services

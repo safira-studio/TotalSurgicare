@@ -11,7 +11,7 @@ export default function NotFound() {
           <CardContent className="p-12 text-center">
             {/* Large 404 Number */}
             <div className="mb-8">
-              <h1 className="text-8xl font-bold text-clinic-primary mb-4">
+              <h1 className="text-8xl font-bold text-clinic-dark mb-4">
                 404
               </h1>
               <div className="w-24 h-1 bg-clinic-primary mx-auto rounded-full" />
@@ -36,7 +36,7 @@ export default function NotFound() {
               <Link href={"/"}>
                 <Button
                   aria-label="home button"
-                  className="flex items-center gap-2 px-6 py-3 bg-clinic-secondary hover:bg-clinic-secondaryDark"
+                  className="flex items-center gap-2 px-6 py-3 bg-clinic-secondary hover:bg-clinic-secondaryDark text-white"
                 >
                   <Home className="w-4 h-4" />
                   Return Home
@@ -49,7 +49,7 @@ export default function NotFound() {
               <p className="text-sm text-gray-500">
                 Need medical assistance?
                 <a
-                  className="text-clinic-primary hover:text-clinic-primary/80 ml-1 underline"
+                  className="text-clinic-dark hover:text-clinic-dark/80 ml-1 underline"
                   href="/contact"
                 >
                   Contact us for help.

@@ -53,10 +53,10 @@ const EnhancingPatientExperience = () => {
     <section className="py-16 px-4 bg-white">
       <div className="container mx-auto">
         <div className="text-center mb-12">
-          <Badge className="bg-clinic-primary/10 text-clinic-primary mb-4">
+          <Badge className="bg-clinic-primary/10 text-clinic-dark mb-4">
             Patient-Centered Care
           </Badge>
-          <h2 className="text-2xl md:text-4xl font-bold text-clinic-primary mb-6">
+          <h2 className="text-2xl md:text-4xl font-bold text-clinic-dark mb-6">
             Enhancing Patient Experience
           </h2>
           <p className="md:text-lg text-gray-600 max-w-4xl mx-auto">
@@ -75,9 +75,9 @@ const EnhancingPatientExperience = () => {
             >
               <CardHeader className="text-center">
                 <div className="mx-auto bg-clinic-primary/10 w-16 h-16 rounded-full flex items-center justify-center mb-4">
-                  <feature.icon className="h-8 w-8 text-clinic-primary" />
+                  <feature.icon className="h-8 w-8 text-clinic-dark" />
                 </div>
-                <CardTitle className="text-lg text-clinic-primary">
+                <CardTitle className="text-lg text-clinic-dark">
                   {feature.title}
                 </CardTitle>
               </CardHeader>
@@ -92,7 +92,7 @@ const EnhancingPatientExperience = () => {
 
         <div className="bg-clinic-primary/5 rounded-2xl p-8">
           <div className="text-center mb-8">
-            <h3 className="text-xl md:text-3xl font-bold text-clinic-primary mb-4">
+            <h3 className="text-xl md:text-3xl font-bold text-clinic-dark mb-4">
               The Complete Recovery Experience
             </h3>
             <p className="text-gray-700 max-w-3xl mx-auto">
@@ -105,7 +105,7 @@ const EnhancingPatientExperience = () => {
           <div className="grid md:grid-cols-3 gap-8">
             <div className="text-center">
               <div className="bg-white rounded-lg p-6 shadow-md">
-                <div className="text-3xl font-bold text-clinic-primary mb-2">
+                <div className="text-3xl font-bold text-clinic-dark mb-2">
                   98%
                 </div>
                 <div className="text-sm text-gray-600">
@@ -115,7 +115,7 @@ const EnhancingPatientExperience = () => {
             </div>
             <div className="text-center">
               <div className="bg-white rounded-lg p-6 shadow-md">
-                <div className="text-3xl font-bold text-clinic-primary mb-2">
+                <div className="text-3xl font-bold text-clinic-dark mb-2">
                   45%
                 </div>
                 <div className="text-sm text-gray-600">
@@ -125,7 +125,7 @@ const EnhancingPatientExperience = () => {
             </div>
             <div className="text-center">
               <div className="bg-white rounded-lg p-6 shadow-md">
-                <div className="text-3xl font-bold text-clinic-primary mb-2">
+                <div className="text-3xl font-bold text-clinic-dark mb-2">
                   80%
                 </div>
                 <div className="text-sm text-gray-600">

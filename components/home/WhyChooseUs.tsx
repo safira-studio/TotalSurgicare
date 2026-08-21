@@ -58,7 +58,6 @@ const WhyChooseUs = () => {
               </h2>
               <Link href="/contact">
                 <Button
-                  aria-label="book appointment"
                   className="bg-background text-black hover:bg-white/90"
                 >
                   Book Appointment
@@ -72,7 +71,7 @@ const WhyChooseUs = () => {
                   alt="Medical team"
                   className="transform scale-x-[-1]"
                   height={500}
-                  src="/doctor4.png"
+                  src="/doctor4.webp"
                   width={500}
                 />
               </div>
@@ -94,12 +93,12 @@ const WhyChooseUs = () => {
           {/* Right side */}
           <div className="w-full lg:w-1/2 grid grid-cols-2 gap-4 p-8">
             <StatItem
-              color="text-clinic-primary"
+              color="text-clinic-dark"
               description="We have been working since 2012, improving the quality every day."
               label="Years of experience"
               value={
                 <NumberTicker
-                  className="text-5xl font-semibold text-clinic-primary"
+                  className="text-5xl font-semibold text-clinic-dark"
                   decimalPlaces={0}
                   value={10}
                 />
@@ -107,12 +106,12 @@ const WhyChooseUs = () => {
             />
 
             <StatItem
-              color="text-clinic-primary"
+              color="text-clinic-dark"
               description="From family medicine to cardiology and laboratory diagnostics."
               label="Areas of medicine"
               value={
                 <NumberTicker
-                  className="text-5xl font-semibold text-clinic-primary"
+                  className="text-5xl font-semibold text-clinic-dark"
                   decimalPlaces={0}
                   value={15}
                 />
@@ -120,12 +119,12 @@ const WhyChooseUs = () => {
             />
 
             <StatItem
-              color="text-clinic-primary"
+              color="text-clinic-dark"
               description="According to internal surveys over the past year."
               label="Satisfied patients"
               value={
                 <NumberTicker
-                  className="text-5xl font-semibold text-clinic-primary"
+                  className="text-5xl font-semibold text-clinic-dark"
                   decimalPlaces={0}
                   value={95}
                 />
@@ -133,12 +132,12 @@ const WhyChooseUs = () => {
             />
 
             <StatItem
-              color="text-clinic-primary"
+              color="text-clinic-dark"
               description="Thanks to modern equipment and experienced specialists."
               label="Diagnostic accuracy"
               value={
                 <NumberTicker
-                  className="text-5xl font-semibold text-clinic-primary"
+                  className="text-5xl font-semibold text-clinic-dark"
                   decimalPlaces={0}
                   value={98}
                 />

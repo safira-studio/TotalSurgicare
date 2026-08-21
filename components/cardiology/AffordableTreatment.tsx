@@ -13,7 +13,7 @@ const AffordableTreatment = () => {
       bg: "bg-teal-50",
       border: "border-clinic-primary",
       iconBg: "bg-clinic-primary/10",
-      titleColor: "text-clinic-primary",
+      titleColor: "text-clinic-dark",
     },
     {
       title: "Mahatma Jyotirao Phule Jan Arogya Yojana",
@@ -67,10 +67,10 @@ const AffordableTreatment = () => {
     <section className="py-16 px-4 bg-white">
       <div className="container mx-auto">
         <div className="text-center mb-12">
-          <Badge className="bg-green-100 text-clinic-primary mb-4">
+          <Badge className="bg-green-100 text-clinic-dark mb-4">
             Affordable Excellence
           </Badge>
-          <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-clinic-primary mb-6">
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-clinic-dark mb-6">
             Affordable Treatment Options
           </h2>
           <p className="md:text-xl text-gray-600 max-w-3xl mx-auto">
@@ -105,7 +105,7 @@ const AffordableTreatment = () => {
 
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div>
-            <h3 className="text-2xl  md:text-3xl font-bold text-clinic-primary mb-6">
+            <h3 className="text-2xl  md:text-3xl font-bold text-clinic-dark mb-6">
               Our Commitment to Affordable Care
             </h3>
             <p className="md:text-lg text-gray-600 mb-6">
@@ -144,7 +144,7 @@ const AffordableTreatment = () => {
           <div className="bg-clinic-secondary/10 rounded-2xl p-8">
             <div className="text-center mb-6">
               <h4
-                className="text-xl md:text-2xl font-bold text-clinic-primary
+                className="text-xl md:text-2xl font-bold text-clinic-dark
                mb-4"
               >
                 Free Financial Consultation
@@ -195,7 +195,7 @@ const AffordableTreatment = () => {
                 </Button>
               </Link>
               {/* <Button
-                className="w-full border-clinic-primary text-clinic-primary hover:bg-clinic-dark/20 hover:text-clinic-primary"
+                className="w-full border-clinic-primary text-clinic-dark hover:bg-clinic-dark/20 hover:text-clinic-dark"
                 variant="outline"
               >
                 Download Pricing Guide

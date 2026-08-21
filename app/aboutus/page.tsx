@@ -47,8 +47,8 @@ const About = () => {
           <div className="grid md:grid-cols-2 gap-12">
             <div>
               <div className="flex items-center mb-6">
-                <Target className="h-8 w-8 text-clinic-primary mr-3" />
-                <h2 className="text-3xl font-bold text-clinic-primary">
+                <Target className="h-8 w-8 text-clinic-dark mr-3" />
+                <h2 className="text-3xl font-bold text-clinic-dark">
                   Our Mission
                 </h2>
               </div>
@@ -62,8 +62,8 @@ const About = () => {
             </div>
             <div>
               <div className="flex items-center mb-6">
-                <Shield className="h-8 w-8 text-clinic-primary mr-3" />
-                <h2 className="text-3xl font-bold text-clinic-primary">
+                <Shield className="h-8 w-8 text-clinic-dark mr-3" />
+                <h2 className="text-3xl font-bold text-clinic-dark">
                   Our Vision
                 </h2>
               </div>
@@ -82,14 +82,14 @@ const About = () => {
       {/* Values */}
       <section className="py-12 px-10 bg-blue-50">
         <div className="container mx-auto">
-          <h2 className="text-3xl font-bold text-center text-clinic-primary mb-12">
+          <h2 className="text-3xl font-bold text-center text-clinic-dark mb-12">
             Our Core Values
           </h2>
           <div className="grid md:grid-cols-3 gap-8">
             <Card className="border-none shadow-lg hover:shadow-xl transition-shadow">
               <CardHeader className="text-center">
-                <Heart className="h-12 w-12 text-clinic-primary mx-auto mb-4" />
-                <CardTitle className="text-clinic-primary">
+                <Heart className="h-12 w-12 text-clinic-dark mx-auto mb-4" />
+                <CardTitle className="text-clinic-dark">
                   Compassionate Care
                 </CardTitle>
               </CardHeader>
@@ -104,8 +104,8 @@ const About = () => {
 
             <Card className="border-none shadow-lg hover:shadow-xl transition-shadow">
               <CardHeader className="text-center">
-                <Award className="h-12 w-12 text-clinic-primary mx-auto mb-4" />
-                <CardTitle className="text-clinic-primary">
+                <Award className="h-12 w-12 text-clinic-dark mx-auto mb-4" />
+                <CardTitle className="text-clinic-dark">
                   Medical Excellence
                 </CardTitle>
               </CardHeader>
@@ -120,8 +120,8 @@ const About = () => {
 
             <Card className="border-none shadow-lg hover:shadow-xl transition-shadow">
               <CardHeader className="text-center">
-                <Clock className="h-12 w-12 text-clinic-primary mx-auto mb-4" />
-                <CardTitle className="text-clinic-primary">
+                <Clock className="h-12 w-12 text-clinic-dark mx-auto mb-4" />
+                <CardTitle className="text-clinic-dark">
                   Accessibility
                 </CardTitle>
               </CardHeader>
@@ -141,7 +141,7 @@ const About = () => {
       <section className="py-16 px-4 bg-white">
         <div className="container mx-auto">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl font-bold text-center text-clinic-primary mb-8">
+            <h2 className="text-3xl font-bold text-center text-clinic-dark mb-8">
               Our Story
             </h2>
             <div className="prose prose-lg max-w-none text-gray-600">
@@ -175,7 +175,7 @@ const About = () => {
       {/* Why Choose Us */}
       <section className="py-16 px-4 bg-blue-50">
         <div className="container mx-auto">
-          <h2 className="text-3xl font-bold text-center text-clinic-primary mb-12">
+          <h2 className="text-3xl font-bold text-center text-clinic-dark mb-12">
             Why Choose Total Surgicare?
           </h2>
           <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-8 px-4">
@@ -183,7 +183,7 @@ const About = () => {
               <div className="text-white bg-clinic-primary rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
                 <span className="text-2xl font-bold">15+</span>
               </div>
-              <h3 className="text-xl font-semibold text-clinic-primary mb-2">
+              <h3 className="text-xl font-semibold text-clinic-dark mb-2">
                 Years of Experience
               </h3>
               <p className="text-gray-600">
@@ -195,7 +195,7 @@ const About = () => {
               <div className="text-white bg-clinic-primary rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
                 <span className="text-2xl font-bold">50+</span>
               </div>
-              <h3 className="text-xl font-semibold text-clinic-primary mb-2">
+              <h3 className="text-xl font-semibold text-clinic-dark mb-2">
                 Medical Specialists
               </h3>
               <p className="text-gray-600">
@@ -207,7 +207,7 @@ const About = () => {
               <div className="text-white bg-clinic-primary rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
                 <span className="text-2xl font-bold">24/7</span>
               </div>
-              <h3 className="text-xl font-semibold text-clinic-primary mb-2">
+              <h3 className="text-xl font-semibold text-clinic-dark mb-2">
                 Emergency Care
               </h3>
               <p className="text-gray-600">
@@ -219,7 +219,7 @@ const About = () => {
               <div className="text-white bg-clinic-primary rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
                 <span className="text-2xl font-bold">98%</span>
               </div>
-              <h3 className="text-xl font-semibold text-clinic-primary mb-2">
+              <h3 className="text-xl font-semibold text-clinic-dark mb-2">
                 Patient Satisfaction
               </h3>
               <p className="text-gray-600">

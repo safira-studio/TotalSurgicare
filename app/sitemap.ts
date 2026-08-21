@@ -16,6 +16,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
         '/privacy-policy',
         '/terms-conditions',
         '/elderly-care',
+        '/orthopaedic',
         '/pune',
         '/mumbai',
     ].map((route) => ({

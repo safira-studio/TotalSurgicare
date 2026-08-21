@@ -202,7 +202,6 @@ export default function AppointmentForm({
 
           <div className="flex flex-col sm:flex-row gap-3 pt-4">
             <Button
-              aria-label="book appointment"
               className="flex-1 border-clinic-secondary text-clinic-secondary hover:bg-clinic-secondary hover:text-white"
               variant="outline"
               onClick={() => {
@@ -259,6 +258,7 @@ export default function AppointmentForm({
                   "focus:ring-2 focus:ring-clinic-secondary focus-visible:ring-clinic-secondary",
                   colorClass
                 )}
+                autoComplete="name"
                 id="name"
                 placeholder="Your full name"
                 {...register("name")}
@@ -280,6 +280,9 @@ export default function AppointmentForm({
                     "focus:ring-2 focus:ring-clinic-secondary focus-visible:ring-clinic-secondary",
                     colorClass
                   )}
+                  autoComplete="tel"
+                  inputMode="tel"
+                  type="tel"
                   id="phone"
                   placeholder="Your phone number"
                   {...register("phone")}
@@ -328,6 +331,7 @@ export default function AppointmentForm({
                   "focus:ring-2 focus:ring-clinic-secondary focus-visible:ring-clinic-secondary",
                   colorClass
                 )}
+                autoComplete="email"
                 id="email"
                 placeholder="Your email address"
                 type="email"
@@ -363,9 +367,8 @@ export default function AppointmentForm({
 
             <div className="pt-2">
               <Button
-                aria-label="submit form"
                 className={cn(
-                  "w-full bg-clinic-secondary hover:bg-clinic-secondaryDark",
+                  "w-full bg-clinic-secondary hover:bg-clinic-secondaryDark text-white",
                   buttonClass,
                   isSubmitting && "opacity-50 cursor-not-allowed"
                 )}

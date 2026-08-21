@@ -108,10 +108,10 @@ const KeyComponentsCare = () => {
     <section className="py-16 px-4 bg-gray-50">
       <div className="container mx-auto">
         <div className="text-center mb-12">
-          <Badge className="bg-clinic-primary/10 text-clinic-primary mb-4">
+          <Badge className="bg-clinic-primary/10 text-clinic-dark mb-4">
             Comprehensive Care
           </Badge>
-          <h2 className="text-2xl md:text-4xl font-bold text-clinic-primary mb-6">
+          <h2 className="text-2xl md:text-4xl font-bold text-clinic-dark mb-6">
             Key Components of Post-Operative Nursing Care
           </h2>
           <p className="md:text-lg text-gray-600 max-w-3xl mx-auto">
@@ -130,9 +130,9 @@ const KeyComponentsCare = () => {
               <CardHeader>
                 <div className="flex items-center gap-3">
                   <div className="bg-clinic-primary/10 w-12 h-12 rounded-lg flex items-center justify-center">
-                    <component.icon className="h-6 w-6 text-clinic-primary" />
+                    <component.icon className="h-6 w-6 text-clinic-dark" />
                   </div>
-                  <CardTitle className="text-lg text-clinic-primary">
+                  <CardTitle className="text-lg text-clinic-dark">
                     {component.title}
                   </CardTitle>
                 </div>

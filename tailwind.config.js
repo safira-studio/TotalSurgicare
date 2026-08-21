@@ -5,17 +5,20 @@ const config = {
   content: [
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
-    "./node_modules/@heroui/theme/dist/**/*.{js,ts,jsx,tsx}",
+    // Scan only the HeroUI components this site actually renders (navbar + link).
+  	// The previous `dist/**/*` glob made Tailwind emit CSS for every HeroUI
+  	// component, which is what pushed the render-blocking stylesheet to 301KB.
+  	"./node_modules/@heroui/theme/dist/components/(navbar|link|button).js",
   ],
   safelist: ["animate-marquee", "animate-marquee-vertical"],
   theme: {
   	extend: {
   		fontFamily: {
   			sans: [
-  				'var(--font-sans)'
+  				'var(--font-sans)', 'ui-sans-serif', 'system-ui', '-apple-system', 'Segoe UI', 'sans-serif'
   			],
   			mono: [
-  				'var(--font-mono)'
+  				'ui-monospace', 'SFMono-Regular', 'Menlo', 'Consolas', 'monospace'
   			]
   		},
   		borderRadius: {
@@ -76,6 +79,16 @@ const config = {
   			}
   		},
   		keyframes: {
+  			sparkle: {
+  				'0%, 100%': {
+  					opacity: '0',
+  					transform: 'scale(0) rotate(75deg)'
+  				},
+  				'50%': {
+  					opacity: '1',
+  					transform: 'scale(var(--sparkle-scale, 1)) rotate(120deg)'
+  				}
+  			},
   			marquee: {
   				from: {
   					transform: 'translateX(0)'
@@ -123,6 +136,7 @@ const config = {
   			}
   		},
   		animation: {
+  			sparkle: 'sparkle 1s linear infinite',
   			marquee: 'marquee var(--duration) linear infinite',
   			marqueeVertical: 'marqueeVertical var(--duration) linear infinite',
   			scale: 'scale 0.9s ease-in-out infinite',

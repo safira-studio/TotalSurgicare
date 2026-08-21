@@ -48,7 +48,7 @@ const AngioplastyService = () => {
             <Badge className="bg-emerald-100 text-emerald-600 mb-4">
               Minimally Invasive Treatment
             </Badge>
-            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-clinic-primary mb-6">
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-clinic-dark mb-6">
               Angioplasty – Minimally Invasive Treatment
             </h2>
             <p className="md:text-lg text-gray-600 mb-6">
@@ -69,7 +69,7 @@ const AngioplastyService = () => {
             <div className="grid sm:grid-cols-2 gap-6">
               <Card className="border-emerald-200">
                 <CardHeader>
-                  <CardTitle className="text-lg text-clinic-primary flex items-center">
+                  <CardTitle className="text-lg text-clinic-dark flex items-center">
                     <Plus className="h-5 w-5 mr-2 text-emerald-600" />
                     Key Advantages
                   </CardTitle>
@@ -78,7 +78,7 @@ const AngioplastyService = () => {
                   <ul className="space-y-2">
                     {advantages.map((advantage, index) => (
                       <li key={index} className="flex items-start">
-                        <Circle className="h-2 w-2 mt-2 mr-3 text-clinic-primary fill-current" />
+                        <Circle className="h-2 w-2 mt-2 mr-3 text-clinic-dark fill-current" />
                         <span className="text-sm text-gray-600">
                           {advantage}
                         </span>
@@ -90,7 +90,7 @@ const AngioplastyService = () => {
 
               <Card className="border-emerald-200">
                 <CardHeader>
-                  <CardTitle className="text-lg text-clinic-primary">
+                  <CardTitle className="text-lg text-clinic-dark">
                     Treatment Indications
                   </CardTitle>
                 </CardHeader>
@@ -98,7 +98,7 @@ const AngioplastyService = () => {
                   <ul className="space-y-2">
                     {indications.map((indication, index) => (
                       <li key={index} className="flex items-start">
-                        <Circle className="h-2 w-2 mt-2 mr-3 text-clinic-primary fill-current" />
+                        <Circle className="h-2 w-2 mt-2 mr-3 text-clinic-dark fill-current" />
                         <span className="text-sm text-gray-600">
                           {indication}
                         </span>

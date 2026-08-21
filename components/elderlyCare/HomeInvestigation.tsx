@@ -65,7 +65,7 @@ const HomeInvestigation = () => {
     <section className="py-16 px-4 bg-gray-50 overflow-x-hidden">
       <div className="container mx-auto">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-onest text-clinic-primary mb-4">
+          <h2 className="text-3xl md:text-4xl font-onest text-clinic-dark mb-4">
             Home Investigation Services
           </h2>
           <p className="text-gray-600 max-w-3xl mx-auto">
@@ -96,7 +96,7 @@ const HomeInvestigation = () => {
                       <li key={idx} className="flex items-start">
                         <div className="rounded-full bg-clinic-primary/20 p-1 mr-3 mt-0.5">
                           <svg
-                            className="w-3 h-3 text-clinic-primary"
+                            className="w-3 h-3 text-clinic-dark"
                             fill="none"
                             stroke="currentColor"
                             viewBox="0 0 24 24"
@@ -120,7 +120,7 @@ const HomeInvestigation = () => {
         </div>
 
         <div className="bg-clinic-primary/10 rounded-2xl p-8">
-          <h3 className="text-2xl font-semibold text-clinic-primary mb-6 text-center">
+          <h3 className="text-2xl font-semibold text-clinic-dark mb-6 text-center">
             Why Choose Home Investigation Services?
           </h3>
           <div className="grid md:grid-cols-3 gap-6">

@@ -49,9 +49,10 @@ export const Navbar = () => {
         <NavbarBrand as="li" className="gap-3 max-w-fit">
           <NextLink href="/">
             <Image
-              alt="Logo"
+              alt="Total Surgicare"
+              loading="eager"
               className="min-w-16 sm:min-w-24"
-              height={90}
+              height={43}
               src={"/logo.png"}
               width={90}
             />
@@ -62,7 +63,7 @@ export const Navbar = () => {
           <NextLink href="/prescription">
             <Button
               aria-label="Prescription"
-              className="rounded-full bg-clinic-secondary hover:bg-clinic-secondaryDark text-primary-foreground px-3 sm:px-5 h-9 text-xs sm:text-sm font-medium"
+              className="rounded-full bg-clinic-secondary hover:bg-clinic-secondaryDark text-white px-3 sm:px-5 h-9 text-xs sm:text-sm font-medium"
             >
               Prescription
             </Button>
@@ -75,10 +76,9 @@ export const Navbar = () => {
       </NavbarContent>
 
       <NavbarContent
-        className="hidden lg:flex basis-1/5 sm:basis-2/3 lg:basis-4/5"
+        className="hidden 2xl:flex basis-1/5 sm:basis-2/3 2xl:basis-4/5 ml-2 gap-2"
         justify="end"
       >
-        <ul className="hidden lg:flex justify-end ml-2 gap-3">
           {navItems.map((item, index) => (
             <NavbarItem
               key={`${item.title}-${index}`}
@@ -102,7 +102,7 @@ export const Navbar = () => {
                 <span
                   className={clsx(
                     linkStyles({ color: "foreground" }),
-                    "data-[active=true]:text-primary text-sm data-[active=true]:font-medium hover:text-clinic-primary transition-colors duration-200"
+                    "data-[active=true]:text-primary text-sm data-[active=true]:font-medium hover:text-clinic-dark transition-colors duration-200"
                   )}
                 >
                   {item.title}
@@ -133,7 +133,7 @@ export const Navbar = () => {
                     return (
                       <NextLink
                         key={`${subItem}-${subIndex}`}
-                        className="block px-4 py-2 text-sm hover:bg-clinic-accent/10 hover:text-clinic-primary transition-colors duration-200"
+                        className="block px-4 py-2 text-sm hover:bg-clinic-accent/10 hover:text-clinic-dark transition-colors duration-200"
                         href={href}
                       >
                         {subItem}
@@ -144,10 +144,9 @@ export const Navbar = () => {
               )}
             </NavbarItem>
           ))}
-        </ul>
 
         {isCityPage && (
-          <NavbarItem className="hidden xl:flex">
+          <NavbarItem className="hidden 2xl:flex">
             <NextLink href="/contact">
               <Button
                 aria-label="Book Appointment"
@@ -160,14 +159,16 @@ export const Navbar = () => {
         )}
       </NavbarContent>
 
-      <NavbarContent className="lg:hidden basis-1 pl-2 sm:pl-4" justify="end">
-        <LucideHamburger
-          isOpen={isMenuOpen}
-          onToggle={() => setIsMenuOpen(!isMenuOpen)}
-        />
+      <NavbarContent className="2xl:hidden basis-1 pl-2 sm:pl-4" justify="end">
+        <NavbarItem>
+          <LucideHamburger
+            isOpen={isMenuOpen}
+            onToggle={() => setIsMenuOpen(!isMenuOpen)}
+          />
+        </NavbarItem>
       </NavbarContent>
 
-      <NavbarMenu>
+      <NavbarMenu id="main-navigation-menu">
         <div className="mx-4 mt-2 flex flex-col gap-2">
           {isCityPage && (
             <NavbarMenuItem className="mb-2">
@@ -182,10 +183,18 @@ export const Navbar = () => {
             </NavbarMenuItem>
           )}
           {navItems.map((item, index) => (
-            <div key={`${item.title}-${index}`} className="mb-2">
+            <NavbarMenuItem
+              key={`${item.title}-${index}`}
+              className="mb-2 block"
+            >
               <Button
-                aria-label="nav button"
-                className="flex items-center justify-between hover:bg-transparent"
+                aria-expanded={openMobileSection === item.title}
+                aria-label={
+                  item.items.length > 0
+                    ? `${item.title} submenu`
+                    : item.title
+                }
+                className="flex min-h-11 items-center justify-between hover:bg-transparent"
                 variant={"ghost"}
                 onClick={() => handleMobileSectionToggle(item.title)}
               >
@@ -247,7 +256,7 @@ export const Navbar = () => {
                   })}
                 </div>
               )}
-            </div>
+            </NavbarMenuItem>
           ))}
         </div>
       </NavbarMenu>
@@ -263,16 +272,18 @@ const LucideHamburger = ({
   onToggle: () => void;
 }) => (
   <button
-    aria-label="Nav button"
-    className="relative w-6 h-6 hover:text-clinic-primary"
+    aria-controls="main-navigation-menu"
+    aria-expanded={isOpen}
+    aria-label={isOpen ? "Close menu" : "Open menu"}
+    className="relative -m-2.5 grid h-11 w-11 place-items-center p-2.5 hover:text-clinic-dark"
     onClick={onToggle}
   >
     <Menu
-      className={`absolute inset-0 transition-all duration-300  ${isOpen ? "rotate-180 opacity-0" : "rotate-0 opacity-100"
+      className={`absolute h-6 w-6 transition-all duration-300 ${isOpen ? "rotate-180 opacity-0" : "rotate-0 opacity-100"
         }`}
     />
     <X
-      className={`absolute inset-0 transition-all duration-300  ${isOpen ? "rotate-0 opacity-100" : "rotate-180 opacity-0"
+      className={`absolute h-6 w-6 transition-all duration-300 ${isOpen ? "rotate-0 opacity-100" : "rotate-180 opacity-0"
         }`}
     />
   </button>

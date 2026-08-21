@@ -37,10 +37,10 @@ const TwentyFourSevenAssistance = () => {
     <section className="py-16 px-4 bg-white">
       <div className="container mx-auto">
         <div className="text-center mb-12">
-          <Badge className="bg-purple-100 text-clinic-primary mb-4">
+          <Badge className="bg-purple-100 text-clinic-dark mb-4">
             24/7 Support
           </Badge>
-          <h2 className="text-2xl md:text-4xl font-bold text-clinic-primary mb-6">
+          <h2 className="text-2xl md:text-4xl font-bold text-clinic-dark mb-6">
             24/7 Assistance for Post-Operative Care
           </h2>
           <p className="md:text-lg text-gray-600 max-w-3xl mx-auto">
@@ -58,9 +58,9 @@ const TwentyFourSevenAssistance = () => {
             >
               <CardHeader>
                 <div className="mx-auto bg-clinic-primary/20 w-16 h-16 rounded-full flex items-center justify-center mb-4">
-                  <feature.icon className="h-8 w-8 text-clinic-primary" />
+                  <feature.icon className="h-8 w-8 text-clinic-dark" />
                 </div>
-                <CardTitle className="text-lg text-clinic-primary">
+                <CardTitle className="text-lg text-clinic-dark">
                   {feature.title}
                 </CardTitle>
               </CardHeader>
@@ -74,7 +74,7 @@ const TwentyFourSevenAssistance = () => {
         <div className="bg-purple-50 rounded-2xl p-8">
           <div className="grid md:grid-cols-2 gap-8 items-center">
             <div>
-              <h3 className="text-xl md:text-2xl font-bold text-clinic-primary mb-4">
+              <h3 className="text-xl md:text-2xl font-bold text-clinic-dark mb-4">
                 Always Here When You Need Us
               </h3>
               <p className="text-gray-700 mb-6">
@@ -105,10 +105,10 @@ const TwentyFourSevenAssistance = () => {
             </div>
             <div className="text-center">
               <div className="bg-white rounded-xl p-6 shadow-lg">
-                <h4 className="text-xl font-bold text-clinic-primary mb-4">
+                <h4 className="text-xl font-bold text-clinic-dark mb-4">
                   Emergency Contact
                 </h4>
-                <div className="text-xl md:text-3xl font-bold text-clinic-primary mb-2">
+                <div className="text-xl md:text-3xl font-bold text-clinic-dark mb-2">
                   {siteConfig.contact.phone.primary}
                 </div>
                 <p className="max-sm:text-sm text-gray-600 mb-4">

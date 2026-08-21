@@ -18,10 +18,10 @@ const AngiographyService = () => {
       <div className="container mx-auto md:pl-20 flex justify-center">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div>
-            <Badge className="bg-blue-100 text-clinic-primary mb-4">
+            <Badge className="bg-blue-100 text-clinic-dark mb-4">
               Advanced Diagnosis
             </Badge>
-            <h2 className="text-2xl md:text-3xl lg:text-4xl font-onest text-clinic-primary mb-6">
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-onest text-clinic-dark mb-6">
               Coronary Angiography – Advanced Heart Diagnosis
             </h2>
             <p className="text-lg text-gray-600 mb-6">
@@ -43,7 +43,7 @@ const AngiographyService = () => {
             <div className="">
               <Card className="border-clinic-primary">
                 <CardHeader>
-                  <CardTitle className="text-lg text-clinic-primary flex items-center">
+                  <CardTitle className="text-lg text-clinic-dark flex items-center">
                     <Heart className="h-5 w-5 mr-2 text-clinic-secondary" />
                     Key Benefits
                   </CardTitle>
@@ -52,7 +52,7 @@ const AngiographyService = () => {
                   <ul className="space-y-2 ">
                     {benefits.map((benefit, index) => (
                       <li key={index} className="flex items-center gap-2">
-                        <Circle className="h-2 w-2 text-clinic-primary fill-current" />
+                        <Circle className="h-2 w-2 text-clinic-dark fill-current" />
                         <span className="text-sm text-gray-600">{benefit}</span>
                       </li>
                     ))}

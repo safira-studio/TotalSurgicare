@@ -83,7 +83,7 @@ const DailyHomeCare = () => {
     <section className="py-16 px-4 bg-white overflow-x-hidden">
       <div className="container mx-auto">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-onest text-clinic-primary mb-4">
+          <h2 className="text-3xl md:text-4xl font-onest text-clinic-dark mb-4">
             Daily Home Care Services
           </h2>
           <p className="text-gray-600 max-w-3xl mx-auto">
@@ -117,7 +117,7 @@ const DailyHomeCare = () => {
         </div>
 
         <div className="bg-gradient-to-br from-clinic-primary/10 to-blue-50 rounded-2xl p-8 md:p-12">
-          <h3 className="text-2xl md:text-3xl font-semibold text-clinic-primary mb-8 text-center">
+          <h3 className="text-2xl md:text-3xl font-semibold text-clinic-dark mb-8 text-center">
             Flexible Care Options
           </h3>
           <div className="grid md:grid-cols-3 gap-6">
@@ -127,7 +127,7 @@ const DailyHomeCare = () => {
                 className="bg-white rounded-xl p-6 shadow-md hover:shadow-xl transition-shadow"
               >
                 <div className="text-center mb-4">
-                  <h4 className="text-2xl font-bold text-clinic-primary mb-1">
+                  <h4 className="text-2xl font-bold text-clinic-dark mb-1">
                     {option.title}
                   </h4>
                   <p className="text-clinic-secondary font-semibold">
@@ -168,7 +168,7 @@ const DailyHomeCare = () => {
 
         <div className="mt-12 grid md:grid-cols-2 gap-8">
           <div className="bg-blue-50 rounded-xl p-6">
-            <h4 className="text-xl font-semibold text-clinic-primary mb-4">
+            <h4 className="text-xl font-semibold text-clinic-dark mb-4">
               Our Caregivers
             </h4>
             <ul className="space-y-3">
@@ -202,7 +202,7 @@ const DailyHomeCare = () => {
           </div>
 
           <div className="bg-green-50 rounded-xl p-6">
-            <h4 className="text-xl font-semibold text-clinic-primary mb-4">
+            <h4 className="text-xl font-semibold text-clinic-dark mb-4">
               What We Provide
             </h4>
             <ul className="space-y-3">

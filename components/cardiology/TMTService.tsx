@@ -56,7 +56,7 @@ const TMTService = () => {
             <Badge className="bg-rose-100 text-rose-700 mb-4">
               Stress Testing
             </Badge>
-            <h2 className="text-2xl md:text-3xl lg:text-4xl font-onest text-clinic-primary mb-6">
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-onest text-clinic-dark mb-6">
               TMT (Treadmill Stress Test) – Assess Your Heart Under Exertion
             </h2>
             <p className="text-lg text-gray-600 mb-6">
@@ -76,7 +76,7 @@ const TMTService = () => {
             <div className="grid sm:grid-cols-2 gap-6">
               <Card className="border-rose-200 bg-rose-50">
                 <CardHeader>
-                  <CardTitle className="text-lg text-clinic-primary flex items-center">
+                  <CardTitle className="text-lg text-clinic-dark flex items-center">
                     <Activity className="h-5 w-5 mr-2 text-rose-600" />
                     What It Detects
                   </CardTitle>
@@ -85,7 +85,7 @@ const TMTService = () => {
                   <ul className="space-y-2">
                     {whatItDetects.map((item, index) => (
                       <li key={index} className="flex items-start gap-2">
-                        <Circle className="h-2 w-2 mt-2 text-clinic-primary fill-current shrink-0" />
+                        <Circle className="h-2 w-2 mt-2 text-clinic-dark fill-current shrink-0" />
                         <span className="text-sm text-gray-600">{item}</span>
                       </li>
                     ))}
@@ -95,7 +95,7 @@ const TMTService = () => {
 
               <Card className="border-rose-200 bg-rose-50">
                 <CardHeader>
-                  <CardTitle className="text-lg text-clinic-primary">
+                  <CardTitle className="text-lg text-clinic-dark">
                     How It Works
                   </CardTitle>
                 </CardHeader>
@@ -103,7 +103,7 @@ const TMTService = () => {
                   <ul className="space-y-2">
                     {howItWorks.map((step, index) => (
                       <li key={index} className="flex items-start gap-2">
-                        <span className="text-xs font-bold text-clinic-primary mt-0.5 shrink-0">
+                        <span className="text-xs font-bold text-clinic-dark mt-0.5 shrink-0">
                           {index + 1}.
                         </span>
                         <span className="text-sm text-gray-600">{step}</span>

@@ -43,10 +43,10 @@ const BookingHighlights = () => {
     <section className="py-16 px-4 bg-gray-50">
       <div className="container mx-auto">
         <div className="text-center mb-12">
-          <Badge className="bg-blue-100 text-clinic-primary mb-4">
+          <Badge className="bg-blue-100 text-clinic-dark mb-4">
             Service Excellence
           </Badge>
-          <h2 className="text-2xl md:text-4xl font-onest text-clinic-primary mb-6">
+          <h2 className="text-2xl md:text-4xl font-onest text-clinic-dark mb-6">
             Booking and Service Highlights
           </h2>
           <p className="md:text-lg text-gray-600 max-w-3xl mx-auto">
@@ -68,7 +68,7 @@ const BookingHighlights = () => {
                 >
                   <highlight.icon className={`h-8 w-8 ${highlight.color}`} />
                 </div>
-                <CardTitle className="text-lg text-clinic-primary">
+                <CardTitle className="text-lg text-clinic-dark">
                   {highlight.title}
                 </CardTitle>
               </CardHeader>
@@ -97,7 +97,7 @@ const BookingHighlights = () => {
           </p>
           <div className="flex flex-wrap justify-center gap-4 ">
             <Button
-              className="border-white text-clinic-primary hover:bg-white hover:text-clinic-dark"
+              className="border-white text-clinic-dark hover:bg-white hover:text-clinic-dark"
               size="lg"
               variant="outline"
             >

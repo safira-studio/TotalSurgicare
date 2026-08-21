@@ -24,6 +24,8 @@ const cityTreatmentRedirects = [
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // Do not advertise the framework in response headers.
+  poweredByHeader: false,
   async redirects() {
     return [
       // Tier 1 — the 13 curated city URLs, most specific first.

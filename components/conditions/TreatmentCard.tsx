@@ -28,7 +28,7 @@ const TreatmentCard: React.FC<TreatmentCardProps> = ({
         }`}
     >
       {isFeatured && (
-        <span className="bg-white text-clinic-primary text-xs font-bold px-3 py-1 rounded-full w-fit mb-4">
+        <span className="bg-white text-clinic-dark text-xs font-bold px-3 py-1 rounded-full w-fit mb-4">
           Recommended
         </span>
       )}
@@ -48,7 +48,7 @@ const TreatmentCard: React.FC<TreatmentCardProps> = ({
           {benefits.map((benefit, index) => (
             <div key={index} className="flex items-start">
               <span
-                className={`mr-2 mt-1 ${isFeatured ? "text-white" : "text-clinic-primary"}`}
+                className={`mr-2 mt-1 ${isFeatured ? "text-white" : "text-clinic-dark"}`}
               >
                 <Check size={16} />
               </span>

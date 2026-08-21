@@ -53,10 +53,10 @@ const RemotePatientMonitoring = () => {
     <section className="py-16 px-4 bg-gray-50">
       <div className="container mx-auto">
         <div className="text-center mb-12">
-          <Badge className="bg-white text-clinic-primary mb-4">
+          <Badge className="bg-white text-clinic-dark mb-4">
             Advanced Technology
           </Badge>
-          <h2 className="text-2xl md:text-4xl font-bold text-clinic-primary mb-6">
+          <h2 className="text-2xl md:text-4xl font-bold text-clinic-dark mb-6">
             Role of Remote Patient Monitoring (RPM) in Postoperative Care
           </h2>
           <p className="md:text-lg text-gray-600 max-w-4xl mx-auto">

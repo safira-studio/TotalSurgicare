@@ -32,7 +32,7 @@ const ReviewCard = ({ author, rating, treatment, content }: CityReview) => (
       <div className="flex items-start justify-between gap-3">
         <div className="flex items-center gap-3">
           <Avatar className="h-11 w-11 border-2 border-clinic-primary/20">
-            <AvatarFallback className="bg-clinic-primary/10 text-clinic-primary font-semibold">
+            <AvatarFallback className="bg-clinic-primary/10 text-clinic-dark font-semibold">
               {author
                 .split(" ")
                 .map((n) => n[0])
@@ -44,7 +44,7 @@ const ReviewCard = ({ author, rating, treatment, content }: CityReview) => (
               {author}
             </h3>
             {treatment && (
-              <p className="text-xs text-clinic-primary font-medium mt-0.5">
+              <p className="text-xs text-clinic-dark font-medium mt-0.5">
                 {treatment}
               </p>
             )}
@@ -73,7 +73,7 @@ const CityTestimonials = ({ city }: { city: CityConfig }) => {
     >
       <div className="container mx-auto px-4 max-w-6xl">
         <div className="text-center mb-14">
-          <span className="inline-block py-1 px-3 rounded-full bg-blue-50 text-clinic-primary text-xs font-bold tracking-wider uppercase mb-4">
+          <span className="inline-block py-1 px-3 rounded-full bg-blue-50 text-clinic-dark text-xs font-bold tracking-wider uppercase mb-4">
             Testimonials
           </span>
           <h2
@@ -96,7 +96,7 @@ const CityTestimonials = ({ city }: { city: CityConfig }) => {
         {profileUrl && (
           <div className="mt-12 flex justify-center">
             <a
-              className="inline-flex items-center gap-2 rounded-full border border-gray-200 bg-white px-6 h-11 text-sm font-semibold text-clinic-primary shadow-sm transition-all hover:shadow-md hover:border-clinic-primary/40"
+              className="inline-flex items-center gap-2 rounded-full border border-gray-200 bg-white px-6 h-11 text-sm font-semibold text-clinic-dark shadow-sm transition-all hover:shadow-md hover:border-clinic-primary/40"
               href={profileUrl}
               rel="noopener noreferrer"
               target="_blank"

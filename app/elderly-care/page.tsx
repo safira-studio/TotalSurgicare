@@ -75,7 +75,7 @@ const ElderlyCarePage = () => {
             <Link href={"/contact"}>
               <Button
                 aria-label="Book Service"
-                className="bg-white text-clinic-primary hover:bg-gray-100 px-8 py-3 text-lg"
+                className="bg-white text-clinic-dark hover:bg-gray-100 px-8 py-3 text-lg"
                 size="lg"
               >
                 Book a Service
@@ -98,7 +98,7 @@ const ElderlyCarePage = () => {
       {/* Key Highlights */}
       <section className="py-16 px-4 bg-white">
         <div className="container mx-auto">
-          <h2 className="text-3xl md:text-4xl font-onest text-center text-clinic-primary mb-12">
+          <h2 className="text-3xl md:text-4xl font-onest text-center text-clinic-dark mb-12">
             Why Choose Our Elderly Care Services
           </h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -145,7 +145,7 @@ const ElderlyCarePage = () => {
             <Link href={"/contact"}>
               <Button
                 aria-label="Get Started"
-                className="bg-white text-clinic-primary hover:bg-gray-100 px-8 py-6 text-lg font-semibold"
+                className="bg-white text-clinic-dark hover:bg-gray-100 px-8 py-6 text-lg font-semibold"
                 size="lg"
               >
                 Get Started Today

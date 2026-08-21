@@ -29,7 +29,7 @@ const SpecialtyItem = ({ icon, name, link }: SpecialtyItemProps) => {
       </div>
       <div className="px-4 sm:px-6 py-3 bg-gradient-to-r from-blue-50 to-indigo-50 flex justify-center">
         <Link
-          className="text-xs sm:text-sm font-medium text-clinic-primary hover:text-clinic-dark transition-colors"
+          className="text-xs sm:text-sm font-medium text-clinic-dark hover:text-clinic-dark transition-colors"
           href={`/treatment/${link}`}
         >
           Learn about {name}
@@ -227,7 +227,7 @@ const MedicalSpecialties = () => {
     <div className="w-full py-12 mb-6">
       <div className="container mx-auto px-4 max-w-6xl">
         <div className="text-center mb-10">
-          <p className="text-sm font-medium text-clinic-primary mb-2">
+          <p className="text-sm font-medium text-clinic-dark mb-2">
             OUR SPECIALTIES
           </p>
           <h2 className="text-3xl font-onest">Medical Conditions We Treat</h2>
@@ -256,7 +256,7 @@ const MedicalSpecialties = () => {
           {visibleItems < specialties.length && (
             <Button
               aria-label="Show More"
-              className="text-sm font-medium text-clinic-primary hover:text-clinic-dark transition-colors disabled:opacity-50 hover:bg-transparent"
+              className="text-sm font-medium text-clinic-dark hover:text-clinic-dark transition-colors disabled:opacity-50 hover:bg-transparent"
               disabled={isAnimating}
               variant="ghost"
               onClick={handleShowMore}
@@ -267,7 +267,7 @@ const MedicalSpecialties = () => {
           {visibleItems > initialItems && (
             <Button
               aria-label="Show Less"
-              className="text-sm font-medium text-clinic-primary hover:text-clinic-dark transition-colors ml-4 disabled:opacity-50 hover:bg-transparent"
+              className="text-sm font-medium text-clinic-dark hover:text-clinic-dark transition-colors ml-4 disabled:opacity-50 hover:bg-transparent"
               disabled={isAnimating}
               variant="ghost"
               onClick={handleShowLess}

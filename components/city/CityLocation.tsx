@@ -26,7 +26,7 @@ const CityLocation = ({ city }: { city: CityConfig }) => {
     >
       <div className="container mx-auto px-4 max-w-6xl">
         <div className="text-center mb-12">
-          <span className="inline-block py-1 px-3 rounded-full bg-blue-50 text-clinic-primary text-xs font-bold tracking-wider uppercase mb-4">
+          <span className="inline-block py-1 px-3 rounded-full bg-blue-50 text-clinic-dark text-xs font-bold tracking-wider uppercase mb-4">
             Visit Us
           </span>
           <h2
@@ -91,7 +91,7 @@ const CityLocation = ({ city }: { city: CityConfig }) => {
                   </div>
                 </div>
                 <a
-                  className="text-sm text-gray-500 hover:text-clinic-primary transition-colors"
+                  className="text-sm text-gray-500 hover:text-clinic-dark transition-colors"
                   href={maps.profile}
                   rel="noopener noreferrer"
                   target="_blank"
@@ -106,7 +106,7 @@ const CityLocation = ({ city }: { city: CityConfig }) => {
                 <div className="flex gap-3">
                   <MapPin
                     aria-hidden="true"
-                    className="w-5 h-5 shrink-0 text-clinic-primary"
+                    className="w-5 h-5 shrink-0 text-clinic-dark"
                   />
                   <address className="not-italic text-gray-600 leading-relaxed">
                     {formatAddress(address)}
@@ -116,10 +116,10 @@ const CityLocation = ({ city }: { city: CityConfig }) => {
               <div className="flex gap-3">
                 <Phone
                   aria-hidden="true"
-                  className="w-5 h-5 shrink-0 text-clinic-primary"
+                  className="w-5 h-5 shrink-0 text-clinic-dark"
                 />
                 <a
-                  className="text-gray-600 hover:text-clinic-primary transition-colors"
+                  className="text-gray-600 hover:text-clinic-dark transition-colors"
                   href={`tel:${phone}`}
                 >
                   {phone}
@@ -128,7 +128,7 @@ const CityLocation = ({ city }: { city: CityConfig }) => {
               <div className="flex gap-3">
                 <Clock
                   aria-hidden="true"
-                  className="w-5 h-5 shrink-0 text-clinic-primary"
+                  className="w-5 h-5 shrink-0 text-clinic-dark"
                 />
                 <span className="text-gray-600">{OPENING_HOURS}</span>
               </div>
@@ -149,7 +149,7 @@ const CityLocation = ({ city }: { city: CityConfig }) => {
               <a
                 className={`inline-flex flex-1 items-center justify-center gap-2 rounded-full h-11 px-5 text-sm font-medium transition-colors ${
                   maps
-                    ? "border border-clinic-primary/30 bg-white text-clinic-primary hover:bg-clinic-primary/5"
+                    ? "border border-clinic-primary/30 bg-white text-clinic-dark hover:bg-clinic-primary/5"
                     : "bg-clinic-primary text-white hover:bg-clinic-dark"
                 }`}
                 href={`tel:${phone}`}

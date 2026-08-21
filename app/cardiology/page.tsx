@@ -55,10 +55,10 @@ const Cardiac = () => {
       {/* CTA Section */}
       <section className="py-16 px-4 bg-white">
         <div className="container mx-auto text-center">
-          <h3 className="text-3xl font-bold text-clinic-primary mb-6">
+          <h3 className="text-3xl font-bold text-clinic-dark mb-6">
             Ready to Take Care of Your Heart?
           </h3>
-          <p className="text-clinic-primary mb-8 text-lg max-w-2xl mx-auto">
+          <p className="text-clinic-dark mb-8 text-lg max-w-2xl mx-auto">
             Don&apos;t wait when it comes to your heart health. Schedule a
             consultation with our cardiac specialists today.
           </p>
@@ -66,7 +66,7 @@ const Cardiac = () => {
             <Link href={"/contact"}>
               <Button
                 aria-label="appointment button"
-                className="bg-white text-clinic-primary hover:bg-clinic-dark border-clinic-primary border-2 hover:text-white px-8 py-3"
+                className="bg-white text-clinic-dark hover:bg-clinic-dark border-clinic-primary border-2 hover:text-white px-8 py-3"
                 size="lg"
               >
                 Schedule Consultation
@@ -75,7 +75,7 @@ const Cardiac = () => {
             <Link href={`tel:${siteConfig.contact.phone.primary}`}>
               <Button
                 aria-label="call button"
-                className=" text-clinic-primary hover:bg-white border-clinic-primary border-2 hover:text-clinic-dark px-8 py-3"
+                className=" text-clinic-dark hover:bg-white border-clinic-primary border-2 hover:text-clinic-dark px-8 py-3"
                 size="lg"
                 variant="outline"
               >

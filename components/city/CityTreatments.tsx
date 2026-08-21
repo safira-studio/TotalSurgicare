@@ -25,12 +25,12 @@ const TreatmentItem = ({
 
       <div className="relative z-10 flex flex-col h-full">
         <div
-          className={`mb-6 inline-flex items-center justify-center w-14 h-14 rounded-2xl shadow-sm border text-clinic-primary group-hover:text-white transition-colors duration-300 ${iconBgClass}`}
+          className={`mb-6 inline-flex items-center justify-center w-14 h-14 rounded-2xl shadow-sm border text-clinic-dark group-hover:text-white transition-colors duration-300 ${iconBgClass}`}
         >
           <Icon className="w-7 h-7" />
         </div>
 
-        <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-3 group-hover:text-clinic-primary transition-colors">
+        <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-3 group-hover:text-clinic-dark transition-colors">
           {name}
         </h3>
 
@@ -38,7 +38,7 @@ const TreatmentItem = ({
           {description}
         </p>
 
-        <div className="mt-auto flex items-center text-sm font-semibold text-clinic-primary">
+        <div className="mt-auto flex items-center text-sm font-semibold text-clinic-dark">
           <span className="mr-2">View Treatment</span>
           <ArrowRight
             aria-hidden="true"
@@ -62,7 +62,7 @@ const CityTreatments = ({ city }: { city: CityConfig }) => {
     >
       <div className="container mx-auto px-4 max-w-6xl">
         <div className="text-center mb-16">
-          <span className="inline-block py-1 px-3 rounded-full bg-blue-50 text-clinic-primary text-xs font-bold tracking-wider uppercase mb-4">
+          <span className="inline-block py-1 px-3 rounded-full bg-blue-50 text-clinic-dark text-xs font-bold tracking-wider uppercase mb-4">
             Our Specialties
           </span>
           <h2

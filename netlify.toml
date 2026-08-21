@@ -1,0 +1,75 @@
+# Netlify configuration for totalsurgicare.com
+#
+# Headers here apply to files served from public/ (images, favicon, robots,
+# sitemap). Next.js's own hashed output under /_next/static/* already ships
+# `max-age=31536000, immutable` and is left alone.
+
+# No [build] block on purpose: Netlify auto-detects Next.js and installs its
+# own runtime. Declaring command/publish here would override the working
+# dashboard settings (and this repo builds with pnpm, not npm).
+
+# ---------------------------------------------------------------------------
+# Security headers — applied to every response.
+# ---------------------------------------------------------------------------
+[[headers]]
+  for = "/*"
+  [headers.values]
+    # includeSubDomains + preload complete the HSTS entry.
+    Strict-Transport-Security = "max-age=31536000; includeSubDomains; preload"
+    X-Content-Type-Options = "nosniff"
+    # The site is never intended to be framed by another origin.
+    X-Frame-Options = "DENY"
+    # Stops full treatment URLs (which reveal a condition) leaking to third
+    # parties as referrers.
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=(), usb=(), magnetometer=(), payment=()"
+    # CSP starts in Report-Only. The site loads GTM, GA4, Google Ads and the
+    # Meta Pixel, and GTM requires 'unsafe-inline'; enforcing a policy blind
+    # would risk breaking tag delivery on a live site. Watch the browser
+    # console / report endpoint, confirm nothing legitimate is blocked, then
+    # rename this to Content-Security-Policy to enforce it.
+    Content-Security-Policy-Report-Only = "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com https://connect.facebook.net https://www.googleadservices.com https://googleads.g.doubleclick.net https://www.google.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: https:; font-src 'self' data: https://fonts.gstatic.com; connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com https://www.googletagmanager.com https://connect.facebook.net https://graph.facebook.com; frame-src https://www.googletagmanager.com https://maps.google.com https://www.google.com https://td.doubleclick.net; object-src 'none'; base-uri 'self'; form-action 'self'"
+
+# ---------------------------------------------------------------------------
+# Static media caching.
+#
+# These filenames are NOT content-hashed, so a 1-year immutable cache would
+# pin stale images for up to a year after a replacement. 30 days plus
+# stale-while-revalidate gives the repeat-visit win while still letting an
+# updated file propagate. Raise to 31536000 + immutable only once the
+# filenames carry a content hash.
+# ---------------------------------------------------------------------------
+[[headers]]
+  for = "/*.png"
+  [headers.values]
+    Cache-Control = "public, max-age=2592000, stale-while-revalidate=86400"
+
+[[headers]]
+  for = "/*.webp"
+  [headers.values]
+    Cache-Control = "public, max-age=2592000, stale-while-revalidate=86400"
+
+[[headers]]
+  for = "/*.jpg"
+  [headers.values]
+    Cache-Control = "public, max-age=2592000, stale-while-revalidate=86400"
+
+[[headers]]
+  for = "/*.jpeg"
+  [headers.values]
+    Cache-Control = "public, max-age=2592000, stale-while-revalidate=86400"
+
+[[headers]]
+  for = "/*.svg"
+  [headers.values]
+    Cache-Control = "public, max-age=2592000, stale-while-revalidate=86400"
+
+[[headers]]
+  for = "/*.ico"
+  [headers.values]
+    Cache-Control = "public, max-age=2592000, stale-while-revalidate=86400"
+
+[[headers]]
+  for = "/*.woff2"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"

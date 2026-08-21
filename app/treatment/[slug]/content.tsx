@@ -94,7 +94,7 @@ export default async function Content({ slug, data }: Props) {
                   <div key={index} className="flex items-start">
                     <div className="rounded-full bg-blue-100 p-2 mr-4 mt-1">
                       <svg
-                        className="w-4 h-4 text-clinic-primary"
+                        className="w-4 h-4 text-clinic-dark"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
@@ -183,7 +183,7 @@ export default async function Content({ slug, data }: Props) {
                   <div key={index} className="flex items-start">
                     <div className="rounded-full bg-blue-100 p-2 mr-4 mt-1">
                       <svg
-                        className="w-4 h-4 text-clinic-primary"
+                        className="w-4 h-4 text-clinic-dark"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"

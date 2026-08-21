@@ -41,7 +41,7 @@ const privacyContent = [
             visit our website at{" "}
             <Link
               href="https://totalsurgicare.com"
-              className="text-clinic-primary hover:underline font-medium"
+              className="text-clinic-dark hover:underline font-medium"
             >
               https://totalsurgicare.com
             </Link>{" "}
@@ -57,7 +57,7 @@ const privacyContent = [
             If you have any questions or concerns, please contact us at{" "}
             <Link
               href={`mailto:${siteConfig.contact.email.support}`}
-              className="text-clinic-primary hover:underline font-medium"
+              className="text-clinic-dark hover:underline font-medium"
             >
               {siteConfig.contact.email.support}
             </Link>
@@ -133,7 +133,7 @@ const privacyContent = [
             Our use of information received from Google APIs will adhere to the{" "}
             <Link
               href="https://developers.google.com/terms/api-services-user-data-policy"
-              className="text-clinic-primary hover:underline font-medium"
+              className="text-clinic-dark hover:underline font-medium"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -277,7 +277,7 @@ const privacyContent = [
             any time by contacting us at{" "}
             <Link
               href={`mailto:${siteConfig.contact.email.support}`}
-              className="text-clinic-primary hover:underline font-medium"
+              className="text-clinic-dark hover:underline font-medium"
             >
               {siteConfig.contact.email.support}
             </Link>
@@ -366,14 +366,14 @@ const privacyContent = [
             by contacting our Privacy Officer at{" "}
             <Link
               href={`mailto:${siteConfig.contact.email.support}`}
-              className="text-clinic-primary hover:underline font-medium"
+              className="text-clinic-dark hover:underline font-medium"
             >
               {siteConfig.contact.email.support}
             </Link>{" "}
             or{" "}
             <Link
               href={`tel:${siteConfig.contact.phone.primary}`}
-              className="text-clinic-primary hover:underline font-medium"
+              className="text-clinic-dark hover:underline font-medium"
             >
               {siteConfig.contact.phone.primary}
             </Link>
@@ -436,7 +436,7 @@ const privacyContent = [
             us at{" "}
             <Link
               href={`mailto:${siteConfig.contact.email.support}`}
-              className="text-clinic-primary hover:underline font-medium"
+              className="text-clinic-dark hover:underline font-medium"
             >
               {siteConfig.contact.email.support}
             </Link>{" "}
@@ -448,7 +448,7 @@ const privacyContent = [
         type: "address",
         content: (
           <div className="bg-gray-50 p-4 rounded-lg border-l-4 border-clinic-primary">
-            <div className="font-semibold text-clinic-primary mb-2">
+            <div className="font-semibold text-clinic-dark mb-2">
               Total Surgicare
             </div>
             <div className="space-y-1 text-gray-700">
@@ -463,7 +463,7 @@ const privacyContent = [
                 <strong>Phone:</strong>{" "}
                 <Link
                   href={`tel:${siteConfig.contact.phone.primary}`}
-                  className="text-clinic-primary hover:underline font-medium"
+                  className="text-clinic-dark hover:underline font-medium"
                 >
                   {siteConfig.contact.phone.primary}
                 </Link>
@@ -494,7 +494,7 @@ const privacyContent = [
             subject access request at{" "}
             <Link
               href={`mailto:${siteConfig.contact.email.primary}`}
-              className="text-clinic-primary hover:underline font-medium break-all"
+              className="text-clinic-dark hover:underline font-medium break-all"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -514,8 +514,8 @@ const PrivacyPolicy = () => {
       {/* Hero Section */}
       <section className="py-10 px-4">
         <div className="container mx-auto text-center">
-          <Shield className="h-16 w-16 text-clinic-primary mx-auto mb-6" />
-          <h1 className="text-xl md:text-4xl font-bold text-clinic-primary mb-6">
+          <Shield className="h-16 w-16 text-clinic-dark mx-auto mb-6" />
+          <h1 className="text-xl md:text-4xl font-bold text-clinic-dark mb-6">
             Privacy Policy
           </h1>
           <p className="md:text-lg text-gray-600 mb-8 max-w-3xl mx-auto">
@@ -533,15 +533,15 @@ const PrivacyPolicy = () => {
             {privacyContent.map((section, index) => (
               <div key={index}>
                 <div className="flex items-center mb-4">
-                  <section.icon className="h-6 w-6 text-clinic-primary mr-3" />
-                  <h2 className="text-xl md:text-2xl font-bold text-clinic-primary">
+                  <section.icon className="h-6 w-6 text-clinic-dark mr-3" />
+                  <h2 className="text-xl md:text-2xl font-bold text-clinic-dark">
                     {index === 0 ? section.title : `${index}. ${section.title}`}
                   </h2>
                 </div>
                 {section.content.map((item, idx) => (
                   <div key={idx} className="space-y-4">
                     {item.type === "subheading" && (
-                      <h3 className="md:text-lg font-semibold text-clinic-primary mb-2">
+                      <h3 className="md:text-lg font-semibold text-clinic-dark mb-2">
                         {typeof item.content === "string"
                           ? item.content
                           : item.content}

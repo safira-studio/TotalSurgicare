@@ -1,14 +1,14 @@
 import "@/styles/globals.css";
 import { Metadata, Viewport } from "next";
 import clsx from "clsx";
+
+import ConsentGate from "@/components/ConsentGate";
 import { siteConfig } from "@/config/site";
 import { fontSans } from "@/config/fonts";
 import { Navbar } from "@/components/layout/navbar";
 import Footer from "@/components/layout/Footer";
 import ChatWidget from "@/components/chatWidget";
-import { GoogleTagManager } from "@next/third-parties/google";
 // import Script from "next/script";
-import Script from "next/script";
 
 export const metadata: Metadata = {
   title: {
@@ -55,20 +55,8 @@ export default function RootLayout({
   return (
     <html suppressHydrationWarning lang="en">
       <head>
-        {/* Google tag (gtag.js) */}
-        <Script
-          async
-          src="https://www.googletagmanager.com/gtag/js?id=G-CSF1LFZB55"
-          strategy="afterInteractive"
-        />
-        <Script id="google-analytics-init" strategy="afterInteractive">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-CSF1LFZB55');
-          `}
-        </Script>
+        {/* Analytics, Ads and the Meta Pixel now load from <ConsentGate/> in
+            the body, only after the visitor opts in. */}
         {/* <Script
           id="gtm-head"
           strategy="afterInteractive"
@@ -91,49 +79,16 @@ export default function RootLayout({
         /> */}
         {/* Google tag (gtag.js)  */}
 
-        <Script
-          src="https://www.googletagmanager.com/gtag/js?id=AW-17012043023"
-          strategy="afterInteractive"
-        />
-        <Script id="google-ads-init" strategy="afterInteractive">
-          {`
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'AW-17012043023');
-  `}
-        </Script>
-        <Script
-          id="schema-org"
-          type="application/ld+json"
+        {/* Plain <script>, not next/script: <Script> defaults to the
+            afterInteractive strategy, which injects the tag client-side and
+            leaves it out of the server-rendered HTML — so crawlers reading raw
+            HTML saw no structured data at all. */}
+        <script
           dangerouslySetInnerHTML={{
             __html: JSON.stringify(schemaOrgData),
           }}
+          type="application/ld+json"
         />
-        <Script id="facebook-pixel" strategy="afterInteractive">
-          {`
-            !function(f,b,e,v,n,t,s)
-            {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-            n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-            if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-            n.queue=[];t=b.createElement(e);t.async=!0;
-            t.src=v;s=b.getElementsByTagName(e)[0];
-            s.parentNode.insertBefore(t,s)}(window, document,'script',
-            'https://connect.facebook.net/en_US/fbevents.js');
-            fbq('init', '2409103159560050');
-            fbq('track', 'PageView');
-          `}
-        </Script>
-        <noscript>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            height="1"
-            width="1"
-            style={{ display: "none" }}
-            src="https://www.facebook.com/tr?id=2409103159560050&ev=PageView&noscript=1"
-            alt=""
-          />
-        </noscript>
       </head>
       <body
         className={clsx(
@@ -141,24 +96,21 @@ export default function RootLayout({
           fontSans.variable
         )}
       >
-        {/* <!-- Google Tag Manager (noscript) --> */}
-        <noscript>
-          <iframe
-            src="https://www.googletagmanager.com/ns.html?id=GTM-TP73RQVF"
-            height="0"
-            width="0"
-            title="Google Tag Manager (noscript)"
-            style={{ display: "none", visibility: "hidden" }}
-          />
-        </noscript>
-        {/* <!-- End Google Tag Manager (noscript) --> */}
-        <GoogleTagManager
-          gtmId={process.env.NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID as string}
-        />
         <div className="relative h-screen">
+          {/* First focusable element on the page: lets keyboard users jump
+              past ~40 navigation links straight to the content. */}
+          <a
+            className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[100] focus:rounded-md focus:bg-white focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-clinic-dark focus:shadow-lg focus:outline-none focus:ring-2 focus:ring-clinic-primary"
+            href="#main-content"
+          >
+            Skip to main content
+          </a>
           <Navbar />
-          <main className="mx-auto max-w-8xl">{children}</main>
+          <main className="mx-auto max-w-8xl" id="main-content">
+            {children}
+          </main>
           <Footer />
+          <ConsentGate />
         </div>
         <ChatWidget />
       </body>

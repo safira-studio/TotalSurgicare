@@ -78,7 +78,7 @@ export default function Insights({ data, title, color }: InsightsProps) {
                           "w-7 h-7 ",
                           color === "orange" && "text-orange-600",
                           color === "green" && "text-[#4CAF7D]",
-                          color === "blue" && "text-clinic-primary",
+                          color === "blue" && "text-clinic-dark",
                           color === "red" && "text-red-600"
                         )}
                       />

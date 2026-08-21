@@ -72,8 +72,8 @@ const TestimonialCard = ({
             </AvatarFallback>
           </Avatar>
           <div>
-            <h4 className="font-semibold">{author}</h4>
-            {role && <p className="text-xs text-clinic-primary">{role}</p>}
+            <h3 className="font-semibold">{author}</h3>
+            {role && <p className="text-xs text-clinic-dark">{role}</p>}
           </div>
         </div>
 
@@ -87,7 +87,7 @@ export function TestimonialMarquee() {
   return (
     <div className="relative flex w-full flex-col items-center justify-center overflow-hidden">
       <div className="text-center mb-10">
-        <p className="text-sm font-medium text-clinic-primary mb-2">
+        <p className="text-sm font-medium text-clinic-dark mb-2">
           TESTIMONIALS
         </p>
         <h2 className="text-3xl font-bold">What Our Patients Say</h2>

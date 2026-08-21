@@ -93,7 +93,7 @@ const EmergencyHomeVisit = () => {
     <section className="py-16 px-4 bg-gray-50">
       <div className="container mx-auto">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-onest text-clinic-primary mb-4">
+          <h2 className="text-3xl md:text-4xl font-onest text-clinic-dark mb-4">
             Emergency Home Visit Services
           </h2>
           <p className="text-gray-600 max-w-3xl mx-auto mb-6">
@@ -147,7 +147,7 @@ const EmergencyHomeVisit = () => {
         </div>
 
         <div className="bg-white rounded-2xl p-8 md:p-12 mb-12 shadow-lg">
-          <h3 className="text-2xl md:text-3xl font-semibold text-clinic-primary mb-8 text-center">
+          <h3 className="text-2xl md:text-3xl font-semibold text-clinic-dark mb-8 text-center">
             Our Emergency Medical Team
           </h3>
           <div className="grid md:grid-cols-2 gap-6">
@@ -156,7 +156,7 @@ const EmergencyHomeVisit = () => {
                 key={index}
                 className="border-2 border-gray-200 rounded-xl p-6 hover:border-clinic-primary transition-colors"
               >
-                <h4 className="text-xl font-bold text-clinic-primary mb-3">
+                <h4 className="text-xl font-bold text-clinic-dark mb-3">
                   {member.role}
                 </h4>
                 <p className="text-gray-600 mb-4 text-sm">
@@ -195,7 +195,7 @@ const EmergencyHomeVisit = () => {
         </div>
 
         <div className="bg-gradient-to-br from-red-50 to-orange-50 rounded-2xl p-8 md:p-12">
-          <h3 className="text-2xl md:text-3xl font-semibold text-clinic-primary mb-6 text-center">
+          <h3 className="text-2xl md:text-3xl font-semibold text-clinic-dark mb-6 text-center">
             When to Call for Emergency Home Visit
           </h3>
           <p className="text-center text-gray-600 mb-8 max-w-2xl mx-auto">
@@ -244,7 +244,7 @@ const EmergencyHomeVisit = () => {
             <Link href={`tel:${siteConfig.contact.phone.primary}`}>
               <Button
                 aria-label="Call Emergency"
-                className="bg-white text-clinic-primary hover:bg-gray-100 px-8 py-6 text-lg font-semibold"
+                className="bg-white text-clinic-dark hover:bg-gray-100 px-8 py-6 text-lg font-semibold"
                 size="lg"
               >
                 <Phone className="mr-2 h-5 w-5" />

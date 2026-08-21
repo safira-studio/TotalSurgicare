@@ -28,7 +28,7 @@ const HipJointService = () => {
           <div className="relative order-2 lg:order-1">
             <div className="bg-gradient-to-br from-orange-100 to-amber-200 rounded-2xl flex flex-col gap-3 p-4">
               <Image
-                src="/hip-2.png"
+                src="/hip-2.webp"
                 alt="Hip Joint Replacement - Implant Components"
                 width={600}
                 height={800}
@@ -64,7 +64,7 @@ const HipJointService = () => {
             <Badge className="bg-orange-100 text-orange-600 mb-4">
               Joint Replacement
             </Badge>
-            <h2 className="text-2xl md:text-3xl lg:text-4xl font-onest text-clinic-primary mb-6">
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-onest text-clinic-dark mb-6">
               Hip Joint Replacement – Restore Pain-Free Movement
             </h2>
             <p className="text-lg text-gray-600 mb-6">
@@ -85,7 +85,7 @@ const HipJointService = () => {
             <div className="grid sm:grid-cols-2 gap-6">
               <Card className="border-orange-200">
                 <CardHeader>
-                  <CardTitle className="text-lg text-clinic-primary flex items-center">
+                  <CardTitle className="text-lg text-clinic-dark flex items-center">
                     <ShieldCheck className="h-5 w-5 mr-2 text-orange-500" />
                     Key Benefits
                   </CardTitle>
@@ -94,7 +94,7 @@ const HipJointService = () => {
                   <ul className="space-y-2">
                     {benefits.map((benefit, index) => (
                       <li key={index} className="flex items-start gap-2">
-                        <Circle className="h-2 w-2 mt-2 text-clinic-primary fill-current shrink-0" />
+                        <Circle className="h-2 w-2 mt-2 text-clinic-dark fill-current shrink-0" />
                         <span className="text-sm text-gray-600">{benefit}</span>
                       </li>
                     ))}
@@ -104,7 +104,7 @@ const HipJointService = () => {
 
               <Card className="border-orange-200">
                 <CardHeader>
-                  <CardTitle className="text-lg text-clinic-primary">
+                  <CardTitle className="text-lg text-clinic-dark">
                     Who Needs It
                   </CardTitle>
                 </CardHeader>
@@ -112,7 +112,7 @@ const HipJointService = () => {
                   <ul className="space-y-2">
                     {indications.map((indication, index) => (
                       <li key={index} className="flex items-start gap-2">
-                        <Circle className="h-2 w-2 mt-2 text-clinic-primary fill-current shrink-0" />
+                        <Circle className="h-2 w-2 mt-2 text-clinic-dark fill-current shrink-0" />
                         <span className="text-sm text-gray-600">
                           {indication}
                         </span>

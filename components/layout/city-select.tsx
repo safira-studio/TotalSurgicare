@@ -45,7 +45,7 @@ export const CitySelect = () => {
             <NextLink
               className={clsx(
                 "flex items-center gap-2 cursor-pointer",
-                city === activeCity && "text-clinic-primary font-medium"
+                city === activeCity && "text-clinic-dark font-medium"
               )}
               href={`/${city}`}
             >

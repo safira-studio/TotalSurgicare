@@ -43,7 +43,7 @@ const LinkList = ({
 );
 
 const listItemClass =
-  "text-sm text-gray-500 hover:text-clinic-primary transition-colors";
+  "text-sm text-gray-500 hover:text-clinic-dark transition-colors";
 
 const CityInternalLinks = ({ city }: { city: CityConfig }) => {
   const allTreatmentSlugs = Object.keys(metadataMap);

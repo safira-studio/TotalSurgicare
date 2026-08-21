@@ -25,10 +25,10 @@ const ACLService = () => {
       <div className="container mx-auto">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div>
-            <Badge className="bg-blue-100 text-clinic-primary mb-4">
+            <Badge className="bg-blue-100 text-clinic-dark mb-4">
               Sports Medicine
             </Badge>
-            <h2 className="text-2xl md:text-3xl lg:text-4xl font-onest text-clinic-primary mb-6">
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-onest text-clinic-dark mb-6">
               ACL Reconstruction – Advanced Knee Ligament Repair
             </h2>
             <p className="text-lg text-gray-600 mb-6">
@@ -49,7 +49,7 @@ const ACLService = () => {
             <div className="grid sm:grid-cols-2 gap-6">
               <Card className="border-clinic-primary">
                 <CardHeader>
-                  <CardTitle className="text-lg text-clinic-primary flex items-center">
+                  <CardTitle className="text-lg text-clinic-dark flex items-center">
                     <Activity className="h-5 w-5 mr-2 text-clinic-secondary" />
                     Symptoms
                   </CardTitle>
@@ -58,7 +58,7 @@ const ACLService = () => {
                   <ul className="space-y-2">
                     {symptoms.map((symptom, index) => (
                       <li key={index} className="flex items-start gap-2">
-                        <Circle className="h-2 w-2 mt-2 text-clinic-primary fill-current shrink-0" />
+                        <Circle className="h-2 w-2 mt-2 text-clinic-dark fill-current shrink-0" />
                         <span className="text-sm text-gray-600">{symptom}</span>
                       </li>
                     ))}
@@ -68,7 +68,7 @@ const ACLService = () => {
 
               <Card className="border-clinic-primary">
                 <CardHeader>
-                  <CardTitle className="text-lg text-clinic-primary flex items-center">
+                  <CardTitle className="text-lg text-clinic-dark flex items-center">
                     <Activity className="h-5 w-5 mr-2 text-clinic-secondary" />
                     Our Approach
                   </CardTitle>
@@ -77,7 +77,7 @@ const ACLService = () => {
                   <ul className="space-y-2">
                     {treatments.map((treatment, index) => (
                       <li key={index} className="flex items-start gap-2">
-                        <Circle className="h-2 w-2 mt-2 text-clinic-primary fill-current shrink-0" />
+                        <Circle className="h-2 w-2 mt-2 text-clinic-dark fill-current shrink-0" />
                         <span className="text-sm text-gray-600">
                           {treatment}
                         </span>
@@ -92,7 +92,7 @@ const ACLService = () => {
           <div className="relative">
             <div className="bg-gradient-to-br from-blue-100 to-cyan-200 rounded-2xl h-96 flex items-center justify-center overflow-hidden">
               <Image
-                src="/ACL.png"
+                src="/ACL.webp"
                 alt="ACL Reconstruction Surgery"
                 width={800}
                 height={800}

@@ -54,7 +54,7 @@ const BlogCard = ({
 
       <CardContent className="flex-grow p-6">
         <Badge
-          className="mb-2 bg-blue-50 text-clinic-primary"
+          className="mb-2 bg-blue-50 text-clinic-dark"
           variant="outline"
         >
           {category}
@@ -76,7 +76,7 @@ const BlogCard = ({
       <CardFooter className="pt-0 pb-6 px-6">
         <a
           href={videoUrl}
-          className="text-clinic-primary font-medium flex items-center hover:underline"
+          className="text-clinic-dark font-medium flex items-center hover:underline"
           target="_blank"
           rel="noopener noreferrer"
         >
@@ -141,7 +141,7 @@ const BlogSection = () => {
       <div className="container mx-auto px-4">
         <div className="flex flex-col md:flex-row justify-between items-center mb-10">
           <div>
-            <p className="text-sm font-medium text-clinic-primary mb-2">
+            <p className="text-sm font-medium text-clinic-dark mb-2">
               HEALTH INSIGHTS
             </p>
             <h2 className="text-3xl font-bold">Latest Articles</h2>

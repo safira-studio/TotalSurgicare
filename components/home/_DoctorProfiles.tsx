@@ -42,23 +42,23 @@ const DoctorCard = ({
         <div className="space-y-3">
           {education && (
             <div className="flex items-start gap-2 text-sm">
-              <User className="text-clinic-primary mt-0.5" size={18} />
+              <User className="text-clinic-dark mt-0.5" size={18} />
               <span>{education}</span>
             </div>
           )}
 
           {experience && (
             <div className="flex items-start gap-2 text-sm">
-              <Calendar className="text-clinic-primary mt-0.5" size={18} />
+              <Calendar className="text-clinic-dark mt-0.5" size={18} />
               <span>{experience}</span>
             </div>
           )}
 
           {email && (
             <div className="flex items-start gap-2 text-sm">
-              <Mail className="text-clinic-primary mt-0.5" size={18} />
+              <Mail className="text-clinic-dark mt-0.5" size={18} />
               <a
-                className="hover:text-clinic-primary transition-colors"
+                className="hover:text-clinic-dark transition-colors"
                 href={`mailto:${email}`}
               >
                 {email}
@@ -68,9 +68,9 @@ const DoctorCard = ({
 
           {phone && (
             <div className="flex items-start gap-2 text-sm">
-              <Phone className="text-clinic-primary mt-0.5" size={18} />
+              <Phone className="text-clinic-dark mt-0.5" size={18} />
               <a
-                className="hover:text-clinic-primary transition-colors"
+                className="hover:text-clinic-dark transition-colors"
                 href={`tel:${phone}`}
               >
                 {phone}
@@ -81,7 +81,7 @@ const DoctorCard = ({
 
         <div className="mt-4">
           <Button
-            className="w-full border-clinic-primary text-clinic-primary hover:bg-clinic-primary hover:text-white"
+            className="w-full border-clinic-primary text-clinic-dark hover:bg-clinic-primary hover:text-white"
             variant="outline"
           >
             Book Appointment
@@ -136,7 +136,7 @@ const DoctorProfiles = () => {
     <div className="w-full py-12 mb-6">
       <div className="container mx-auto px-4">
         <div className="text-center mb-10">
-          <p className="text-sm font-medium text-clinic-primary mb-2">
+          <p className="text-sm font-medium text-clinic-dark mb-2">
             OUR TEAM
           </p>
           <h2 className="text-3xl font-bold">Meet Our Specialists</h2>

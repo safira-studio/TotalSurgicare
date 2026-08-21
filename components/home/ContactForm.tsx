@@ -47,7 +47,7 @@ const ContactForm = () => {
     <div className="w-full py-12 mb-6 ">
       <div className="container mx-auto px-4 ">
         <div className="text-center mb-10 ">
-          <p className="text-sm font-medium text-clinic-primary mb-2">
+          <p className="text-sm font-medium text-clinic-dark mb-2">
             CONTACT US
           </p>
           <h2 className="text-3xl font-onest">Get In Touch</h2>
@@ -65,7 +65,7 @@ const ContactForm = () => {
               <ContactInfo
                 content={
                   <a
-                    className="hover:text-clinic-primary transition-colors"
+                    className="hover:text-clinic-dark transition-colors"
                     href="tel:+1234567890"
                   >
                     {siteConfig.contact.phone.primary}
@@ -78,7 +78,7 @@ const ContactForm = () => {
               <ContactInfo
                 content={
                   <a
-                    className="hover:text-clinic-primary transition-colors"
+                    className="hover:text-clinic-dark transition-colors"
                     href="mailto:info@totalsurgicare.com"
                   >
                     {siteConfig.contact.email.primary}

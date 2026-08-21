@@ -45,10 +45,10 @@ const DiagnosticServices = () => {
     <section className="py-16 px-4 bg-white">
       <div className="container mx-auto">
         <div className="text-center mb-12">
-          <Badge className="bg-blue-100 text-clinic-primary mb-4">
+          <Badge className="bg-blue-100 text-clinic-dark mb-4">
             Comprehensive Testing
           </Badge>
-          <h2 className="text-2xl md:text-4xl font-onest text-clinic-primary mb-6">
+          <h2 className="text-2xl md:text-4xl font-onest text-clinic-dark mb-6">
             Diagnostic Services Offered
           </h2>
           <p className="md:text-lg text-gray-600 max-w-3xl mx-auto">
@@ -65,7 +65,7 @@ const DiagnosticServices = () => {
               <div className="mx-auto bg-red-100 w-16 h-16 rounded-full flex items-center justify-center mb-4">
                 <TestTube className="h-8 w-8 text-red-600" />
               </div>
-              <CardTitle className="text-xl text-clinic-primary">
+              <CardTitle className="text-xl text-clinic-dark">
                 Pathology Tests
               </CardTitle>
             </CardHeader>
@@ -103,7 +103,7 @@ const DiagnosticServices = () => {
               <div className="mx-auto bg-green-100 w-16 h-16 rounded-full flex items-center justify-center mb-4">
                 <Activity className="h-8 w-8 text-green-600" />
               </div>
-              <CardTitle className="text-xl text-clinic-primary">
+              <CardTitle className="text-xl text-clinic-dark">
                 Radiology Services
               </CardTitle>
             </CardHeader>
@@ -146,7 +146,7 @@ const DiagnosticServices = () => {
               <div className="mx-auto bg-purple-100 w-16 h-16 rounded-full flex items-center justify-center mb-4">
                 <Stethoscope className="h-8 w-8 text-purple-600" />
               </div>
-              <CardTitle className="text-xl text-clinic-primary">
+              <CardTitle className="text-xl text-clinic-dark">
                 Specialty Tests
               </CardTitle>
             </CardHeader>
@@ -184,7 +184,7 @@ const DiagnosticServices = () => {
               <div className="mx-auto bg-yellow-100 w-16 h-16 rounded-full flex items-center justify-center mb-4">
                 <Scan className="h-8 w-8 text-yellow-600" />
               </div>
-              <CardTitle className="text-xl text-clinic-primary">
+              <CardTitle className="text-xl text-clinic-dark">
                 PET Scan
               </CardTitle>
             </CardHeader>

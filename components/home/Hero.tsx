@@ -41,14 +41,13 @@ export default function Hero({ title, description }: HeroProps) {
             ) : (
               <div className="text-sm ml-2 my-4 text-clinic-accent max-lg:hidden">
                 We treat{" "}
-                <span className="text-gray-400">not only symptoms</span> -<br />
-                We care <span className="text-gray-400">about each person.</span>
+                <span className="text-gray-500">not only symptoms</span> -<br />
+                We care <span className="text-gray-500">about each person.</span>
               </div>
             )}
             <Link href="/contact">
               <Button
-                aria-label="book appointment"
-                className="rounded-full bg-clinic-secondary hover:bg-clinic-secondaryDark text-primary-foreground px-6 mt-4"
+                className="rounded-full bg-clinic-secondary hover:bg-clinic-secondaryDark text-white px-6 mt-4"
               >
                 Book Appointment
               </Button>
@@ -61,9 +60,9 @@ export default function Hero({ title, description }: HeroProps) {
                 </p>
                 <div className="flex justify-evenly lg:justify-between gap-3">
                   <div className="flex flex-col max-lg:items-center justify-center">
-                    <div className="flex items-center font-semibold text-clinic-primary">
+                    <div className="flex items-center font-semibold text-clinic-dark">
                       <NumberTicker
-                        className="text-2xl lg:text-3xl font-semibold text-clinic-primary"
+                        className="text-2xl lg:text-3xl font-semibold text-clinic-dark"
                         decimalPlaces={0}
                         value={10}
                       />
@@ -76,9 +75,9 @@ export default function Hero({ title, description }: HeroProps) {
                     </div>
                   </div>
                   <div className="flex flex-col max-lg:items-center justify-center">
-                    <div className="flex items-center text-3xl font-semibold text-clinic-primary">
+                    <div className="flex items-center text-3xl font-semibold text-clinic-dark">
                       <NumberTicker
-                        className="text-2xl lg:text-3xl font-semibold text-clinic-primary"
+                        className="text-2xl lg:text-3xl font-semibold text-clinic-dark"
                         decimalPlaces={0}
                         value={20}
                       />
@@ -92,9 +91,9 @@ export default function Hero({ title, description }: HeroProps) {
                   </div>
 
                   <div className="flex flex-col max-lg:items-center justify-center">
-                    <div className="flex items-center text-3xl font-semibold text-clinic-primary">
+                    <div className="flex items-center text-3xl font-semibold text-clinic-dark">
                       <NumberTicker
-                        className="text-2xl lg:text-3xl font-semibold text-clinic-primary"
+                        className="text-2xl lg:text-3xl font-semibold text-clinic-dark"
                         decimalPlaces={0}
                         value={100}
                       />
@@ -115,8 +114,9 @@ export default function Hero({ title, description }: HeroProps) {
             <Image
               alt="Doctor"
               className="w-[400px] sm:w-[450px] md:w-[500px] lg:w-[550px] h-auto"
+              fetchPriority="high"
               height={550}
-              src="/doctor3.png"
+              src="/doctor3.webp"
               width={550}
               priority
             />
@@ -151,9 +151,9 @@ export default function Hero({ title, description }: HeroProps) {
             <div className="w-1/2 lg:hidden h-full p-5 md:p-10">
               <div className="text-sm my-4 text-clinic-accent w-2/3">
                 We treat{" "}
-                <span className="text-gray-400">not only symptoms</span> -<br />
+                <span className="text-gray-500">not only symptoms</span> -<br />
                 We care{" "}
-                <span className="text-gray-400">about each person.</span>
+                <span className="text-gray-500">about each person.</span>
               </div>
             </div>
             <div className="bg-clinic-primary rounded-l-3xl lg:rounded-3xl h-full w-1/2 lg:w-full overflow-hidden relative flex flex-col justify-between gap-10 p-5 md:py-10 md:pl-20 lg:p-20 min-h-96">

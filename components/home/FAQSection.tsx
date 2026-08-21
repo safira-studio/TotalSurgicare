@@ -80,7 +80,7 @@ const FAQSection = ({
     <div className="w-full py-12 mb-6 ">
       <div className="container mx-auto px-4 md:px-10">
         <div className="text-center mb-10">
-          <p className="text-sm font-medium text-clinic-primary mb-2">
+          <p className="text-sm font-medium text-clinic-dark mb-2">
             {eyebrow}
           </p>
           <h2 className="text-3xl font-onest">{heading}</h2>
@@ -101,7 +101,7 @@ const FAQSection = ({
                   className="border-b border-gray-200"
                   value={`item-${index}`}
                 >
-                  <AccordionTrigger className="text-left font-medium hover:text-clinic-primary transition-colors">
+                  <AccordionTrigger className="text-left font-medium hover:text-clinic-dark transition-colors">
                     {faq.question}
                   </AccordionTrigger>
                   <AccordionContent className="text-gray-600">
