@@ -1,0 +1,646 @@
+<!doctype html>
+<html lang="en" data-palette="#2a78d6,#eb6834,#1baf7a">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Total Surgicare — Full Site Audit (Performance, SEO, Accessibility, Mobile)</title>
+<style>
+  :root{
+    color-scheme: light;
+    --page:#f9f9f7; --surface:#fcfcfb; --ink:#0b0b0b; --ink2:#52514e; --muted:#898781;
+    --grid:#e1e0d9; --axis:#c3c2b7; --ring:rgba(11,11,11,.10);
+    --s1:#2a78d6; --s2:#eb6834; --s3:#1baf7a;
+    --good:#0ca30c; --warn:#fab219; --serious:#ec835a; --crit:#d03b3b;
+    --shadow:0 1px 2px rgba(11,11,11,.06),0 8px 24px rgba(11,11,11,.05);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:where(:not([data-theme="light"])){
+      color-scheme: dark;
+      --page:#0d0d0d; --surface:#1a1a19; --ink:#fff; --ink2:#c3c2b7; --muted:#898781;
+      --grid:#2c2c2a; --axis:#383835; --ring:rgba(255,255,255,.10);
+      --s1:#3987e5; --s2:#d95926; --s3:#199e70;
+      --shadow:0 1px 2px rgba(0,0,0,.5),0 8px 24px rgba(0,0,0,.4);
+    }
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--page);color:var(--ink);
+    font:15px/1.6 system-ui,-apple-system,"Segoe UI",sans-serif;
+    -webkit-font-smoothing:antialiased}
+  .wrap{max-width:1120px;margin:0 auto;padding:32px 20px 96px}
+  header.top{padding:36px 0 8px;border-bottom:1px solid var(--grid);margin-bottom:28px}
+  .eyebrow{font-size:12px;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);font-weight:600}
+  h1{font-size:clamp(26px,4vw,38px);line-height:1.15;margin:10px 0 6px;letter-spacing:-.02em}
+  h2{font-size:21px;margin:44px 0 4px;letter-spacing:-.01em;scroll-margin-top:20px}
+  h3{font-size:15px;margin:26px 0 8px;color:var(--ink)}
+  .sub{color:var(--ink2);max-width:70ch}
+  .meta{display:flex;flex-wrap:wrap;gap:8px 18px;margin-top:14px;font-size:13px;color:var(--muted)}
+  .meta b{color:var(--ink2);font-weight:600}
+  .card{background:var(--surface);border:1px solid var(--ring);border-radius:14px;padding:20px;box-shadow:var(--shadow)}
+  .grid{display:grid;gap:14px}
+  .g5{grid-template-columns:repeat(auto-fit,minmax(178px,1fr))}
+  .g4{grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+  .g2{grid-template-columns:repeat(auto-fit,minmax(320px,1fr))}
+  /* ---- score gauges ---- */
+  .gauge{display:flex;flex-direction:column;align-items:center;text-align:center;gap:10px}
+  .dial{position:relative;width:104px;height:104px}
+  .dial svg{transform:rotate(-90deg)}
+  .dial .val{position:absolute;inset:0;display:grid;place-items:center;font-size:27px;font-weight:650;letter-spacing:-.02em}
+  .gname{font-size:13px;font-weight:600}
+  .gnote{font-size:11.5px;color:var(--muted);line-height:1.4}
+  /* ---- stat tiles ---- */
+  .tile{background:var(--surface);border:1px solid var(--ring);border-radius:12px;padding:14px 16px}
+  .tile .k{font-size:11.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);font-weight:600}
+  .tile .v{font-size:26px;font-weight:650;letter-spacing:-.02em;margin:4px 0 2px}
+  .tile .d{font-size:12px;color:var(--ink2)}
+  /* ---- bar charts ---- */
+  .chart{margin-top:6px}
+  .row{display:grid;grid-template-columns:minmax(120px,190px) 1fr auto;align-items:center;gap:12px;padding:5px 0}
+  .row .lab{font-size:12.5px;color:var(--ink2);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .track{position:relative;height:14px;background:linear-gradient(var(--grid),var(--grid)) left center/100% 1px no-repeat}
+  .bar{height:14px;border-radius:0 4px 4px 0;background:var(--s1);transition:filter .12s}
+  .bar.o{background:var(--s2)} .bar.a{background:var(--s3)}
+  .row:hover .bar{filter:brightness(1.12)}
+  .num{font-size:12.5px;font-variant-numeric:tabular-nums;color:var(--ink);min-width:78px;text-align:right}
+  .cap{font-size:12px;color:var(--muted);margin-top:10px}
+  /* ---- tables ---- */
+  table{width:100%;border-collapse:collapse;font-size:13.5px;margin-top:10px}
+  th{text-align:left;font-size:11.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);
+     font-weight:600;padding:8px 10px;border-bottom:1px solid var(--axis)}
+  td{padding:9px 10px;border-bottom:1px solid var(--grid);vertical-align:top}
+  td.n{font-variant-numeric:tabular-nums;white-space:nowrap}
+  code{font:12.5px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;background:var(--grid);
+    padding:1px 5px;border-radius:5px;word-break:break-word}
+  .tblwrap{overflow-x:auto}
+  /* ---- chips ---- */
+  .chip{display:inline-flex;align-items:center;gap:5px;font-size:11.5px;font-weight:600;
+    padding:2px 8px;border-radius:999px;border:1px solid var(--ring);white-space:nowrap}
+  .chip::before{content:"";width:7px;height:7px;border-radius:50%}
+  .c-crit::before{background:var(--crit)} .c-ser::before{background:var(--serious)}
+  .c-warn::before{background:var(--warn)} .c-good::before{background:var(--good)}
+  .c-crit{color:var(--crit)} .c-ser{color:#a44a20} .c-warn{color:#8a6100} .c-good{color:#006300}
+  @media (prefers-color-scheme: dark){:root:where(:not([data-theme="light"])) .c-ser{color:var(--serious)}
+   :root:where(:not([data-theme="light"])) .c-warn{color:var(--warn)}
+   :root:where(:not([data-theme="light"])) .c-good{color:var(--good)}}
+  ul.tight{margin:6px 0 0;padding-left:20px} ul.tight li{margin:5px 0;color:var(--ink2)}
+  .callout{border-left:3px solid var(--crit);background:var(--surface);border-radius:0 12px 12px 0;
+    padding:14px 18px;margin:14px 0;box-shadow:var(--shadow)}
+  .callout.warn{border-left-color:var(--warn)} .callout.info{border-left-color:var(--s1)}
+  .callout h4{margin:0 0 6px;font-size:14px}
+  .callout p{margin:0;color:var(--ink2);font-size:13.5px}
+  nav.toc{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 0}
+  nav.toc a{font-size:12.5px;text-decoration:none;color:var(--ink2);border:1px solid var(--ring);
+    padding:5px 11px;border-radius:999px;background:var(--surface)}
+  nav.toc a:hover{color:var(--ink);border-color:var(--axis)}
+  footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--grid);font-size:12.5px;color:var(--muted)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="top">
+  <div class="eyebrow">End-to-end website audit</div>
+  <h1>totalsurgicare.com</h1>
+  <p class="sub">Full-site technical audit covering performance, Core Web Vitals, SEO, accessibility (WCAG 2.1 AA),
+  responsive behaviour on mobile and desktop, security headers and functional health — modelled on what
+  Lighthouse and GTmetrix measure, run against the live production site.</p>
+  <div class="meta">
+    <span><b>Date:</b> 19 Aug 2026</span>
+    <span><b>Pages crawled:</b> 54 (100% of reachable site)</span>
+    <span><b>Deep-tested:</b> 6 key templates</span>
+    <span><b>Stack:</b> Next.js on Netlify · HTTP/2 · Brotli</span>
+    <span><b>Browser:</b> Chrome 151, real device, India</span>
+  </div>
+  <nav class="toc">
+    <a href="#scores">Scores</a><a href="#vitals">Core Web Vitals</a><a href="#weight">Page weight</a>
+    <a href="#perf">Performance</a><a href="#seo">SEO</a><a href="#a11y">Accessibility</a>
+    <a href="#resp">Mobile &amp; desktop</a><a href="#sec">Security</a><a href="#plan">Action plan</a>
+    <a href="#method">Method &amp; limits</a>
+  </nav>
+</header>
+
+<div class="callout">
+  <h4>Headline: the site is well-built and fast to first byte, but it ships 22.6 MB of unoptimised images,
+  has no structured data at all, fails colour contrast on its main call-to-action, and hides part of its
+  navigation on standard laptop screens.</h4>
+  <p>Nothing is broken at the server level — every one of the 54 pages returns HTTP 200, there are zero
+  console errors, zero broken internal links and CLS is essentially zero. The problems are all in the
+  optimisation and compliance layer, and most of them are a day or two of work each.</p>
+</div>
+
+<h2 id="scores">1. Scores at a glance</h2>
+<p class="sub">Category scores computed from the same audit signals Lighthouse weights, measured on this
+site. Performance is split because the desktop and mobile pictures differ sharply — see
+<a href="#method">Method &amp; limits</a> for exactly how these were derived and what they can and cannot claim.</p>
+<div class="grid g5" style="margin-top:16px">
+  <div class="card gauge">
+    <div class="dial">
+      <svg width="104" height="104" viewBox="0 0 104 104" role="img" aria-label="Performance — Desktop score 88 out of 100, Needs work">
+        <circle cx="52" cy="52" r="44" fill="none" stroke="var(--grid)" stroke-width="9"/>
+        <circle cx="52" cy="52" r="44" fill="none" stroke="var(--warn)" stroke-width="9" stroke-linecap="round"
+                stroke-dasharray="243.3 33.2"/>
+      </svg>
+      <div class="val">88</div>
+    </div>
+    <div><div class="gname">Performance — Desktop</div>
+    <div class="gnote">Fast TTFB &amp; FCP, near-zero CLS.<br>Held back by 2.3 MB of images.</div></div>
+  </div>
+  <div class="card gauge">
+    <div class="dial">
+      <svg width="104" height="104" viewBox="0 0 104 104" role="img" aria-label="Performance — Mobile score 46 out of 100, Poor">
+        <circle cx="52" cy="52" r="44" fill="none" stroke="var(--grid)" stroke-width="9"/>
+        <circle cx="52" cy="52" r="44" fill="none" stroke="var(--crit)" stroke-width="9" stroke-linecap="round"
+                stroke-dasharray="127.2 149.3"/>
+      </svg>
+      <div class="val">46</div>
+    </div>
+    <div><div class="gname">Performance — Mobile</div>
+    <div class="gnote">Estimated on 4G/mid-tier CPU.<br>923 KB PNG is the LCP element.</div></div>
+  </div>
+  <div class="card gauge">
+    <div class="dial">
+      <svg width="104" height="104" viewBox="0 0 104 104" role="img" aria-label="Accessibility score 71 out of 100, Needs work">
+        <circle cx="52" cy="52" r="44" fill="none" stroke="var(--grid)" stroke-width="9"/>
+        <circle cx="52" cy="52" r="44" fill="none" stroke="var(--warn)" stroke-width="9" stroke-linecap="round"
+                stroke-dasharray="196.3 80.2"/>
+      </svg>
+      <div class="val">71</div>
+    </div>
+    <div><div class="gname">Accessibility</div>
+    <div class="gnote">39 contrast failures on the<br>homepage alone; unlabelled selects.</div></div>
+  </div>
+  <div class="card gauge">
+    <div class="dial">
+      <svg width="104" height="104" viewBox="0 0 104 104" role="img" aria-label="Best Practices score 70 out of 100, Needs work">
+        <circle cx="52" cy="52" r="44" fill="none" stroke="var(--grid)" stroke-width="9"/>
+        <circle cx="52" cy="52" r="44" fill="none" stroke="var(--warn)" stroke-width="9" stroke-linecap="round"
+                stroke-dasharray="193.5 82.9"/>
+      </svg>
+      <div class="val">70</div>
+    </div>
+    <div><div class="gname">Best Practices</div>
+    <div class="gnote">No CSP / X-Frame-Options /<br>Referrer-Policy; no consent gate.</div></div>
+  </div>
+  <div class="card gauge">
+    <div class="dial">
+      <svg width="104" height="104" viewBox="0 0 104 104" role="img" aria-label="SEO score 76 out of 100, Needs work">
+        <circle cx="52" cy="52" r="44" fill="none" stroke="var(--grid)" stroke-width="9"/>
+        <circle cx="52" cy="52" r="44" fill="none" stroke="var(--warn)" stroke-width="9" stroke-linecap="round"
+                stroke-dasharray="210.1 66.4"/>
+      </svg>
+      <div class="val">76</div>
+    </div>
+    <div><div class="gname">SEO</div>
+    <div class="gnote">Strong basics, but zero schema<br>and 39 pages with no canonical.</div></div>
+  </div>
+</div>
+
+<div class="grid g4" style="margin-top:14px">
+  <div class="tile"><div class="k">Pages crawled</div><div class="v">54</div><div class="d">All HTTP 200 · 0 broken internal links</div></div>
+  <div class="tile"><div class="k">Findings</div><div class="v">36</div><div class="d">6 critical · 10 serious · 20 moderate &amp; minor</div></div>
+  <div class="tile"><div class="k">Site-wide image weight</div><div class="v">22.6 MB</div><div class="d">85 files · 79% of it is PNG</div></div>
+  <div class="tile"><div class="k">Est. recoverable</div><div class="v">~19 MB</div><div class="d">By right-sizing + WebP/AVIF conversion</div></div>
+</div>
+
+<h2 id="vitals">2. Core Web Vitals &amp; lab timings</h2>
+<p class="sub">Measured on the homepage in a real Chrome window on a fast fixed-line connection with a warm
+cache — i.e. the best case. Treat these as the floor of what real users experience, not the average.</p>
+<div class="grid g4" style="margin-top:14px">
+  <div class="tile"><div class="k">LCP</div><div class="v" style="color:var(--good)">0.37 s</div>
+    <div class="d">Element: <code>/doctor3.png</code> — a 923 KB PNG. On 4G this becomes the bottleneck (~4–5 s).</div></div>
+  <div class="tile"><div class="k">CLS</div><div class="v" style="color:var(--good)">0.0001</div>
+    <div class="d">Excellent. Layout is stable; only 4 tiny shifts recorded.</div></div>
+  <div class="tile"><div class="k">TBT (blocking)</div><div class="v" style="color:var(--good)">93 ms</div>
+    <div class="d">One long task only. Main thread is not a problem here.</div></div>
+  <div class="tile"><div class="k">TTFB</div><div class="v" style="color:var(--good)">146 ms</div>
+    <div class="d">Netlify edge, HTTP/2, Brotli. Server side is healthy.</div></div>
+  <div class="tile"><div class="k">FCP</div><div class="v" style="color:var(--good)">0.34 s</div>
+    <div class="d">Warm cache, desktop, unthrottled.</div></div>
+  <div class="tile"><div class="k">DOM Content Loaded</div><div class="v">0.27 s</div>
+    <div class="d">1,346 DOM nodes, max depth 16 — comfortably within budget.</div></div>
+  <div class="tile"><div class="k">Fully loaded</div><div class="v">0.67 s</div>
+    <div class="d">43 requests on the homepage.</div></div>
+  <div class="tile"><div class="k">HTML payload</div><div class="v">209 KB</div>
+    <div class="d">24 KB over the wire after Brotli. Server-rendered by Next.js.</div></div>
+</div>
+
+<h2 id="weight">3. Where the bytes go</h2>
+<div class="grid g2" style="margin-top:14px">
+  <div class="card">
+    <h3 style="margin-top:0">Homepage first visit — bytes over the wire</h3>
+<div class="chart">
+<div class="row" title="Images (PNG/WebP): 2,330 KB"><div class="lab">Images (PNG/WebP)</div><div class="track"><div class="bar " style="width:100.0%"></div></div><div class="num">2,330 KB</div></div>
+<div class="row" title="JavaScript: 433 KB"><div class="lab">JavaScript</div><div class="track"><div class="bar " style="width:18.6%"></div></div><div class="num">433 KB</div></div>
+<div class="row" title="Fonts (2 × woff2): 83 KB"><div class="lab">Fonts (2 × woff2)</div><div class="track"><div class="bar " style="width:3.6%"></div></div><div class="num">83 KB</div></div>
+<div class="row" title="CSS: 35 KB"><div class="lab">CSS</div><div class="track"><div class="bar " style="width:1.5%"></div></div><div class="num">35 KB</div></div>
+<div class="row" title="HTML document: 24 KB"><div class="lab">HTML document</div><div class="track"><div class="bar " style="width:1.0%"></div></div><div class="num">24 KB</div></div>
+</div>
+<p class="cap">Total first-visit payload <b>≈ 2.9 MB across 43 requests</b>. Images are 81% of it. JavaScript decompresses to 2.3 MB — heavy, but it is not what users wait for; the images are.</p>
+  </div>
+  <div class="card">
+    <h3 style="margin-top:0">Whole site — image weight by format</h3>
+<div class="chart">
+<div class="row" title="PNG — 21 files: 17.8 MB"><div class="lab">PNG — 21 files</div><div class="track"><div class="bar o" style="width:100.0%"></div></div><div class="num">17.8 MB</div></div>
+<div class="row" title="WebP — 62 files: 4.7 MB"><div class="lab">WebP — 62 files</div><div class="track"><div class="bar o" style="width:26.7%"></div></div><div class="num">4.7 MB</div></div>
+<div class="row" title="JPEG — 1 file: 46 KB"><div class="lab">JPEG — 1 file</div><div class="track"><div class="bar o" style="width:0.3%"></div></div><div class="num">46 KB</div></div>
+</div>
+<p class="cap">21 PNG files carry <b>79% of all image weight</b>. Converting them to WebP/AVIF and resizing them to the dimensions they are actually displayed at would remove roughly 19 MB site-wide.</p>
+  </div>
+</div>
+
+<div class="card" style="margin-top:14px">
+  <h3 style="margin-top:0">The 6 heaviest images on the site</h3>
+<div class="chart">
+<div class="row" title="/kneejoint.png: 6.8 MB · 1696×2502 → shown 486×730"><div class="lab">/kneejoint.png</div><div class="track"><div class="bar a" style="width:100.0%"></div></div><div class="num">6.8 MB · 1696×2502 → shown 486×730</div></div>
+<div class="row" title="/knee-machine.png: 6.7 MB · 2528×1686 → shown 736×730"><div class="lab">/knee-machine.png</div><div class="track"><div class="bar a" style="width:98.4%"></div></div><div class="num">6.7 MB · 2528×1686 → shown 736×730</div></div>
+<div class="row" title="/doctor4.png: 1.3 MB · 1168×1200"><div class="lab">/doctor4.png</div><div class="track"><div class="bar a" style="width:19.1%"></div></div><div class="num">1.3 MB · 1168×1200</div></div>
+<div class="row" title="/hip-2.png: 955 KB · 1264×778 → shown 577×355"><div class="lab">/hip-2.png</div><div class="track"><div class="bar a" style="width:14.0%"></div></div><div class="num">955 KB · 1264×778 → shown 577×355</div></div>
+<div class="row" title="/doctor3.png: 923 KB · 1200×1200 → shown 550×550 (LCP)"><div class="lab">/doctor3.png</div><div class="track"><div class="bar a" style="width:13.5%"></div></div><div class="num">923 KB · 1200×1200 → shown 550×550 (LCP)</div></div>
+<div class="row" title="/…kidney-stone-1.webp: 817 KB · 4585×4584 → shown 500×500"><div class="lab">/…kidney-stone-1.webp</div><div class="track"><div class="bar a" style="width:12.0%"></div></div><div class="num">817 KB · 4585×4584 → shown 500×500</div></div>
+</div>
+<p class="cap">Two images on <code>/orthopaedic</code> alone total <b>13.5 MB</b>. Several WebP files are 4,500 px square but are displayed at 500 px — roughly 80× more pixels than needed.</p>
+</div>
+
+<h2 id="perf">4. Performance findings</h2>
+<div class="tblwrap"><table>
+<thead><tr><th>Severity</th><th>Finding</th><th>Evidence</th><th>Fix</th></tr></thead>
+<tbody>
+<tr><td><span class="chip c-crit">Critical</span></td>
+  <td><b>22.6 MB of unoptimised images site-wide</b>, 79% of it PNG</td>
+  <td>85 image files fetched directly. <code>/kneejoint.png</code> 6.8 MB, <code>/knee-machine.png</code> 6.7 MB,
+      <code>/doctor4.png</code> 1.3 MB. Several WebP files are 4,585×4,584 px but render at 500×500.</td>
+  <td>Convert every PNG to WebP/AVIF and resize to 2× the displayed size. Expected saving ≈ 19 MB.</td></tr>
+
+<tr><td><span class="chip c-crit">Critical</span></td>
+  <td><b>Static images are served with no browser cache</b></td>
+  <td>Every image, plus <code>favicon.ico</code>, <code>robots.txt</code> and <code>sitemap.xml</code>, returns
+      <code>Cache-Control: public, max-age=0, must-revalidate</code>. Only the hashed
+      <code>/_next/static/*</code> JS and CSS get <code>max-age=31536000, immutable</code>.</td>
+  <td>Add a Netlify header rule giving <code>/*.png /*.webp /*.jpg /*.svg</code> a long max-age
+      (fingerprint filenames if they change). This is the "efficient cache policy" audit both
+      Lighthouse and GTmetrix flag.</td></tr>
+
+<tr><td><span class="chip c-ser">Serious</span></td>
+  <td><b>Next.js image optimisation is not being used</b></td>
+  <td>Every <code>&lt;img&gt;</code> points at a raw path (<code>/doctor3.png</code>), never at
+      <code>/_next/image</code>. No <code>srcset</code>, no <code>sizes</code>, no automatic AVIF/WebP.</td>
+  <td>Switch to <code>next/image</code> (or Netlify Image CDN). It solves resizing, format negotiation and
+      <code>srcset</code> in one change and is the single highest-leverage fix on this list.</td></tr>
+
+<tr><td><span class="chip c-ser">Serious</span></td>
+  <td><b>The LCP image is a 923 KB PNG and the logo is lazy-loaded</b></td>
+  <td>LCP element on the homepage is <code>/doctor3.png</code> (1200×1200, rendered 550×550).
+      <code>/logo.png</code> is 1500×715 / 101 KB, rendered at 90×90, and carries
+      <code>loading="lazy"</code> — it appears on all 54 pages.</td>
+  <td>Preload the hero image and mark it <code>fetchpriority="high"</code>; remove
+      <code>loading="lazy"</code> from the header logo and ship it at ~180×86 in WebP.</td></tr>
+
+<tr><td><span class="chip c-warn">Moderate</span></td>
+  <td><b>Logo aspect ratio is wrong</b></td>
+  <td><code>/logo.png</code> is 1500×715 (2.1:1) but declared <code>width="90" height="90"</code> (1:1).</td>
+  <td>Declare the true aspect ratio — Lighthouse fails this as "Displays images with incorrect aspect ratio".</td></tr>
+
+<tr><td><span class="chip c-warn">Moderate</span></td>
+  <td><b>2.3 MB of JavaScript (decompressed) across 40 chunks</b></td>
+  <td>433 KB over the wire; <code>connect.facebook.net/fbevents.js</code> alone decompresses to 400 KB.
+      Only one long task (93 ms) was recorded, so it is not currently blocking.</td>
+  <td>Defer the Meta Pixel behind consent, and audit the two largest app chunks
+      (<code>1090-*.js</code> 200 KB, <code>4bd1b696-*.js</code> 169 KB) for unused libraries.</td></tr>
+
+<tr><td><span class="chip c-good">Passing</span></td>
+  <td>Server, protocol and compression are all correct</td>
+  <td>TTFB 146 ms, HTTP/2, Brotli on HTML/CSS/JS, HSTS present, hashed assets immutable-cached,
+      CLS 0.0001, DOM 1,346 nodes, zero console errors, zero render-blocking third-party CSS.</td>
+  <td>No action.</td></tr>
+</tbody></table></div>
+
+<h2 id="seo">5. SEO findings</h2>
+<div class="callout warn">
+  <h4>The biggest SEO gap is structural, not textual: there is no structured data anywhere on the site.</h4>
+  <p>All 54 pages were parsed for <code>application/ld+json</code>. Zero were found. For a multi-city
+  surgical clinic this removes any chance of rich results, doctor/clinic knowledge panels, FAQ snippets
+  and breadcrumb trails, and weakens the E-E-A-T signals Google applies especially hard to
+  Your-Money-Your-Life health content.</p>
+</div>
+<div class="tblwrap"><table>
+<thead><tr><th>Severity</th><th>Finding</th><th>Scale</th><th>Fix</th></tr></thead>
+<tbody>
+<tr><td><span class="chip c-crit">Critical</span></td>
+  <td><b>No schema.org structured data on any page</b></td><td class="n">54 / 54 pages</td>
+  <td>Add <code>MedicalClinic</code> + <code>LocalBusiness</code> (per city) with address, geo, hours and
+      phone; <code>MedicalProcedure</code> on treatment pages; <code>FAQPage</code> on the Q&amp;A blocks;
+      <code>BreadcrumbList</code> sitewide; <code>Physician</code> for named surgeons.</td></tr>
+
+<tr><td><span class="chip c-ser">Serious</span></td>
+  <td><b>Canonical tag missing</b></td><td class="n">39 / 54 pages</td>
+  <td>The homepage, all <code>/treatment/*</code> pages and all service pages have no
+      <code>&lt;link rel="canonical"&gt;</code>. Only <code>/pune</code>, <code>/mumbai</code> and their
+      city-treatment children have one. Add self-referencing canonicals everywhere.</td></tr>
+
+<tr><td><span class="chip c-ser">Serious</span></td>
+  <td><b>Near-duplicate city pages with no canonical strategy</b></td><td class="n">~13 page pairs</td>
+  <td><code>/treatment/piles-treatment</code>, <code>/pune/treatment/piles-treatment-in-pune</code> and
+      <code>/mumbai/treatment/piles-treatment-in-mumbai</code> cover the same procedure with heavily
+      overlapping copy. Decide which version should rank, canonicalise the others to it, and differentiate
+      the city pages with genuinely local content (that clinic's surgeons, address, prices, patient stories).</td></tr>
+
+<tr><td><span class="chip c-ser">Serious</span></td>
+  <td><b>The doctor portal is indexable and duplicates the homepage metadata</b></td><td class="n">3 pages</td>
+  <td><code>/prescription</code>, <code>/prescription/login</code> and <code>/prescription/signup</code> all
+      carry the homepage's exact title <em>and</em> meta description, and each has two <code>&lt;h1&gt;</code>
+      elements. Add <code>&lt;meta name="robots" content="noindex,nofollow"&gt;</code> and unique titles.</td></tr>
+
+<tr><td><span class="chip c-warn">Moderate</span></td>
+  <td><b>Title tags over 60 characters</b></td><td class="n">39 / 54 pages</td>
+  <td>Worst: <code>/orthopaedic</code> 113 chars, <code>/elderly-care</code> 109,
+      <code>/treatment/breast-lump</code> 109. Cause: the full site title
+      "— Total Surgicare: Best Surgical Care in Pune" is appended to titles that already say "in Pune".
+      Shorten the template to "| Total Surgicare".</td></tr>
+
+<tr><td><span class="chip c-warn">Moderate</span></td>
+  <td><b>Meta descriptions outside the 120–160 char window</b></td><td class="n">~17 pages</td>
+  <td>Too long: <code>/diagnostic</code> 324, <code>/post-surgery-care</code> 318, <code>/mumbai</code> 267,
+      <code>/pune</code> 265. Too short: <code>/pune/treatment/gall-bladder-surgery-in-pune</code> 97,
+      <code>/terms-conditions</code> 99, <code>/privacy-policy</code> 100.</td></tr>
+
+<tr><td><span class="chip c-warn">Moderate</span></td>
+  <td><b>Sitemap is incomplete and its dates are synthetic</b></td><td class="n">50 URLs</td>
+  <td><code>/orthopaedic</code> — a real service page — is missing from <code>sitemap.xml</code>. Every entry
+      carries the same <code>&lt;lastmod&gt;2026-08-13&lt;/lastmod&gt;</code>, which makes the field useless as
+      a freshness signal. Generate lastmod from real content-change dates.</td></tr>
+
+<tr><td><span class="chip c-warn">Moderate</span></td>
+  <td><b>Heading hierarchy skips a level</b></td><td class="n">41 pages</td>
+  <td>Pages jump <code>h1 → h3</code> (and <code>h2 → h4</code> on the homepage). Three pages have two
+      <code>h1</code>s. Renumber so levels only ever increase by one.</td></tr>
+
+<tr><td><span class="chip c-warn">Moderate</span></td>
+  <td><b>URL and filename typos</b></td><td class="n">5 files</td>
+  <td><code>/treatment/umbillical-hernia-surgery</code> ("umbillical" is misspelled — the keyword is
+      "umbilical"), and <code>thumnail.png</code>, <code>thumnail1.png</code>, <code>thumnail3.png</code>,
+      <code>thumnail4.png</code>. Fix the URL with a 301 redirect from the old path.</td></tr>
+
+<tr><td><span class="chip c-warn">Minor</span></td>
+  <td><b>Unreadable URL slug</b></td><td class="n">2 pages</td>
+  <td><code>/treatment/kidney-stone-treatment-rirspcnlursl</code> concatenates RIRS/PCNL/URSL into a
+      meaningless string. <code>/treatment/kidney-stone-treatment</code> would read better and rank the same.</td></tr>
+
+<tr><td><span class="chip c-warn">Minor</span></td>
+  <td><b>External links open in a new tab without <code>rel="noopener"</code></b></td><td class="n">2 links × 54 pages</td>
+  <td>The footer Facebook and Instagram links use <code>target="_blank"</code> with an empty
+      <code>rel</code>. Add <code>rel="noopener noreferrer"</code> (the other outbound links already have it).</td></tr>
+
+<tr><td><span class="chip c-warn">Minor</span></td>
+  <td><b>Obsolete meta keywords tag</b></td><td class="n">54 pages</td>
+  <td><code>&lt;meta name="keywords" content="Surgical Treatments in Pune"&gt;</code> — ignored by every
+      major engine since 2009. Harmless, but it also happens to be identical on every page.</td></tr>
+
+<tr><td><span class="chip c-good">Passing</span></td>
+  <td>Fundamentals are in good shape</td><td class="n">—</td>
+  <td>Clean <code>robots.txt</code> with sitemap reference, all pages indexable and returning 200,
+      no broken internal links, correct 404 status on unknown URLs, unique H1 on 51/54 pages,
+      full Open Graph + Twitter Card coverage, <code>lang="en"</code> and
+      <code>og:locale=en_IN</code> everywhere, healthy 2,500–9,500 word depth on treatment pages.</td></tr>
+</tbody></table></div>
+
+<h2 id="a11y">6. Accessibility (WCAG 2.1 AA)</h2>
+<p class="sub">Scanned with axe-core 4.10.2 against the WCAG 2.0/2.1 A &amp; AA rule sets plus best-practice
+rules, on five representative templates. The same four violations recur on every template, which means they
+live in shared components — so fixing them once fixes them everywhere.</p>
+
+<div class="card" style="margin-top:14px">
+  <h3 style="margin-top:0">Colour-contrast failures per page (axe-core, serious)</h3>
+  <div class="chart">
+    <div class="row" title="Homepage: 39 failing elements"><div class="lab">/ (homepage)</div><div class="track"><div class="bar" style="width:100%"></div></div><div class="num">39</div></div>
+    <div class="row" title="Piles treatment: 32 failing elements"><div class="lab">/treatment/piles-treatment</div><div class="track"><div class="bar" style="width:82.1%"></div></div><div class="num">32</div></div>
+    <div class="row" title="Orthopaedic: 23 failing elements"><div class="lab">/orthopaedic</div><div class="track"><div class="bar" style="width:59.0%"></div></div><div class="num">23</div></div>
+    <div class="row" title="Doctor portal login: 7 failing elements"><div class="lab">/prescription/login</div><div class="track"><div class="bar" style="width:17.9%"></div></div><div class="num">7</div></div>
+    <div class="row" title="Contact: 4 failing elements"><div class="lab">/contact</div><div class="track"><div class="bar" style="width:10.3%"></div></div><div class="num">4</div></div>
+  </div>
+  <p class="cap">Two colour pairs cause almost all of it — see the table below. 42 axe rules pass on the homepage.</p>
+</div>
+
+<div class="tblwrap"><table>
+<thead><tr><th>Severity</th><th>Violation</th><th>Detail</th><th>Fix</th></tr></thead>
+<tbody>
+<tr><td><span class="chip c-crit">Critical</span></td>
+  <td><b>Primary CTA fails contrast at 1.99:1</b><br><span class="gnote">WCAG 1.4.3 (AA) — needs 4.5:1</span></td>
+  <td>White <code>#fafafa</code> text on the orange brand fill <code>#f4a300</code> — this is the
+      "Book Appointment" and "Prescription" buttons, i.e. the site's main conversion elements, on every page.</td>
+  <td>Darken the orange to about <code>#a05e00</code> for white text, or keep the orange and use near-black
+      text on it. Same for teal <code>#00a9b7</code> on <code>#f9fafb</code> (2.73:1) used for stat numbers
+      and section headings — darken to roughly <code>#00727c</code>.</td></tr>
+
+<tr><td><span class="chip c-ser">Serious</span></td>
+  <td><b>Form <code>&lt;select&gt;</code> elements have no accessible name</b><br><span class="gnote">WCAG 4.1.2</span></td>
+  <td>The appointment form's "specialty" and "gender" dropdowns have no <code>id</code>, no
+      <code>name</code>, no <code>&lt;label&gt;</code> and no <code>aria-label</code>. This form appears on
+      48 pages. Screen-reader users hear only "combo box".</td>
+  <td>Add a visible <code>&lt;label for&gt;</code> to each. The missing <code>name</code> attribute is also
+      worth checking on the backend — those two fields may not be submitting values at all.</td></tr>
+
+<tr><td><span class="chip c-ser">Serious</span></td>
+  <td><b><code>&lt;ul&gt;</code> contains <code>&lt;button&gt;</code> children directly</b><br><span class="gnote">WCAG 1.3.1</span></td>
+  <td>Present on every page tested — a shared list component puts buttons where only
+      <code>&lt;li&gt;</code> may go, which breaks list semantics for screen readers.</td>
+  <td>Wrap each button in its own <code>&lt;li&gt;</code>.</td></tr>
+
+<tr><td><span class="chip c-warn">Moderate</span></td>
+  <td><b>No skip-to-content link and content outside landmarks</b></td>
+  <td>Keyboard users must tab through ~40 nav links on every page before reaching the content. axe's
+      <code>region</code> rule also flags page content sitting outside any landmark.</td>
+  <td>Add a visually-hidden "Skip to main content" link as the first focusable element, and wrap stray
+      sections in <code>&lt;main&gt;</code> / <code>&lt;section&gt;</code>.</td></tr>
+
+<tr><td><span class="chip c-warn">Moderate</span></td>
+  <td><b>Mobile menu button has no <code>aria-expanded</code>, and the menu is not a dialog</b></td>
+  <td>The hamburger toggle is labelled "Nav button" and never announces open/closed state. The panel is a
+      plain <code>&lt;nav&gt;</code> with no focus trap and no <kbd>Esc</kbd> handling, and it is
+      semi-transparent, so hero content shows through the menu text.</td>
+  <td>Toggle <code>aria-expanded</code>, give the button a real label ("Open menu"), trap focus while open,
+      close on <kbd>Esc</kbd>, and make the panel background opaque.</td></tr>
+
+<tr><td><span class="chip c-warn">Moderate</span></td>
+  <td><b>53 tap targets smaller than 44×44 px on mobile</b></td>
+  <td>Measured at a 393 px viewport. Includes "Book Appointment" text links at 172×20 px, the city selector
+      icon at 24×24 px and several social icons.</td>
+  <td>Give interactive elements a minimum 44×44 px hit area (padding counts).</td></tr>
+
+<tr><td><span class="chip c-warn">Minor</span></td>
+  <td><b>No form validation, autocomplete or status announcements</b></td>
+  <td>No field on the appointment form carries <code>required</code>, none carries an
+      <code>autocomplete</code> hint (<code>name</code>, <code>tel</code>, <code>email</code>), and there is
+      no <code>aria-live</code> region for success/error messages.</td>
+  <td>Add <code>required</code> + <code>autocomplete</code> + <code>inputmode="tel"</code>, and announce
+      submission results in an <code>aria-live="polite"</code> region.</td></tr>
+
+<tr><td><span class="chip c-good">Passing</span></td>
+  <td>What is already correct</td>
+  <td><code>lang="en"</code> on every page, a proper responsive viewport that does <em>not</em> block zoom,
+      a single H1 on 51/54 pages, alt text on 100% of images (only one decorative empty alt per page),
+      <code>&lt;main&gt;</code>/<code>&lt;header&gt;</code>/<code>&lt;footer&gt;</code> landmarks present,
+      and the iframe (GTM noscript) is titled.</td><td>No action.</td></tr>
+</tbody></table></div>
+
+<h2 id="resp">7. Mobile &amp; desktop behaviour</h2>
+<div class="callout">
+  <h4>Navigation items are unreachable on standard laptop screens.</h4>
+  <p>At a 1298 px viewport the main menu renders items out to x = 1504 px with the container clipped and no
+  horizontal scroll — so <b>"Post Surgery Care", "Elderly Care" and "Orthopaedic" simply cannot be clicked</b>.
+  The desktop nav takes over from the hamburger at 1024 px but does not fit until roughly 1520 px, so every
+  1280, 1366 and 1440-wide laptop — the most common desktop widths in India — loses part of the menu.
+  <code>/orthopaedic</code> is also missing from the sitemap, so those pages are doubly hard to find.</p>
+</div>
+<div class="tblwrap"><table>
+<thead><tr><th>Viewport</th><th>Result</th><th>Notes</th></tr></thead>
+<tbody>
+<tr><td class="n">393 px<br><span class="gnote">phone</span></td><td><span class="chip c-warn">Issues</span></td>
+  <td>No horizontal overflow — the layout itself holds up. But the hero photo overlaps the "We treat not only
+      symptoms / We care about each person" copy, the "Reliability" and "Professional" badges are clipped or
+      hidden, and two floating action buttons (payment ₹ and chat) sit on top of content in the bottom-right.
+      53 tap targets are under 44 px.</td></tr>
+<tr><td class="n">256 px<br><span class="gnote">narrow / split screen</span></td><td><span class="chip c-ser">Overflow</span></td>
+  <td>Content extends to 301 px against a 256 px viewport — the social-icon row and a nav button break out,
+      producing horizontal scroll.</td></tr>
+<tr><td class="n">1298 px<br><span class="gnote">laptop</span></td><td><span class="chip c-crit">Broken nav</span></td>
+  <td>Three top-level menu items clipped and unreachable, as described above.</td></tr>
+<tr><td class="n">1440 px+<br><span class="gnote">desktop</span></td><td><span class="chip c-good">Good</span></td>
+  <td>Full navigation visible, layout balanced, hero renders as designed.</td></tr>
+</tbody></table></div>
+<h3>Functional checks</h3>
+<ul class="tight">
+<li>All 54 pages return HTTP 200; unknown URLs return a genuine <code>404</code> status (not a soft 404).</li>
+<li>Zero broken internal links across the whole crawl; zero JavaScript console errors on any page tested.</li>
+<li>Mobile menu opens and closes correctly; <code>/prescription</code> correctly server-redirects to
+    <code>/prescription/login?next=/prescription</code>.</li>
+<li><code>tel:+91-9665551711</code>, the WhatsApp link and both Google Maps links are well-formed.</li>
+<li>No <code>manifest.json</code> or <code>site.webmanifest</code> exists (both 404) even though
+    <code>theme-color</code> meta tags are set — so the site is not installable and Lighthouse's PWA checks
+    all fail. Add one if a home-screen install matters; otherwise drop the orphan theme-color tags.</li>
+</ul>
+
+<h2 id="sec">8. Security, privacy &amp; best practices</h2>
+<div class="tblwrap"><table>
+<thead><tr><th>Severity</th><th>Finding</th><th>Detail</th></tr></thead>
+<tbody>
+<tr><td><span class="chip c-crit">Critical</span></td>
+  <td><b>Marketing trackers fire with no consent gate on a health site</b></td>
+  <td>Google Tag Manager (<code>GTM-TP73RQVF</code>), GA4, Meta Pixel (<code>2409103159560050</code>) and
+      Google Ads / DoubleClick all load immediately, with no cookie banner anywhere on the site. Because the
+      URL path is sent with every event, Meta receives strings like
+      <code>/treatment/piles-treatment</code> tied to a user — i.e. inferred health data. Under India's DPDP
+      Act 2023 (and GDPR for any EU visitor) this needs prior, informed, granular consent.</td></tr>
+<tr><td><span class="chip c-ser">Serious</span></td>
+  <td><b>No Content-Security-Policy</b></td>
+  <td>Absent entirely. With four third-party script origins already loaded, a CSP is the main defence against
+      script injection and tag-manager abuse.</td></tr>
+<tr><td><span class="chip c-ser">Serious</span></td>
+  <td><b>No <code>X-Frame-Options</code> / <code>frame-ancestors</code></b></td>
+  <td>The site can be framed by any origin — clickjacking risk, and it is a page with an appointment form and
+      a doctor login on it.</td></tr>
+<tr><td><span class="chip c-warn">Moderate</span></td>
+  <td><b>Missing <code>Referrer-Policy</code> and <code>Permissions-Policy</code></b></td>
+  <td>Full URLs (including treatment paths) leak to third parties as referrers. Set
+      <code>Referrer-Policy: strict-origin-when-cross-origin</code> and lock down unused browser features.</td></tr>
+<tr><td><span class="chip c-warn">Moderate</span></td>
+  <td><b>HSTS is not complete</b></td>
+  <td><code>Strict-Transport-Security: max-age=31536000</code> is set, but without
+      <code>includeSubDomains</code> or <code>preload</code>.</td></tr>
+<tr><td><span class="chip c-warn">Minor</span></td>
+  <td><b><code>X-Powered-By: Next.js</code> disclosed</b></td>
+  <td>Minor information leak; set <code>poweredByHeader: false</code> in <code>next.config.js</code>.</td></tr>
+<tr><td><span class="chip c-warn">Minor</span></td>
+  <td><b>Doctor portal publicly indexable</b></td>
+  <td><code>/prescription/login</code> and <code>/prescription/signup</code> are crawlable. Add
+      <code>noindex</code> and consider rate-limiting the signup endpoint.</td></tr>
+<tr><td><span class="chip c-good">Passing</span></td>
+  <td>HTTPS everywhere, no mixed content, <code>nosniff</code> on HTML, HSTS present, Brotli + HTTP/2,
+      no console errors, no exposed source maps in the pages tested.</td><td>—</td></tr>
+</tbody></table></div>
+
+<h2 id="plan">9. Prioritised action plan</h2>
+<p class="sub">Ordered by impact ÷ effort. The first five items are where essentially all of the measurable
+gain sits.</p>
+<div class="tblwrap"><table>
+<thead><tr><th>#</th><th>Action</th><th>Why it matters</th><th>Effort</th><th>Expected effect</th></tr></thead>
+<tbody>
+<tr><td class="n">1</td><td><b>Move all images to <code>next/image</code> (or Netlify Image CDN) and re-export the PNGs as WebP/AVIF</b></td>
+  <td>22.6 MB → ~3.5 MB site-wide; fixes over-sized delivery, format, <code>srcset</code> and the wrong logo aspect ratio in one change.</td>
+  <td class="n">1–2 days</td><td>Mobile performance score roughly 46 → 80+; <code>/orthopaedic</code> drops ~13 MB.</td></tr>
+<tr><td class="n">2</td><td><b>Add a long <code>Cache-Control</code> for static media in <code>netlify.toml</code></b></td>
+  <td>Images currently revalidate on every visit. Repeat-visit load time collapses once they cache.</td>
+  <td class="n">1 hour</td><td>Clears the "efficient cache policy" audit in both Lighthouse and GTmetrix.</td></tr>
+<tr><td class="n">3</td><td><b>Fix the desktop navigation between 1024 px and 1520 px</b></td>
+  <td>Three service sections are currently unreachable on the most common laptop widths — a direct revenue leak.</td>
+  <td class="n">2–4 hours</td><td>Restores access to Post Surgery Care, Elderly Care and Orthopaedic.</td></tr>
+<tr><td class="n">4</td><td><b>Darken the brand orange and teal to meet 4.5:1</b></td>
+  <td>The main CTA currently fails WCAG AA at 1.99:1; it also reads poorly in sunlight on a phone.</td>
+  <td class="n">2–4 hours</td><td>Removes ~100 contrast violations sitewide; accessibility score to ~90.</td></tr>
+<tr><td class="n">5</td><td><b>Ship JSON-LD structured data</b></td>
+  <td>MedicalClinic + LocalBusiness per city, MedicalProcedure per treatment, FAQPage, BreadcrumbList, Physician.</td>
+  <td class="n">2–3 days</td><td>Eligibility for rich results and local pack; the largest available organic-visibility gain.</td></tr>
+<tr><td class="n">6</td><td><b>Add self-referencing canonicals to the 39 pages missing them</b>, and canonicalise the city duplicates</td>
+  <td>Prevents Pune/Mumbai/generic treatment pages from competing with each other.</td>
+  <td class="n">Half a day</td><td>Consolidates ranking signals across ~13 near-duplicate page sets.</td></tr>
+<tr><td class="n">7</td><td><b>Add a consent banner and gate GTM / Meta Pixel behind it</b></td>
+  <td>DPDP Act 2023 and GDPR exposure is materially higher because the page paths themselves reveal health conditions.</td>
+  <td class="n">1 day</td><td>Removes the legal exposure and cuts ~400 KB of pixel JS from non-consenting loads.</td></tr>
+<tr><td class="n">8</td><td><b>Add security headers</b> — CSP, X-Frame-Options, Referrer-Policy, Permissions-Policy; extend HSTS</td>
+  <td>All are header-only changes in <code>netlify.toml</code>.</td>
+  <td class="n">2–4 hours</td><td>Best-practices score to ~90.</td></tr>
+<tr><td class="n">9</td><td><b>Shorten titles over 60 chars and rewrite the 17 out-of-range meta descriptions</b></td>
+  <td>39 titles are being truncated in search results, including every treatment page.</td>
+  <td class="n">1 day</td><td>Better CTR from existing rankings — no ranking change required.</td></tr>
+<tr><td class="n">10</td><td><b>Housekeeping</b>: <code>noindex</code> on the doctor portal, add <code>/orthopaedic</code> to the sitemap, real <code>lastmod</code> values, fix <code>umbillical</code> → <code>umbilical</code> with a 301, fix <code>thumnail*.png</code>, add <code>rel="noopener"</code>, add a skip link, label the form selects, fix the <code>ul &gt; button</code> nesting, repair heading order.</td>
+  <td>Individually small, collectively they account for about half the open issue count.</td>
+  <td class="n">1–2 days</td><td>Clears the long tail of SEO and accessibility warnings.</td></tr>
+</tbody></table></div>
+
+<h2 id="method">10. Method &amp; limitations</h2>
+<div class="grid g2" style="margin-top:14px">
+<div class="card">
+<h3 style="margin-top:0">What was actually run</h3>
+<ul class="tight">
+<li><b>Full crawl</b> — every internal link followed from the sitemap and homepage until exhausted: 54 unique
+pages, each parsed for metadata, headings, images, links, forms, JSON-LD and response headers.</li>
+<li><b>Performance</b> — Navigation Timing, Resource Timing and PerformanceObserver
+(<code>largest-contentful-paint</code>, <code>layout-shift</code>, <code>longtask</code>) in a real
+foreground Chrome 151 window at 1298×849.</li>
+<li><b>Byte weight</b> — every homepage subresource and all 85 site images re-fetched with
+<code>cache: "reload"</code> to measure true uncached transfer size and real pixel dimensions.</li>
+<li><b>Accessibility</b> — axe-core 4.10.2, tags <code>wcag2a, wcag2aa, wcag21a, wcag21aa, best-practice</code>,
+on <code>/</code>, <code>/treatment/piles-treatment</code>, <code>/contact</code>, <code>/orthopaedic</code>
+and <code>/prescription/login</code>.</li>
+<li><b>Responsive</b> — rendered and measured at 256 px, 393 px and 1298 px viewports, with computed
+bounding boxes for overflow and tap-target size.</li>
+<li><b>Headers</b> — direct fetches of HTML, CSS, JS, images, <code>robots.txt</code>,
+<code>sitemap.xml</code>, a deliberate 404 and two manifest paths.</li>
+</ul>
+</div>
+<div class="card">
+<h3 style="margin-top:0">What these numbers can and cannot claim</h3>
+<ul class="tight">
+<li><b>No throttling was applied.</b> Timings were captured on a fast fixed-line connection with a desktop-class
+CPU. Lighthouse's mobile preset simulates a 4× slower CPU and a throttled 4G link, so real mobile field data
+will be considerably worse than the lab numbers here.</li>
+<li><b>The category scores are modelled, not emitted by Lighthouse.</b> They are computed from the same
+signals Lighthouse weights (measured CWV, payload, cache policy, axe violations, header and metadata checks)
+and are intended as a shared frame of reference — treat them as ±10, and re-run PageSpeed Insights after the
+image work for an official number.</li>
+<li><b>Mobile performance is an estimate</b> derived from the measured 2.9 MB first-load payload and the
+923 KB LCP image over a typical Indian 4G profile.</li>
+<li><b>No form was submitted</b> and no account was created — the appointment and doctor-portal forms were
+inspected structurally only, so backend validation and email delivery are untested.</li>
+<li><b>Field data (CrUX) was not consulted</b>; everything here is lab measurement of the live site on
+19 Aug 2026.</li>
+</ul>
+</div>
+</div>
+
+<footer>
+Audit of <b>https://totalsurgicare.com</b> — 54 pages crawled, 6 templates deep-tested, 36 findings.
+Generated 19 August 2026. Re-run PageSpeed Insights and axe DevTools after items 1–4 to confirm the gains.
+</footer>
+
+</div>
+</body>
+</html>
