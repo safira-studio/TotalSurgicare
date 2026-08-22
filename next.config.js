@@ -85,7 +85,11 @@ const nextConfig = {
     ];
   },
   images: {
-    unoptimized: true,
+    // Optimisation is on: Netlify's Image CDN serves /_next/image (verified
+    // resizing doctor3.webp from 64KB raw to 33.6KB at w=828). This is what
+    // generates srcset, so each element gets a correctly sized file instead of
+    // one source shared by a 64x30 navbar logo and a 200x95 footer logo.
+    formats: ["image/avif", "image/webp"],
     remotePatterns: [
       {
         protocol: "https",

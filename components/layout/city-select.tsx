@@ -27,7 +27,9 @@ export const CitySelect = () => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger
-        aria-label="Select city"
+        aria-label={
+          activeCity ? `${cities[activeCity].name} — change city` : "Select city"
+        }
         className="flex items-center gap-1.5 h-9 px-3 sm:px-4 rounded-full bg-clinic-accent text-white text-xs sm:text-sm font-medium transition-colors hover:bg-clinic-accent/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-clinic-secondary focus-visible:ring-offset-1"
       >
         <MapPin className="h-4 w-4 shrink-0 text-clinic-secondary" />

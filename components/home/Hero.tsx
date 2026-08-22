@@ -116,6 +116,8 @@ export default function Hero({ title, description }: HeroProps) {
               className="w-[400px] sm:w-[450px] md:w-[500px] lg:w-[550px] h-auto"
               fetchPriority="high"
               height={550}
+              // Container is w-[380px] until lg, then w-[550px].
+              sizes="(min-width: 1024px) 550px, 380px"
               src="/doctor3.webp"
               width={550}
               priority

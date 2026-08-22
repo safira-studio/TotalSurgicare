@@ -74,7 +74,7 @@ const config = {
   				secondary: '#F4A300',
   				secondaryDark: '#E49501',
   				accent: '#1B2A41',
-  				dark: '#007D8C',
+  				dark: '#00757F',
   				background: '#F8F9FA'
   			}
   		},

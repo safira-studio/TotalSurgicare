@@ -26,7 +26,10 @@ const Reason = ({ index, title, body, icon, accentClass }: ReasonProps) => (
         <span className="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-clinic-primary/10 text-clinic-dark shrink-0">
           {icon}
         </span>
-        <span className="text-4xl font-onest font-bold text-gray-200 leading-none">
+        <span
+          aria-hidden="true"
+          className="text-4xl font-onest font-bold text-gray-200 leading-none"
+        >
           {String(index).padStart(2, "0")}
         </span>
       </div>

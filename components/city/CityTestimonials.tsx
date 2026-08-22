@@ -11,6 +11,7 @@ const Stars = ({ rating }: { rating: number }) => (
   <div
     aria-label={`Rated ${rating} out of 5`}
     className="flex items-center gap-0.5"
+    role="img"
   >
     {Array.from({ length: 5 }, (_, i) => (
       <Star

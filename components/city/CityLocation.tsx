@@ -80,6 +80,7 @@ const CityLocation = ({ city }: { city: CityConfig }) => {
                   <div
                     aria-label={`Rated ${rating.value} out of 5 on Google`}
                     className="flex items-center gap-0.5"
+                    role="img"
                   >
                     {Array.from({ length: 5 }, (_, i) => (
                       <Star
